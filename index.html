@@ -61,15 +61,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-si
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
 
 /* ── HEADER ── */
-.header{background:rgba(14,20,37,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;padding:0 32px;}
-.header-inner{display:flex;align-items:center;gap:24px;height:52px;}
-.logo{font-family:var(--font-head);font-size:15px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text);white-space:nowrap;flex-shrink:0;}
+.header{background:rgba(14,20,37,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;padding:0 40px;}
+.header-inner{display:flex;align-items:center;height:64px;}
+.logo{font-family:var(--font-head);font-size:20px;font-weight:700;letter-spacing:0.04em;color:var(--text);margin-right:auto;}
 .logo span{color:var(--accent);}
-.week-chip{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--text3);white-space:nowrap;}
-.week-chip strong{color:var(--accent);font-size:18px;font-weight:700;font-family:var(--font-head);}
-.phase-badge{background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:2px 9px;border-radius:4px;letter-spacing:0.06em;text-transform:uppercase;}
-.header-right{margin-left:auto;display:flex;gap:8px;}
-.ico-btn{background:none;border:none;color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;transition:color .15s;padding:0;}
+.week-chip{display:flex;align-items:center;gap:10px;position:absolute;left:50%;transform:translateX(-50%);}
+.wk-label{font-size:13px;font-weight:400;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase;}
+.wk-num{font-family:var(--font-head);font-size:36px;font-weight:700;color:var(--text);line-height:1;}
+.phase-badge{font-size:11px;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:4px 10px;border-radius:4px;}
+.header-right{display:flex;gap:20px;margin-left:auto;}
+.ico-btn{background:none;border:none;color:var(--text2);cursor:pointer;font-size:22px;padding:0;display:flex;align-items:center;transition:color .15s;}
 .ico-btn:hover{color:var(--accent);}
 
 /* ── NAV ── */
@@ -373,12 +374,12 @@ main{max-width:1200px;margin:0 auto;padding:40px 32px;position:relative;}
 }
 
 /* ── HERO STRIP ── */
-.hero-strip{padding:20px 32px 16px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap;background:var(--surface2);}
-.hero-system{font-size:11px;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;color:var(--text3);margin-bottom:4px;}
-.hero-title{font-family:var(--font-head);font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px;}
-.hero-sub{font-size:12px;color:var(--text3);max-width:520px;line-height:1.5;}
-.hero-tags{display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start;padding-top:4px;}
-.htag{font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3);padding:4px 10px;border:1px solid var(--border2);border-radius:4px;}
+.hero-strip{padding:24px 40px 20px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;background:var(--surface2);}
+.hero-system{font-size:11px;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;color:var(--text3);margin-bottom:6px;}
+.hero-title{font-family:var(--font-head);font-size:28px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.hero-sub{font-size:13px;color:var(--text2);max-width:520px;line-height:1.6;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start;padding-top:4px;}
+.htag{font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--text3);padding:5px 11px;border:1px solid var(--border2);border-radius:4px;}
 /* ── NAV offset for hero ── */
 .nav{top:auto;}
 </style>
@@ -388,30 +389,34 @@ main{max-width:1200px;margin:0 auto;padding:40px 32px;position:relative;}
 <header class="header">
   <div class="header-inner">
     <div class="logo">Hair<span>Protocol</span></div>
+
     <div class="week-chip">
-      <span>Week</span>
-      <strong id="hdrWk">—</strong>
-      <span id="hdrPhase"></span>
+      <span class="wk-label">Week</span>
+      <strong class="wk-num" id="hdrWk">—</strong>
+      <span class="phase-badge" id="hdrPhase"></span>
     </div>
+
     <div class="header-right">
       <button class="ico-btn" onclick="openM('m-settings')" title="Settings">⚙</button>
       <button class="ico-btn" onclick="openM('m-log')" title="Log Session">+</button>
     </div>
-</div>
+  </div>
+</header>
+
 <div class="hero-strip">
-    <div class="hero-left">
-      <div class="hero-system">Personal Hair Care System · 3C / 4A · High Porosity · Fine</div>
-      <div class="hero-title">The Bra-Strap Growth Protocol</div>
-      <div class="hero-sub">A precision routine using your owned inventory — Ayurvedic, professional, and commercial — built for consistent, measurable growth.</div>
-    </div>
-    <div class="hero-tags">
-      <span class="htag">3C Top · 4A Bottom</span>
-      <span class="htag">High Porosity</span>
-      <span class="htag">Fine Strands</span>
-      <span class="htag">Shoulder → BSL</span>
-      <span class="htag">Heat Damage Recovery</span>
-      <span class="htag">No Stylist</span>
-    </div>
+  <div class="hero-left">
+    <div class="hero-system">Personal Hair Care System · 3C / 4A · High Porosity · Fine</div>
+    <div class="hero-title">The Bra-Strap Growth Protocol</div>
+    <div class="hero-sub">A precision routine using your owned inventory — Ayurvedic, professional, and commercial — built for consistent, measurable growth.</div>
+  </div>
+  <div class="hero-tags">
+    <span class="htag">3C Top · 4A Bottom</span>
+    <span class="htag">High Porosity</span>
+    <span class="htag">Fine Strands</span>
+    <span class="htag">Shoulder → BSL</span>
+    <span class="htag">Heat Damage Recovery</span>
+    <span class="htag">No Stylist</span>
+  </div>
 </div>
 
 <nav class="nav">
