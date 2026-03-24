@@ -261,6 +261,43 @@ h3 {
 .stype-btn:hover{color:var(--text2);}
 .stype-btn.on{color:var(--accent);border-bottom-color:var(--accent);background:none;}
 
+/* ── TRACKERS ── */
+.tracker-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:20px;}
+.tracker-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px 16px;position:relative;}
+.tracker-card .t-label{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);margin-bottom:4px;}
+.tracker-card .t-value{font-family:var(--font-head);font-size:28px;font-weight:800;line-height:1;color:var(--text);}
+.tracker-card .t-sub{font-size:11px;color:var(--text3);margin-top:4px;}
+.tracker-card .t-btn{position:absolute;top:10px;right:10px;background:var(--surface2);border:none;color:var(--text3);font-size:11px;padding:3px 8px;border-radius:4px;cursor:pointer;}
+.tracker-card .t-btn:hover{color:var(--accent);}
+.tracker-safe{border-color:var(--green) !important;}
+.tracker-warn{border-color:#FF9F5A !important;}
+.tracker-alert{border-color:var(--red) !important;}
+.tracker-card .t-value.safe{color:var(--green);}
+.tracker-card .t-value.warn{color:#FF9F5A;}
+.tracker-card .t-value.alert{color:var(--red);}
+/* ── CONFLICT DETECTOR ── */
+.conflict-list{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+.conflict-item{padding:10px 14px;border-radius:8px;border-left:3px solid;font-size:13px;line-height:1.5;}
+.conflict-item.yellow{background:rgba(255,159,90,0.08);border-color:#FF9F5A;color:var(--text);}
+.conflict-item.orange{background:rgba(224,100,50,0.1);border-color:#E06432;color:var(--text);}
+.conflict-item.red{background:rgba(192,80,80,0.12);border-color:var(--red);color:var(--text);}
+.conflict-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;margin-right:6px;letter-spacing:0.05em;}
+.conflict-badge.yellow{background:#FF9F5A;color:#000;}
+.conflict-badge.orange{background:#E06432;color:#fff;}
+.conflict-badge.red{background:var(--red);color:#fff;}
+/* ── RECIPE BATCH ── */
+.batch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:12px;}
+.batch-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;}
+.batch-card .b-name{font-weight:700;font-size:13px;margin-bottom:4px;}
+.batch-card .b-meta{font-size:11px;color:var(--text3);}
+.batch-card .b-uses{font-size:22px;font-weight:800;font-family:var(--font-head);color:var(--accent);line-height:1;}
+.batch-card .b-exp{font-size:11px;margin-top:6px;}
+.batch-card .b-exp.ok{color:var(--green);}
+.batch-card .b-exp.warn{color:#FF9F5A;}
+.batch-card .b-exp.expired{color:var(--red);}
+.batch-asterisk{color:#FF9F5A;font-weight:700;}
+/* ── SHED/BREAK DROPDOWNS ── */
+.shed-break-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
 /* ── GANTT ── */
 .gantt-wrap{overflow-x:auto;}
 .gantt-inner{min-width:640px;}
@@ -982,7 +1019,42 @@ em, i { font-style: italic; }
       </div>
     </div>
 
-    <!-- Gantt -->
+    <!-- Tracker Row -->
+    <div class="tracker-row" id="tracker-row">
+      <div class="tracker-card" id="tc-flatiron">
+        <div class="t-label">Days Since Flat Iron</div>
+        <div class="t-value" id="tc-fi-val">—</div>
+        <div class="t-sub" id="tc-fi-sub">Not logged yet</div>
+        <button class="t-btn" onclick="logFlatIron()">Log Today</button>
+      </div>
+      <div class="tracker-card" id="tc-aphogee">
+        <div class="t-label">Aphogee 2-Step</div>
+        <div class="t-value" id="tc-aph-val">—</div>
+        <div class="t-sub" id="tc-aph-sub">Not logged yet</div>
+        <button class="t-btn" onclick="logAphogee()">Log Today</button>
+      </div>
+      <div class="tracker-card" id="tc-keratin">
+        <div class="t-label">GK Keratin</div>
+        <div class="t-value" id="tc-ker-val">—</div>
+        <div class="t-sub" id="tc-ker-sub">Not logged yet</div>
+        <button class="t-btn" onclick="logKeratin()">Log Today</button>
+      </div>
+      <div class="tracker-card" id="tc-polleine">
+        <div class="t-label">Phyto Polleine</div>
+        <div class="t-value" id="tc-pol-val">—</div>
+        <div class="t-sub">Weekly scalp pre-treatment</div>
+        <button class="t-btn" onclick="logPolleine()">Log Today</button>
+      </div>
+    </div>
+
+    <!-- Conflict Detector -->
+    <div class="card mb24" id="conflict-panel">
+      <div class="flex fxb fxa mb8">
+        <div class="card-head" style="margin-bottom:0;">Conflict Detector</div>
+        <span class="sz11 text3">Based on your current product stack</span>
+      </div>
+      <div id="conflict-list" class="conflict-list"></div>
+    </div>
     <div class="card mb24">
       <div class="flex fxb fxa mb16">
         <div class="card-head" style="margin-bottom:0;">12-Week Protocol Map</div>
@@ -1008,12 +1080,17 @@ em, i { font-style: italic; }
       </div>
       <div id="log-entries"><div class="text3 sz13" style="text-align:center;padding:20px 0;">No sessions logged yet.</div></div>
     </div>
+    <!-- Recipe Batch Tracker -->
+    <div class="card mt24">
+      <div class="flex fxb fxa mb8">
+        <div class="card-head" style="margin-bottom:0;">Recipe Batch Tracker</div>
+        <button class="btn btn-ghost btn-sm" onclick="openNewBatch()">+ New Batch</button>
+      </div>
+      <p class="sz12 text3 mb8">Track your 3-use DIY batches. <span class="batch-asterisk">*</span> = ingredient changed since batch was made.</p>
+      <div class="batch-grid" id="batch-grid"><div class="text3 sz13" style="padding:12px 0;">No batches logged yet.</div></div>
+    </div>
   </div>
 </div>
-
-<!-- ═══════════════════════════════════════════════════
-  WASH & DC
-════════════════════════════════════════════════════ -->
 <div class="tab" id="tab-wash">
   <div class="page-hd">
     <h1>Wash &amp; Deep Conditioning</h1>
@@ -2569,6 +2646,25 @@ em, i { font-style: italic; }
       <textarea class="ftxt" id="l-notes" rows="3" placeholder="Overall observations, anything unusual, how your hair feels now..."></textarea>
     </div>
 
+    <div class="shed-break-row">
+      <div class="fgrp" style="margin-bottom:0;">
+        <label class="flbl">Breakage <span style="font-size:10px;color:var(--text3);">(strands snapping short)</span></label>
+        <select class="fsel" id="l-breakage">
+          <option value="0">1 — Good (none or normal)</option>
+          <option value="1">2 — A lot</option>
+          <option value="2">3 — Excessive</option>
+        </select>
+      </div>
+      <div class="fgrp" style="margin-bottom:0;">
+        <label class="flbl">Shedding <span style="font-size:10px;color:var(--text3);">(full strands with bulb)</span></label>
+        <select class="fsel" id="l-shedding">
+          <option value="0">1 — Good (none or normal)</option>
+          <option value="1">2 — A lot</option>
+          <option value="2">3 — Excessive</option>
+        </select>
+      </div>
+    </div>
+
     <div class="flex gap8">
       <button class="btn btn-accent" style="flex:1;" onclick="saveLog()">Save Session</button>
       <button class="btn btn-ai" onclick="logToClaude()">Ask Claude</button>
@@ -3647,6 +3743,8 @@ function renderProdLibrary() {
     const qty = p.qty || 'full';
     const isExp = p.exp && new Date(p.exp) < new Date();
     const lastRatings = ratings.slice(-5);
+    const grade = getProductGrade(p.name);
+    const gradeConf = (typeof GRADE_CONFIG !== 'undefined' && GRADE_CONFIG[grade]) || {label:'Useful',color:'#FF9F5A',desc:''};
     
     return `<div class="prod-card" onclick="openProdDetail('${encodeURIComponent(p.name)}')" style="border-top: 3px solid ${color};">
       <div class="prod-score-ring">${scoreRingSVG(avg, color)}</div>
@@ -3660,6 +3758,7 @@ function renderProdLibrary() {
       <div class="prod-note">${p.use || p.desc || ''}</div>
       <div class="prod-meta">
         <span class="qty-circle" title="Quantity: ${qty} — double-click to change" ondblclick="cycleQty(event,'${encodeURIComponent(p.name)}')">${qtyCircle[qty]||qtyCircle.full}</span>
+        <span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;background:${gradeConf.color}22;color:${gradeConf.color};letter-spacing:0.05em;" title="${gradeConf.desc}">${gradeConf.label.toUpperCase()}</span>
         ${isExp ? '<span class="prod-badge badge-exp">Expired</span>' : ''}
         ${ratings.length > 0 ? `<span class="prod-badge" style="background:rgba(255,255,255,.05);color:var(--text3);">${ratings.length} uses</span>` : ''}
       </div>
@@ -4488,6 +4587,286 @@ function renderSessionPhotosForStep(step) {
 const _origRenderPhotos = renderPhotos;
 // (renderPhotos already exists — we add filterPhotos after it)
 
+// ══════════════════════════════════════════════════════════════
+// TRACKERS
+// ══════════════════════════════════════════════════════════════
+function daysSince(key) {
+  const d = S.get(key);
+  if(!d) return null;
+  return Math.floor((Date.now() - new Date(d).getTime()) / 86400000);
+}
+function logFlatIron() {
+  if(!confirm('Log today as your flat iron date?')) return;
+  S.set('last_flat_iron', new Date().toISOString());
+  renderTrackers();
+  runCascadeCheck('flat_iron');
+}
+function logAphogee() {
+  if(!confirm('Log today as your Aphogee 2-Step date?')) return;
+  S.set('last_aphogee', new Date().toISOString());
+  renderTrackers();
+}
+function logKeratin() {
+  if(!confirm('Log today as your GK Keratin treatment date?')) return;
+  S.set(KERATIN_KEY, new Date().toISOString());
+  renderTrackers();
+  runCascadeCheck('keratin');
+}
+function logPolleine() {
+  if(!confirm('Log today as your Phyto Polleine scalp treatment?')) return;
+  S.set('last_polleine', new Date().toISOString());
+  renderTrackers();
+}
+
+function renderTrackers() {
+  function setTracker(valId, subId, cardId, days, thresholds, subFn, valueFn) {
+    const valEl = document.getElementById(valId);
+    const subEl = document.getElementById(subId);
+    const cardEl = document.getElementById(cardId);
+    if(!valEl) return;
+    if(days === null) { valEl.textContent = '—'; valEl.className = 't-value'; return; }
+    const cls = days < thresholds[0] ? 'alert' : days < thresholds[1] ? 'warn' : 'safe';
+    const cardCls = days < thresholds[0] ? 'tracker-alert' : days < thresholds[1] ? 'tracker-warn' : 'tracker-safe';
+    valEl.textContent = valueFn(days);
+    valEl.className = 't-value ' + cls;
+    if(subEl) subEl.textContent = subFn(days);
+    if(cardEl) cardEl.className = 'tracker-card ' + cardCls;
+  }
+  const fiDays = daysSince('last_flat_iron');
+  setTracker('tc-fi-val','tc-fi-sub','tc-flatiron', fiDays, [14,21],
+    d => d < 14 ? 'Too soon — wait '+(21-d)+' more days' : d < 21 ? 'Getting close — '+(21-d)+'d until safe' : 'Safe to flat iron',
+    d => d+'d ago');
+  const aphDays = daysSince('last_aphogee');
+  setTracker('tc-aph-val','tc-aph-sub','tc-aphogee', aphDays, [28,42],
+    d => d < 28 ? 'Next in ~'+(28-d)+'d (Week 4 DC)' : d < 42 ? 'Due now — do Week 4 DC' : 'Overdue',
+    d => d+'d ago');
+  const kerDays = daysSince(KERATIN_KEY);
+  setTracker('tc-ker-val','tc-ker-sub','tc-keratin', kerDays, [150,999],
+    d => d < 75 ? 'Active — ~'+(120-d)+'d remain' : d < 110 ? 'Wearing off — plan reapplication' : 'Expired — reapply GK Keratin',
+    d => d+'d ago');
+  const polDays = daysSince('last_polleine');
+  setTracker('tc-pol-val',null,null, polDays, [8,11],
+    d => '', d => d+'d ago');
+}
+
+// ══════════════════════════════════════════════════════════════
+// CASCADE ANALYSIS
+// ══════════════════════════════════════════════════════════════
+function runCascadeCheck(trigger, productName) {
+  const alerts = [];
+  if(trigger === 'flat_iron') {
+    const kerDays = daysSince(KERATIN_KEY);
+    alerts.push('Flat iron logged. AllPlex No.7 after each section. Next safe window: 21 days from today.');
+    if(kerDays !== null && kerDays > 110) alerts.push('⚠ GK Keratin expired. Results will be shorter-lasting. Schedule reapplication.');
+  }
+  if(trigger === 'keratin') {
+    alerts.push('GK Keratin logged.\n— Switch to sulfate-free shampoo only (Chi Infra)\n— No ACV clarifying rinse for 2 weeks\n— Do not wash hair for 72 hours\n— Flat iron results will last 10–14 days longer');
+  }
+  if(trigger === 'product_change') {
+    alerts.push(`* Product changed: ${productName}\n\nCascade check:\n— Review active DIY batches containing this ingredient category\n— If this is a shampoo: verify pH compatibility with ACV rinse and GK Keratin sulfate-free requirement\n— If this is a protein: verify 4-week DC rotation balance\n— Check conflict detector for new interactions`);
+  }
+  if(alerts.length) setTimeout(() => alert('CASCADE ALERT\n\n' + alerts.join('\n\n')), 300);
+}
+
+// ══════════════════════════════════════════════════════════════
+// CONFLICT DETECTOR
+// ══════════════════════════════════════════════════════════════
+const CONFLICTS = [
+  { level:'yellow', label:'Silicone Buildup May Block Protein Penetration',
+    desc:'Regular use of Bio Silk, Keracare Silken Seal, or Simi de Lino builds a silicone coat that can reduce penetration of Aphogee 2-Step and Biolage FiberStrong. Clarify with Chi Infra before every protein session.',
+    check:()=>true },
+  { level:'red', label:'Sulfate Shampoo Strips GK Keratin',
+    desc:'Any sulfate shampoo will strip your GK Keratin. Use Chi Infra (sulfate-free) only while keratin is active. Clarifying shampoos are the worst offenders.',
+    check:()=>{ const d=daysSince(KERATIN_KEY); return d!==null && d<150; } },
+  { level:'red', label:'Aphogee 2-Step: Balancing Moisturizer is Non-Negotiable',
+    desc:'Aphogee 2-Step without immediate Balancing Moisturizer leaves hair in hardened protein overload. Apply Balancing Moisturizer BEFORE rinsing, while hair is still stiff.',
+    check:()=>true },
+  { level:'orange', label:'Flat Iron Frequency Risk',
+    desc:'Your last flat iron was less than 21 days ago. Each heat session on fine damaged hair removes cuticle integrity. Extend the window — your retention goal depends on it.',
+    check:()=>{ const d=daysSince('last_flat_iron'); return d!==null && d<21; } },
+  { level:'yellow', label:'Multi-Protein Stack — Watch for Overload',
+    desc:'You have Aphogee 2-Step, 2-Minute Reconstructor, and Biolage FiberStrong active. Never use more than one in the same week. Stick to 4-week rotation. Signs of overload: stiff, straw-like, snapping strands.',
+    check:()=>true },
+  { level:'yellow', label:'Coconut Oil — Fine Hair Caution',
+    desc:'Your Chebe pre-poo contains coconut oil. Repeated lauric acid penetration on fine high-porosity hair can cause protein-like stiffness. If hair feels hard after pre-poo, reduce to every other batch and substitute avocado oil.',
+    check:()=>true },
+  { level:'yellow', label:'ACV Frequency with Active Keratin',
+    desc:'ACV is acidic and loosens GK Keratin bonding over time. Limit to once weekly while keratin is active.',
+    check:()=>{ const d=daysSince(KERATIN_KEY); return d!==null && d<150; } },
+];
+
+function renderConflicts() {
+  const el = document.getElementById('conflict-list');
+  if(!el) return;
+  const active = CONFLICTS.filter(c => c.check());
+  if(!active.length) { el.innerHTML = '<div class="sz13 text3" style="padding:8px 0;">No conflicts detected.</div>'; return; }
+  el.innerHTML = active.map(c => `
+    <div class="conflict-item ${c.level}">
+      <span class="conflict-badge ${c.level}">${c.level.toUpperCase()}</span>
+      <strong>${c.label}</strong><br>
+      <span class="sz13">${c.desc}</span>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════════════════════════════════
+// RECIPE BATCH TRACKER
+// ══════════════════════════════════════════════════════════════
+const BATCH_RECIPES = [
+  {id:'chebe',name:'Chebe Pre-Poo Butter',shelfDays:60,uses:3,ingredients:['Coconut Oil','Avocado Oil','JBCO','Chebe Powder','Vitamin E Oil','Rosemary EO']},
+  {id:'bhringraj',name:'Bhringraj-Brahmi Scalp Oil',shelfDays:90,uses:6,ingredients:['Bhringraj','Brahmi','Fenugreek','Amla','JBCO']},
+  {id:'shikakai',name:'Shikakai-Amla Clarifying Rinse',shelfDays:14,uses:3,ingredients:['Shikakai Powder','Amla Powder','ACV']},
+  {id:'flaxseed',name:'Flaxseed Curl Gel',shelfDays:7,uses:4,ingredients:['Flaxseed','Aloe Vera']},
+  {id:'protein',name:'Collagen-Jojoba Protein Blend',shelfDays:14,uses:3,ingredients:['Collagen Protein Hydrolyzed','Jojoba Oil','Glycerin']},
+  {id:'refresh',name:'Daily Moisture Refresh Spray',shelfDays:7,uses:14,ingredients:['Aloe Vera','Distilled Water','Glycerin']},
+  {id:'ends_butter',name:'Daily Ends Butter',shelfDays:45,uses:30,ingredients:['Shea Butter','Almond Oil','Jojoba Oil','Rosemary EO']},
+];
+
+function openNewBatch() {
+  const choice = prompt('Which recipe?\n\n' + BATCH_RECIPES.map((r,i) => `${i+1}. ${r.name} (lasts ${r.shelfDays}d, ${r.uses} uses)`).join('\n') + '\n\nEnter number:');
+  const idx = parseInt(choice) - 1;
+  if(isNaN(idx) || !BATCH_RECIPES[idx]) return;
+  const r = BATCH_RECIPES[idx];
+  const batches = S.get('batches') || [];
+  batches.unshift({id:Date.now(), recipeId:r.id, name:r.name, made:new Date().toISOString(), usesLeft:r.uses, totalUses:r.uses, shelfDays:r.shelfDays, ingredients:[...r.ingredients]});
+  S.set('batches', batches);
+  renderBatches();
+}
+
+function useBatch(id) {
+  const batches = S.get('batches') || [];
+  const b = batches.find(x=>x.id===id);
+  if(!b) return;
+  b.usesLeft = Math.max(0,(b.usesLeft||1)-1);
+  if(b.usesLeft===0) {
+    if(confirm(`"${b.name}" used up. Remove?`)) { S.set('batches',batches.filter(x=>x.id!==id)); }
+    else S.set('batches',batches);
+  } else { S.set('batches',batches); }
+  renderBatches();
+}
+
+function renderBatches() {
+  const el = document.getElementById('batch-grid');
+  if(!el) return;
+  const batches = S.get('batches') || [];
+  if(!batches.length) { el.innerHTML = '<div class="text3 sz13" style="padding:12px 0;">No batches logged yet. Tap + New Batch after you make a DIY recipe.</div>'; return; }
+  const now = new Date();
+  el.innerHTML = batches.map(b => {
+    const daysOld = Math.floor((now - new Date(b.made)) / 86400000);
+    const daysLeft = b.shelfDays - daysOld;
+    const expired = daysLeft <= 0;
+    const expClass = expired ? 'expired' : daysLeft <= 3 ? 'warn' : 'ok';
+    const expText = expired ? '⚠ EXPIRED — discard batch' : `Expires in ${daysLeft}d`;
+    // Asterisk: flag if batch is old enough that protocol may have changed
+    const asterisk = daysOld > 30 ? ' <span class="batch-asterisk" title="Batch is over 30 days old — verify all ingredients still match current protocol. Check for protocol updates marked with *">*</span>' : '';
+    const usePct = Math.round(((b.totalUses||b.uses||3) - b.usesLeft) / (b.totalUses||b.uses||3) * 100);
+    return `<div class="batch-card">
+      <div class="b-name">${b.name}${asterisk}</div>
+      <div class="b-meta">Made ${daysOld}d ago · ${b.ingredients ? b.ingredients.slice(0,3).join(', ')+'...' : ''}</div>
+      <div class="b-uses">${b.usesLeft}</div>
+      <div class="b-meta">uses remaining</div>
+      <div class="b-exp ${expClass}">${expText}</div>
+      <button class="btn btn-sm btn-ghost" style="margin-top:8px;width:100%;font-size:11px;" onclick="useBatch(${b.id})">− Use Once</button>
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════════════════════
+// PRODUCT GRADING SYSTEM
+// ══════════════════════════════════════════════════════════════
+const PRODUCT_GRADES = {
+  'Aphogee 2-Step Protein Treatment':'fundamental',
+  'Biolage FiberStrong Fortifying Cream (Intra-Cylane)':'fundamental',
+  'GK Keratin Treatment':'fundamental',
+  'Keracare Silken Seal Liquid Sheen':'fundamental',
+  'Olaplex No. 9 Bond Protector':'fundamental',
+  'AllPlex No.7 Bonding Oil':'fundamental',
+  'Oribe Balm d\'Or Heat Styling Shield':'fundamental',
+  'Chi Infra Shampoo':'fundamental',
+  'Leven Rose Jojoba Oil':'fundamental',
+  'JBCO (Jamaican Black Castor Oil)':'fundamental',
+  'Satin Bonnet':'fundamental',
+  'Mizani Fiberfyl Strengthening Fix':'fundamental',
+  'Phyto Polleine Scalp Concentrate':'fundamental',
+  'Aphogee Two-Minute Reconstructor':'great',
+  'ORS Olive Oil Replenishing Conditioner':'great',
+  'CER-100 Collagen Ceramide Treatment':'great',
+  'Oribe Gold Lust Transformative Mask':'great',
+  'Oribe Impermeable Anti-Humidity Spray':'great',
+  'Hollywood Beauty Biotin Oil':'great',
+  'NOW Almond Oil':'great',
+  'Amika Glass Action Elixir':'great',
+  'Aphogee Balancing Moisturizer':'great',
+  'The Ordinary Multi-Peptide Serum':'great',
+  'Mizani 25 Miracle Milk':'great',
+  'It\'s a 10 Miracle Leave-In + Keratin':'useful',
+  'ORS Super Silken Leave-In':'useful',
+  'Phyto 7 Day Cream':'useful',
+  'Bio Silk Silk Therapy':'useful',
+  'Camille Rose Rosemary Water':'useful',
+  'Wild Growth Hair Oil':'useful',
+  'Kaleidoscope Miracle Drops':'useful',
+  'UBH Satin Cream Moisturizer':'backup',
+  'Pantene Miracle Rescue Spray':'backup',
+  'Crome Hair Food Leave-In':'backup',
+};
+const GRADE_CONFIG = {
+  fundamental:{label:'Fundamental',color:'#2ECC8F',desc:'Non-negotiable. Protocol breaks without it.'},
+  great:{label:'Great',color:'#7B9EFF',desc:'Significantly improves results. Use consistently.'},
+  useful:{label:'Useful',color:'#FF9F5A',desc:'Good to have. Use when available.'},
+  backup:{label:'Backup',color:'#C77DFF',desc:'Use when primary is unavailable.'},
+  sell:{label:'Sell/Donate',color:'var(--red)',desc:'Not serving your current goals. Move on.'},
+};
+
+function getProductGrade(name) {
+  return PRODUCT_GRADES[name] || 'useful';
+}
+
+// ══════════════════════════════════════════════════════════════
+// PHYTOPOLLEINE — Add to product defaults
+// ══════════════════════════════════════════════════════════════
+// Injected into PRODUCT_DEFAULTS at runtime
+(function addPhytoPolleine() {
+  const already = PRODUCT_DEFAULTS.some(p => /polleine/i.test(p.name));
+  if(!already) {
+    PRODUCT_DEFAULTS.push({
+      name:'Phyto Polleine Scalp Concentrate',
+      cat:'Commercial',
+      use:'Weekly pre-shampoo scalp treatment — apply to DRY scalp section by section, massage 20 min, then shampoo',
+      desc:'100% botanical oil concentrate. 10 essential oils: rosemary + lemon + sage boost microcirculation, cajeput + eucalyptus antiseptic, cypress + lavender rebalance. Cult formula since 1969. Stacks with or replaces your Bhringraj-Brahmi DIY oil on wash day. Directly supports your 1 inch/month growth goal via scalp circulation.',
+      qty:'full'
+    });
+  }
+})();
+
+// ══════════════════════════════════════════════════════════════
+// BREAKAGE/SHEDDING CASCADE — hook into saveLog
+// ══════════════════════════════════════════════════════════════
+const _preSaveLog = saveLog;
+function saveLog() {
+  _preSaveLog();
+  const breakage = parseInt(document.getElementById('l-breakage')?.value || 0);
+  const shedding = parseInt(document.getElementById('l-shedding')?.value || 0);
+  // Patch last log entry with breakage/shedding
+  const logs = S.get('logs') || [];
+  if(logs.length && breakage + shedding > 0) {
+    logs[0].breakage = breakage;
+    logs[0].shedding = shedding;
+    S.set('logs', logs);
+  }
+  if(breakage === 2) {
+    setTimeout(()=>alert('BREAKAGE ALERT — Excessive\n\nImmediate checks:\n1. Are you doing a cold final rinse? (Most common cause of dry, snapping hair)\n2. Is your LOC C-step a real cream — not just Silken Seal?\n3. Did you do Aphogee within the last 14 days? (Protein overload)\n4. Are flat iron sections thin enough? (½ inch max)\n5. Are you sealing ends AM + PM with ends butter?\n\nDo NOT add more protein this week. Go moisture-only.'), 500);
+  }
+  if(shedding === 2) {
+    setTimeout(()=>alert('SHEDDING ALERT — Excessive\n\nShedding = root-level issue. Conditioning does NOT fix shedding.\n\nCheck:\n1. Ferritin levels — below 70 ng/mL causes shedding, often missed on standard bloodwork\n2. Scalp circulation — are you doing 3x/week scalp massage with JBCO?\n3. Scalp buildup — use Phyto Polleine pre-shampoo this week\n4. Adderall vasoconstriction — take your scalp massage seriously on medication days\n\nIf excessive shedding continues 2+ weeks, flag for doctor.'), 500);
+  }
+}
+
+function initExtras() {
+  renderTrackers();
+  renderConflicts();
+  renderBatches();
+}
+
 function init() {
   updateHeader();
   renderSchedule();
@@ -4495,16 +4874,12 @@ function init() {
   renderPhotos();
   renderTools();
   renderSupps();
-  // Set default log date to today
   const ld = document.getElementById('l-date');
   if(ld) ld.value = new Date().toISOString().split('T')[0];
-  // Build default step logger
   buildStepLogger();
-  // Initialize first stype panels for each section
   document.querySelectorAll('.stype-nav').forEach(nav => {
     const firstBtn = nav.querySelector('.stype-btn.on');
     if(firstBtn) {
-      // Get section from onclick
       const onc = firstBtn.getAttribute('onclick');
       const match = onc && onc.match(/stab\('([^']+)',\s*'([^']+)'/);
       if(match) {
@@ -4513,8 +4888,9 @@ function init() {
       }
     }
   });
+  initExtras();
 }
-init();
+
 </script>
 </body>
 </html>
