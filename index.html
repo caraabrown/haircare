@@ -3809,7 +3809,7 @@ em, i { font-style: italic; }
       </div>
       <div class="step-body"><div class="step-cols">
         <div>
-          <div class="products-wrap mb12"><span class="prod-pill">Nisim 25 Miracle Milk</span><span class="prod-pill">ORS Super Silken Leave-In</span><span class="prod-pill">Oribe Balm D'Or Heat Styling Shield</span><span class="prod-pill">By Taraji Hot Commodity</span><span class="prod-pill">Bio Silk Silk Therapy</span></div>
+          <div class="products-wrap mb12"><span class="prod-pill">Mizani 25 Miracle Milk</span><span class="prod-pill">ORS Super Silken Leave-In</span><span class="prod-pill">Oribe Balm D'Or Heat Styling Shield</span><span class="prod-pill">By Taraji Hot Commodity</span><span class="prod-pill">Bio Silk Silk Therapy</span></div>
           <div class="recipe">
             <div class="recipe-title">DIY Thermal Shield Spray</div>
             <div class="ingredient-row"><span class="ing-amt">½ cup</span><span class="ing-name">Water</span></div>
@@ -3834,7 +3834,7 @@ em, i { font-style: italic; }
       </div>
       <div class="step-body"><div class="step-cols">
         <div>
-          <div class="products-wrap mb12"><span class="prod-pill">Oribe Imperial Blowout Cream</span><span class="prod-pill">Wired Flexible Styling Cream</span><span class="prod-pill">UBH Satin Cream Moisturizer</span><span class="prod-pill">Nisim 25 Miracle Milk</span></div>
+          <div class="products-wrap mb12"><span class="prod-pill">Oribe Imperial Blowout Cream</span><span class="prod-pill">Wired Flexible Styling Cream</span><span class="prod-pill">UBH Satin Cream Moisturizer</span><span class="prod-pill">Mizani 25 Miracle Milk</span></div>
           <div class="recipe">
             <div class="recipe-title">Smoothing Blow Dry Cream</div>
             <div class="ingredient-row"><span class="ing-amt">2 tbsp</span><span class="ing-name">Shea Moisture JBCO Mask (base)</span></div>
@@ -3962,10 +3962,10 @@ em, i { font-style: italic; }
           <div class="info info-a mb12" style="font-size:13px;">2. Blow dry each quadrant to 70% dry using low-medium heat + tension. Never high heat on wet hair.</div>
           <div class="info info-a mb12" style="font-size:13px;">3. Take ½-inch sections for flat iron. No thicker.</div>
           <div class="info info-a mb12" style="font-size:13px;">4. One slow, smooth pass. Two maximum. Do not repeat on same section.</div>
-          <div class="info info-a" style="font-size:13px;">5. Apply AllPlex No.7 oil to ends immediately after each section.</div>
+          <div class="info info-a" style="font-size:13px;">5. ApplyOlaplex No.7 oil to ends immediately after each section.</div>
         </div>
         <div>
-          <div class="science"><strong>Wet heat = most damage:</strong> Hair protein denatures fastest when wet + heat combines. Never flat iron hair above 10% moisture content. 70% blow-dry first removes most surface water. The remaining 30% evaporates harmlessly as you finish drying with the iron.<br><br><strong>Jilbre porcelain plates:</strong> Porcelain distributes heat more evenly than titanium or tourmaline, reducing hot spots that cause localized breakage. This matters on fine, high-porosity hair where thermal damage is concentrated.<br><br><strong>AllPlex No.7 post-iron:</strong> Applied immediately after each section while the cuticle is still warm and open, AllPlex bond-building actives penetrate deeper. Cool air sets them in place. This is how professional colorists use bond builders during processing — apply during the open phase, not after.</div>
+          <div class="science"><strong>Wet heat = most damage:</strong> Hair protein denatures fastest when wet + heat combines. Never flat iron hair above 10% moisture content. 70% blow-dry first removes most surface water. The remaining 30% evaporates harmlessly as you finish drying with the iron.<br><br><strong>Jilbre porcelain plates:</strong> Porcelain distributes heat more evenly than titanium or tourmaline, reducing hot spots that cause localized breakage. This matters on fine, high-porosity hair where thermal damage is concentrated.<br><br><strong>AllPlex No.7 post-iron:</strong> Applied immediately after each section while the cuticle is still warm and open,Olaplex bond-building actives penetrate deeper. Cool air sets them in place. This is how professional colorists use bond builders during processing — apply during the open phase, not after.</div>
         </div>
       </div></div>
     </div>
@@ -5184,7 +5184,7 @@ ${e.notes}
 
 Context: 4-week DC rotation (Moisture → Medium Protein/Biolage FiberStrong + Aphogee 2-Minute Reconstructor → Bond Repair → Week 4 Aphogee 2-Step). GK Keratin treatment applied. Ayurvedic pre-poo and scalp oils in use. High-porosity natural hair.
 
-Please: 1) Analyze what these observations indicate about moisture/protein balance, scalp health, growth progress. 2) Suggest specific adjustments for next week. 3) Flag any warning signs. 4) One product or technique recommendation from my inventory: Avocado oil, JBCO, Bhringraj, Brahmi, Amla, Chebe, Fenugreek, Oribe products, Mizani Fiberfyl, Aphogee, CER-100, AllPlex No.7, Camille Rose, ORS, It\'s a 10, Keracare Silken Seal, Leven Rose Jojoba, NOW Almond Oil.`;
+Please: 1) Analyze what these observations indicate about moisture/protein balance, scalp health, growth progress. 2) Suggest specific adjustments for next week. 3) Flag any warning signs. 4) One product or technique recommendation from my inventory: Avocado oil, JBCO, Bhringraj, Brahmi, Amla, Chebe, Fenugreek, Oribe products, Mizani Fiberfyl, Aphogee, CER-100,Olaplex No.7, Camille Rose, ORS, It\'s a 10, Keracare Silken Seal, Leven Rose Jojoba, NOW Almond Oil.`;
 }
 function copyPrompt() { navigator.clipboard.writeText(document.getElementById('claude-prompt').value).then(()=>{event.target.textContent='Copied'; setTimeout(()=>event.target.textContent='Copy',2000)}); }
 function goClaude() { window.open('https://claude.ai/new','_blank'); }
@@ -5585,7 +5585,7 @@ function analyzeViaClaude() {
   const name=document.getElementById('an-name').value.trim();
   const ing=document.getElementById('an-ing').value.trim();
   const link=document.getElementById('an-link').value.trim();
-  document.getElementById('claude-prompt').value=`Please analyze this hair product for my natural hair routine:\n\nProduct: ${name||'(not specified)'}\n${link?`Link: ${link}\n`:''}Ingredients: ${ing||'(not provided)'}\n\nMy context:\n- High-porosity natural coily hair\n- GK Keratin treatment applied (sulfate-free products required)\n- Weekly wash day with LOC/LCO method\n- 4-week DC rotation: Moisture → Protein (Mizani Fiberfyl) → Bond Repair → Scalp+Moisture\n- Products I use: Oribe Gold Lust, Keracare Silken Seal, Leven Rose Jojoba, NOW Almond Oil, Hollywood Beauty Biotin Oil, AllPlex No.7, CER-100, Aphogee 2-Step, Aphogee 2-Minute Reconstructor, Biolage FiberStrong (Intra-Cylane), ORS Olive Oil Replenishing Conditioner, JBCO\n- DIY: Ayurvedic scalp oils (Bhringraj, Brahmi, Fenugreek), Chebe pre-poo, Flaxseed gel\n\nPlease: 1) Buy or Skip verdict 2) Beneficial ingredients 3) Concerning ingredients 4) Where in routine it fits 5) Keratin treatment compatibility 6) Interactions with my other products`;
+  document.getElementById('claude-prompt').value=`Please analyze this hair product for my natural hair routine:\n\nProduct: ${name||'(not specified)'}\n${link?`Link: ${link}\n`:''}Ingredients: ${ing||'(not provided)'}\n\nMy context:\n- High-porosity natural coily hair\n- GK Keratin treatment applied (sulfate-free products required)\n- Weekly wash day with LOC/LCO method\n- 4-week DC rotation: Moisture → Protein (Mizani Fiberfyl) → Bond Repair → Scalp+Moisture\n- Products I use: Oribe Gold Lust, Keracare Silken Seal, Leven Rose Jojoba, NOW Almond Oil, Hollywood Beauty Biotin Oil,Olaplex No.7, CER-100, Aphogee 2-Step, Aphogee 2-Minute Reconstructor, Biolage FiberStrong (Intra-Cylane), ORS Olive Oil Replenishing Conditioner, JBCO\n- DIY: Ayurvedic scalp oils (Bhringraj, Brahmi, Fenugreek), Chebe pre-poo, Flaxseed gel\n\nPlease: 1) Buy or Skip verdict 2) Beneficial ingredients 3) Concerning ingredients 4) Where in routine it fits 5) Keratin treatment compatibility 6) Interactions with my other products`;
   openM('m-claude');
 }
 function saveProduct() {
@@ -5634,7 +5634,7 @@ const PRODUCT_DEFAULTS = [
   {name:'GK Keratin Treatment',cat:'Commercial',use:'Full keratin treatment (every 3-5 months)',desc:'Applied. Sulfate-free products only after. Results 3-5 months.',qty:'med',exp:''},
   {name:'Mizani Fiberfyl Strengthening Fix',cat:'Commercial',use:'Week 2 protein DC',desc:'Bond-building protein. 5-10 min max. Follow with moisture DC.',qty:'med'},
   {name:'Hollywood Beauty Biotin Oil',cat:'Commercial',use:'Pre-poo, scalp, daily LOC O-step',desc:'Biotin-infused lightweight oil blend.',qty:'full'},
-  {name:'Leven Rose Jojoba Oil',cat:'Commercial',use:'Daily LOC + scalp massage',desc:'Pure organic jojoba. Sebum mimic.',qty:'full'},
+  {name:'Leven Rose Jojoba Oil',cat:'Natural',use:'Daily LOC + scalp massage',desc:'Pure organic jojoba. Sebum mimic.',qty:'full'},
   {name:'NOW Almond Oil',cat:'Commercial',use:'Lightweight daily oil, blending',desc:'Fine and light. Good for blending with JBCO.',qty:'full'},
   {name:'Keracare Silken Seal Liquid Sheen',cat:'Commercial',use:'Final LOC sealant, shine',desc:'Silicone sealant. Last LOC layer.',qty:'full'},
   {name:'Oribe Gold Lust Transformative Mask',cat:'Commercial',use:'Week 1 moisture DC base',desc:'Luxury moisture DC. Layer with boosters.',qty:'med'},
@@ -5669,7 +5669,7 @@ const PRODUCT_DEFAULTS = [
   {name:'UBH Satin Cream Moisturizer',cat:'Commercial',use:'LOC C-step, daily moisturizer',desc:'Satin finish cream moisturizer.',qty:'med'},
   {name:'Crome Hair Food Leave-In',cat:'Commercial',use:'LOC L-step',desc:'Nutrient-rich leave-in.',qty:'full'},
   {name:'Wired Flexible Styling Cream',cat:'Commercial',use:'Blow dry, twist out',desc:'Flexible hold cream. Heat activated.',qty:'full'},
-  {name:'Nisim 25 Miracle Milk',cat:'Commercial',use:'Leave-in, detangling',desc:'25-benefit detangling milk.',qty:'full'},
+  {name:'Mizani 25 Miracle Milk',cat:'Commercial',use:'Leave-in, detangling',desc:'25-benefit detangling milk.',qty:'full'},
   {name:'Design Essentials Oat Protein & Henna Shampoo',cat:'Commercial',use:'Clarifying wash',desc:'Protein + henna strengthening shampoo.',qty:'full'},
   {name:'Chi Infra Shampoo',cat:'Commercial',use:'Wash day shampoo',desc:'Silk amino acid moisturizing shampoo.',qty:'full'},
   {name:'Farm & Table Frizz Free Smoothing Oil',cat:'Commercial',use:'Finishing oil',desc:'Natural smoothing oil blend.',qty:'med'},
@@ -6254,7 +6254,7 @@ const PROD_BY_STEP = {
   shampoo: ['Design Essentials Oat Protein & Henna Shampoo','Chi Infra Shampoo','Oribe Gold Lust Repair Shampoo','Nizoral Anti-Dandruff Shampoo','Natural Black Soap','Shikakai-Amla Clarifying Rinse (DIY)'],
   condition: ['Oribe Gold Lust Transformative Mask','ORS Olive Oil Replenishing Conditioner','ORS Banana Bamboo Conditioner','Matrix Food for Soft Conditioner','Biolage FiberStrong Fortifying Cream (Intra-Cylane)','CER-100 Collagen Ceramide Treatment','Aphogee 2-Step Protein Treatment','Aphogee Two-Minute Reconstructor','Collagen-Jojoba Protein Blend (DIY)','Hibiscus Moisture Bomb DC (DIY)','Triple Protein Intensive Mask (DIY)'],
   rinse: ['ACV (Apple Cider Vinegar)','Green Tea + ACV Final Rinse (DIY)','Aloe Vera'],
-  leavein: ['ORS Super Silken Leave-In','It\'s a 10 Miracle Leave-In + Keratin','Pantene Miracle Rescue Spray','Crome Hair Food Leave-In','Nisim 25 Miracle Milk','Keracare Silken Seal Liquid Sheen','AllPlex No.7 Bonding Oil'],
+  leavein: ['ORS Super Silken Leave-In','It\'s a 10 Miracle Leave-In + Keratin','Pantene Miracle Rescue Spray','Crome Hair Food Leave-In','Mizani 25 Miracle Milk','Keracare Silken Seal Liquid Sheen','AllPlex No.7 Bonding Oil'],
   styling: ['Curls Blueberry Bliss Curl Jelly','Phyto Joba Moisturizing Gel','Camille Rose Almond Jai Twisting Butter','Wired Flexible Styling Cream','Ako Style Super Protein Gel','Enhanced Flaxseed Curl Gel (DIY)','Oribe Impermeable Anti-Humidity Spray','Bio Silk Silk Therapy'],
   blowdry: ['Oribe Imperial Blowout Styling Cream','Oribe Balm d\'Or Heat Styling Shield','By Taraji Hot Commodity Heat Protectant','Bio Silk Silk Therapy','DIY Thermal Shield Spray','UBH Satin Cream Moisturizer','Wired Flexible Styling Cream'],
   heatprotect: ['Oribe Balm d\'Or Heat Styling Shield','By Taraji Hot Commodity Heat Protectant','Bio Silk Silk Therapy','Oribe Impermeable Anti-Humidity Spray','Amika Glass Action Elixir','Simi de Lino Diamante Cristalli Liquidi','AllDay Edges','Farm & Table Frizz Free Smoothing Oil'],
@@ -6730,7 +6730,7 @@ function runCascadeCheck(trigger, productName) {
   const alerts = [];
   if(trigger === 'flat_iron') {
     const kerDays = daysSince(KERATIN_KEY);
-    alerts.push('Flat iron logged. AllPlex No.7 after each section. Next safe window: 21 days from today.');
+    alerts.push('Flat iron logged.Olaplex No.7 after each section. Next safe window: 21 days from today.');
     if(kerDays !== null && kerDays > 110) alerts.push('⚠ GK Keratin expired. Results will be shorter-lasting. Schedule reapplication.');
   }
   if(trigger === 'keratin') {
