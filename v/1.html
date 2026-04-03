@@ -1,0 +1,2377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hair Care Routine Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Fraunces:ital,wght@0,400;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0b08;
+    --bg2: #161009;
+    --bg3: #1e1509;
+    --panel: #211a0e;
+    --panel2: #2a2013;
+    --gold: #c9a84c;
+    --gold-light: #e8c87a;
+    --gold-dim: #7a6030;
+    --terracotta: #b05c3a;
+    --green: #4a7c59;
+    --green-light: #6ab580;
+    --cream: #f0e6cc;
+    --cream-dim: #b0a080;
+    --text: #e8dfc8;
+    --text-dim: #9a8f78;
+    --border: #3a2e1a;
+    --border-glow: rgba(201,168,76,0.3);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(160deg, #1a0f05 0%, #0e0b08 60%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 40px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 20%;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(74,124,89,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--cream-dim);
+    max-width: 600px;
+    margin-top: 12px;
+  }
+  .profile-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 28px;
+  }
+  .pill {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 4px 12px;
+    font-size: 11px;
+    color: var(--gold-light);
+    letter-spacing: 1px;
+  }
+
+  /* NAV */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(14,11,8,0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 14px 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    cursor: pointer;
+    white-space: nowrap;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { color: var(--gold-light); }
+  .nav-btn.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* MAIN CONTENT */
+  .content { padding: 0 24px 80px; max-width: 1400px; margin: 0 auto; }
+
+  /* SECTIONS */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-header {
+    padding: 48px 0 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .section-header .label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .section-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--cream);
+  }
+  .section-header p {
+    margin-top: 10px;
+    color: var(--text-dim);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+  }
+  .cadence-tag {
+    display: inline-block;
+    margin-top: 12px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold-dim);
+    border-radius: 2px;
+    padding: 4px 14px;
+    font-size: 11px;
+    color: var(--gold-light);
+    letter-spacing: 2px;
+  }
+
+  /* ALERT BOX */
+  .alert {
+    background: rgba(176,92,58,0.1);
+    border-left: 3px solid var(--terracotta);
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    border-radius: 0 4px 4px 0;
+  }
+  .alert strong { color: var(--terracotta); }
+  .alert p { color: var(--text-dim); font-size: 12px; margin-top: 4px; }
+
+  .tip {
+    background: rgba(74,124,89,0.1);
+    border-left: 3px solid var(--green);
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    border-radius: 0 4px 4px 0;
+  }
+  .tip strong { color: var(--green-light); }
+  .tip p { color: var(--text-dim); font-size: 12px; margin-top: 4px; }
+
+  /* STYLE TYPE TABS (within styling section) */
+  .style-tabs { display: flex; gap: 8px; margin-bottom: 24px; }
+  .style-tab {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 8px 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .style-tab:hover { border-color: var(--gold-dim); color: var(--gold-light); }
+  .style-tab.active { background: rgba(201,168,76,0.15); border-color: var(--gold); color: var(--gold-light); }
+
+  .style-content { display: none; }
+  .style-content.active { display: block; }
+
+  /* PROTEIN TABS */
+  .protein-tabs { display: flex; gap: 8px; margin-bottom: 24px; }
+  .protein-tab {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 8px 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .protein-tab:hover { border-color: var(--green); color: var(--green-light); }
+  .protein-tab.active { background: rgba(74,124,89,0.15); border-color: var(--green); color: var(--green-light); }
+
+  .protein-content { display: none; }
+  .protein-content.active { display: block; }
+
+  /* STEP CARDS */
+  .step-grid { display: flex; flex-direction: column; gap: 20px; }
+
+  .step-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .step-card:hover { border-color: var(--gold-dim); }
+
+  .step-card-header {
+    background: var(--panel2);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .step-num {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold-dim);
+    min-width: 40px;
+    line-height: 1;
+  }
+  .step-name {
+    flex: 1;
+  }
+  .step-name h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--cream);
+  }
+  .step-name .step-desc {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+  }
+  .step-timing {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .step-card-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+
+  @media (max-width: 900px) {
+    .step-card-body { grid-template-columns: 1fr; }
+  }
+
+  .step-col {
+    padding: 18px 20px;
+    border-right: 1px solid var(--border);
+  }
+  .step-col:last-child { border-right: none; }
+
+  .col-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .col-label.recipe-label { color: var(--green); }
+  .col-label.products-label { color: #7a90b0; }
+  .col-label.science-label { color: var(--terracotta); }
+
+  .step-col ul {
+    list-style: none;
+    padding: 0;
+  }
+  .step-col ul li {
+    padding: 3px 0;
+    color: var(--text-dim);
+    font-size: 12px;
+  }
+  .step-col ul li::before {
+    content: '— ';
+    color: var(--gold-dim);
+  }
+
+  .recipe-box {
+    background: rgba(74,124,89,0.06);
+    border: 1px solid rgba(74,124,89,0.2);
+    border-radius: 3px;
+    padding: 12px 14px;
+    margin-top: 8px;
+  }
+  .recipe-box .recipe-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--green-light);
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .recipe-box .ingredient {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 2px 0;
+    font-size: 11.5px;
+    color: var(--text-dim);
+    border-bottom: 1px solid rgba(74,124,89,0.1);
+  }
+  .recipe-box .ingredient:last-child { border-bottom: none; }
+  .ingredient-amt {
+    color: var(--green-light);
+    font-size: 11px;
+    min-width: 60px;
+    text-align: right;
+  }
+  .recipe-box .method {
+    margin-top: 10px;
+    font-size: 11.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    padding-top: 8px;
+    border-top: 1px solid rgba(74,124,89,0.15);
+  }
+
+  .product-tag {
+    display: inline-block;
+    background: rgba(120,145,180,0.1);
+    border: 1px solid rgba(120,145,180,0.2);
+    border-radius: 2px;
+    padding: 2px 8px;
+    font-size: 10.5px;
+    color: #9ab0c8;
+    margin: 2px 2px 2px 0;
+  }
+
+  .science-note {
+    font-size: 11.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .science-note strong { color: var(--terracotta); font-weight: 400; }
+
+  /* PROTEIN ROTATION CHART */
+  .rotation-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .rotation-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px;
+    text-align: center;
+  }
+  .rotation-card .week { font-size: 10px; letter-spacing: 3px; color: var(--gold-dim); text-transform: uppercase; }
+  .rotation-card .type { font-family: 'Fraunces', serif; font-size: 20px; color: var(--cream); margin: 6px 0; }
+  .rotation-card .desc { font-size: 11px; color: var(--text-dim); }
+
+  /* SUPPLEMENT TABLE */
+  table.supp-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 28px;
+  }
+  table.supp-table th {
+    background: var(--panel2);
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+  table.supp-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-dim);
+    vertical-align: top;
+  }
+  table.supp-table tr:hover td { background: rgba(255,255,255,0.02); }
+  table.supp-table td.supp-name { color: var(--cream); }
+  table.supp-table td.supp-dose { color: var(--gold-light); font-family: 'DM Mono', monospace; }
+  table.supp-table td.supp-why strong { color: var(--terracotta); font-weight: 400; }
+
+  /* MAINTENANCE GRID */
+  .maint-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 800px) { .maint-grid { grid-template-columns: 1fr; } }
+
+  .maint-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+  }
+  .maint-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--gold-light);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .maint-card ol {
+    padding-left: 16px;
+    color: var(--text-dim);
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  /* TOOLS SECTION */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .tool-item {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 12px 14px;
+  }
+  .tool-item .tool-name { color: var(--cream); font-size: 12px; }
+  .tool-item .tool-use { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 40px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  /* PRINT */
+  @media print {
+    .nav { display: none; }
+    .section { display: block !important; page-break-before: always; }
+    .section:first-of-type { page-break-before: avoid; }
+    .style-content, .protein-content { display: block !important; }
+    button { display: none !important; }
+  }
+
+  /* SCHEDULE / CHECKBOX STYLES */
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 6px 0;
+    cursor: pointer;
+    font-size: 12px;
+    color: var(--text);
+    border-bottom: 1px solid rgba(58,46,26,0.4);
+    line-height: 1.4;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-item input[type="checkbox"] {
+    accent-color: var(--gold);
+    width: 14px;
+    height: 14px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .check-item input[type="checkbox"]:checked + span {
+    text-decoration: line-through;
+    color: var(--text-dim);
+  }
+  .day-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    min-width: 0;
+  }
+  .day-card.today { border-color: var(--gold); }
+  .day-header {
+    background: var(--panel2);
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .day-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .day-date {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .day-card.today .day-date { color: var(--gold-light); }
+  .day-task {
+    font-size: 10px;
+    color: var(--text-dim);
+    padding: 4px 10px;
+    border-bottom: 1px solid rgba(58,46,26,0.3);
+    letter-spacing: 0.3px;
+    line-height: 1.3;
+  }
+  .day-task:last-child { border-bottom: none; }
+  .day-task.highlight { color: var(--gold-light); }
+  .day-task.wash-day { color: var(--green-light); background: rgba(74,124,89,0.06); }
+  .day-task.massage { color: var(--terracotta); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">Personal Hair Care System · 3C / 4A · High Porosity · Fine</div>
+  <h1>The <em>Bra-Strap</em><br>Growth Protocol</h1>
+  <p class="hero-sub">A precision routine using your owned inventory — Ayurvedic, professional, and commercial — built for consistent, measurable growth.</p>
+  <div class="profile-pills">
+    <span class="pill">3C TOP · 4A BOTTOM</span>
+    <span class="pill">HIGH POROSITY</span>
+    <span class="pill">FINE STRANDS</span>
+    <span class="pill">SHOULDER LENGTH → BSL</span>
+    <span class="pill">HEAT DAMAGE RECOVERY</span>
+    <span class="pill">NO STYLIST</span>
+  </div>
+</div>
+
+<nav class="nav">
+  <button class="nav-btn active" onclick="showSection('wash')">Wash Routine</button>
+  <button class="nav-btn" onclick="showSection('deepcond')">Deep Condition</button>
+  <button class="nav-btn" onclick="showSection('styling')">Styling</button>
+  <button class="nav-btn" onclick="showSection('maintenance')">Maintenance</button>
+  <button class="nav-btn" onclick="showSection('supplements')">Supplements & Diet</button>
+  <button class="nav-btn" onclick="showSection('tools')">Tools</button>
+  <button class="nav-btn" onclick="showSection('schedule')">Schedule</button>
+</nav>
+
+<div class="content">
+
+<!-- ==================== WASH ROUTINE ==================== -->
+<div id="wash" class="section active">
+  <div class="section-header">
+    <div class="label">Routine 01</div>
+    <h2>Wash Routine</h2>
+    <p>7-step protocol beginning 24 hours before wash day. Variations per style type noted in Step 7 (Styling).</p>
+    <span class="cadence-tag">WEEKLY — Sunday or Monday preferred</span>
+  </div>
+
+  <div class="tip">
+    <strong>High Porosity Strategy:</strong>
+    <p>Your hair absorbs quickly but loses moisture just as fast. Every step targets this: pre-poo creates a barrier, protein fills cortex gaps from heat damage, ACV rinse seals the cuticle, and sealing oils lock moisture in post-condition. Never skip the seal step.</p>
+  </div>
+
+  <div class="step-grid">
+
+    <!-- STEP 1: 24hr pre-poo -->
+    <div class="step-card">
+      <div class="step-card-header">
+        <div class="step-num">01</div>
+        <div class="step-name">
+          <h3>24-Hour Pre-Poo</h3>
+          <div class="step-desc">Night before wash day · Dry hair · Protect & penetrate</div>
+        </div>
+        <div class="step-timing">NIGHT BEFORE<br>24 HRS</div>
+      </div>
+      <div class="step-card-body">
+        <div class="step-col">
+          <div class="col-label products-label">Products to Use</div>
+          <div>
+            <span class="product-tag">Avocado Oil</span>
+            <span class="product-tag">Coconut Oil</span>
+            <span class="product-tag">JBCO</span>
+            <span class="product-tag">Chebe Powder</span>
+            <span class="product-tag">Castor Oil</span>
+            <span class="product-tag">Vitamin E Oil</span>
+            <span class="product-tag">Hollywood Beauty Biotin Oil</span>
+            <span class="product-tag">Leven Rose Jojoba Oil</span>
+            <span class="product-tag">NOW Almond Oil</span>
+          </div>
+        </div>
+        <div class="step-col">
+          <div class="col-label recipe-label">Ayurvedic Recipe</div>
+          <div class="recipe-box">
+            <div class="recipe-title">Chebe Penetrating Overnight Butter</div>
+            <div class="ingredient"><span class="ingredient-amt">2 tbsp</span> Chebe powder</div>
+            <div class="ingredient"><span class="ingredient-amt">3 tbsp</span> Avocado oil</div>
+            <div class="ingredient"><span class="ingredient-amt">2 tbsp</span> Coconut oil (melted)</div>
+            <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Jamaican Black Castor Oil</div>
+            <div class="ingredient"><span class="ingredient-amt">1 tsp</span> Vitamin E oil</div>
+            <div class="ingredient"><span class="ingredient-amt">5 drops</span> Rosemary essential oil</div>
+            <div class="method">
+              Mix Chebe into warm (not hot) coconut oil first to dissolve. Add avocado, JBCO, vitamin E, rosemary. Apply section by section to dry, detangled hair from mid-shaft to ends — avoid scalp. Cover with plastic processing cap then satin cap. Sleep in it. This is not optional: the full 24 hrs is when penetration occurs.
+            </div>
+          </div>
+        </div>
+        <div class="step-col">
+          <div class="col-label science-label">Science & Notes</div>
+          <div class="science-note">
+            <strong>Chebe:</strong> Prevents hygral fatigue — repeated swelling/contracting that causes breakage in high porosity hair. The Chadian women who use it retain length to waist+.<br><br>
+            <strong>Avocado oil:</strong> Small molecular size penetrates cortex (unlike most oils that just coat). High in oleic acid, potassium, biotin.<br><br>
+            <strong>Coconut oil:</strong> Only oil clinically proven to reduce protein loss. Penetrates hair shaft. Use only if your hair tolerates it — some 4A hair gets dry.<br><br>
+            <strong>JBCO:</strong> Higher ricinoleic acid content than regular castor, scalp stimulant.<br><br>
+            <strong>Rosemary:</strong> Clinically comparable to 2% minoxidil in one study. Use on scalp too.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Day-of Hot Oil -->
+    <div class="step-card">
+      <div class="step-card-header">
+        <div class="step-num">02</div>
+        <div class="step-name">
+          <h3>Day-Of Pre-Poo: Hot Oil Treatment</h3>
+          <div class="step-desc">Wash morning · After waking · Scalp focus · 30 minutes under heat</div>
+        </div>
+        <div class="step-timing">WASH MORNING<br>30–45 MIN</div>
+      </div>
+      <div class="step-card-body">
+        <div class="step-col">
+          <div class="col-label products-label">Products to Use</div>
+          <div>
+            <span class="product-tag">Sesame Oil</span>
+            <span class="product-tag">Amla Powder</span>
+            <span class="product-tag">Bhringraj</span>
+            <span class="product-tag">Brahmi</span>
+            <span class="product-tag">Fenugreek</span>
+            <span class="product-tag">Mustard Oil</span>
+            <span class="product-tag">Dried Rosemary</span>
+            <span class="product-tag">Neem</span>
+          </div>
+          <br>
+          <div class="col-label products-label">Alternates (ready-made)</div>
+          <div>
+            <span class="product-tag">Herbal Hair Oil Mix</span>
+            <span class="product-tag">Wild Growth Hair Oil</span>
+            <span class="product-tag">Kaleidoscope Miracle Drops</span>
+          </div>
+        </div>
+        <div class="step-col">
+          <div class="col-label recipe-label">Ayurvedic Recipe</div>
+          <div class="recipe-box">
+            <div class="recipe-title">Bhringraj-Brahmi Scalp & Growth Oil</div>
+            <div class="ingredient"><span class="ingredient-amt">3 tbsp</span> Sesame oil (base)</div>
+            <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Mustard oil</div>
+            <div class="ingredient"><span class="ingredient-amt">1 tsp</span> Amla powder</div>
+            <div class="ingredient"><span class="ingredient-amt">1 tsp</span> Bhringraj powder</div>
+            <div class="ingredient"><span class="ingredient-amt">1 tsp</span> Brahmi powder</div>
+            <div class="ingredient"><span class="ingredient-amt">½ tsp</span> Fenugreek powder</div>
+            <div class="ingredient"><span class="ingredient-amt">¼ tsp</span> Neem powder</div>
+            <div class="ingredient"><span class="ingredient-amt">1 sprig</span> Dried rosemary</div>
+            <div class="method">
+              Warm oils over very low heat. Add powders, stir. Simmer 5–7 min on lowest heat — do not boil. Cool to warm-touch temperature. Strain through cheesecloth. Apply to scalp first with dropper or fingertips, massage 5 min. Then apply remainder to Chebe-coated lengths. Cover with plastic cap + sit under warm hooded dryer 30 min. Shampoo out thoroughly.
+              <br><br><em>Batch: Make 4–6x this recipe, strain into a dark glass bottle. Refrigerate. Good for 3–4 weeks.</em>
+            </div>
+          </div>
+        </div>
+        <div class="step-col">
+          <div class="col-label science-label">Science & Notes</div>
+          <div class="science-note">
+            <strong>Bhringraj (Eclipta alba):</strong> Clinically shown to promote anagen (growth) phase. DHT inhibitor. Key for adderall-induced hair thinning.<br><br>
+            <strong>Brahmi (Bacopa):</strong> Strengthens keratin protein structure, reduces breakage, thickens strands over time.<br><br>
+            <strong>Fenugreek:</strong> Contains lecithin (deep conditioner) and diosgenin (estrogenic compound — counteracts hormone-related loss).<br><br>
+            <strong>Mustard oil:</strong> Strong scalp stimulant, antifungal. Excellent base for Ayurvedic oil infusions.<br><br>
+            <strong>Sesame oil:</strong> UV protectant, penetrates shaft, antifungal.<br><br>
+            <strong>Adderall note:</strong> Stimulant meds cause vasoconstriction (reduced blood flow to scalp). Scalp massage + warming oils counteract this directly.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: Co-Wash -->
+    <div class="step-card">
+      <div class="step-card-header">
+        <div class="step-num">03</div>
+        <div class="step-name">
+          <h3>Co-Wash</h3>
+          <div class="step-desc">Remove oil buildup gently · Preserve moisture · Use after every other wash if scalp allows</div>
+        </div>
+        <div class="step-timing">EVERY OTHER<br>WASH WEEK</div>
+      </div>
+      <div class="step-card-body">
+        <div class="step-col">
+          <div class="col-label products-label">Products to Use</div>
+          <div>
+            <span class="product-tag">Ambunu</span>
+            <span class="product-tag">Matrix Food for Soft Detangling Conditioner</span>
+            <span class="product-tag">ORS Olive Oil Replenishing Conditioner</span>
+            <span class="product-tag">The O5 Strawberry Soy Milk Conditioner</span>
+          </div>
+          <br>
+          <p style="font-size:11px;color:var(--text-dim);margin-top:8px;">Use Ambunu method (below) when scalp is low-buildup. Use conditioner co-wash when oil buildup is heavier.</p>
+        </div>
+        <div class="step-col">
+          <div class="col-label recipe-label">Ambunu Co-Wash Method</div>
+          <div class="recipe-box">
+            <div class="recipe-title">Traditional Ambunu Rinse</div>
+            <div class="ingredient"><span class="ingredient-amt">3–4 tbsp</span> Dried Ambunu leaves</div>
+            <div class="ingredient"><span class="ingredient-amt">2 cups</span> Hot water</div>
+            <div class="ingredient"><span class="ingredient-amt">½ tsp</span> Glycerin (optional)</div>
+            <div class="method">
+              Steep Ambunu in hot water like a strong tea, 15–20 min until water is thick and mucilaginous (like okra water). Cool to warm. Pour over wet hair in shower, work through with fingers. The mucilage provides incredible slip and gentle cleansing. Rinse with cool water. 
+              <br><br>
+              <em>For conditioner co-wash: Apply ORS or Matrix conditioner to soaking wet hair, finger detangle, rinse thoroughly.</em>
+            </div>
+          </div>
+        </div>
+        <div class="step-col">
+          <div class="col-label science-label">Science & Notes</div>
+          <div class="science-note">
+            <strong>Ambunu:</strong> Used traditionally in Chad alongside Chebe. The mucilage (natural polysaccharide) mimics a silicone-free slip agent. Excellent for fine hair — no weight.<br><br>
+            <strong>Why co-wash matters:</strong> High porosity hair loses moisture fast. Shampooing every week with sulfate cleanser strips the little moisture you've built up. Co-washing alternately preserves the moisture balance.<br><br>
+            <strong>Scalp note:</strong> You use Nizoral — this means co-wash weeks should be weeks you skip Nizoral (use Nizoral only on clarifying weeks, once a month max). Adderall can cause increased sebum in some people; monitor your scalp and adjust co-wash frequency accordingly.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4: Clarifying Wash -->
+    <div class="step-card">
+      <div class="step-card-header">
+        <div class="step-num">04</div>
+        <div class="step-name">
+          <h3>Clarifying Wash</h3>
+          <div class="step-desc">Remove buildup completely · Scalp reset · pH prep for conditioning</div>
+        </div>
+        <div class="step-timing">BI-WEEKLY or<br>AS NEEDED</div>
+      </div>
+      <div class="step-card-body">
+        <div class="step-col">
+          <div class="col-label products-label">Products to Use</div>
+          <div>
+            <span class="product-tag">Design Essentials Oat Protein & Henna Shampoo</span>
+            <span class="product-tag">Shikakai Powder</span>
+            <span class="product-tag">Amla Powder</span>
+            <span class="product-tag">Natural Black Soap</span>
+            <span class="product-tag">ACV</span>
+            <span class="product-tag">Nizoral (once/month)</span>
+            <span class="product-tag">Chi Infra Shampoo</span>
+          </div>
+        </div>
+        <div class="step-col">
+          <div class="col-label recipe-label">Ayurvedic Clarifying Wash</div>
+          <div class="recipe-box">
+            <div class="recipe-title">Shikakai-Amla Clarifying Rinse</div>
+            <div class="ingredient"><span class="ingredient-amt">2 tbsp</span> Shikakai powder</div>
+            <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Amla powder</div>
+            <div class="ingredient"><span class="ingredient-amt">½ tbsp</span> Neem powder</div>
+            <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Black soap (liquid)</div>
+            <div class="ingredient"><span class="ingredient-amt">1 cup</span> Warm water</div>
+            <div class="ingredient"><span class="ingredient-amt">1 tsp</span> ACV</div>
+            <div class="method">
+              Mix into a thin paste or liquid. Apply to scalp first, massage 2–3 min, work down lengths. Leave 2 min. Rinse thoroughly with warm water. Follow with ACV rinse (below) before conditioning.
+              <br><br>
+              <em>ACV Rinse: 2 tbsp ACV + 1 cup water. Pour over hair after shampoo, before conditioner. Seals cuticle, restores pH 4.5–5.5. Rinse out after 30 seconds.</em>
+            </div>
+          </div>
+        </div>
+        <div class="step-col">
+          <div class="col-label science-label">Science & Notes</div>
+          <div class="science-note">
+            <strong>Shikakai:</strong> "Fruit for hair" in Sanskrit. Natural saponins cleanse without stripping. pH ~5.5 (nearly perfect for hair). Adds shine, strengthens.<br><br>
+            <strong>Amla:</strong> Extremely high in Vitamin C (20x more than oranges). Stimulates collagen synthesis in follicles, antioxidant against oxidative damage from heat and color stress.<br><br>
+            <strong>ACV:</strong> Acetic acid closes cuticle scales post-shampoo. For high porosity hair this is non-negotiable — open cuticles lose moisture immediately during conditioning.<br><br>
+            <strong>Nizoral:</strong> Use once a month only. Ketoconazole has been shown in research to modestly increase hair density over time — consistent with your adderall use which can trigger scalp issues.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5: Deep Condition -->
+    <div class="step-card">
+      <div class="step-card-header">
+        <div class="step-num">05</div>
+        <div class="step-name">
+          <h3>Deep Condition</h3>
+          <div class="step-desc">Core growth step · Protein rotation essential · Full details in Deep Condition tab</div>
+        </div>
+        <div class="step-timing">WEEKLY<br>20–30 MIN HEAT</div>
+      </div>
+      <div class="step-card-body">
+        <div class="step-col">
+          <div class="col-label products-label">Key Products</div>
+          <div>
+            <span class="product-tag">ORS Moisture Replenishment</span>
+            <span class="product-tag">Hi Pro Pack</span>
+            <span class="product-tag">Oribe Gold Lust Mask</span>
+            <span class="product-tag">Aphogee 2-Step Protein</span>
+            <span class="product-tag">Cer-100 Collagen Ceramide</span>
+            <span class="product-tag">Collagen Protein Hydrolyzed Powder</span>
+            <span class="product-tag">Keratin Protein Hydrolyzed</span>
+            <span class="product-tag">Mizani Fiberfyl Strengthening Fix ⭐</span>
+          </div>
+        </div>
+        <div class="step-col">
+          <div class="col-label recipe-label">See Deep Condition Tab</div>
+          <div class="recipe-box">
+            <div class="recipe-title">Protein Rotation Summary</div>
+            <div class="method">
+              Week 1: Low Protein (moisture focus)<br>
+              Week 2: Medium Protein<br>
+              Week 3: Low Protein<br>
+              Week 4: High Protein<br><br>
+              Always follow high protein week with moisture-only the next week. For heat damage recovery: increase to medium protein every week for first 6–8 weeks, then rotate normally.
+            </div>
+          </div>
+        </div>
+        <div class="step-col">
+          <div class="col-label science-label">Dryer Protocol</div>
+          <div class="science-note">
+            Apply deep conditioner to soaking wet hair in sections. Cover with plastic processing cap. Sit under hooded dryer at medium heat for <strong>20–30 minutes minimum</strong>. The heat opens the cuticle allowing deeper ingredient penetration. Cool water rinse after to re-seal.<br><br>
+            <strong>Steamer note:</strong> If you can get a hair steamer (Huetiful is the gold standard), it is superior to a dryer cap — moist heat vs. dry heat. But your hood dryer + plastic cap still works well.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 6: Rinse & Seal -->
+    <div class="step-card">
+      <div class="step-card-header">
+        <div class="step-num">06</div>
+        <div class="step-name">
+          <h3>Rinse, Cuticle Seal & Leave-In</h3>
+          <div class="step-desc">Cool rinse · ACV seal · Leave-in application · Critical for high porosity</div>
+        </div>
+        <div class="step-timing">POST CONDITION<br>10 MIN</div>
+      </div>
+      <div class="step-card-body">
+        <div class="step-col">
+          <div class="col-label products-label">Products to Use</div>
+          <div>
+            <span class="product-tag">ACV</span>
+            <span class="product-tag">Green Tea (brewed)</span>
+            <span class="product-tag">ORS Olive Oil Super Silken Leave-In</span>
+            <span class="product-tag">Magic 7 Leave-In Spray</span>
+            <span class="product-tag">It's a 10 Miracle Leave-In + Keratin</span>
+            <span class="product-tag">Pantene Miracle Rescue Multi-Spray</span>
+            <span class="product-tag">Nisim 25 Miracle Milk</span>
+            <span class="product-tag">Crome Hair Food Leave-In</span>
+            <span class="product-tag">Keracare Silken Seal Liquid Sheen ⭐</span>
+          </div>
+        </div>
+        <div class="step-col">
+          <div class="col-label recipe-label">Cuticle Sealing Rinse</div>
+          <div class="recipe-box">
+            <div class="recipe-title">Green Tea + ACV Final Rinse</div>
+            <div class="ingredient"><span class="ingredient-amt">2 cups</span> Brewed green tea (cooled)</div>
+            <div class="ingredient"><span class="ingredient-amt">2 tbsp</span> ACV</div>
+            <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Hibiscus tea (brewed)</div>
+            <div class="ingredient"><span class="ingredient-amt">½ tsp</span> Glycerin</div>
+            <div class="method">
+              Mix in a bottle. After rinsing out deep conditioner, pour this over entire head. Do NOT rinse out — let it sit 30 seconds, then rinse with the coldest water you can tolerate. Pat (never rub) dry with microfiber towel or old t-shirt. Apply leave-in immediately to soaking wet hair.
+            </div>
+          </div>
+        </div>
+        <div class="step-col">
+          <div class="col-label science-label">Science & Notes</div>
+          <div class="science-note">
+            <strong>Green tea:</strong> EGCG (epigallocatechin gallate) inhibits DHT at follicle level, antioxidant, smooths cuticle.<br><br>
+            <strong>Hibiscus:</strong> Rich in amino acids that nourish hair. AHA content gently smooths cuticle. Natural dye that subtly enhances depth of dark hair.<br><br>
+            <strong>Cold rinse:</strong> Forces cuticle to contract and seal. This is the single most effective thing you can do for shine and moisture retention in high porosity hair.<br><br>
+            <strong>T-shirt drying:</strong> Cotton terry towel causes friction and frizz. T-shirt or microfiber absorbs water without roughing up the cuticle.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 7: Style -->
+    <div class="step-card">
+      <div class="step-card-header">
+        <div class="step-num">07</div>
+        <div class="step-name">
+          <h3>Style</h3>
+          <div class="step-desc">Varies by style type — see Styling Routine tab for full detail</div>
+        </div>
+        <div class="step-timing">POST WASH<br>VARIES</div>
+      </div>
+      <div class="step-card-body">
+        <div class="step-col">
+          <div class="col-label products-label">Go to Styling Tab for full details</div>
+          <div>
+            <span class="product-tag">→ Natural / No Heat</span>
+            <span class="product-tag">→ Low Heat</span>
+            <span class="product-tag">→ High Heat</span>
+          </div>
+        </div>
+        <div class="step-col">
+          <div class="col-label recipe-label">Quick Reference: All 3 Styles</div>
+          <div class="recipe-box">
+            <div class="recipe-title">Universal Prep (all styles)</div>
+            <div class="method">
+              After leave-in: Apply Magic 7 or ORS Super Silken Leave-In to soaking wet hair. Detangle by finger-combing only. Part into 4–6 sections. From here, follow your style type routine.
+            </div>
+          </div>
+        </div>
+        <div class="step-col">
+          <div class="col-label science-label">Notes</div>
+          <div class="science-note">
+            <strong>Finger combing:</strong> You already do this. Keep it up — it is definitively the lowest-breakage detangling method for your curl pattern. Detangle in sections, starting from ends, working upward.<br><br>
+            <strong>When to use each style:</strong> Natural for gym/casual weeks. Low heat for semi-professional. High heat for important occasions — limit to 2x/month max during recovery.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end step-grid -->
+</div><!-- end wash section -->
+
+
+<!-- ==================== DEEP CONDITION ==================== -->
+<div id="deepcond" class="section">
+  <div class="section-header">
+    <div class="label">Routine 02</div>
+    <h2>Deep Condition Routine</h2>
+    <p>Protein-moisture balance is the key to recovering heat-damaged, high porosity fine hair. Rotate consistently.</p>
+    <span class="cadence-tag">WEEKLY — Part of Wash Day</span>
+  </div>
+
+  <div class="alert">
+    <strong>Heat Damage Recovery Mode (First 8 Weeks):</strong>
+    <p>Increase protein frequency — use Medium Protein recipe every single wash for weeks 1–8. Then rotate to the standard 4-week cycle. Your hair's cortex has been compromised by heat damage; protein fills the gaps before moisture work is fully effective.</p>
+  </div>
+
+  <div class="rotation-grid">
+    <div class="rotation-card"><div class="week">Week 1</div><div class="type">Moisture</div><div class="desc">Low or zero protein. Deep hydration only.</div></div>
+    <div class="rotation-card"><div class="week">Week 2</div><div class="type">Medium</div><div class="desc">Balanced protein + moisture. Rebuild strength.</div></div>
+    <div class="rotation-card"><div class="week">Week 3</div><div class="type">Moisture</div><div class="desc">Recovery week. Let protein set in.</div></div>
+    <div class="rotation-card"><div class="week">Week 4</div><div class="type">High Protein</div><div class="desc">Full reconstruct. Always follow with moisture week.</div></div>
+  </div>
+
+  <div class="protein-tabs">
+    <button class="protein-tab active" onclick="showProtein('low')">Low Protein (Moisture)</button>
+    <button class="protein-tab" onclick="showProtein('medium')">Medium Protein</button>
+    <button class="protein-tab" onclick="showProtein('high')">High Protein</button>
+  </div>
+
+  <!-- LOW PROTEIN -->
+  <div id="protein-low" class="protein-content active">
+    <div class="step-grid">
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num" style="color:var(--green)">M</div>
+          <div class="step-name">
+            <h3>Low Protein Deep Condition — Moisture Focus</h3>
+            <div class="step-desc">Hydrate, soften, restore elasticity · No or minimal protein additions</div>
+          </div>
+          <div class="step-timing">20–30 MIN<br>UNDER DRYER</div>
+        </div>
+        <div class="step-card-body">
+          <div class="step-col">
+            <div class="col-label products-label">Base Products</div>
+            <div>
+              <span class="product-tag">ORS Olive Oil Replenishing Conditioner</span>
+              <span class="product-tag">ORS Moisture Replenishment Conditioner</span>
+              <span class="product-tag">Matrix Food for Soft Conditioner</span>
+              <span class="product-tag">The O5 Strawberry Soy Milk Conditioner</span>
+              <span class="product-tag">Oribe Gold Lust Transformative Mask</span>
+            </div>
+            <br>
+            <div class="col-label products-label">Additives from Your Inventory</div>
+            <div>
+              <span class="product-tag">Glycerin</span>
+              <span class="product-tag">Avocado Oil</span>
+              <span class="product-tag">EVOO</span>
+              <span class="product-tag">Hibiscus Powder</span>
+              <span class="product-tag">Polyquaternium-7</span>
+              <span class="product-tag">Tamanu Oil</span>
+              <span class="product-tag">Aloe Vera (if you have it)</span>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label recipe-label">Recipe: Hibiscus Moisture Bomb</div>
+            <div class="recipe-box">
+              <div class="recipe-title">Hibiscus-Glycerin Deep Moisture Mask</div>
+              <div class="ingredient"><span class="ingredient-amt">4 tbsp</span> ORS Replenishing Conditioner (base)</div>
+              <div class="ingredient"><span class="ingredient-amt">2 tbsp</span> Hibiscus tea, brewed strong</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Avocado oil</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> EVOO</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Glycerin</div>
+              <div class="ingredient"><span class="ingredient-amt">½ tsp</span> Polyquaternium-7</div>
+              <div class="ingredient"><span class="ingredient-amt">¼ tsp</span> Tamanu oil</div>
+              <div class="method">
+                Mix in bowl. Apply section by section to clean, wet hair from roots to ends. Cover with plastic cap. Sit under hooded dryer at medium heat for 25–30 min. Rinse with cool water. Follow with Green Tea ACV rinse.
+              </div>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label science-label">Science & Notes</div>
+            <div class="science-note">
+              <strong>Hibiscus:</strong> Natural AHA content smooths the cuticle. Amino acids penetrate the cortex, improving elasticity. Particularly effective for 4A pattern.<br><br>
+              <strong>Glycerin:</strong> Humectant that draws moisture from the air into the hair shaft. Use conservatively in very low humidity environments (below 40% humidity it can pull moisture out instead).<br><br>
+              <strong>Polyquaternium-7:</strong> Film former that deposits on hair, fills surface damage, adds slip, reduces frizz, and improves color — excellent for your heat-damaged sections. Also provides humidity resistance.<br><br>
+              <strong>Tamanu:</strong> Rich in unique fatty acids (calophyllic acid) with regenerative properties. Excellent for damaged, inflamed scalp tissue.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num" style="color:var(--green); font-size:18px; padding-top:5px;">TOOLS</div>
+          <div class="step-name">
+            <h3>Application Protocol</h3>
+            <div class="step-desc">Maximize absorption and results</div>
+          </div>
+        </div>
+        <div class="step-card-body">
+          <div class="step-col">
+            <div class="col-label products-label">Tools</div>
+            <ul>
+              <li>Hooded dryer or heat cap</li>
+              <li>Plastic processing caps</li>
+              <li>Sectioning clips (not rubber bands)</li>
+              <li>Wide tooth comb (finger comb only preferred)</li>
+              <li>Spray bottle with water</li>
+            </ul>
+          </div>
+          <div class="step-col">
+            <div class="col-label recipe-label">Method</div>
+            <div class="recipe-box">
+              <div class="method">
+                1. Start with freshly washed, soaking wet hair<br>
+                2. Divide into 4 sections (2 front, 2 back)<br>
+                3. Apply conditioner from roots to ends to each section, smoothing downward<br>
+                4. Twist or clip each section up<br>
+                5. Cover with plastic cap (double cap for extra heat retention)<br>
+                6. Sit under dryer at medium heat 25–30 min<br>
+                7. Cool water rinse<br>
+                8. Apply ACV rinse<br>
+                9. Final cold rinse
+              </div>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label science-label">Notes</div>
+            <div class="science-note">
+              <strong>Wet vs. dry application:</strong> Always apply to soaking wet hair. The water already in the hair shaft creates a pathway for conditioner molecules to follow.<br><br>
+              <strong>Cer-100 note:</strong> Your Cer-100 (ceramide treatment) is excellent to add to any moisture deep condition — 1 tbsp added to the recipe above. Ceramides are literally the glue holding cuticle scales together; heat damage destroys them first.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDIUM PROTEIN -->
+  <div id="protein-medium" class="protein-content">
+    <div class="step-grid">
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num" style="color: var(--gold)">P+</div>
+          <div class="step-name">
+            <h3>Medium Protein Deep Condition</h3>
+            <div class="step-desc">Balance of repair + moisture · Rebuild tensile strength without brittleness</div>
+          </div>
+          <div class="step-timing">20–25 MIN<br>UNDER DRYER</div>
+        </div>
+        <div class="step-card-body">
+          <div class="step-col">
+            <div class="col-label products-label">Base Products</div>
+            <div>
+              <span class="product-tag">ORS Moisture Replenishment Conditioner</span>
+              <span class="product-tag">Matrix Food for Soft</span>
+              <span class="product-tag">Aphogee Keratin 2-Min Reconstructor</span>
+            </div>
+            <br>
+            <div class="col-label products-label">Protein Additives</div>
+            <div>
+              <span class="product-tag">Collagen Protein Hydrolyzed Powder</span>
+              <span class="product-tag">Jojoba Protein HP Hydrolyzed</span>
+              <span class="product-tag">Silk Protein (if owned)</span>
+              <span class="product-tag">Polyquaternium-7</span>
+              <span class="product-tag">Glycerin</span>
+              <span class="product-tag">Avocado Oil</span>
+              <span class="product-tag">Coconut Oil</span>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label recipe-label">Recipe: Collagen Silk Repair Mask</div>
+            <div class="recipe-box">
+              <div class="recipe-title">Collagen-Jojoba Protein Blend</div>
+              <div class="ingredient"><span class="ingredient-amt">4 tbsp</span> ORS Replenishment (base)</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Collagen Protein Hydrolyzed powder</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Jojoba Protein HP Hydrolyzed</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Glycerin</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Avocado oil</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tsp</span> Polyquaternium-7</div>
+              <div class="ingredient"><span class="ingredient-amt">½ tsp</span> Coconut oil</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Hibiscus tea brewed</div>
+              <div class="method">
+                Mix well — protein powders need thorough mixing or they clump. Apply to clean, wet hair. Cover with plastic cap. Sit under dryer 20–25 min. Rinse thoroughly with cool water. Protein can cause stiffness if not fully rinsed — run fingers through hair during rinse to check. Follow with ACV rinse.
+              </div>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label science-label">Science & Notes</div>
+            <div class="science-note">
+              <strong>Hydrolyzed proteins:</strong> "Hydrolyzed" = broken down into smaller molecules that can actually penetrate the cortex (vs. whole proteins that just coat the outside). Collagen and keratin are the most effective for cortex reconstruction.<br><br>
+              <strong>Collagen for hair:</strong> Hair is ~80% keratin protein, but collagen provides the scaffolding. Hydrolyzed collagen temporarily fills holes left by heat damage and the missing relaxer-bond damage from your stylist's work.<br><br>
+              <strong>Mizani Fiberfyl — your game changer:</strong> Bond-building technology similar in concept to Olaplex. Fiberfyl works by reinforcing the internal hair fiber bonds broken by chemical and heat damage — not just coating the outside but rebuilding inside. Use it BEFORE deep conditioning (apply to damp hair, let absorb 5 min, then layer your DC on top). This is why it feels like a game changer — you're addressing damage at the structural level.<br><br>
+              <strong>Jojoba protein:</strong> Jojoba wax ester is uniquely similar to scalp sebum. The protein version adds strengthening while the wax-like quality prevents hygral fatigue.<br><br>
+              <strong>Aphogee 2-Min Reconstructor:</strong> Can be used instead of or added to the base — an excellent bridge between medium and high protein sessions.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGH PROTEIN -->
+  <div id="protein-high" class="protein-content">
+    <div class="step-grid">
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num" style="color: var(--terracotta)">PP</div>
+          <div class="step-name">
+            <h3>High Protein Deep Condition</h3>
+            <div class="step-desc">Full structural reconstruction · Use monthly or when hair feels weak/stretchy · ALWAYS follow with moisture week</div>
+          </div>
+          <div class="step-timing">20 MIN DRYER<br>THEN COOL RINSE</div>
+        </div>
+        <div class="step-card-body">
+          <div class="step-col">
+            <div class="col-label products-label">Base + Protein Products</div>
+            <div>
+              <span class="product-tag">Hi Pro Pack Intensive Protein Treatment</span>
+              <span class="product-tag">Aphogee 2-Step Protein Treatment</span>
+              <span class="product-tag">Cer-100 Collagen Ceramide Treatment</span>
+              <span class="product-tag">Keratin Protein Hydrolyzed</span>
+              <span class="product-tag">Collagen Protein Hydrolyzed Powder</span>
+              <span class="product-tag">Jojoba Protein HP</span>
+            </div>
+            <br>
+            <div class="col-label products-label">Balancing Additives (REQUIRED)</div>
+            <div>
+              <span class="product-tag">Coconut Oil (prevent protein stiffness)</span>
+              <span class="product-tag">Avocado Oil</span>
+              <span class="product-tag">Glycerin</span>
+              <span class="product-tag">Aphogee Balancing Moisturizer</span>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label recipe-label">Recipe: Full Reconstruct Treatment</div>
+            <div class="recipe-box">
+              <div class="recipe-title">Triple Protein Intensive Mask</div>
+              <div class="ingredient"><span class="ingredient-amt">4 tbsp</span> Hi Pro Pack (base)</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Keratin Protein Hydrolyzed</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Collagen Protein Hydrolyzed powder</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Jojoba Protein HP</div>
+              <div class="ingredient"><span class="ingredient-amt">1</span> Egg yolk only</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Coconut oil</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Avocado oil</div>
+              <div class="method">
+                Whisk egg yolk thoroughly before adding. Mix all ingredients well. Apply to clean, wet hair. Cover with plastic cap. Sit under dryer 20 min exactly — do not over-process high protein. Rinse very thoroughly with cool (not cold) water. Apply Aphogee Balancing Moisturizer immediately. Follow with ACV rinse. Next week: Moisture-only, no protein.
+                <br><br><em>Alternative: Aphogee 2-Step alone per package directions — this is a full hard protein treatment and very effective for your damage level. Do not mix with other proteins when using Aphogee 2-Step.</em>
+              </div>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label science-label">Science & Notes</div>
+            <div class="science-note">
+              <strong>Egg yolk:</strong> Contains lecithin (natural emulsifier + deep conditioner), biotin, vitamin D, folate, amino acids. The yolk specifically — whites have too much avidin which binds biotin.<br><br>
+              <strong>Signs you over-proteined:</strong> Hair feels straw-like, stiff, snaps rather than stretches. If this happens: skip protein for 2–3 weeks, do moisture-only deep conditions, and use a ceramide treatment (Cer-100) to restore lipid balance.<br><br>
+              <strong>Signs you need more protein:</strong> Hair stretches when pulled then doesn't spring back. Limp, mushy feel. Excessive shedding.<br><br>
+              <strong>Ceramides (Cer-100):</strong> Ceramides are the intercellular cement of the hair cuticle. Heat, relaxers, and coloring deplete them. Cer-100 is one of the few products that replenishes them. Add 1 tbsp to any high protein treatment.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================== STYLING ==================== -->
+<div id="styling" class="section">
+  <div class="section-header">
+    <div class="label">Routine 03</div>
+    <h2>Styling Routine</h2>
+    <p>Three complete style types with full product and recipe protocols. Address pixie knots, curl definition, and frizz by style.</p>
+    <span class="cadence-tag">WEEKLY — Post Wash Day</span>
+  </div>
+
+  <div class="tip">
+    <strong>Pixie Knot Prevention:</strong>
+    <p>Fairy knots form when a single strand curls back on itself. Prevention: apply styling products to soaking wet hair in small sections, smooth each strand downward before releasing, stretch slightly while damp, and avoid touching hair while it dries. The gel step below is essential — it creates a cast that prevents strands from looping.</p>
+  </div>
+
+  <div class="style-tabs">
+    <button class="style-tab active" onclick="showStyle('natural')">🌿 Natural / No Heat</button>
+    <button class="style-tab" onclick="showStyle('lowheat')">〰 Low Heat</button>
+    <button class="style-tab" onclick="showStyle('highheat')">🔥 High Heat</button>
+  </div>
+
+  <!-- NATURAL -->
+  <div id="style-natural" class="style-content active">
+    <div class="alert">
+      <strong>Your specific issues addressed:</strong>
+      <p>3C top doesn't curl as well as 4A bottom. Top expands and goes frizzy after a few hours. Strategy: Shingling technique on 3C sections with a stronger hold product. Flaxseed gel cast on everything. Diffuse only if needed (still counts as no heat for our purposes).</p>
+    </div>
+    <div class="step-grid">
+
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num">01</div>
+          <div class="step-name"><h3>Leave-In + LOC Method</h3><div class="step-desc">Lock, Oil, Cream on soaking wet hair by section</div></div>
+          <div class="step-timing">SOAKING WET<br>HAIR ONLY</div>
+        </div>
+        <div class="step-card-body">
+          <div class="step-col">
+            <div class="col-label products-label">Products</div>
+            <div>
+              <span class="product-tag">ORS Olive Oil Super Silken Leave-In</span>
+              <span class="product-tag">Magic 7 Leave-In Spray</span>
+              <span class="product-tag">It's a 10 Miracle Leave-In + Keratin</span>
+              <span class="product-tag">Pantene Miracle Rescue Spray</span>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label recipe-label">Method</div>
+            <div class="recipe-box">
+              <div class="method">
+                <strong>L — Leave-in:</strong> Spray Magic 7 or apply ORS leave-in to each section while soaking wet. Smooth downward with fingers.<br><br>
+                <strong>O — Oil:</strong> Apply 1–2 drops sesame or avocado oil through each section. Lightweight oils only for fine hair.<br><br>
+                <strong>C — Cream:</strong> Apply a very small amount of Phyto Joba Moisturizing Gel or Camille Rose Almond Jai Butter (for 4A bottom sections only — skip cream on 3C top if it weighs it down).
+              </div>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label science-label">Notes</div>
+            <div class="science-note">
+              <strong>LOC vs. LCO:</strong> High porosity hair generally does better with LOC (oil before cream/sealant) because the oil layer seals in the water before the cream. Experiment — if your hair feels better with LCO (leave-in, cream, oil), use that instead.<br><br>
+              <strong>Fine hair caution:</strong> Use very small amounts of cream. Fine strands weigh down fast and lose definition.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num">02</div>
+          <div class="step-name"><h3>Shingling (3C Top) + Finger Coiling (4A Bottom)</h3><div class="step-desc">Separate curl pattern protocol by section</div></div>
+          <div class="step-timing">SOAKING WET<br>20–30 MIN</div>
+        </div>
+        <div class="step-card-body">
+          <div class="step-col">
+            <div class="col-label products-label">Products by Section</div>
+            <p style="font-size:11px;color:var(--gold-dim);margin-bottom:6px;">3C TOP HALF:</p>
+            <div>
+              <span class="product-tag">Curls Blueberry Bliss Curl Control Jelly</span>
+              <span class="product-tag">Phyto Joba Moisturizing Gel</span>
+            </div>
+            <br>
+            <p style="font-size:11px;color:var(--gold-dim);margin-bottom:6px;">4A BOTTOM HALF:</p>
+            <div>
+              <span class="product-tag">Camille Rose Almond Jai Twisting Butter</span>
+              <span class="product-tag">Curls Blueberry Bliss Jelly</span>
+              <span class="product-tag">Wired Flexible Styling Cream</span>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label recipe-label">Shingling Technique</div>
+            <div class="recipe-box">
+              <div class="recipe-title">3C Shingle Method (Top Half)</div>
+              <div class="method">
+                Take a 1-inch wide section of soaking wet hair. Apply a quarter-sized amount of jelly/gel. Use 2 fingers to "shingle" downward — running fingers along the length repeatedly to define and smooth each curl. Do not scrunch. Allow to air dry undisturbed. No touching until fully dry or you'll break the cast.
+              </div>
+              <br>
+              <div class="recipe-title">4A Finger Coiling (Bottom Half)</div>
+              <div class="method">
+                Take a small pencil-width section. Apply butter or cream. Starting at the root, wrap the section around your finger in the direction of its natural curl. Pull finger out slowly. Air dry undisturbed. For 4A, twist-outs (two-strand twists left to air dry and then unraveled) may also be more effective than loose coiling.
+              </div>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label science-label">Science & Notes</div>
+            <div class="science-note">
+              <strong>Why top doesn't curl:</strong> 3C has a looser curl pattern that needs more definition product and technique. The 4A bottom naturally coils on its own.<br><br>
+              <strong>Gel cast:</strong> The Curls Blueberry Bliss or Phyto Joba will form a hard cast as it dries. This looks crunchy but is correct — once fully dry, scrunch it gently to break the cast and reveal the curl. Do not break cast while still damp.<br><br>
+              <strong>Humidity:</strong> Glycerin in products can cause expansion in humid conditions. If it's above 80% humidity, reduce glycerin-heavy products on the 3C section.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num">03</div>
+          <div class="step-name"><h3>Homemade Flaxseed Hold Gel</h3><div class="step-desc">Top coat over all sections · Anti-frizz cast · Replaces Chaka Khan expansion</div></div>
+          <div class="step-timing">FINAL STEP<br>APPLY WET</div>
+        </div>
+        <div class="step-card-body">
+          <div class="step-col">
+            <div class="col-label products-label">Ingredients</div>
+            <div>
+              <span class="product-tag">Flaxseed</span>
+              <span class="product-tag">Glycerin</span>
+              <span class="product-tag">Polyquaternium-7</span>
+              <span class="product-tag">Rosemary EO</span>
+              <span class="product-tag">Juniper Berry EO</span>
+              <span class="product-tag">Green Tea</span>
+            </div>
+            <br>
+            <div class="col-label products-label">Backup Commercial Gels</div>
+            <div>
+              <span class="product-tag">Phyto Joba Moisturizing Gel</span>
+              <span class="product-tag">Curls Blueberry Bliss Jelly</span>
+              <span class="product-tag">Ako Style Super Protein Gel</span>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label recipe-label">Flaxseed Gel Recipe</div>
+            <div class="recipe-box">
+              <div class="recipe-title">Enhanced Flaxseed Curl Gel</div>
+              <div class="ingredient"><span class="ingredient-amt">¼ cup</span> Whole flaxseeds</div>
+              <div class="ingredient"><span class="ingredient-amt">2 cups</span> Brewed green tea (base)</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tsp</span> Glycerin</div>
+              <div class="ingredient"><span class="ingredient-amt">½ tsp</span> Polyquaternium-7</div>
+              <div class="ingredient"><span class="ingredient-amt">5 drops</span> Rosemary EO</div>
+              <div class="ingredient"><span class="ingredient-amt">3 drops</span> Juniper berry EO</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tsp</span> Aloe vera gel (if available)</div>
+              <div class="method">
+                Bring green tea to boil, add flaxseeds. Stir constantly. Watch until a foam ring forms around the pot and gel is thick enough to coat a spoon — about 7–10 min. Do not over-cook. Strain immediately through cheesecloth or old pantyhose — squeeze hard to get all gel out. Seeds are discarded. While warm, stir in glycerin, PQ-7, EOs. Cool, pour into squeeze bottle. Refrigerate — lasts 1–2 weeks. Freeze in ice cube trays for up to 3 months.
+              </div>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label science-label">Science & Notes</div>
+            <div class="science-note">
+              <strong>Flaxseed (mucilage):</strong> The polysaccharide mucilage acts as a natural polymer — same function as synthetic polymers in commercial gels, but breathable. Excellent for high porosity because it forms a flexible hold without the crunch of synthetic PVP-based gels.<br><br>
+              <strong>Polyquaternium-7:</strong> Adding this to your homemade gel significantly improves frizz control, adds shine, and extends hold duration. This is what the commercial gels use.<br><br>
+              <strong>Chia seeds:</strong> You own these — they create an even thicker gel than flaxseed. Use ¼ cup chia seeds in 2 cups water: soak overnight, do not boil. Strain similarly. Can be combined 50/50 with flaxseed gel.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num">04</div>
+          <div class="step-name"><h3>Drying + Refresh</h3><div class="step-desc">Air dry protocol + mid-week refresh for natural styles</div></div>
+          <div class="step-timing">AIR DRY<br>+ REFRESH</div>
+        </div>
+        <div class="step-card-body">
+          <div class="step-col">
+            <div class="col-label products-label">Drying Products</div>
+            <div>
+              <span class="product-tag">Oribe Impermeable Anti-Humidity Spray (top coat when dry)</span>
+              <span class="product-tag">Bio Silk Silk Therapy (finish serum, tiny amount)</span>
+              <span class="product-tag">AllPlex No. 7 Bonding Oil (1–2 drops on ends)</span>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label recipe-label">Mid-Week Refresh Recipe</div>
+            <div class="recipe-box">
+              <div class="recipe-title">Daily Moisture Refresh Spray</div>
+              <div class="ingredient"><span class="ingredient-amt">½ cup</span> Brewed green tea (cooled)</div>
+              <div class="ingredient"><span class="ingredient-amt">½ cup</span> Water</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Glycerin</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> ORS Leave-In or Magic 7</div>
+              <div class="ingredient"><span class="ingredient-amt">½ tsp</span> Avocado oil</div>
+              <div class="method">
+                Combine in a spray bottle. Shake before each use. Spritz over hair, scrunch upward, then pat down. This refreshes the curl pattern without rewetting completely. Re-apply flaxseed gel to frizzy sections after spritzing while still damp.
+              </div>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label science-label">Notes</div>
+            <div class="science-note">
+              <strong>Drying:</strong> Never blow-dry natural styles. Cover hair with a satin bonnet until 70% dry, then remove to allow full air drying. This reduces frizz from moisture escaping too quickly.<br><br>
+              <strong>Anti-humidity spray:</strong> Apply the Oribe Impermeable spray once hair is completely dry. This is a film-forming seal that repels humidity and keeps the style from expanding. Game changer for the Chaka Khan effect.<br><br>
+              <strong>Protective nighttime:</strong> Pineapple (high loose ponytail on top of head) or two large twists, then satin bonnet. Do not sleep without protection.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LOW HEAT -->
+  <div id="style-lowheat" class="style-content">
+    <div class="step-grid">
+
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num">01</div>
+          <div class="step-name"><h3>Prep + Heat Protector</h3><div class="step-desc">Protect fine, high-porosity strands before any heat — non-negotiable</div></div>
+          <div class="step-timing">PRE HEAT<br>REQUIRED</div>
+        </div>
+        <div class="step-card-body">
+          <div class="step-col">
+            <div class="col-label products-label">Products</div>
+            <div>
+              <span class="product-tag">Nisim 25 Miracle Milk (leave-in base)</span>
+              <span class="product-tag">ORS Olive Oil Super Silken Leave-In</span>
+              <span class="product-tag">Oribe Balm D'or Heat Styling Shield</span>
+              <span class="product-tag">By Taraji Hot Commodity Heat Protectant</span>
+              <span class="product-tag">Bio Silk Silk Therapy</span>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label recipe-label">Silicone-Based Heat Protector Recipe</div>
+            <div class="recipe-box">
+              <div class="recipe-title">DIY Thermal Shield Spray</div>
+              <div class="ingredient"><span class="ingredient-amt">½ cup</span> Water</div>
+              <div class="ingredient"><span class="ingredient-amt">2 tbsp</span> Glycerin</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Keratin Hydrolyzed</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Sesame oil</div>
+              <div class="ingredient"><span class="ingredient-amt">5 drops</span> Vitamin E oil</div>
+              <div class="method">
+                Mix in a spray bottle. Spritz evenly over damp hair before blow drying. This works by coating the strand with a layer that distributes heat more evenly and reduces direct thermal damage. For extra protection, layer Oribe Balm D'Or on top of this on wet hair before blow dry.
+                <br><br><em>Or simply use: Bio Silk Silk Therapy (2–3 drops) distributed through damp hair — this is a silicone serum that works well as a heat shield for fine hair.</em>
+              </div>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label science-label">Science & Notes</div>
+            <div class="science-note">
+              <strong>Low heat temperature:</strong> Blow dryer on lowest heat setting (warm, not hot). Ideal: 250–300°F. Keep dryer 6 inches from hair. Use tension method — hold section taut with fingers as you dry — this stretches the curl without direct heat damage.<br><br>
+              <strong>Silicone for high porosity:</strong> Your hair responds well to silicone-based heat protectants (as you noted). This is because silicone fills the gaps in high porosity cuticles, creating a smooth, heat-resistant surface. Clarify monthly to prevent buildup.<br><br>
+              <strong>Fine hair note:</strong> Use very small amounts of oil-based protectors — fine hair can go limp fast. Less is more.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num">02</div>
+          <div class="step-name"><h3>Blow Dry + Stretch</h3><div class="step-desc">Tension method blow-out · No concentrator nozzle for loose stretch</div></div>
+          <div class="step-timing">LOW HEAT<br>250–300°F</div>
+        </div>
+        <div class="step-card-body">
+          <div class="step-col">
+            <div class="col-label products-label">Products</div>
+            <div>
+              <span class="product-tag">Oribe Imperial Blowout Transformative Styling Cream</span>
+              <span class="product-tag">Wired Flexible Styling Cream</span>
+              <span class="product-tag">UBH Satin Cream Moisturizer</span>
+              <span class="product-tag">Nisim 25 Miracle Milk</span>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label recipe-label">Blow Dry Cream Recipe</div>
+            <div class="recipe-box">
+              <div class="recipe-title">Smoothing Blow Dry Cream</div>
+              <div class="ingredient"><span class="ingredient-amt">2 tbsp</span> Shea Moisture JBCO Mask (base)</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Avocado oil</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Keratin Hydrolyzed</div>
+              <div class="ingredient"><span class="ingredient-amt">½ tsp</span> Glycerin</div>
+              <div class="ingredient"><span class="ingredient-amt">½ tsp</span> Polyquaternium-7</div>
+              <div class="method">
+                Apply to damp hair in sections before blow drying. Work section by section: hold at the root, apply tension with fingers toward ends, blow dry in the direction of hair growth (downward). Move dryer constantly — never hold in one spot. Finish each section with a blast of cool air to set.
+              </div>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label science-label">Science & Notes</div>
+            <div class="science-note">
+              <strong>Tension method:</strong> Stretches curl without breaking protein bonds. Hair is most vulnerable to heat when wet — keep dryer moving.<br><br>
+              <strong>Low heat vs. no heat:</strong> Low heat still uses heat but at a temperature that is below the 320°F threshold where permanent strand damage occurs. Keep your blow dryer setting on low and test with a heat strip if you have one.<br><br>
+              <strong>Adderall + heat:</strong> Stimulant medications can make the scalp more sensitive. If scalp feels tender or irritated post-heat, apply diluted bhringraj oil to the scalp that evening.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num">03</div>
+          <div class="step-name"><h3>Finish + Style (Low Heat)</h3><div class="step-desc">Braid-out, twist-out, or loose natural on stretched hair</div></div>
+          <div class="step-timing">POST BLOW DRY</div>
+        </div>
+        <div class="step-card-body">
+          <div class="step-col">
+            <div class="col-label products-label">Finish Products</div>
+            <div>
+              <span class="product-tag">AllPlex No. 7 Bonding Oil (ends)</span>
+              <span class="product-tag">Bio Silk Silk Therapy</span>
+              <span class="product-tag">Oribe Impermeable Anti-Humidity Spray</span>
+              <span class="product-tag">Farm & Table Frizz-Free Smoothing Oil</span>
+              <span class="product-tag">Simi de Lino Liquid Crystals</span>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label recipe-label">Finishing Serum Recipe</div>
+            <div class="recipe-box">
+              <div class="recipe-title">Lightweight Shine Serum</div>
+              <div class="ingredient"><span class="ingredient-amt">10 drops</span> Avocado oil</div>
+              <div class="ingredient"><span class="ingredient-amt">5 drops</span> Emu oil</div>
+              <div class="ingredient"><span class="ingredient-amt">5 drops</span> Vitamin E oil</div>
+              <div class="ingredient"><span class="ingredient-amt">3 drops</span> Rosemary EO</div>
+              <div class="method">
+                Mix in palm. Rub palms together, apply to ends and mid-shaft only on blow-dried hair. Seals ends, adds shine, prevents single-strand knot formation on ends. Follow with Oribe Impermeable spray from 12 inches away for humidity resistance.
+              </div>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label science-label">Notes</div>
+            <div class="science-note">
+              <strong>Emu oil:</strong> One of the most deeply penetrating oils available. Identical fatty acid profile to human skin sebum. Excellent for sealing and shine without weight — particularly good for fine hair.<br><br>
+              <strong>Simi de Lino:</strong> These liquid crystals coat each strand individually with a flexible, frizz-resistant film. Use sparingly — 2–3 drops is enough for shoulder-length fine hair.<br><br>
+              <strong>Style options post blow-dry:</strong> Braid-out (2-strand or 3-strand braid on blow-dried hair, unravel next day), roller set on low heat, or leave as stretched natural.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGH HEAT -->
+  <div id="style-highheat" class="style-content">
+    <div class="alert">
+      <strong>Limit to 2x per month maximum during heat damage recovery.</strong>
+      <p>Your hair sustained significant heat damage. High heat styles are achievable safely but frequency must be controlled. Always use a heat protectant with silicone. Never exceed 380°F on fine strands. The keratin treatment protocol below can extend your high heat style 4–6 weeks, reducing total heat exposure.</p>
+    </div>
+    <div class="step-grid">
+
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num">01</div>
+          <div class="step-name"><h3>Optional: At-Home Keratin Treatment</h3><div class="step-desc">Formaldehyde-based or aldehyde-free · Best base for extended straight style</div></div>
+          <div class="step-timing">EVERY 4–6 WKS<br>IF USING</div>
+        </div>
+        <div class="step-card-body">
+          <div class="step-col">
+            <div class="col-label products-label">Products</div>
+            <div>
+              <span class="product-tag">Keratin Smooth Smoothing Hair Oil (base treatment oil)</span>
+              <span class="product-tag">Keratin Protein Hydrolyzed (DIY additive)</span>
+              <span class="product-tag">Bio Silk Silk Therapy</span>
+              <span class="product-tag">Chi Infra Shampoo (prep wash before keratin)</span>
+              <span class="product-tag">GK Keratin Treatment ⭐ (Applied)</span>
+              <span class="product-tag">Leven Rose Jojoba Oil (post-keratin sealing)</span>
+            </div>
+            <p style="font-size:11px;color:var(--gold-dim);margin-top:10px;">Note: For a full commercial keratin treatment (with formaldehyde), use GKhair or Keratin Research brands — follow their instructions precisely. Ensure ventilation. The formaldehyde content in at-home treatments is very low (&lt;2%) and considered safe for occasional use.</p>
+          </div>
+          <div class="step-col">
+            <div class="col-label recipe-label">DIY Keratin Gloss Treatment</div>
+            <div class="recipe-box">
+              <div class="recipe-title">Smoothing Keratin Gloss (No Formaldehyde)</div>
+              <div class="ingredient"><span class="ingredient-amt">3 tbsp</span> Keratin Protein Hydrolyzed</div>
+              <div class="ingredient"><span class="ingredient-amt">2 tbsp</span> Jojoba Protein HP Hydrolyzed</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Collagen Hydrolyzed powder</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> EVOO</div>
+              <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> Bio Silk Silk Therapy</div>
+              <div class="ingredient"><span class="ingredient-amt">1 cup</span> Water</div>
+              <div class="method">
+                Mix well. Apply to clean, dry (or lightly damp) hair in sections, smoothing downward. Let sit 15 min under heat cap. Blow dry smooth with tension. Flat iron at 350°F in thin sections (2–3 passes max). The proteins bond to the hair under heat. Style will last 2–4 weeks. This is not a formaldehyde treatment — it's a protein coating that temporarily smooths.
+              </div>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label science-label">Science & Notes</div>
+            <div class="science-note">
+              <strong>Formaldehyde vs. aldehyde-free:</strong> Formaldehyde (or glyoxylic acid in "aldehyde-free" versions) cross-links keratin proteins within the cortex, creating a permanent smoothing effect that lasts until new growth. Your hair responds well to keratin — this aligns with high porosity hair needing structural reinforcement.<br><br>
+              <strong>Your history:</strong> You noticed growth both with and without keratin, suggesting the real driver was your consistent routine (not the keratin itself). Keratin extends your high-heat styles safely, reducing overall heat exposure — use it for that purpose.<br><br>
+              <strong>Relaxer damage:</strong> Relaxers break disulfide bonds permanently. Keratin rebuilds surface structure but does not repair the bonds. Time, consistent protein treatment, and trimming the relaxed portions is the only remedy.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num">02</div>
+          <div class="step-name"><h3>High Heat Blow Dry + Flat Iron</h3><div class="step-desc">Full straight or sleek style · Maximum protection required</div></div>
+          <div class="step-timing">MAX 380°F<br>FINE HAIR</div>
+        </div>
+        <div class="step-card-body">
+          <div class="step-col">
+            <div class="col-label products-label">Products (Layer in Order)</div>
+            <div>
+              <span class="product-tag">1. Phyto Repairing Serum (damaged ends)</span>
+              <span class="product-tag">2. Oribe Balm D'or Heat Styling Shield</span>
+              <span class="product-tag">3. Keratin Smooth Oil (through lengths)</span>
+              <span class="product-tag">4. Amika Glass Action Elixir (post flat iron)</span>
+              <span class="product-tag">5. Oribe Impermeable Anti-Humidity Spray (finish)</span>
+              <span class="product-tag">6. Phyto 9 Cream (ends, on finished style)</span>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label recipe-label">Pre-Heat Protective Serum</div>
+            <div class="recipe-box">
+              <div class="recipe-title">Ayurvedic Pre-Heat Shield Oil</div>
+              <div class="ingredient"><span class="ingredient-amt">5 drops</span> Sesame oil</div>
+              <div class="ingredient"><span class="ingredient-amt">3 drops</span> Tamanu oil</div>
+              <div class="ingredient"><span class="ingredient-amt">3 drops</span> Emu oil</div>
+              <div class="ingredient"><span class="ingredient-amt">2 drops</span> Vitamin E oil</div>
+              <div class="method">
+                Blend in palm. Apply to mid-shaft and ends only before blow drying. These oils have the highest smoke points of your inventory, providing a natural heat buffer. Layer Oribe Balm D'or on top of this while still damp for maximum protection.
+                <br><br>
+                <strong>Blow dry:</strong> Low heat to 70% dry. Then increase to medium heat. Flat iron at 350–380°F only. Fine hair should never be flat ironed above 380°F. 1–2 passes per section. Thin sections.
+              </div>
+            </div>
+          </div>
+          <div class="step-col">
+            <div class="col-label science-label">Science & Notes</div>
+            <div class="science-note">
+              <strong>Sesame oil</strong> has the highest heat stability of your owned oils (~450°F smoke point). Combined with Oribe Balm D'or, this provides solid thermal protection for fine strands.<br><br>
+              <strong>350°F for fine hair:</strong> Fine hair has a smaller cortex — it heats up faster and is damaged at lower temperatures than coarse hair. 380°F is the absolute maximum. For the areas with existing heat damage, use 325°F.<br><br>
+              <strong>Phyto 9:</strong> You already use this with success on high heat — continue. It's a leave-in that provides intense moisture precisely where heat-styled hair needs it most: the ends.<br><br>
+              <strong>AllPlex No. 7 oil:</strong> Bond-building oil — apply to ends after styling. Helps rebuild broken bonds from previous heat damage over time.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================== MAINTENANCE ==================== -->
+<div id="maintenance" class="section">
+  <div class="section-header">
+    <div class="label">Routine 04</div>
+    <h2>Daily Maintenance Routine</h2>
+    <p>The routine you maintained for 5–7 years that grew your hair to BSL. Rebuild it. This is your most important routine.</p>
+    <span class="cadence-tag">DAILY — Morning, Evening, Mid-Week</span>
+  </div>
+
+  <div class="tip">
+    <strong>Key Insight:</strong>
+    <p>Your history proves your hair grows when you do a consistent daily maintenance routine. The issue is always when external factors (stylist, grad school, job) interrupt it. The simpler this routine is, the more you'll stick to it. These steps are deliberately minimal.</p>
+  </div>
+
+  <div class="maint-grid">
+    <div class="maint-card">
+      <h4>🌅 Morning (5–7 minutes)</h4>
+      <ol>
+        <li>Remove bonnet or unwrap style</li>
+        <li>Spritz with refresh spray (Green Tea Spray from Styling tab or Camille Rose Rosemary Water)</li>
+        <li>Apply 2–3 drops of oil to ends and mid-shaft (avocado, emu, or sesame)</li>
+        <li>Finger detangle gently if needed — no combs</li>
+        <li>Style: fluff, define, or smooth as needed</li>
+        <li>Optional: 1–2 min scalp massage with fingertips (stimulates circulation)</li>
+      </ol>
+    </div>
+    <div class="maint-card">
+      <h4>🌙 Evening (3–5 minutes)</h4>
+      <ol>
+        <li>Finger detangle any knots gently</li>
+        <li>Apply 1–2 drops of sealing oil to ends</li>
+        <li>For natural style: pineapple or loose two-strand twists</li>
+        <li>For straight style: wrap hair or use large flexi-rods</li>
+        <li>Cover with satin bonnet or sleep on silk/satin pillowcase</li>
+        <li>Scalp massage 2–3 min with bhringraj oil 3x/week (not daily — avoid buildup)</li>
+      </ol>
+    </div>
+    <div class="maint-card">
+      <h4>📅 Weekly Non-Wash Day Check</h4>
+      <ol>
+        <li>Mid-week moisture refresh (refresh spray + small oil seal)</li>
+        <li>Check ends: trim any visible splits with sharp hair shears, strand by strand, as you already do</li>
+        <li>Scalp check: any flaking, tenderness, or buildup? Note for Nizoral week if needed</li>
+        <li>Length check monthly: measure against a fixed point (bra strap, shoulder blade) to track progress</li>
+        <li>Note any shedding changes (adderall brand changes, gabapentin effects) in a log</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="section-header" style="padding-top:32px;">
+    <h2 style="font-size:22px;">Scalp Health Protocol</h2>
+    <p>Adderall (vasoconstriction) and gabapentin affect scalp blood flow and hair growth cycle. Address directly.</p>
+  </div>
+
+  <div class="step-grid">
+    <div class="step-card">
+      <div class="step-card-header">
+        <div class="step-num" style="font-size:16px;padding-top:8px;">SCALP</div>
+        <div class="step-name"><h3>Daily Scalp Massage + Growth Oil</h3><div class="step-desc">3–5 min massage · 3–4x per week · Counteracts vasoconstriction from Adderall</div></div>
+        <div class="step-timing">3–4X/WEEK<br>5 MIN</div>
+      </div>
+      <div class="step-card-body">
+        <div class="step-col">
+          <div class="col-label products-label">Products</div>
+          <div>
+            <span class="product-tag">Kaleidoscope Miracle Drops Original</span>
+            <span class="product-tag">Bhringraj-Brahmi Oil (from Wash Step 2)</span>
+            <span class="product-tag">Wild Growth Hair Oil</span>
+            <span class="product-tag">Camille Rose Rosemary Water</span>
+          </div>
+        </div>
+        <div class="step-col">
+          <div class="col-label recipe-label">Scalp Stimulating Treatment</div>
+          <div class="recipe-box">
+            <div class="recipe-title">Rosemary-Peppermint Scalp Oil</div>
+            <div class="ingredient"><span class="ingredient-amt">2 tbsp</span> Sesame oil</div>
+            <div class="ingredient"><span class="ingredient-amt">1 tbsp</span> JBCO</div>
+            <div class="ingredient"><span class="ingredient-amt">10 drops</span> Rosemary EO</div>
+            <div class="ingredient"><span class="ingredient-amt">5 drops</span> Juniper berry EO</div>
+            <div class="ingredient"><span class="ingredient-amt">1 tsp</span> Bhringraj powder (infused in warm oil)</div>
+            <div class="method">
+              Apply small amount to scalp using dropper. Massage with fingertips (not nails) in circular motions for 5 minutes. This increases blood flow to follicles. Do 3–4x/week — most important on the days you take Adderall, as stimulants restrict scalp circulation.
+            </div>
+          </div>
+        </div>
+        <div class="step-col">
+          <div class="col-label science-label">Medication Notes</div>
+          <div class="science-note">
+            <strong>Adderall (amphetamine):</strong> Causes vasoconstriction (narrowing of blood vessels), reduces blood flow to extremities including scalp follicles. Also depletes zinc, B vitamins, and can alter sebum production. Generic brands vary in binders which can affect absorption and side effects — your observation about brand-specific changes is valid.<br><br>
+            <strong>Gabapentin:</strong> Some users report hair shedding as a side effect (telogen effluvium — stress-induced shed). This typically resolves. Track if shedding is above 100–150 hairs/day.<br><br>
+            <strong>Wine / alcohol:</strong> Depletes zinc (critical for hair growth), B vitamins, increases DHT, and dehydrates. Consider reducing. Even 2–3 nights off per week will have measurable impact over months.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================== SUPPLEMENTS ==================== -->
+<div id="supplements" class="section">
+  <div class="section-header">
+    <div class="label">Routine 05</div>
+    <h2>Supplements & Diet</h2>
+    <p>Tailored for adderall + gabapentin use, daily wine consumption, hormonal changes at 42, and high-porosity heat-damaged hair recovery.</p>
+    <span class="cadence-tag">DAILY — With Food</span>
+  </div>
+
+  <div class="alert">
+    <strong>Important:</strong>
+    <p>These recommendations are based on your described medications and lifestyle. Always confirm any new supplements with your prescribing physician, especially with gabapentin (gabapentin can interact with certain supplements and its absorption is affected by timing relative to other substances). Share this list at your next appointment.</p>
+  </div>
+
+  <table class="supp-table">
+    <thead>
+      <tr>
+        <th>Supplement</th>
+        <th>Dose</th>
+        <th>Timing</th>
+        <th>Why It Matters for You</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="supp-name">Biotin (B7)</td>
+        <td class="supp-dose">5,000 mcg</td>
+        <td>Morning with food</td>
+        <td class="supp-why"><strong>Core hair growth vitamin.</strong> Adderall depletes B vitamins. Biotin is required for keratin synthesis. At 42, absorption decreases — higher dose helps. Note: high biotin can interfere with thyroid lab results; let doctor know you take it.</td>
+      </tr>
+      <tr>
+        <td class="supp-name">Zinc</td>
+        <td class="supp-dose">25–30 mg</td>
+        <td>With food (evening)</td>
+        <td class="supp-why"><strong>Critical.</strong> Alcohol and adderall both deplete zinc. Zinc deficiency is one of the most direct causes of hair shedding. Also a DHT blocker at follicle level. Do not take same time as iron — they compete for absorption.</td>
+      </tr>
+      <tr>
+        <td class="supp-name">Magnesium Glycinate</td>
+        <td class="supp-dose">300–400 mg</td>
+        <td>Evening/bedtime</td>
+        <td class="supp-why"><strong>Adderall and gabapentin both deplete magnesium.</strong> Magnesium is essential for hundreds of enzymatic reactions including hair follicle cycling. Glycinate form is best absorbed and least likely to cause GI issues.</td>
+      </tr>
+      <tr>
+        <td class="supp-name">B-Complex (B12, B6, Folate)</td>
+        <td class="supp-dose">1x daily (full complex)</td>
+        <td>Morning</td>
+        <td class="supp-why"><strong>Adderall depletes all B vitamins.</strong> B12 and folate support red blood cell production (oxygen to follicles). B6 regulates hormones including DHT sensitivity. Get a methylated version for best absorption.</td>
+      </tr>
+      <tr>
+        <td class="supp-name">Vitamin D3 + K2</td>
+        <td class="supp-dose">2,000–5,000 IU D3 + 100 mcg K2</td>
+        <td>With fatty meal</td>
+        <td class="supp-why">Vitamin D receptors are present in hair follicles. Low D3 is linked to alopecia areata and general diffuse shedding. At 42, D3 absorption decreases. K2 ensures D3 directs calcium properly. Take together — always with fat for absorption.</td>
+      </tr>
+      <tr>
+        <td class="supp-name">Iron (if ferritin is low)</td>
+        <td class="supp-dose">18–25 mg (check labs first)</td>
+        <td>Morning, away from coffee</td>
+        <td class="supp-why"><strong>Get ferritin tested.</strong> Ferritin below 70 ng/mL can cause significant hair shedding even without anemia. This is one of the most overlooked causes of hair loss in women. Do not supplement without testing — iron overload is dangerous.</td>
+      </tr>
+      <tr>
+        <td class="supp-name">Omega-3 (Fish Oil or Algae)</td>
+        <td class="supp-dose">2,000–3,000 mg EPA+DHA</td>
+        <td>With meal</td>
+        <td class="supp-why">Reduces inflammation at scalp level. Anti-DHT properties. Supports hormonal balance at 42. Also counteracts the inflammatory effect of alcohol. Algae-based if you prefer no fishy burps.</td>
+      </tr>
+      <tr>
+        <td class="supp-name">Collagen Peptides (Ingestible)</td>
+        <td class="supp-dose">10–15 g powder</td>
+        <td>Morning in drink</td>
+        <td class="supp-why">Provides the amino acid building blocks for keratin (specifically proline, glycine, hydroxyproline). Collagen production declines after 30. At 42, supplementing ingestible collagen directly supports hair protein synthesis from within. Type I and III collagen are most relevant for hair.</td>
+      </tr>
+      <tr>
+        <td class="supp-name">MSM (Methylsulfonylmethane)</td>
+        <td class="supp-dose">1,000–3,000 mg</td>
+        <td>Morning</td>
+        <td class="supp-why">Organic sulfur compound that extends the anagen (active growth) phase of the hair cycle. Sulfur is essential for keratin protein bonds. Used in Ayurveda as a hair growth booster. May reduce scalp inflammation.</td>
+      </tr>
+      <tr>
+        <td class="supp-name">Saw Palmetto</td>
+        <td class="supp-dose">320 mg</td>
+        <td>With food</td>
+        <td class="supp-why">DHT blocker at follicle level. As you approach perimenopause (typical onset mid-40s but can start 42+), estrogen declines and DHT's effect on follicles increases. Saw palmetto inhibits 5-alpha reductase (the enzyme that converts testosterone to DHT). Research-backed for female pattern hair thinning.</td>
+      </tr>
+      <tr>
+        <td class="supp-name">Silica (from Horsetail)</td>
+        <td class="supp-dose">500 mg</td>
+        <td>Morning</td>
+        <td class="supp-why">Silica strengthens hair structure and reportedly increases strand thickness over time. Horsetail extract is the most bioavailable form. Used in Ayurveda for hair strength. Complementary to collagen supplementation.</td>
+      </tr>
+      <tr>
+        <td class="supp-name">Ashwagandha (KSM-66)</td>
+        <td class="supp-dose">300–600 mg</td>
+        <td>Evening</td>
+        <td class="supp-why"><strong>Adaptogen for cortisol regulation.</strong> Chronic stress (grad school, career, hair grief) elevates cortisol which directly triggers telogen effluvium (stress shed). Ashwagandha reduces cortisol, supports thyroid function, and has been shown to reduce hair loss in stressed individuals. Also supports sleep quality, which is when hair growth hormone is released.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-header" style="padding-top:32px;">
+    <h2 style="font-size:22px;">Diet Protocol</h2>
+    <p>Foods that directly support growth, structural strength, and recovery from your specific situation.</p>
+  </div>
+
+  <div class="maint-grid">
+    <div class="maint-card">
+      <h4>🥚 Daily Must-Haves</h4>
+      <ol>
+        <li>Eggs (biotin, complete protein, vitamin D, sulfur)</li>
+        <li>Leafy greens — spinach, kale (iron, folate, vitamin A)</li>
+        <li>Bone broth (collagen, glycine, minerals)</li>
+        <li>Water: minimum 64 oz (adderall is dehydrating — hair follicles require hydration)</li>
+        <li>Pumpkin seeds (zinc, magnesium, anti-DHT)</li>
+      </ol>
+    </div>
+    <div class="maint-card">
+      <h4>🐟 Weekly Must-Haves</h4>
+      <ol>
+        <li>Salmon or sardines 2–3x/week (omega-3, biotin, vitamin D, selenium)</li>
+        <li>Lentils (iron, protein, zinc, folate)</li>
+        <li>Sweet potato (beta-carotene → Vitamin A for sebum production)</li>
+        <li>Brazil nuts 2–3x/week — not daily (selenium — critical for thyroid/hair)</li>
+        <li>Oysters if accessible (highest zinc food source by far)</li>
+      </ol>
+    </div>
+    <div class="maint-card">
+      <h4>🍷 Reduce / Watch</h4>
+      <ol>
+        <li>Wine: Work toward max 1 glass/night, then aim for 3–4 nights off/week</li>
+        <li>Sugar: Spikes inflammation, increases DHT conversion</li>
+        <li>Coffee: Depletes zinc when taken at same time as supplements — separate by 1 hour</li>
+        <li>Highly processed food: Depletes B vitamins needed for hair</li>
+        <li>Track which generic Adderall brand causes more shedding — report to prescriber for brand consistency (this is legitimate and doctors can write brand-specific)</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="tip" style="margin-top:24px;">
+    <strong>Ayurvedic Internal Protocols:</strong>
+    <p>Amla (as supplement or in food — Indian gooseberry): Consider adding dried amla powder to smoothies. 1 tsp amla powder = more Vitamin C than an orange + powerful antioxidant that reduces oxidative scalp damage. Brahmi (Bacopa): Available as capsule, 300mg/day — supports cognitive function (relevant for your ADHD) AND hair protein structure. Win-win.</p>
+  </div>
+</div>
+
+
+<!-- ==================== TOOLS ==================== -->
+<div id="tools" class="section">
+  <div class="section-header">
+    <div class="label">Reference</div>
+    <h2>Tools & Equipment</h2>
+    <p>Recommended tools for your complete routine. Purchase priority noted.</p>
+    <span class="cadence-tag">ONE-TIME INVESTMENT</span>
+  </div>
+
+  <div class="col-label" style="margin-bottom:16px;">ESSENTIAL — GET THESE IF YOU DON'T HAVE THEM</div>
+  <div class="tools-grid">
+    <div class="tool-item"><div class="tool-name">Hooded Hair Dryer or Heat Cap</div><div class="tool-use">Deep condition step — most important single tool for high porosity hair</div></div>
+    <div class="tool-item"><div class="tool-name">Satin Bonnet + Satin Pillowcase</div><div class="tool-use">Every night — reduces friction breakage by 40%+</div></div>
+    <div class="tool-item"><div class="tool-name">Microfiber Towel / Old T-Shirt</div><div class="tool-use">Post-wash drying — no terry cloth friction</div></div>
+    <div class="tool-item"><div class="tool-name">Dark Glass Spray Bottles (2)</div><div class="tool-use">Ayurvedic oils and refresh spray — keeps active ingredients stable</div></div>
+    <div class="tool-item"><div class="tool-name">Stainless Steel Mixing Bowls</div><div class="tool-use">Recipe mixing — avoid aluminum which can react with ACV</div></div>
+    <div class="tool-item"><div class="tool-name">Cheesecloth / Muslin</div><div class="tool-use">Straining Ayurvedic oil infusions and flaxseed gel</div></div>
+    <div class="tool-item"><div class="tool-name">Hair Thermometer / Heat Strip</div><div class="tool-use">Verify flat iron temp — fine hair is easily fried past 380°F</div></div>
+    <div class="tool-item"><div class="tool-name">Dropper Bottles</div><div class="tool-use">Precise scalp oil application without over-applying</div></div>
+    <div class="tool-item"><div class="tool-name">Sectioning Clips (not rubber bands)</div><div class="tool-use">Washing and styling sections — no snag, no breakage</div></div>
+    <div class="tool-item"><div class="tool-name">Sharp Hair Shears (Dedicated)</div><div class="tool-use">Your strand-by-strand trimming — must be sharp or they split ends worse</div></div>
+    <div class="tool-item"><div class="tool-name">Diffuser Attachment</div><div class="tool-use">Natural style drying — reduces frizz vs. hood dryer for curl patterns</div></div>
+    <div class="tool-item"><div class="tool-name">pH Testing Strips</div><div class="tool-use">Test your DIY recipes (target 4.5–5.5 for hair health)</div></div>
+  </div>
+
+  <div class="col-label" style="margin:28px 0 16px;">UPGRADE WHEN POSSIBLE</div>
+  <div class="tools-grid">
+    <div class="tool-item"><div class="tool-name">Huetiful Hair Steamer</div><div class="tool-use">Superior to hooded dryer for deep conditioning — moist heat is more effective than dry heat for high porosity</div></div>
+    <div class="tool-item"><div class="tool-name">Flat Iron with LCD Display (Iso Beauty / CHI)</div><div class="tool-use">Precise temperature control — no more guessing. Titanium plates for fine hair</div></div>
+    <div class="tool-item"><div class="tool-name">InfraRed Scalp Massager</div><div class="tool-use">Enhances blood flow to follicles — particularly beneficial for adderall vasoconstriction</div></div>
+    <div class="tool-item"><div class="tool-name">Thermal Processing Cap (Dry)</div><div class="tool-use">For when you can't sit under a hooded dryer — traps body heat for deep conditioning on the go</div></div>
+  </div>
+</div>
+
+</div><!-- end content -->
+
+<!-- ==================== SCHEDULE ==================== -->
+<div id="schedule" class="section">
+  <div class="content" style="padding-top:0; max-width:1400px; margin:0 auto;">
+  <div class="section-header">
+    <div class="label">Routine 07</div>
+    <h2>Weekly Schedule & Tracker</h2>
+    <p>Your daily and weekly protocol, broken down by day. Print this page or export to Google Calendar.</p>
+    <span class="cadence-tag">PRINT · TRACK · EXPORT</span>
+  </div>
+
+  <div style="display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap;">
+    <button onclick="window.print()" style="background:rgba(201,168,76,0.15);border:1px solid var(--gold);color:var(--gold-light);padding:10px 24px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;cursor:pointer;text-transform:uppercase;">⎙ Print / Save PDF</button>
+    <button onclick="exportICS()" style="background:rgba(74,124,89,0.15);border:1px solid var(--green);color:var(--green-light);padding:10px 24px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;cursor:pointer;text-transform:uppercase;">📅 Export to Google Calendar (.ics)</button>
+    <button onclick="resetChecks()" style="background:var(--panel);border:1px solid var(--border);color:var(--text-dim);padding:10px 24px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;cursor:pointer;text-transform:uppercase;">↺ Reset All Checks</button>
+  </div>
+
+  <!-- DAILY TASKS -->
+  <div style="margin-bottom:40px;">
+    <div class="col-label" style="margin-bottom:20px;">EVERY DAY — Non-Negotiables</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+
+      <div class="step-card">
+        <div class="step-card-header" style="padding:12px 16px;">
+          <div class="step-name"><h3 style="font-size:15px;">🌅 Morning Protocol</h3></div>
+          <div class="step-timing">AM</div>
+        </div>
+        <div style="padding:14px 16px;">
+          <label class="check-item"><input type="checkbox" class="daily-check"> <span>Bottle 1 of water (before anything)</span></label>
+          <label class="check-item"><input type="checkbox" class="daily-check"> <span>Bottle 2 of water</span></label>
+          <label class="check-item"><input type="checkbox" class="daily-check"> <span>Vitamin shake (collagen + MaryRuth + biotin + MSM + Primal Harvest)</span></label>
+          <label class="check-item"><input type="checkbox" class="daily-check"> <span>1 full Liquid IV packet in 16oz water</span></label>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-header" style="padding:12px 16px;">
+          <div class="step-name"><h3 style="font-size:15px;">☀️ Midday Protocol</h3></div>
+          <div class="step-timing">WITH FOOD</div>
+        </div>
+        <div style="padding:14px 16px;">
+          <label class="check-item"><input type="checkbox" class="daily-check"> <span>Phyto Phanere — 2 capsules with fatty meal</span></label>
+          <label class="check-item"><input type="checkbox" class="daily-check"> <span>Omega-3 — 2 softgels (when you have them)</span></label>
+          <label class="check-item"><input type="checkbox" class="daily-check"> <span>D3 + K2 — 1 capsule with fat</span></label>
+          <label class="check-item"><input type="checkbox" class="daily-check"> <span>Saw Palmetto 320mg</span></label>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-header" style="padding:12px 16px;">
+          <div class="step-name"><h3 style="font-size:15px;">🌙 Evening Protocol</h3></div>
+          <div class="step-timing">AFTER DINNER</div>
+        </div>
+        <div style="padding:14px 16px;">
+          <label class="check-item"><input type="checkbox" class="daily-check"> <span>Zinc Picolinate 25–30mg</span></label>
+          <label class="check-item"><input type="checkbox" class="daily-check"> <span>Magnesium Glycinate 400mg</span></label>
+          <label class="check-item"><input type="checkbox" class="daily-check"> <span>L-Theanine 200mg</span></label>
+          <label class="check-item"><input type="checkbox" class="daily-check"> <span>Satin bonnet on before sleep</span></label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEKLY CALENDAR -->
+  <div class="col-label" style="margin-bottom:20px;">WEEKLY SCHEDULE — Current Week</div>
+
+  <div id="week-display" style="margin-bottom:8px;font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--cream-dim);"></div>
+
+  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:40px;" id="week-grid">
+    <!-- Filled by JS -->
+  </div>
+
+  <!-- 4-WEEK ROTATION -->
+  <div style="margin-bottom:40px;">
+    <div class="col-label" style="margin-bottom:20px;">4-WEEK PROTEIN ROTATION — Where Are You?</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+      <div class="step-card" style="cursor:pointer;" onclick="markWeek(1)">
+        <div class="step-card-header" style="padding:12px 16px;background:rgba(74,124,89,0.1);">
+          <div class="step-name"><h3 style="font-size:14px;color:var(--green-light);">Week 1</h3><div class="step-desc">LOW PROTEIN</div></div>
+          <div id="w1-check" style="font-size:20px;opacity:0.3;">◯</div>
+        </div>
+        <div style="padding:12px 16px;font-size:11px;color:var(--text-dim);">Moisture focus. ORS Moisture Replenishment + Hibiscus mask. Fiberfyl optional.</div>
+      </div>
+      <div class="step-card" style="cursor:pointer;" onclick="markWeek(2)">
+        <div class="step-card-header" style="padding:12px 16px;background:rgba(201,168,76,0.08);">
+          <div class="step-name"><h3 style="font-size:14px;color:var(--gold-light);">Week 2</h3><div class="step-desc">MEDIUM PROTEIN</div></div>
+          <div id="w2-check" style="font-size:20px;opacity:0.3;">◯</div>
+        </div>
+        <div style="padding:12px 16px;font-size:11px;color:var(--text-dim);">Mizani Fiberfyl + hydrolyzed collagen/keratin mix. 20 min heat.</div>
+      </div>
+      <div class="step-card" style="cursor:pointer;" onclick="markWeek(3)">
+        <div class="step-card-header" style="padding:12px 16px;background:rgba(74,124,89,0.1);">
+          <div class="step-name"><h3 style="font-size:14px;color:var(--green-light);">Week 3</h3><div class="step-desc">LOW PROTEIN</div></div>
+          <div id="w3-check" style="font-size:20px;opacity:0.3;">◯</div>
+        </div>
+        <div style="padding:12px 16px;font-size:11px;color:var(--text-dim);">Back to moisture. Oribe Gold Lust or moisture-heavy DC. Fiberfyl pre-step.</div>
+      </div>
+      <div class="step-card" style="cursor:pointer;" onclick="markWeek(4)">
+        <div class="step-card-header" style="padding:12px 16px;background:rgba(176,92,58,0.1);">
+          <div class="step-name"><h3 style="font-size:14px;color:var(--terracotta);">Week 4</h3><div class="step-desc">HIGH PROTEIN</div></div>
+          <div id="w4-check" style="font-size:20px;opacity:0.3;">◯</div>
+        </div>
+        <div style="padding:12px 16px;font-size:11px;color:var(--text-dim);">Aphogee 2-Step or Hi Pro Pack. Full protocol. Follow next week with moisture only.</div>
+      </div>
+    </div>
+    <div style="margin-top:8px;font-size:11px;color:var(--text-dim);">⚠ Heat damage recovery exception: Use medium protein every week for first 6–8 weeks, then begin rotation.</div>
+  </div>
+
+  <!-- MONTHLY TASKS -->
+  <div style="margin-bottom:40px;">
+    <div class="col-label" style="margin-bottom:20px;">MONTHLY TASKS</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;">
+      <div class="step-card">
+        <div class="step-card-header" style="padding:12px 16px;">
+          <div class="step-name"><h3 style="font-size:14px;">Scalp & Length Check</h3></div>
+        </div>
+        <div style="padding:12px 16px;">
+          <label class="check-item"><input type="checkbox"> <span>Measure length (photo + inches)</span></label>
+          <label class="check-item"><input type="checkbox"> <span>Strand-by-strand split end trim</span></label>
+          <label class="check-item"><input type="checkbox"> <span>Nizoral wash (scalp reset)</span></label>
+          <label class="check-item"><input type="checkbox"> <span>Deep clarifying wash</span></label>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-header" style="padding:12px 16px;">
+          <div class="step-name"><h3 style="font-size:14px;">Supplement Check</h3></div>
+        </div>
+        <div style="padding:12px 16px;">
+          <label class="check-item"><input type="checkbox"> <span>Restock anything running low</span></label>
+          <label class="check-item"><input type="checkbox"> <span>Check for upcoming lab work → stop biotin 72hrs before</span></label>
+          <label class="check-item"><input type="checkbox"> <span>Note any new shedding or changes</span></label>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-card-header" style="padding:12px 16px;">
+          <div class="step-name"><h3 style="font-size:14px;">Product Inventory</h3></div>
+        </div>
+        <div style="padding:12px 16px;">
+          <label class="check-item"><input type="checkbox"> <span>Make fresh flaxseed gel if needed</span></label>
+          <label class="check-item"><input type="checkbox"> <span>Make fresh Ayurvedic scalp oil if needed</span></label>
+          <label class="check-item"><input type="checkbox"> <span>Reorder Phyto Phanere if < 30 days left</span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCALP MASSAGE TRACKER -->
+  <div style="margin-bottom:40px;">
+    <div class="col-label" style="margin-bottom:16px;">SCALP MASSAGE TRACKER — Target: 3–4×/Week</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <label class="check-item" style="background:var(--panel);border:1px solid var(--border);padding:8px 16px;border-radius:2px;"><input type="checkbox"> Mon</label>
+      <label class="check-item" style="background:var(--panel);border:1px solid var(--border);padding:8px 16px;border-radius:2px;"><input type="checkbox"> Tue</label>
+      <label class="check-item" style="background:var(--panel);border:1px solid var(--border);padding:8px 16px;border-radius:2px;"><input type="checkbox"> Wed</label>
+      <label class="check-item" style="background:var(--panel);border:1px solid var(--border);padding:8px 16px;border-radius:2px;"><input type="checkbox"> Thu</label>
+      <label class="check-item" style="background:var(--panel);border:1px solid var(--border);padding:8px 16px;border-radius:2px;"><input type="checkbox"> Fri</label>
+      <label class="check-item" style="background:var(--panel);border:1px solid var(--border);padding:8px 16px;border-radius:2px;"><input type="checkbox"> Sat</label>
+      <label class="check-item" style="background:var(--panel);border:1px solid var(--border);padding:8px 16px;border-radius:2px;"><input type="checkbox"> Sun</label>
+    </div>
+    <div style="margin-top:8px;font-size:11px;color:var(--text-dim);">Use Bhringraj oil. 4–5 min minimum. Non-optional on days you take Adderall — counteracts vasoconstriction at follicle level.</div>
+  </div>
+
+  </div><!-- end inner content -->
+</div>
+
+
+
+<footer>
+  Personal Hair Care System · 3C/4A · High Porosity · Fine · Heat Damage Recovery ·
+  Built from your owned inventory + Ayurvedic science<br>
+  <span style="color:var(--gold-dim);margin-top:4px;display:block;">Consistency is the only formula that grows hair. Every week.</span>
+</footer>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (id === 'schedule') buildWeekGrid();
+  }
+
+  function showStyle(type) {
+    document.querySelectorAll('.style-content').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.style-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('style-' + type).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function showProtein(type) {
+    document.querySelectorAll('.protein-content').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.protein-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('protein-' + type).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // ── WEEK GRID ──────────────────────────────────────────────
+  const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  // Default schedule per weekday (0=Sun … 6=Sat)
+  const daySchedule = {
+    0: [ // Sunday — WASH DAY
+      { text: 'PRE-POO NIGHT BEFORE', cls: 'wash-day' },
+      { text: '→ Wash Routine (7-step)', cls: 'wash-day' },
+      { text: '→ Deep Condition', cls: 'wash-day' },
+      { text: '→ Style', cls: 'wash-day' },
+      { text: 'Scalp Massage', cls: 'massage' },
+      { text: 'Morning shake + supps', cls: '' },
+    ],
+    1: [ // Monday
+      { text: 'Morning shake + supps', cls: '' },
+      { text: 'Scalp Massage', cls: 'massage' },
+      { text: 'Satin bonnet tonight', cls: '' },
+    ],
+    2: [ // Tuesday
+      { text: 'Morning shake + supps', cls: '' },
+      { text: 'Hydration check (64oz+)', cls: 'highlight' },
+    ],
+    3: [ // Wednesday
+      { text: 'Morning shake + supps', cls: '' },
+      { text: 'Scalp Massage', cls: 'massage' },
+      { text: 'Mid-week moisture refresh', cls: 'highlight' },
+    ],
+    4: [ // Thursday
+      { text: 'Morning shake + supps', cls: '' },
+      { text: 'Scalp Massage', cls: 'massage' },
+    ],
+    5: [ // Friday
+      { text: 'Morning shake + supps', cls: '' },
+      { text: 'Hydration check (64oz+)', cls: 'highlight' },
+    ],
+    6: [ // Saturday — Pre-poo night before wash
+      { text: 'Apply Chebe Pre-Poo TONIGHT', cls: 'wash-day' },
+      { text: 'Morning shake + supps', cls: '' },
+      { text: 'Scalp Massage', cls: 'massage' },
+    ],
+  };
+
+  function buildWeekGrid() {
+    const grid = document.getElementById('week-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    const today = new Date();
+    // Go to Sunday of this week
+    const sunday = new Date(today);
+    sunday.setDate(today.getDate() - today.getDay());
+
+    document.getElementById('week-display').textContent =
+      'Week of ' + MONTHS[sunday.getMonth()] + ' ' + sunday.getDate();
+
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(sunday);
+      d.setDate(sunday.getDate() + i);
+      const isToday = d.toDateString() === today.toDateString();
+      const tasks = daySchedule[i] || [];
+
+      const card = document.createElement('div');
+      card.className = 'day-card' + (isToday ? ' today' : '');
+
+      const hdr = document.createElement('div');
+      hdr.className = 'day-header';
+      hdr.innerHTML = `<div class="day-name">${DAYS[i]}${isToday ? ' · TODAY' : ''}</div><div class="day-date">${d.getDate()}</div>`;
+      card.appendChild(hdr);
+
+      tasks.forEach(t => {
+        const row = document.createElement('div');
+        row.className = 'day-task ' + (t.cls || '');
+        row.textContent = t.text;
+        card.appendChild(row);
+      });
+
+      grid.appendChild(card);
+    }
+  }
+
+  // ── PROTEIN WEEK TRACKER ───────────────────────────────────
+  function markWeek(n) {
+    [1,2,3,4].forEach(i => {
+      const el = document.getElementById('w' + i + '-check');
+      if (el) { el.textContent = i === n ? '✓' : '◯'; el.style.opacity = i === n ? '1' : '0.3'; }
+    });
+  }
+
+  // ── RESET CHECKBOXES ──────────────────────────────────────
+  function resetChecks() {
+    document.querySelectorAll('#schedule input[type="checkbox"]').forEach(cb => cb.checked = false);
+  }
+
+  // ── ICS EXPORT ────────────────────────────────────────────
+  function pad(n) { return String(n).padStart(2,'0'); }
+  function icsDate(d) {
+    return d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate()) +
+           'T' + pad(d.getHours()) + pad(d.getMinutes()) + '00';
+  }
+
+  function makeEvent(uid, summary, description, dtstart, dtend, rrule) {
+    return [
+      'BEGIN:VEVENT',
+      'UID:' + uid + '@hairprotocol',
+      'SUMMARY:' + summary,
+      'DESCRIPTION:' + description.replace(/\n/g,'\\n'),
+      'DTSTART:' + dtstart,
+      'DTEND:' + dtend,
+      rrule ? 'RRULE:' + rrule : '',
+      'END:VEVENT'
+    ].filter(Boolean).join('\r\n');
+  }
+
+  function exportICS() {
+    const now = new Date();
+    // Next Sunday for wash day
+    const nextSun = new Date(now);
+    nextSun.setDate(now.getDate() + (7 - now.getDay()) % 7 || 7);
+
+    // Next Saturday for pre-poo
+    const nextSat = new Date(nextSun);
+    nextSat.setDate(nextSun.getDate() - 1);
+
+    const events = [
+      // Morning supplements — daily 8am
+      (function() {
+        const d = new Date(now); d.setHours(8,0,0,0);
+        const e = new Date(d); e.setMinutes(30);
+        return makeEvent('morning-supps','💊 Morning Shake + Supplements',
+          'Vitamin shake: Collagen + MaryRuth + Biotin drops + MSM\\nLiquid IV packet (full)\\nPhyto Phanere 2 caps (with meal)',
+          icsDate(d), icsDate(e), 'FREQ=DAILY');
+      })(),
+
+      // Midday supplements — daily 12pm
+      (function() {
+        const d = new Date(now); d.setHours(12,0,0,0);
+        const e = new Date(d); e.setMinutes(15);
+        return makeEvent('midday-supps','☀️ Midday Supplements',
+          'Omega-3 2 softgels\\nD3+K2 1 cap (with fat in meal)\\nSaw Palmetto 320mg',
+          icsDate(d), icsDate(e), 'FREQ=DAILY');
+      })(),
+
+      // Evening supplements — daily 8pm
+      (function() {
+        const d = new Date(now); d.setHours(20,0,0,0);
+        const e = new Date(d); e.setMinutes(15);
+        return makeEvent('evening-supps','🌙 Evening Supplements',
+          'Zinc Picolinate 25–30mg\\nMagnesium Glycinate 400mg\\nL-Theanine 200mg\\nSatin bonnet on',
+          icsDate(d), icsDate(e), 'FREQ=DAILY');
+      })(),
+
+      // Scalp massage — Mon/Wed/Thu/Sat
+      (function() {
+        const d = new Date(now); d.setHours(19,0,0,0);
+        const e = new Date(d); e.setMinutes(10);
+        return makeEvent('scalp-massage','💆 Scalp Massage (Bhringraj Oil)',
+          '4–5 minutes minimum. Bhringraj oil. Counteracts Adderall vasoconstriction.',
+          icsDate(d), icsDate(e), 'FREQ=WEEKLY;BYDAY=MO,WE,TH,SA');
+      })(),
+
+      // Pre-poo Saturday night
+      (function() {
+        const d = new Date(nextSat); d.setHours(21,0,0,0);
+        const e = new Date(d); e.setMinutes(30);
+        return makeEvent('prepoo','🫒 Apply Chebe Pre-Poo (Wash Day Prep)',
+          'Apply Chebe Penetrating Overnight Butter to dry hair\\nCover with plastic cap + satin bonnet\\nLeave overnight (24 hrs)',
+          icsDate(d), icsDate(e), 'FREQ=WEEKLY;BYDAY=SA');
+      })(),
+
+      // Wash day — weekly Sunday
+      (function() {
+        const d = new Date(nextSun); d.setHours(10,0,0,0);
+        const e = new Date(d); e.setHours(13,0,0);
+        return makeEvent('washday','🚿 WASH DAY — 7-Step Protocol',
+          '1. Remove pre-poo\\n2. Hot oil treatment\\n3. Co-wash OR clarifying wash\\n4. Mizani Fiberfyl (bond building)\\n5. Deep condition 20-30min under dryer\\n6. ACV rinse + cool water seal\\n7. Leave-in + style\\n\\nProtein rotation: check your current week!',
+          icsDate(d), icsDate(e), 'FREQ=WEEKLY;BYDAY=SU');
+      })(),
+
+      // Mid-week moisture refresh — Wednesday
+      (function() {
+        const d = new Date(now); d.setHours(18,0,0,0);
+        const e = new Date(d); e.setMinutes(30);
+        return makeEvent('moisture-refresh','💧 Mid-Week Moisture Refresh',
+          'Light co-wash or water + leave-in refresh\\nKeracare Silken Seal Liquid Sheen\\nRe-twist or re-style as needed',
+          icsDate(d), icsDate(e), 'FREQ=WEEKLY;BYDAY=WE');
+      })(),
+
+      // Monthly length check — first Sunday of month
+      (function() {
+        const d = new Date(nextSun); d.setHours(9,0,0,0);
+        const e = new Date(d); e.setMinutes(30);
+        return makeEvent('length-check','📏 Monthly Length Check + Trim',
+          'Measure hair length, take photo\\nStrand-by-strand split end trim\\nNizoral wash\\nNote any changes in density or shedding\\nREMINDER: Stop biotin 72hrs before any upcoming labs!',
+          icsDate(d), icsDate(e), 'FREQ=MONTHLY;BYDAY=1SU');
+      })(),
+    ];
+
+    const ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Hair Growth Protocol//EN',
+      'CALSCALE:GREGORIAN',
+      'X-WR-CALNAME:💇 Hair Growth Protocol',
+      'X-WR-TIMEZONE:America/New_York',
+      ...events,
+      'END:VCALENDAR'
+    ].join('\r\n');
+
+    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'hair_growth_protocol.ics';
+    a.click();
+  }
+</script>
+</body>
+</html>
