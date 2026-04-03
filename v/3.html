@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keyways — Cara A. Brown, MBA</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════
+   PREVIEW WRAPPER (remove when pasting to Elementor)
+══════════════════════════════════════ */
+body { margin: 0; background: #efede8; }
+.preview-note {
+  background: #1a1a18;
+  color: #f6f5f1;
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="preview-note">Preview — Copy everything below this bar into Elementor Custom HTML</div>
+
+<!-- ════════════════════════════════════════════════════════
+  KEYWAYS — REVAMPED WIDGET CODE (paste into Elementor HTML widget)
+════════════════════════════════════════════════════════ -->
+<div id="keyways-root">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ── */
+#keyways-root *,
+#keyways-root *::before,
+#keyways-root *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+#keyways-root {
+  --black: #0d0d0b;
+  --white: #f6f5f1;
+  --off: #efede8;
+  --mid: #888680;
+  --rule: #dddad3;
+  --ink: #1e1e1c;
+  --accent: #1a3a5c;
+  background: var(--white);
+  color: var(--black);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+#keyways-root .kw-full { width: 100%; }
+#keyways-root .kw-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+#keyways-root .kw-section { padding: 80px 0; border-bottom: 1px solid var(--rule); }
+
+#keyways-root .kw-eyebrow {
+  font-size: 9px; font-weight: 500; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--mid); display: block; margin-bottom: 20px;
+}
+#keyways-root h2 {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  font-weight: 400; line-height: 1.2; letter-spacing: -0.015em; margin-bottom: 28px;
+}
+#keyways-root h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em;
+  line-height: 1.3; margin-bottom: 10px; color: var(--black);
+}
+#keyways-root p {
+  font-size: 1rem; font-weight: 300; line-height: 1.8; color: #333; margin-bottom: 18px;
+}
+#keyways-root p:last-child { margin-bottom: 0; }
+#keyways-root a { color: var(--black); text-decoration: none; }
+#keyways-root a:hover { opacity: 0.6; }
+
+/* ── PAGE HEADER ── */
+#keyways-root .kw-page-header {
+  padding: 100px 0 80px;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+#keyways-root .kw-header-meta {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 40px;
+}
+#keyways-root .kw-case-index {
+  font-family: 'Outfit', sans-serif;
+  font-size: 9px; font-weight: 500; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--mid);
+}
+#keyways-root .kw-case-type {
+  font-family: 'Outfit', sans-serif;
+  font-size: 9px; font-weight: 500; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--mid);
+}
+#keyways-root .kw-h1-rule {
+  width: 48px; height: 2px; background: var(--black); margin-bottom: 28px;
+}
+#keyways-root .kw-page-header h1 {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+  font-weight: 400; line-height: 1.08; letter-spacing: -0.02em;
+  max-width: 860px; margin-bottom: 36px; color: var(--black);
+}
+#keyways-root .kw-strategic-claim {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  font-style: italic; color: var(--mid); line-height: 1.6;
+  max-width: 700px; margin-bottom: 60px;
+}
+
+/* CONTEXT STRIP */
+#keyways-root .kw-context-strip {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--rule);
+}
+#keyways-root .kw-context-cell {
+  padding: 28px 24px 28px 0;
+  border-right: 1px solid var(--rule);
+  padding-left: 24px;
+}
+#keyways-root .kw-context-cell:last-child { border-right: none; }
+#keyways-root .kw-label {
+  font-size: 8px; font-weight: 500; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--mid); display: block; margin-bottom: 8px;
+}
+#keyways-root .kw-value {
+  font-size: 0.9rem; font-weight: 400; color: var(--black); line-height: 1.5;
+}
+
+/* ── THE GAP ── */
+#keyways-root .kw-gap-layout {
+  display: grid; grid-template-columns: 1fr 340px; gap: 0 72px; align-items: start;
+}
+#keyways-root .kw-gap-img {
+  width: 100%; height: auto; display: block; margin-top: 8px;
+}
+#keyways-root .kw-img-caption {
+  font-size: 0.8rem; color: var(--mid); line-height: 1.6; padding-top: 12px;
+}
+#keyways-root .kw-challenge-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 40px;
+}
+#keyways-root .kw-challenge-item {
+  border-top: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  padding: 28px 24px 28px 0;
+}
+#keyways-root .kw-challenge-item:nth-child(even) {
+  border-right: none; padding-right: 0; padding-left: 24px;
+}
+#keyways-root .kw-challenge-item:nth-child(3),
+#keyways-root .kw-challenge-item:nth-child(4) {
+  border-bottom: 1px solid var(--rule);
+}
+#keyways-root .kw-challenge-num {
+  font-size: 9px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--mid); display: block; margin-bottom: 12px;
+}
+
+/* ── WHAT I BUILT ── */
+#keyways-root .kw-built-header {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0 80px;
+  align-items: end; margin-bottom: 0;
+}
+#keyways-root .kw-built-intro {
+  font-size: 0.9375rem; font-weight: 300; color: #555; line-height: 1.7;
+  padding-top: 8px;
+}
+#keyways-root .kw-component-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 40px;
+}
+#keyways-root .kw-component-card {
+  background: var(--off); padding: 36px 32px;
+  border-left: 3px solid transparent;
+  transition: border-color 0.2s, background 0.2s;
+}
+#keyways-root .kw-component-card:hover { border-left-color: var(--black); background: #e8e5de; }
+#keyways-root .kw-comp-num {
+  font-family: 'EB Garamond', serif;
+  font-size: 2rem; font-weight: 400; color: var(--rule);
+  display: block; margin-bottom: 4px; line-height: 1;
+}
+#keyways-root .kw-comp-tag {
+  font-size: 8px; font-weight: 500; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--mid); display: block; margin-bottom: 14px;
+}
+#keyways-root .kw-comp-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.25rem; font-weight: 400; line-height: 1.25;
+  color: var(--black); display: block; margin-bottom: 14px;
+}
+#keyways-root .kw-comp-desc {
+  font-size: 0.875rem; font-weight: 300; color: #555; line-height: 1.7; margin: 0;
+}
+/* 5th card — full width */
+#keyways-root .kw-component-card.full {
+  grid-column: 1 / -1;
+  display: grid; grid-template-columns: auto 1fr 1fr; gap: 0 48px; align-items: start;
+}
+#keyways-root .kw-component-card.full .kw-comp-num { margin-bottom: 0; }
+
+/* ── PULL QUOTE ── */
+#keyways-root .kw-quote-wrap {
+  background: var(--black); padding: 80px 80px;
+  margin: 0; width: 100vw; position: relative;
+  left: 50%; transform: translateX(-50%);
+}
+#keyways-root .kw-quote-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+#keyways-root .kw-quote-mark {
+  font-family: 'EB Garamond', serif;
+  font-size: 5rem; color: rgba(246,245,241,0.12);
+  line-height: 0.8; display: block; margin-bottom: 24px;
+}
+#keyways-root .kw-quote-text {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 400; font-style: italic;
+  line-height: 1.2; color: var(--white);
+  letter-spacing: -0.01em; max-width: 820px;
+  border-left: 2px solid rgba(246,245,241,0.3);
+  padding-left: 40px; margin: 0;
+}
+
+/* ── HOW I WORKED ── */
+#keyways-root .kw-how-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0 80px; align-items: start;
+}
+#keyways-root .kw-how-aside {
+  position: sticky; top: 48px;
+}
+#keyways-root .kw-how-aside h2 { margin-bottom: 20px; }
+#keyways-root .kw-how-aside p {
+  font-size: 0.9375rem; color: #555; line-height: 1.75; margin-bottom: 0;
+}
+
+/* ACCORDION */
+#keyways-root .kw-accordion { margin-top: 0; border-top: 1px solid var(--rule); }
+#keyways-root .kw-accordion-item { border-bottom: 1px solid var(--rule); }
+#keyways-root .kw-accordion-trigger {
+  width: 100%; display: flex; justify-content: space-between;
+  align-items: center; padding: 22px 0;
+  background: none; border: none; cursor: pointer; text-align: left;
+  font-family: 'Outfit', sans-serif;
+}
+#keyways-root .kw-accordion-label {
+  font-size: 0.9375rem; font-weight: 400; color: var(--black); line-height: 1.4;
+}
+#keyways-root .kw-accordion-arrow {
+  font-size: 0.75rem; color: var(--mid);
+  transition: transform 0.3s; flex-shrink: 0; margin-left: 20px;
+}
+#keyways-root .kw-accordion-item.open .kw-accordion-arrow { transform: rotate(180deg); }
+#keyways-root .kw-accordion-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  font-size: 0.9rem; font-weight: 300; line-height: 1.8; color: #444;
+}
+#keyways-root .kw-accordion-item.open .kw-accordion-body { max-height: 600px; padding-bottom: 28px; }
+#keyways-root .kw-accordion-body strong { font-weight: 500; color: var(--black); }
+
+/* ── ARTIFACTS ── */
+#keyways-root .kw-artifacts-scroll {
+  display: flex; gap: 24px; overflow-x: auto;
+  padding-bottom: 24px; margin-top: 40px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin; scrollbar-color: var(--rule) transparent;
+}
+#keyways-root .kw-artifacts-scroll::-webkit-scrollbar { height: 3px; }
+#keyways-root .kw-artifacts-scroll::-webkit-scrollbar-track { background: transparent; }
+#keyways-root .kw-artifacts-scroll::-webkit-scrollbar-thumb { background: var(--rule); }
+#keyways-root .kw-artifact-slide { flex: 0 0 380px; }
+#keyways-root .kw-artifact-img-wrap {
+  width: 380px; height: 280px; overflow: hidden;
+  background: var(--off); display: flex; align-items: center; justify-content: center;
+}
+#keyways-root .kw-artifact-img-wrap img {
+  width: 100%; height: 100%; object-fit: contain; display: block;
+}
+#keyways-root .kw-artifact-caption {
+  padding-top: 14px;
+}
+#keyways-root .kw-artifact-caption strong {
+  display: block; font-size: 0.8rem; font-weight: 500;
+  letter-spacing: 0.04em; color: var(--black); margin-bottom: 4px;
+}
+#keyways-root .kw-artifact-caption span {
+  font-size: 0.8rem; color: var(--mid); line-height: 1.55; display: block;
+}
+#keyways-root .kw-scroll-hint {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem; color: var(--mid); letter-spacing: 0.12em;
+  margin-top: 16px; display: block;
+}
+
+/* ── OUTCOMES ── */
+#keyways-root .kw-outcomes-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 44px;
+}
+#keyways-root .kw-outcome-box {
+  background: var(--black); color: var(--white); padding: 44px 36px;
+}
+#keyways-root .kw-metric-label {
+  font-size: 8px; font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; color: rgba(246,245,241,0.45);
+  display: block; margin-bottom: 20px;
+}
+#keyways-root .kw-metric {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(1.2rem, 1.8vw, 1.65rem);
+  font-weight: 400; line-height: 1.2; color: var(--white);
+  display: block; margin-bottom: 18px;
+  border-bottom: 1px solid rgba(246,245,241,0.12); padding-bottom: 18px;
+}
+#keyways-root .kw-metric-desc {
+  font-size: 0.8125rem; font-weight: 300;
+  color: rgba(246,245,241,0.65); line-height: 1.65; margin: 0;
+}
+
+/* ── ARCH STRIP ── */
+#keyways-root .kw-arch-strip {
+  background: var(--off); padding: 52px 60px;
+  display: grid; grid-template-columns: 220px 1fr auto;
+  gap: 0 56px; align-items: center;
+  width: 100%;
+}
+#keyways-root .kw-arch-type {
+  font-family: 'Outfit', sans-serif; font-size: 9px; font-weight: 500;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--mid); line-height: 1.7;
+}
+#keyways-root .kw-arch-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.1rem; font-style: italic; line-height: 1.65;
+  color: var(--ink); margin: 0;
+}
+#keyways-root .kw-arch-link {
+  font-family: 'Outfit', sans-serif; font-size: 0.78rem;
+  font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--black); border-bottom: 1px solid var(--black);
+  padding-bottom: 2px; white-space: nowrap;
+}
+
+/* ── SKILLS ── */
+#keyways-root .kw-skills-row {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px;
+}
+#keyways-root .kw-skill-tag {
+  font-size: 0.75rem; font-weight: 400; letter-spacing: 0.04em;
+  color: var(--black); border: 1px solid var(--rule); padding: 8px 16px;
+}
+
+/* ── PROJECT NAV ── */
+#keyways-root .kw-proj-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 48px 0; border-top: 1px solid var(--rule);
+}
+#keyways-root .kw-proj-nav a {
+  font-family: 'Outfit', sans-serif; font-size: 0.78rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--black);
+  transition: opacity 0.2s;
+}
+#keyways-root .kw-proj-nav a:hover { opacity: 0.55; }
+#keyways-root .kw-proj-nav .nav-back::before { content: '← '; letter-spacing: 0; }
+#keyways-root .kw-proj-nav .nav-next::after { content: ' →'; letter-spacing: 0; }
+
+/* ── CTA ── */
+#keyways-root .kw-cta-block { padding: 80px 0; text-align: center; }
+#keyways-root .kw-cta-block h2 {
+  max-width: 560px; margin: 0 auto 32px;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+}
+#keyways-root .kw-cta-link {
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--white); background: var(--black);
+  padding: 18px 44px; display: inline-block; transition: opacity 0.3s;
+}
+#keyways-root .kw-cta-link:hover { opacity: 0.7; }
+
+/* ── MORE WORK ── */
+#keyways-root .kw-more-work {
+  border-top: 1px solid var(--rule);
+  width: 100vw; position: relative;
+  left: 50%; transform: translateX(-50%);
+}
+#keyways-root .kw-more-label {
+  font-family: 'Outfit', sans-serif; font-size: 9px; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase; color: var(--mid);
+  display: block; padding: 40px 48px 32px;
+}
+#keyways-root .kw-projects-row {
+  display: grid; grid-template-columns: repeat(3, 1fr); width: 100%;
+}
+#keyways-root .kw-project-card {
+  position: relative; height: 360px; overflow: hidden;
+  display: block; text-decoration: none;
+}
+#keyways-root .kw-card-bg {
+  position: absolute; inset: 0; background-size: cover;
+  background-position: center top;
+  transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  filter: grayscale(60%) blur(1px) brightness(0.55);
+}
+#keyways-root .kw-project-card:hover .kw-card-bg {
+  transform: scale(1.04); filter: grayscale(20%) brightness(0.65);
+}
+#keyways-root .kw-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(13,13,11,0.92) 0%, rgba(13,13,11,0.55) 40%, rgba(13,13,11,0.25) 100%);
+  z-index: 1;
+}
+#keyways-root .kw-card-content {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+  padding: 40px 36px; transform: translateY(8px);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+#keyways-root .kw-project-card:hover .kw-card-content { transform: translateY(0); }
+#keyways-root .kw-card-tag {
+  font-size: 8px; font-weight: 500; letter-spacing: 0.24em;
+  text-transform: uppercase; color: rgba(246,245,241,0.55);
+  display: block; margin-bottom: 12px;
+}
+#keyways-root .kw-card-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  font-weight: 400; line-height: 1.2; color: var(--white);
+  margin-bottom: 16px; display: block;
+}
+#keyways-root .kw-card-arrow {
+  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(246,245,241,0.5);
+  opacity: 0; transition: opacity 0.3s ease 0.1s; display: block;
+}
+#keyways-root .kw-project-card:hover .kw-card-arrow { opacity: 1; }
+
+/* ── FOOTER ── */
+#keyways-root .kw-footer {
+  background: var(--off); font-family: 'Outfit', sans-serif;
+  border-top: 1px solid var(--rule);
+  width: 100vw; position: relative;
+  left: 50%; transform: translateX(-50%);
+}
+#keyways-root .kw-footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 56px; }
+#keyways-root .kw-footer-top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 40px 0 36px; border-bottom: 1px solid var(--rule);
+}
+#keyways-root .kw-footer-brand { display: flex; align-items: center; gap: 20px; }
+#keyways-root .kw-footer-brand img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+#keyways-root .kw-footer-brand-text { display: flex; flex-direction: column; gap: 5px; }
+#keyways-root .kw-footer-brand-name { font-size: 15px; font-weight: 500; letter-spacing: 0.08em; color: var(--black); }
+#keyways-root .kw-footer-brand-sub { font-size: 11px; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); }
+#keyways-root .kw-footer-avail { font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mid); border: 1px solid #c8c5be; padding: 10px 18px; }
+#keyways-root .kw-footer-grid { display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+#keyways-root .kw-footer-tile { padding: 44px 36px 40px; border-right: 1px solid var(--rule); text-decoration: none; display: flex; flex-direction: column; gap: 12px; transition: background 0.2s; background: var(--off); }
+#keyways-root .kw-footer-tile:last-child { border-right: none; }
+#keyways-root .kw-footer-tile:hover { background: #e8e5de; }
+#keyways-root .kw-footer-tile-verb { font-size: 10px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--mid); }
+#keyways-root .kw-footer-tile-label { font-family: 'EB Garamond', serif; font-size: 1.55rem; font-weight: 400; color: var(--black); line-height: 1.2; }
+#keyways-root .kw-footer-tile-detail { font-size: 13px; font-weight: 400; color: var(--mid); line-height: 1.55; flex: 1; }
+#keyways-root .kw-footer-tile-cta { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--black); margin-top: 8px; padding-top: 16px; border-top: 1px solid var(--rule); }
+#keyways-root .kw-footer-tile-cta::after { content: ' →'; }
+#keyways-root .kw-footer-bottom { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; }
+#keyways-root .kw-footer-copyright { font-size: 11px; letter-spacing: 0.1em; color: #aaa89f; }
+#keyways-root .kw-footer-nav { display: flex; gap: 20px; }
+#keyways-root .kw-footer-nav a { font-size: 12px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--black); opacity: 0.6; transition: opacity 0.2s; }
+#keyways-root .kw-footer-nav a:hover { opacity: 1; }
+
+/* ── MOBILE ── */
+@media (max-width: 860px) {
+  #keyways-root .kw-inner { padding: 0 24px; }
+  #keyways-root .kw-page-header { padding: 72px 0 56px; }
+  #keyways-root .kw-context-strip { grid-template-columns: repeat(2,1fr); }
+  #keyways-root .kw-gap-layout { grid-template-columns: 1fr; }
+  #keyways-root .kw-challenge-grid { grid-template-columns: 1fr; }
+  #keyways-root .kw-challenge-item { border-right: none !important; padding-left: 0 !important; }
+  #keyways-root .kw-component-grid { grid-template-columns: 1fr; }
+  #keyways-root .kw-component-card.full { grid-template-columns: 1fr; }
+  #keyways-root .kw-quote-wrap { padding: 52px 32px; }
+  #keyways-root .kw-quote-inner { padding: 0 24px; }
+  #keyways-root .kw-quote-text { font-size: 1.6rem; }
+  #keyways-root .kw-how-grid { grid-template-columns: 1fr; }
+  #keyways-root .kw-outcomes-grid { grid-template-columns: 1fr; }
+  #keyways-root .kw-arch-strip { grid-template-columns: 1fr; gap: 28px 0; padding: 40px 24px; }
+  #keyways-root .kw-projects-row { grid-template-columns: 1fr; }
+  #keyways-root .kw-project-card { height: 280px; }
+  #keyways-root .kw-more-label { padding: 32px 24px 20px; }
+  #keyways-root .kw-footer-inner { padding: 0 24px; }
+  #keyways-root .kw-footer-top { flex-direction: column; gap: 24px; text-align: center; }
+  #keyways-root .kw-footer-grid { grid-template-columns: repeat(2,1fr); }
+  #keyways-root .kw-footer-tile { padding: 32px 24px; }
+  #keyways-root .kw-footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+  #keyways-root .kw-footer-nav { flex-wrap: wrap; justify-content: center; }
+  #keyways-root .kw-built-header { grid-template-columns: 1fr; }
+  #keyways-root .kw-header-meta { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+</style>
+
+<!-- ══ PAGE HEADER ══ -->
+<div class="kw-full"><div class="kw-inner">
+  <div class="kw-page-header">
+    <div class="kw-header-meta">
+      <span class="kw-case-index">Keyways · Public Health · Service Design + Change Management</span>
+      <span class="kw-case-type">2023–2024</span>
+    </div>
+    <div class="kw-h1-rule"></div>
+    <h1>Shame was the barrier.<br>The service architecture had to remove it — structurally, not symbolically.</h1>
+    <p class="kw-strategic-claim">Led end-to-end design of a five-component service system for stigma-aware access to opioid support — spanning digital infrastructure, clinical protocol, brand, service standards, and staff governance — built for a population that couldn't afford to be seen.</p>
+    <div class="kw-context-strip">
+      <div class="kw-context-cell">
+        <span class="kw-label">Role</span>
+        <span class="kw-value">Design Strategy + Service Architecture Lead</span>
+      </div>
+      <div class="kw-context-cell">
+        <span class="kw-label">Stakeholders</span>
+        <span class="kw-value">Program leadership, clinical partners, program staff</span>
+      </div>
+      <div class="kw-context-cell">
+        <span class="kw-label">Scope</span>
+        <span class="kw-value">Brand, digital, clinical pathway, engagement, training + governance</span>
+      </div>
+      <div class="kw-context-cell">
+        <span class="kw-label">Confidentiality</span>
+        <span class="kw-value">Public campaign; clinical pathway + provider workflow confidential</span>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ══ THE GAP ══ -->
+<div class="kw-full"><div class="kw-inner">
+  <div class="kw-section">
+    <div class="kw-gap-layout">
+
+      <div>
+        <span class="kw-eyebrow">The Strategic Problem</span>
+        <h2>The organization had funding. The people who needed it most couldn't step forward.</h2>
+        <p>Opioid addiction support programs don't fail because of insufficient resources — they fail because the people most in need won't approach them. Shame, fear of being seen, and the social risk of proximity to stigmatized services create a gap that no awareness campaign can close on its own.</p>
+        <p>What was needed wasn't promotion. It was a redesigned system of entry — one that let people approach care privately, move at their own pace, and never forced disclosure before they were ready.</p>
+
+        <div class="kw-challenge-grid">
+          <div class="kw-challenge-item">
+            <span class="kw-challenge-num">Challenge 01</span>
+            <h3>Stigma-aware access model</h3>
+            <p style="font-size:0.875rem;color:#555;line-height:1.7;margin:0;">The core barrier was exposure risk. Language and every touchpoint needed to reduce shame and perceived judgment — not announce availability.</p>
+          </div>
+          <div class="kw-challenge-item">
+            <span class="kw-challenge-num">Challenge 02</span>
+            <h3>Consistent clinical pathway</h3>
+            <p style="font-size:0.875rem;color:#555;line-height:1.7;margin:0;">Doctors' offices are a critical channel — but time pressure and variability break consistency. A repeatable pathway was needed that clinicians could deliver without improvisation.</p>
+          </div>
+          <div class="kw-challenge-item">
+            <span class="kw-challenge-num">Challenge 03</span>
+            <h3>Structural privacy boundaries</h3>
+            <p style="font-size:0.875rem;color:#555;line-height:1.7;margin:0;">Confidentiality required structural separation — so participation could not be inferred through proximity to adjacent services.</p>
+          </div>
+          <div class="kw-challenge-item">
+            <span class="kw-challenge-num">Challenge 04</span>
+            <h3>Staff alignment + governance</h3>
+            <p style="font-size:0.875rem;color:#555;line-height:1.7;margin:0;">The system would only work if delivered consistently. Codified language, rules of engagement, and training were needed to create shared standards across the full team.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <img decoding="async" class="kw-gap-img" src="https://caraabrown.com/wp-content/uploads/2026/02/main.png" alt="Keyways service architecture overview">
+        <p class="kw-img-caption">The Keyways program — a service architecture for stigma-aware opioid support, from social-first entry through clinical handoff and staff governance.</p>
+      </div>
+
+    </div>
+  </div>
+</div></div>
+
+<!-- ══ WHAT I BUILT ══ -->
+<div class="kw-full"><div class="kw-inner">
+  <div class="kw-section">
+    <div class="kw-built-header">
+      <div>
+        <span class="kw-eyebrow">The Architecture</span>
+        <h2>Five interlocking components — each addressing a specific failure mode in how people approach stigmatized care.</h2>
+      </div>
+      <p class="kw-built-intro">The components were designed to be sequenced deliberately, governed together, and sustained through standardized staff behavior — not implemented independently. Their effectiveness depended on how they were connected, separated, and handed off.</p>
+    </div>
+
+    <div class="kw-component-grid">
+      <div class="kw-component-card">
+        <span class="kw-comp-num">01</span>
+        <span class="kw-comp-tag">Engagement</span>
+        <span class="kw-comp-title">Social-First Engagement Architecture</span>
+        <p class="kw-comp-desc">Research confirmed social media as the primary mode of connection. Designed a campaign system optimized for discreet, self-paced entry — so people could engage without disclosure. Content, cadence, and language were calibrated against shame and hesitation.</p>
+      </div>
+      <div class="kw-component-card">
+        <span class="kw-comp-num">02</span>
+        <span class="kw-comp-tag">Clinical</span>
+        <span class="kw-comp-title">Confidential Clinical Partner Protocol</span>
+        <p class="kw-comp-desc">A structured protocol for program managers to engage doctors, coordinate messaging, and support a consistent pathway during visits. The system reduced variability in how support could be introduced, regardless of which clinician was present. Details are kept confidential.</p>
+      </div>
+      <div class="kw-component-card">
+        <span class="kw-comp-num">03</span>
+        <span class="kw-comp-tag">Digital</span>
+        <span class="kw-comp-title">Isolated Participant Website</span>
+        <p class="kw-comp-desc">Created a separate website for participants — structurally isolated from adjacent programs. This reduced the risk that participation could be inferred through co-located services, making the first step meaningfully safer for people who couldn't afford to be seen.</p>
+      </div>
+      <div class="kw-component-card">
+        <span class="kw-comp-num">04</span>
+        <span class="kw-comp-tag">Standards</span>
+        <span class="kw-comp-title">Service Language + Rules of Engagement</span>
+        <p class="kw-comp-desc">Codified standards for what staff say, what they don't say, and how they build trust during early contact. Without this layer, the architecture could not be consistently delivered — and inconsistency is precisely where access breaks down.</p>
+      </div>
+      <div class="kw-component-card full">
+        <div>
+          <span class="kw-comp-num">05</span>
+        </div>
+        <div>
+          <span class="kw-comp-tag">Brand</span>
+          <span class="kw-comp-title">Behavior-Driven Branding System</span>
+        </div>
+        <div>
+          <p class="kw-comp-desc">Using color theory and symbology assessment, designed a brand system aimed at the brain's instinctive response systems — supporting safety, approachability, and calm. Every choice was driven by behavioral research, not aesthetic preference or stakeholder taste. For stigmatized services, brand is behavioral infrastructure, not identity.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ══ PULL QUOTE ══ -->
+<div class="kw-quote-wrap">
+  <div class="kw-quote-inner">
+    <span class="kw-quote-mark">"</span>
+    <p class="kw-quote-text">For stigmatized services, privacy must be structurally designed — channels, language, and digital separation — not merely promised.</p>
+  </div>
+</div>
+
+<!-- ══ HOW I WORKED ══ -->
+<div class="kw-full"><div class="kw-inner">
+  <div class="kw-section">
+    <div class="kw-how-grid">
+      <div class="kw-how-aside">
+        <span class="kw-eyebrow">Design Leadership Approach</span>
+        <h2>Behavioral conditions override preference. The system had to optimize for safety and follow-through — not for what leadership assumed participants needed.</h2>
+        <p>This work required deep behavioral research into a nuanced, vulnerable group. Decisions were driven by safety, privacy, and follow-through. The primary success condition was whether people could approach and enter care without the system increasing risk, stigma, or hesitation.</p>
+        <br>
+        <p>Each design decision was tested against a single question: does this make the first step easier, or does it make the system feel safer for someone who is already afraid? When those two things conflicted, safety won.</p>
+      </div>
+      <div>
+        <div class="kw-accordion">
+          <div class="kw-accordion-item">
+            <button class="kw-accordion-trigger">
+              <span class="kw-accordion-label">Decision logic — how choices were sequenced</span>
+              <span class="kw-accordion-arrow">↓</span>
+            </button>
+            <div class="kw-accordion-body">
+              <p><strong>Anonymous, self-paced entry points</strong> were established first to reduce exposure risk. Language and visual cues were designed to lower perceived judgment before participants had reason to trust the program. A defined clinical pathway was created so support could be introduced consistently without improvisation. Digital isolation of the participant site was a structural requirement — not a design preference. Staff behavior was standardized last, because the channel architecture had to exist before the human layer could be trained into it.</p>
+            </div>
+          </div>
+          <div class="kw-accordion-item">
+            <button class="kw-accordion-trigger">
+              <span class="kw-accordion-label">Standardization — building consistency into a human system</span>
+              <span class="kw-accordion-arrow">↓</span>
+            </button>
+            <div class="kw-accordion-body">
+              <p>Consistent delivery required more than training — it required <strong>codified artifacts</strong> that staff could use without reinventing each interaction. Campaign content patterns, service offering language, rules of engagement for trust-building, and defined steps for entry and clinical initiation were all documented and operationalized. The system was designed to remain deliverable as staff, partners, and context changed.</p>
+            </div>
+          </div>
+          <div class="kw-accordion-item">
+            <button class="kw-accordion-trigger">
+              <span class="kw-accordion-label">Governance — ownership across staff and clinical partners</span>
+              <span class="kw-accordion-arrow">↓</span>
+            </button>
+            <div class="kw-accordion-body">
+              <p>Staff were trained to deliver the full service architecture end-to-end — covering outreach, engagement measurement tools, and day-to-day operating practices — so they had <strong>full ownership and confidence</strong> in supporting participants. Clinical partners received a structured protocol that fit within existing visit constraints. Confidential handling of clinical workflow details was maintained throughout to protect participant privacy and sustain partner trust.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ══ ARTIFACTS ══ -->
+<div class="kw-full"><div class="kw-inner">
+  <div class="kw-section">
+    <span class="kw-eyebrow">Artifacts</span>
+    <h2>From brand system to clinical touchpoint — what was produced.</h2>
+    <div class="kw-artifacts-scroll">
+      <div class="kw-artifact-slide">
+        <div class="kw-artifact-img-wrap">
+          <img decoding="async" src="https://caraabrown.com/wp-content/uploads/2025/11/World-Key-ways-2.png" alt="Keyways service framing">
+        </div>
+        <div class="kw-artifact-caption">
+          <strong>Service framing</strong>
+          <span>Core concept framing — clarifying what Keyways is and how it connects people to support without increasing stigma or requiring disclosure.</span>
+        </div>
+      </div>
+      <div class="kw-artifact-slide">
+        <div class="kw-artifact-img-wrap">
+          <img decoding="async" src="https://caraabrown.com/wp-content/uploads/2026/02/@thelazyartistgallery.png" alt="Social content example">
+        </div>
+        <div class="kw-artifact-caption">
+          <strong>Social engagement content</strong>
+          <span>Designed for discreet, self-paced entry. Tone, visuals, and cadence calibrated against shame and hesitation.</span>
+        </div>
+      </div>
+      <div class="kw-artifact-slide">
+        <div class="kw-artifact-img-wrap">
+          <img decoding="async" src="https://caraabrown.com/wp-content/uploads/2026/02/notalone.png" alt="Message: Not alone">
+        </div>
+        <div class="kw-artifact-caption">
+          <strong>Isolation reduction messaging</strong>
+          <span>Language that reduces the sense of being alone — lowering the psychological barrier to a first step without overpromising.</span>
+        </div>
+      </div>
+      <div class="kw-artifact-slide">
+        <div class="kw-artifact-img-wrap">
+          <img decoding="async" src="https://caraabrown.com/wp-content/uploads/2026/02/Supported.png" alt="Message: Supported">
+        </div>
+        <div class="kw-artifact-caption">
+          <strong>Support-forward framing</strong>
+          <span>Messaging designed to reduce shame and increase psychological safety — the necessary precondition for engagement with stigmatized services.</span>
+        </div>
+      </div>
+      <div class="kw-artifact-slide">
+        <div class="kw-artifact-img-wrap">
+          <img decoding="async" src="https://caraabrown.com/wp-content/uploads/2026/02/win.png" alt="Progress framing">
+        </div>
+        <div class="kw-artifact-caption">
+          <strong>Progress framing</strong>
+          <span>Content designed to keep engagement achievable and reduce dropout risk by framing incremental steps as wins.</span>
+        </div>
+      </div>
+      <div class="kw-artifact-slide">
+        <div class="kw-artifact-img-wrap">
+          <img decoding="async" src="https://caraabrown.com/wp-content/uploads/2026/02/Yesterday.png" alt="Tone calibration">
+        </div>
+        <div class="kw-artifact-caption">
+          <strong>Tone calibration</strong>
+          <span>Participant-representative visuals designed to avoid judgment while prompting action. Reflecting the real population lowers hesitation and makes outreach feel safer.</span>
+        </div>
+      </div>
+      <div class="kw-artifact-slide">
+        <div class="kw-artifact-img-wrap">
+          <img decoding="async" src="https://caraabrown.com/wp-content/uploads/2026/02/dr.png" alt="Clinical partner touchpoint">
+        </div>
+        <div class="kw-artifact-caption">
+          <strong>Clinical touchpoint</strong>
+          <span>Representation of the structured clinical pathway. Full protocol details are kept confidential.</span>
+        </div>
+      </div>
+      <div class="kw-artifact-slide">
+        <div class="kw-artifact-img-wrap">
+          <img decoding="async" src="https://caraabrown.com/wp-content/uploads/2026/02/Screen-Shot-2026-02-17-at-3.46.09-PM.png" alt="Participant website">
+        </div>
+        <div class="kw-artifact-caption">
+          <strong>Digital service scaffolding</strong>
+          <span>A dedicated digital presence structurally separated from adjacent programs — so participation cannot be inferred through proximity.</span>
+        </div>
+      </div>
+      <div class="kw-artifact-slide">
+        <div class="kw-artifact-img-wrap">
+          <img decoding="async" src="https://caraabrown.com/wp-content/uploads/2026/02/Stats.png" alt="Program reporting snapshot">
+        </div>
+        <div class="kw-artifact-caption">
+          <strong>Program reporting</strong>
+          <span>Data snapshot used to support program decisions and identify remaining friction points.</span>
+        </div>
+      </div>
+    </div>
+    <span class="kw-scroll-hint">Scroll to view all artifacts →</span>
+  </div>
+</div></div>
+
+<!-- ══ OUTCOMES ══ -->
+<div class="kw-full"><div class="kw-inner">
+  <div class="kw-section">
+    <span class="kw-eyebrow">Strategic Conclusions</span>
+    <h2>What this work demonstrated about designing for stigmatized access.</h2>
+    <div class="kw-outcomes-grid">
+      <div class="kw-outcome-box">
+        <span class="kw-metric-label">Privacy Design</span>
+        <span class="kw-metric">Anonymity is an operating requirement</span>
+        <p class="kw-metric-desc">For stigmatized services, privacy must be structurally built into channels, language, and digital architecture — not promised as policy. Structural separation reduced the likelihood that participation could be inferred through adjacent programs.</p>
+      </div>
+      <div class="kw-outcome-box">
+        <span class="kw-metric-label">Decision Framework</span>
+        <span class="kw-metric">Behavioral conditions override preference</span>
+        <p class="kw-metric-desc">When stakes are life-or-death, the system must optimize for safety, trust, and follow-through — even when stated user preference is incomplete or unreliable. Behavioral research drove every structural and language decision.</p>
+      </div>
+      <div class="kw-outcome-box">
+        <span class="kw-metric-label">Operational Sustainability</span>
+        <span class="kw-metric">Adoption is designed through standards</span>
+        <p class="kw-metric-desc">Codified service language, rules of engagement, and end-to-end staff training converted strategy into consistent behavior — and made the system maintainable as people and contexts changed.</p>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ══ ARCH STRIP ══ -->
+<div class="kw-inner">
+  <div class="kw-arch-strip">
+    <span class="kw-arch-type">Service Design + Architecture — Health Equity · Stigma-Aware Systems · Change + Adoption</span>
+    <p class="kw-arch-text">This project is often categorized as a public health communication project. It wasn't. It was a service architecture problem with life-or-death consequences — and it required diagnosing the actual barriers before designing anything visible. The social content, brand system, clinical protocol, participant website — none of those work in isolation. Their effectiveness depended on how they were sequenced, separated, and governed together.</p>
+    <a class="kw-arch-link" href="/how-i-work">How I Work →</a>
+  </div>
+</div>
+
+<!-- ══ SKILLS ══ -->
+<div class="kw-full"><div class="kw-inner">
+  <div class="kw-section">
+    <span class="kw-eyebrow">Skills Demonstrated</span>
+    <div class="kw-skills-row">
+      <span class="kw-skill-tag">Service Design + Architecture</span>
+      <span class="kw-skill-tag">Stigma-Aware Communication Design</span>
+      <span class="kw-skill-tag">Behavioral Research</span>
+      <span class="kw-skill-tag">Clinical Pathway Design</span>
+      <span class="kw-skill-tag">Brand System Design</span>
+      <span class="kw-skill-tag">Staff Training + Adoption</span>
+      <span class="kw-skill-tag">Change + Governance</span>
+      <span class="kw-skill-tag">Health Equity Design</span>
+      <span class="kw-skill-tag">Privacy-by-Design</span>
+      <span class="kw-skill-tag">Digital Experience Design</span>
+    </div>
+  </div>
+</div></div>
+
+<!-- ══ PROJECT NAV ══ -->
+<div class="kw-inner">
+  <div class="kw-proj-nav">
+    <a class="nav-back" href="/portfolio">Back to portfolio</a>
+    <a class="nav-next" href="/newera">See next project</a>
+  </div>
+</div>
+
+<!-- ══ CTA ══ -->
+<div class="kw-full"><div class="kw-inner">
+  <div class="kw-cta-block">
+    <h2>Working on a service that needs to reach people who face real barriers to engagement?</h2>
+    <a class="kw-cta-link" href="/contact">Get in touch</a>
+  </div>
+</div></div>
+
+<!-- ══ MORE WORK ══ -->
+<div class="kw-more-work">
+  <a href="https://caraabrown.com/portfolio/" class="kw-more-label" style="text-decoration:none;color:inherit;">More Work</a>
+  <div class="kw-projects-row">
+    <a class="kw-project-card" href="/gardacares">
+      <div class="kw-card-bg" style="background-image:url('https://caraabrown.com/wp-content/uploads/2025/12/Garda-Cares-App-.png');"></div>
+      <div class="kw-card-overlay"></div>
+      <div class="kw-card-content">
+        <span class="kw-card-tag">GardaWorld · Culture Integration</span>
+        <span class="kw-card-title">Employee Theft Dropped from 20% to 0.5%</span>
+        <span class="kw-card-arrow">View project →</span>
+      </div>
+    </a>
+    <a class="kw-project-card" href="/mappingsuccess">
+      <div class="kw-card-bg" style="background-image:url('https://caraabrown.com/wp-content/uploads/2025/12/MAPPING.001.webp');"></div>
+      <div class="kw-card-overlay"></div>
+      <div class="kw-card-content">
+        <span class="kw-card-tag">EOYDC · Research + Impact Strategy</span>
+        <span class="kw-card-title">Mapping Success</span>
+        <span class="kw-card-arrow">View project →</span>
+      </div>
+    </a>
+    <a class="kw-project-card" href="/shopmack">
+      <div class="kw-card-bg" style="background-image:url('https://caraabrown.com/wp-content/uploads/2025/12/Shop-Mack-Home-Page.png');"></div>
+      <div class="kw-card-overlay"></div>
+      <div class="kw-card-content">
+        <span class="kw-card-tag">shopMACK · Design Strategy</span>
+        <span class="kw-card-title">Concept to Award-Winning Launch</span>
+        <span class="kw-card-arrow">View project →</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="kw-footer">
+  <div class="kw-footer-inner">
+    <div class="kw-footer-top">
+      <a href="/" class="kw-footer-brand">
+        <img decoding="async" src="https://caraabrown.com/wp-content/uploads/2025/11/Cara-A.-Brown-icon.png" alt="Cara A. Brown">
+        <div class="kw-footer-brand-text">
+          <span class="kw-footer-brand-name">Cara A. Brown, MBA</span>
+          <span class="kw-footer-brand-sub">Design Strategist · Service Designer</span>
+        </div>
+      </a>
+      <span class="kw-footer-avail">Available for new opportunities</span>
+    </div>
+  </div>
+  <div class="kw-footer-grid">
+    <a href="https://www.linkedin.com/in/caraabrown/" class="kw-footer-tile" target="_blank">
+      <span class="kw-footer-tile-verb">Connect</span>
+      <span class="kw-footer-tile-label">View my LinkedIn</span>
+      <span class="kw-footer-tile-detail">Work history, recommendations, and full profile.</span>
+      <span class="kw-footer-tile-cta">Go to LinkedIn</span>
+    </a>
+    <a href="https://calendly.com/caraabrown" class="kw-footer-tile" target="_blank">
+      <span class="kw-footer-tile-verb">Talk</span>
+      <span class="kw-footer-tile-label">Schedule a Call</span>
+      <span class="kw-footer-tile-detail">Let's have a conversation about what you're working on.</span>
+      <span class="kw-footer-tile-cta">Book a time</span>
+    </a>
+    <a href="mailto:hi@caraabrown.com?subject=Job Description" class="kw-footer-tile">
+      <span class="kw-footer-tile-verb">Hire</span>
+      <span class="kw-footer-tile-label">Send a Job Description</span>
+      <span class="kw-footer-tile-detail">Email me a JD and I'll tell you if it's a fit.</span>
+      <span class="kw-footer-tile-cta">Send the JD</span>
+    </a>
+    <a href="/contact" class="kw-footer-tile">
+      <span class="kw-footer-tile-verb">Ask</span>
+      <span class="kw-footer-tile-label">Ask Me Anything</span>
+      <span class="kw-footer-tile-detail">Questions about process, work, or what we could build together.</span>
+      <span class="kw-footer-tile-cta">Get in touch</span>
+    </a>
+  </div>
+  <div class="kw-footer-inner">
+    <div class="kw-footer-bottom">
+      <span class="kw-footer-copyright">© 2025 Cara A. Brown, MBA</span>
+      <nav class="kw-footer-nav">
+        <a href="/portfolio">Portfolio</a>
+        <a href="/about">About</a>
+        <a href="/how-i-work">How I Work</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.kw-accordion-trigger').forEach(function(trigger) {
+  trigger.addEventListener('click', function() {
+    this.closest('.kw-accordion-item').classList.toggle('open');
+  });
+});
+</script>
+</div>
+<!-- END KEYWAYS WIDGET CODE -->
+
+</body>
+</html>
