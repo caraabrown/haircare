@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -541,29 +543,6 @@ html { font-size: 16px; }
 .prod-session-dots { display: flex; gap: 4px; flex-wrap: wrap; }
 .sess-dot { width: 8px; height: 8px; border-radius: 50%; }
 
-.prod-edit-btn {
-  position: absolute;
-  bottom: 12px;
-  right: 36px;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  border: 1px solid var(--border2);
-  background: none;
-  color: var(--text3);
-  font-size: 13px;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity .15s, color .15s;
-  z-index: 2;
-}
-.prod-card.card-active .prod-edit-btn { opacity: 1; }
-.prod-edit-btn:hover { color: var(--accent); border-color: var(--accent); }
-
 .prod-delete-btn {
   position: absolute;
   bottom: 12px;
@@ -584,30 +563,7 @@ html { font-size: 16px; }
   transition: opacity .15s, color .15s, border-color .15s;
   z-index: 2;
 }
-.prod-card:hover .prod-edit-btn {
-  position: absolute;
-  bottom: 12px;
-  right: 36px;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  border: 1px solid var(--border2);
-  background: none;
-  color: var(--text3);
-  font-size: 13px;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity .15s, color .15s;
-  z-index: 2;
-}
-.prod-card.card-active .prod-edit-btn { opacity: 1; }
-.prod-edit-btn:hover { color: var(--accent); border-color: var(--accent); }
-
-.prod-delete-btn { opacity: 1; }
+.prod-card:hover .prod-delete-btn { opacity: 1; }
 .prod-delete-btn:hover { color: var(--red); border-color: var(--red); }
 
 
@@ -3436,86 +3392,6 @@ function saveAllEdits() {
 
 
 
-function cardClick(e, nameEnc, card) {
-  // If clicking a button inside the card, don't toggle
-  if(e.target.closest('button')) return;
-  if(!card.classList.contains('card-active')) {
-    // First click — just activate (show buttons)
-    document.querySelectorAll('.prod-card.card-active').forEach(c => c.classList.remove('card-active'));
-    card.classList.add('card-active');
-  } else {
-    // Second click on same card — open detail
-    openProdDetail(nameEnc);
-  }
-}
-// Click outside cards to deactivate
-document.addEventListener('click', function(e) {
-  if(!e.target.closest('.prod-card')) {
-    document.querySelectorAll('.prod-card.card-active').forEach(c => c.classList.remove('card-active'));
-  }
-});
-
-function editProduct(e, nameEnc) {
-  e.stopPropagation();
-  const name = decodeURIComponent(nameEnc);
-  const all = getAllProds();
-  const p = all.find(x => x.name === name) || {};
-  document.getElementById('ep-name').value = p.name || name;
-  document.getElementById('ep-cat').value = p.cat || 'Commercial';
-  document.getElementById('ep-use').value = p.use || '';
-  document.getElementById('ep-orig').value = nameEnc;
-  openM('m-edit-prod');
-}
-
-function saveProductEdit() {
-  const origName = decodeURIComponent(document.getElementById('ep-orig').value);
-  const newName = document.getElementById('ep-name').value.trim();
-  const newCat = document.getElementById('ep-cat').value;
-  const newUse = document.getElementById('ep-use').value.trim();
-  if(!newName) return;
-
-  const isDefault = PRODUCT_DEFAULTS.some(p => p.name === origName);
-  if(isDefault) {
-    const overrides = S.get('prod-name-overrides') || {};
-    overrides[origName] = {name: newName, cat: newCat, use: newUse};
-    S.set('prod-name-overrides', overrides);
-  } else {
-    const saved = S.get('user-products') || [];
-    const idx = saved.findIndex(p => p.name === origName);
-    if(idx !== -1) { saved[idx].name = newName; saved[idx].cat = newCat; saved[idx].use = newUse; S.set('user-products', saved); }
-  }
-  closeM('m-edit-prod');
-  renderProdLibrary();
-}
-
-function renderAchievements(pct,streak) {
-  const logs=S.get('logs')||[];
-  const photos=S.get('photos')||{};
-  const w=ST.week||0;
-  const achs=[
-    {icon:'⚡',name:'First Session',earned:logs.length>0},
-    {icon:'✦',name:'3-Day Streak',earned:streak>=3},
-    {icon:'◆',name:'Week 1 Photo',earned:!!photos[1]},
-    {icon:'▲',name:'Perfect Week',earned:pct===100},
-    {icon:'★',name:'7-Day Streak',earned:streak>=7},
-    {icon:'◉',name:'4 Weeks In',earned:w>=4},
-    {icon:'●',name:'5 Sessions',earned:logs.length>=5},
-    {icon:'■',name:'8-Week Champ',earned:w>=8},
-  ];
-  const el=document.getElementById('ach-grid');
-  if(el) el.innerHTML=achs.map(a=>`<div class="ach-card${a.earned?' earned':''}"><div class="ach-icon">${a.icon}</div><div class="ach-name">${a.name}</div></div>`).join('');
-}
-function renderDashPhotos() {
-  const photos=S.get('photos')||{};
-  const wks=Object.keys(photos).map(Number).sort((a,b)=>a-b);
-  const containers=['dash-photos','month-photos'];
-  containers.forEach(id=>{
-    const el=document.getElementById(id);
-    if(!el)return;
-    if(!wks.length){el.innerHTML='<div class="text3 sz13" style="padding:20px;width:100%;">No photos yet — add them in the Progress tab.</div>';return;}
-    el.innerHTML=wks.map(w=>`<div class="photo-slot"><img src="${photos[w]}"><div class="photo-wk-lbl">Week ${w}</div></div>`).join('');
-  });
-}
 function renderOverallChart() {
   const ctx=document.getElementById('chart-overall');if(!ctx)return;
   if(charts.overall)charts.overall.destroy();
@@ -4044,6 +3920,23 @@ function renderStepView() {
 }
 
 
+
+function getProdStep(p) {
+  const use = (p.use || p.desc || '').toLowerCase();
+  if(use.includes('pre-poo') || use.includes('overnight') || use.includes('chebe')) return 'Pre-Poo';
+  if(use.includes('shampoo') || use.includes('clarif') || use.includes('co-wash') || use.includes('cleanse')) return 'Shampoo';
+  if(use.includes('deep condition') || use.includes('dc') || use.includes('protein dc') || use.includes('bond repair') || use.includes('protein treatment')) return 'Deep Condition';
+  if(use.includes('rinse') || use.includes('acv') || use.includes('cuticle seal')) return 'Rinse & Seal';
+  if(use.includes('leave-in') || use.includes('loc') || use.includes('lco') || use.includes('l-step')) return 'Leave-In / LOC';
+  if(use.includes('blow dry') || use.includes('blowdry') || use.includes('heat protect') || use.includes('flat iron') || use.includes('heat styl')) return 'Heat Styling';
+  if(use.includes('scalp') || use.includes('edge') || use.includes('growth') || use.includes('follicle') || use.includes('peptide')) return 'Scalp';
+  if(use.includes('styling') || use.includes('gel') || use.includes('curl') || use.includes('twist') || use.includes('wash & go') || use.includes('hold')) return 'Styling';
+  if(use.includes('finish') || use.includes('shine') || use.includes('anti-humid') || use.includes('sealant')) return 'Finishing';
+  if(use.includes('supplement') || use.includes('shake') || use.includes('capsule') || use.includes('daily') || use.includes('vitamin') || use.includes('collagen') || use.includes('msm') || use.includes('omega')) return 'Supplement';
+  if(use.includes('keratin')) return 'Keratin';
+  return '';
+}
+
 function renderProdLibrary() {
   const el = document.getElementById('prod-card-grid');
   if(!el) return;
@@ -4067,19 +3960,19 @@ function renderProdLibrary() {
     
     const imp = getProdImportance(p.name);
     if(_impFilter !== 'all' && imp !== _impFilter) return '';
-    return `<div class="prod-card" onclick="cardClick(event,'${encodeURIComponent(p.name)}',this)" style="border-top: 3px solid ${color};">
+    return `<div class="prod-card" onclick="openProdDetail('${encodeURIComponent(p.name)}')" style="border-top: 3px solid ${color};">
       <button class="prod-delete-btn" onclick="deleteProduct(event,'${encodeURIComponent(p.name)}')" title="Remove product">×</button>
       <div class="prod-score-ring">${scoreRingSVG(avg, color)}</div>
       <div class="prod-card-top">
         <div class="prod-cat-dot" style="background:${color};"></div>
         <div>
           <div class="prod-name">${p.name}</div>
-          <div class="prod-cat-label" style="color:${color};">${p.cat}</div>
+          <div class="prod-cat-label" style="color:var(--text3);">${getProdStep(p) || '&nbsp;'}</div>
         </div>
       </div>
       <div class="prod-note">${p.use || p.desc || ''}</div>
       <div class="prod-meta">
-        <span class="qty-circle" title="Quantity: ${qty} — double-click to change" ondblclick="cycleQty(event,'${encodeURIComponent(p.name)}')">${qtyCircle[qty]||qtyCircle.full}</span>
+        <span class="qty-circle" title="Quantity: ${qty} — double-click to change" onclick="cycleQty(event,'${encodeURIComponent(p.name)}')">${qtyCircle[qty]||qtyCircle.full}</span>
         <span class="imp-badge imp-${imp}" ondblclick="cycleImportance(event,'${encodeURIComponent(p.name)}')" title="Double-click to change importance">${imp}</span>
         ${isExp ? '<span class="prod-badge badge-exp">Expired</span>' : ''}
         ${ratings.length > 0 ? `<span class="prod-badge" style="background:rgba(255,255,255,.05);color:var(--text3);">${ratings.length} uses</span>` : ''}
@@ -4139,9 +4032,10 @@ function openProdDetail(nameEnc) {
       <div class="sz14 text2 mb16">${p.desc || p.note || ''}</div>
       ${ratings.length ? `<div style="font-size:12px;font-weight:600;color:var(--text3);margin-bottom:8px;">SESSION HISTORY (${ratings.length} uses · avg ${avg}★)</div>
       <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:16px;">${ratings.map(r=>`<div style="padding:4px 8px;border-radius:4px;background:var(--surface2);font-size:11px;">${r.date} ${'★'.repeat(r.r)}</div>`).join('')}</div>` : ''}
-      <div style="display:flex;gap:8px;">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
         <button class="btn btn-ai btn-sm" onclick="askClaudeProd('${encodeURIComponent(name)}')">Ask Claude</button>
         <button class="btn btn-accent btn-sm" onclick="logProdRating('${encodeURIComponent(name)}')">Rate This Use</button>
+        <button class="btn btn-sm" style="background:var(--surface2);margin-left:auto;" onclick="closeM('m-element');editProduct(event,'${encodeURIComponent(name)}')">&#9998; Edit</button>
       </div>
     </div>`;
   openM('m-element');
@@ -4796,7 +4690,7 @@ function renderShoppingList() {
           <div class="fw6 sz14">${p.name}</div>
           <div class="text3 sz12">${p.use||''}</div>
         </div>
-        <span class="qty-circle" ondblclick="cycleQty(event,'${encodeURIComponent(p.name)}')" title="Double-click to update">
+        <span class="qty-circle" onclick="cycleQty(event,'${encodeURIComponent(p.name)}')" title="Double-click to update">
           <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8" fill="none" stroke="var(--text3)" stroke-width="1.5"/></svg>
         </span>
       </div>`).join('')}
