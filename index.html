@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -4035,7 +4033,7 @@ function openProdDetail(nameEnc) {
       <div style="display:flex;gap:8px;flex-wrap:wrap;">
         <button class="btn btn-ai btn-sm" onclick="askClaudeProd('${encodeURIComponent(name)}')">Ask Claude</button>
         <button class="btn btn-accent btn-sm" onclick="logProdRating('${encodeURIComponent(name)}')">Rate This Use</button>
-        <button class="btn btn-sm" style="background:var(--surface2);margin-left:auto;" onclick="closeM('m-element');editProduct(event,'${encodeURIComponent(name)}')">&#9998; Edit</button>
+        <button class="btn btn-sm" style="background:var(--surface2);margin-left:auto;" onclick="editProduct(null,'${encodeURIComponent(name)}')">&#9998; Edit</button>
       </div>
     </div>`;
   openM('m-element');
@@ -4854,6 +4852,51 @@ function renderSessionPhotosForStep(step) {
 // Update renderPhotos to respect filter
 const _origRenderPhotos = renderPhotos;
 // (renderPhotos already exists — we add filterPhotos after it)
+
+function editProduct(e, nameEnc) {
+  if(e && e.stopPropagation) e.stopPropagation();
+  closeM('m-element');
+  setTimeout(function() {
+    var name = decodeURIComponent(nameEnc);
+    var prods = getAllProds();
+    var p = null;
+    for(var i=0;i<prods.length;i++){ if(prods[i].name===name){p=prods[i];break;} }
+    if(!p){ p={name:name,cat:'Commercial',use:''}; }
+    document.getElementById('ep-name').value = p.name;
+    document.getElementById('ep-cat').value = p.cat || 'Commercial';
+    document.getElementById('ep-use').value = p.use || '';
+    document.getElementById('ep-orig').value = nameEnc;
+    openM('m-edit-prod');
+  }, 100);
+}
+
+function saveProductEdit() {
+  var origName = decodeURIComponent(document.getElementById('ep-orig').value);
+  var newName = document.getElementById('ep-name').value.trim();
+  var newCat = document.getElementById('ep-cat').value;
+  var newUse = document.getElementById('ep-use').value.trim();
+  if(!newName) return;
+  var isDefault = false;
+  for(var i=0;i<PRODUCT_DEFAULTS.length;i++){
+    if(PRODUCT_DEFAULTS[i].name===origName){isDefault=true;break;}
+  }
+  if(isDefault) {
+    var overrides = S.get('prod-name-overrides') || {};
+    overrides[origName] = {name:newName, cat:newCat, use:newUse};
+    S.set('prod-name-overrides', overrides);
+  } else {
+    var saved = S.get('user-products') || [];
+    for(var j=0;j<saved.length;j++){
+      if(saved[j].name===origName){
+        saved[j].name=newName; saved[j].cat=newCat; saved[j].use=newUse;
+        break;
+      }
+    }
+    S.set('user-products', saved);
+  }
+  closeM('m-edit-prod');
+  renderProdLibrary();
+}
 
 function init() {
   updateHeader();
