@@ -967,6 +967,21 @@ em, i { font-style: italic; }
 .step-prod-row:hover { background: var(--surface2); }
 .step-prod-name { font-size: 12px; font-weight: 500; flex: 1; }
 
+/* ── GITHUB SYNC BANNER ── */
+#gist-banner{background:var(--surface);border-bottom:1px solid var(--border);padding:8px 40px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:12px;min-height:40px;}
+#gist-banner.hidden{display:none;}
+.gist-status{display:flex;align-items:center;gap:6px;color:var(--text3);}
+.gist-status.connected{color:var(--cat-nat);}
+.gist-status.error{color:var(--red);}
+.gist-status.saving{color:var(--accent);}
+#gist-token-wrap{display:flex;align-items:center;gap:8px;flex:1;max-width:420px;}
+#gist-token{background:var(--surface2);border:1px solid var(--border2);border-radius:6px;padding:5px 10px;font-size:12px;color:var(--text);font-family:var(--font-body);flex:1;outline:none;}
+#gist-token:focus{border-color:var(--accent);}
+.gist-btn{padding:4px 12px;border-radius:6px;border:none;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font-body);letter-spacing:.04em;}
+.gist-btn-connect{background:var(--accent);color:var(--bg);}
+.gist-btn-disconnect{background:transparent;border:1px solid var(--border2);color:var(--text3);}
+.gist-btn-disconnect:hover{border-color:var(--red);color:var(--red);}
+
 </style>
 </head>
 <body>
@@ -1014,6 +1029,14 @@ em, i { font-style: italic; }
     <button class="n" onclick="go('products')" id="n-products">Products</button>
   </div>
 </nav>
+
+<div id="gist-banner" class="hidden">
+  <div id="gist-token-wrap">
+    <input id="gist-token" type="password" placeholder="GitHub personal access token (gist scope)">
+    <button class="gist-btn gist-btn-connect" onclick="GistSync.connect()">Connect</button>
+  </div>
+  <div id="gist-status" class="gist-status">Not connected &mdash; data saves locally only</div>
+</div>
 
 <main>
 
@@ -2815,7 +2838,10 @@ em, i { font-style: italic; }
 // ── Storage helpers
 const S = {
   get: k => { try { return JSON.parse(localStorage.getItem(k)); } catch(e) { return localStorage.getItem(k); } },
-  set: (k,v) => localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v))
+  set: (k,v) => {
+    localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v));
+    if(typeof GistSync !== 'undefined' && GistSync.connected) GistSync.schedulePush();
+  }
 };
 
 // ── State
@@ -4898,7 +4924,208 @@ function saveProductEdit() {
   renderProdLibrary();
 }
 
+
+// ════════════════════════════════════════════════════════
+// GIST SYNC MODULE
+// ════════════════════════════════════════════════════════
+const GistSync = (function() {
+  var GIST_FILENAME = 'hairprotocol_data.json';
+  var TOKEN_KEY = 'gist_token';
+  var GIST_ID_KEY = 'gist_id';
+  var DATA_KEYS = [
+    'start','washDay','styleType','logs','user-products','diy-recipes',
+    'prod-qty-overrides','prod-name-overrides','prod-importance',
+    'hidden-products','photos','session-photos','tools-checked',
+    'supps-checked','tag-counts','gist_token','gist_id'
+  ];
+  var _pushTimer = null;
+  var _connected = false;
+
+  function setStatus(msg, cls) {
+    var el = document.getElementById('gist-status');
+    if(!el) return;
+    el.textContent = msg;
+    el.className = 'gist-status' + (cls ? ' ' + cls : '');
+  }
+
+  function showBanner() {
+    var b = document.getElementById('gist-banner');
+    if(b) b.classList.remove('hidden');
+  }
+
+  function showConnected() {
+    var wrap = document.getElementById('gist-token-wrap');
+    if(wrap) wrap.innerHTML = '<button class="gist-btn gist-btn-disconnect" onclick="GistSync.disconnect()">Disconnect</button>';
+    setStatus('Connected to GitHub &mdash; data synced', 'connected');
+    _connected = true;
+  }
+
+  function collectData() {
+    var data = {};
+    DATA_KEYS.forEach(function(k) {
+      var v = localStorage.getItem(k);
+      if(v !== null) data[k] = v;
+    });
+    return JSON.stringify(data);
+  }
+
+  function applyData(jsonString) {
+    try {
+      var data = JSON.parse(jsonString);
+      Object.keys(data).forEach(function(k) {
+        if(k !== TOKEN_KEY && k !== GIST_ID_KEY) {
+          localStorage.setItem(k, data[k]);
+        }
+      });
+    } catch(e) {
+      console.error('GistSync applyData error:', e);
+    }
+  }
+
+  async function getGist(token, gistId) {
+    var r = await fetch('https://api.github.com/gists/' + gistId, {
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
+    });
+    if(!r.ok) throw new Error('GET gist failed: ' + r.status);
+    var data = await r.json();
+    var file = data.files && data.files[GIST_FILENAME];
+    if(!file) throw new Error('File not found in gist');
+    // If content is truncated, fetch raw url
+    if(file.truncated && file.raw_url) {
+      var raw = await fetch(file.raw_url);
+      return await raw.text();
+    }
+    return file.content;
+  }
+
+  async function findGist(token) {
+    var page = 1;
+    while(page <= 5) {
+      var r = await fetch('https://api.github.com/gists?per_page=100&page=' + page, {
+        headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
+      });
+      if(!r.ok) throw new Error('List gists failed: ' + r.status);
+      var list = await r.json();
+      if(!list.length) break;
+      for(var i=0;i<list.length;i++) {
+        if(list[i].files && list[i].files[GIST_FILENAME]) return list[i].id;
+      }
+      page++;
+    }
+    return null;
+  }
+
+  async function createGist(token, content) {
+    var body = { description: 'Hair Protocol Data', public: false, files: {} };
+    body.files[GIST_FILENAME] = { content: content };
+    var r = await fetch('https://api.github.com/gists', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if(!r.ok) throw new Error('Create gist failed: ' + r.status);
+    var data = await r.json();
+    return data.id;
+  }
+
+  async function patchGist(token, gistId, content) {
+    var body = { files: {} };
+    body.files[GIST_FILENAME] = { content: content };
+    var r = await fetch('https://api.github.com/gists/' + gistId, {
+      method: 'PATCH',
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if(!r.ok) throw new Error('PATCH gist failed: ' + r.status);
+  }
+
+  async function push() {
+    var token = localStorage.getItem(TOKEN_KEY);
+    var gistId = localStorage.getItem(GIST_ID_KEY);
+    if(!token || !gistId) return;
+    setStatus('Saving...', 'saving');
+    try {
+      await patchGist(token, gistId, collectData());
+      setStatus('Connected to GitHub &mdash; data synced', 'connected');
+    } catch(e) {
+      setStatus('Sync error: ' + e.message, 'error');
+    }
+  }
+
+  return {
+    get connected() { return _connected; },
+
+    schedulePush: function() {
+      if(_pushTimer) clearTimeout(_pushTimer);
+      _pushTimer = setTimeout(push, 1500);
+    },
+
+    connect: async function() {
+      var input = document.getElementById('gist-token');
+      var token = input ? input.value.trim() : '';
+      if(!token) { setStatus('Enter a token first', 'error'); return; }
+      setStatus('Connecting...', 'saving');
+      try {
+        // Verify token works
+        var r = await fetch('https://api.github.com/user', {
+          headers: { 'Authorization': 'Bearer ' + token }
+        });
+        if(!r.ok) throw new Error('Invalid token (status ' + r.status + ')');
+        localStorage.setItem(TOKEN_KEY, token);
+        // Find or create gist
+        var gistId = await findGist(token);
+        if(gistId) {
+          localStorage.setItem(GIST_ID_KEY, gistId);
+          setStatus('Found existing data, loading...', 'saving');
+          var content = await getGist(token, gistId);
+          applyData(content);
+          showConnected();
+          // Re-render everything with loaded data
+          if(typeof init === 'function') init();
+        } else {
+          setStatus('Creating new data file...', 'saving');
+          gistId = await createGist(token, collectData());
+          localStorage.setItem(GIST_ID_KEY, gistId);
+          showConnected();
+        }
+      } catch(e) {
+        setStatus('Error: ' + e.message, 'error');
+        localStorage.removeItem(TOKEN_KEY);
+      }
+    },
+
+    disconnect: function() {
+      if(!window.confirm('Disconnect GitHub sync? Your local data stays intact.')) return;
+      localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem(GIST_ID_KEY);
+      _connected = false;
+      var wrap = document.getElementById('gist-token-wrap');
+      if(wrap) wrap.innerHTML = '<input id="gist-token" type="password" placeholder="GitHub personal access token (gist scope)"><button class="gist-btn gist-btn-connect" onclick="GistSync.connect()">Connect</button>';
+      setStatus('Disconnected &mdash; data saves locally only', '');
+    },
+
+    init: async function() {
+      showBanner();
+      var token = localStorage.getItem(TOKEN_KEY);
+      var gistId = localStorage.getItem(GIST_ID_KEY);
+      if(!token || !gistId) return;
+      _connected = true;
+      showConnected();
+      setStatus('Pulling latest data...', 'saving');
+      try {
+        var content = await getGist(token, gistId);
+        applyData(content);
+        setStatus('Connected to GitHub &mdash; data synced', 'connected');
+      } catch(e) {
+        setStatus('Sync error on load: ' + e.message, 'error');
+        _connected = false;
+      }
+    }
+  };
+})();
+
 function init() {
+  GistSync.init();
   updateHeader();
   renderSchedule();
   renderWash();
