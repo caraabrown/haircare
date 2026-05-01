@@ -82,7 +82,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-si
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
 
 /* -- HEADER -- */
-.header{background:#0D1323;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;padding:0 32px;}
+.header{background:rgba(14,20,37,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;padding:0 32px;}
 .header-inner{display:flex;align-items:center;gap:24px;height:52px;}
 .logo{font-family:var(--font-head);font-size:15px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text);white-space:nowrap;flex-shrink:0;}
 .logo span{color:var(--accent);}
@@ -94,7 +94,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-si
 .ico-btn:hover{color:var(--accent);}
 
 /* -- NAV -- */
-.nav{background:#0D1323;border-bottom:1px solid var(--border);position:sticky;top:52px;z-index:199;padding:0 32px;overflow-x:auto;scrollbar-width:none;}
+.nav{background:rgba(14,20,37,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:52px;z-index:199;padding:0 32px;overflow-x:auto;scrollbar-width:none;}
 .nav::-webkit-scrollbar{display:none;}
 .nav-inner{display:flex;gap:0;white-space:nowrap;}
 .n{background:none;border:none;color:var(--text3);font-family:var(--font-body);font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:0 20px;height:44px;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;}
@@ -331,10 +331,9 @@ h3 {
 .photo-prompt .ico{font-size:28px;display:block;margin-bottom:8px;opacity:0.4;}
 
 /* -- MODAL -- */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9998;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:500;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);}
 .modal.open{display:flex;}
 .modal-box{background:var(--surface);border:none;border-radius:var(--r);padding:36px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 32px 80px rgba(0,0,0,0.7);position:relative;}
-
 .modal-x{position:absolute;top:16px;right:16px;width:32px;height:32px;background:none;border:none;color:var(--text3);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;transition:color .15s;}
 .modal-x:hover{color:var(--accent);}
 .modal-title{font-family:var(--font-head);font-size:24px;font-weight:700;margin-bottom:6px;}
@@ -953,10 +952,10 @@ em, i { font-style: italic; }
   border-radius: 3px;
   flex-shrink: 0;
 }
-.imp-essential { background: rgba(255,255,255,.08); color: var(--text2); }
-.imp-useful    { background: rgba(255,255,255,.06); color: var(--text3); }
-.imp-backup    { background: rgba(255,255,255,.04); color: var(--text3); opacity:.7; }
-.imp-wishlist  { background: rgba(255,255,255,.05); color: var(--text3); opacity:.6; }
+.imp-essential { background: rgba(46,204,143,.2); color: var(--cat-nat); }
+.imp-useful    { background: rgba(43,157,170,.15); color: var(--accent); }
+.imp-backup    { background: rgba(255,255,255,.06); color: var(--text3); }
+.imp-wishlist  { background: var(--cat-diy-dim); color: var(--cat-diy); }
 
 /* Step column view */
 .step-cols-view { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
@@ -966,21 +965,6 @@ em, i { font-style: italic; }
 .step-prod-row { display: flex; align-items: center; gap: 8px; padding: 7px 6px; border-radius: 6px; cursor: pointer; transition: background .12s; }
 .step-prod-row:hover { background: var(--surface2); }
 .step-prod-name { font-size: 12px; font-weight: 500; flex: 1; }
-
-/* ── GITHUB SYNC BANNER ── */
-#gist-banner{background:var(--surface);border-bottom:1px solid var(--border);padding:8px 40px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:12px;min-height:40px;}
-#gist-banner.hidden{display:none;}
-.gist-status{display:flex;align-items:center;gap:6px;color:var(--text3);}
-.gist-status.connected{color:var(--cat-nat);}
-.gist-status.error{color:var(--red);}
-.gist-status.saving{color:var(--accent);}
-#gist-token-wrap{display:flex;align-items:center;gap:8px;flex:1;max-width:420px;}
-#gist-token{background:var(--surface2);border:1px solid var(--border2);border-radius:6px;padding:5px 10px;font-size:12px;color:var(--text);font-family:var(--font-body);flex:1;outline:none;}
-#gist-token:focus{border-color:var(--accent);}
-.gist-btn{padding:4px 12px;border-radius:6px;border:none;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font-body);letter-spacing:.04em;}
-.gist-btn-connect{background:var(--accent);color:var(--bg);}
-.gist-btn-disconnect{background:transparent;border:1px solid var(--border2);color:var(--text3);}
-.gist-btn-disconnect:hover{border-color:var(--red);color:var(--red);}
 
 </style>
 </head>
@@ -996,6 +980,7 @@ em, i { font-style: italic; }
     </div>
     <div class="header-right">
       <button class="ico-btn" onclick="openM('m-settings')" title="Settings">&#9881;</button>
+      <button class="ico-btn" onclick="ghSync()" title="Sync to GitHub" id="sync-btn" style="font-size:15px;">&#8645;</button>
       <button class="ico-btn" onclick="openM('m-log')" title="Log Session">+</button>
     </div>
 </div>
@@ -1029,14 +1014,6 @@ em, i { font-style: italic; }
     <button class="n" onclick="go('products')" id="n-products">Products</button>
   </div>
 </nav>
-
-<div id="gist-banner" class="hidden">
-  <div id="gist-token-wrap">
-    <input id="gist-token" type="password" placeholder="GitHub personal access token (gist scope)">
-    <button class="gist-btn gist-btn-connect" onclick="GistSync.connect()">Connect</button>
-  </div>
-  <div id="gist-status" class="gist-status">Not connected &mdash; data saves locally only</div>
-</div>
 
 <main>
 
@@ -1463,7 +1440,7 @@ em, i { font-style: italic; }
       </div>
     </div>
   </div>
-
+</div>
 
   <!-- Low Heat Daily Maintenance -->
   <div id="maint-lowheat" class="stype-panel" style="display:none;">
@@ -1665,7 +1642,6 @@ em, i { font-style: italic; }
     </div>
 
   </div><!-- end maint-stretchedcare -->
-</div>
 
 
 <div class="tab" id="tab-styling">
@@ -2520,7 +2496,7 @@ em, i { font-style: italic; }
     <p class="text2">Track performance, quantity and effectiveness of every product in your protocol.</p>
   </div>
 
-  <!-- Category filter pills - these ARE the filters -->
+  <!-- Category filter pills — these ARE the filters -->
   <div class="flex gap8 mb4" style="flex-wrap:wrap;align-items:center;" id="prod-cat-filters">
     <button class="cat-pill-btn on" onclick="filterProds('all',this)" style="--cc:var(--text2);--cd:var(--surface2);">All</button>
     <button class="cat-pill-btn" onclick="filterProds('Natural',this)" style="--cc:var(--cat-nat);--cd:var(--cat-nat-dim);">&#9679; Natural / Ayurvedic</button>
@@ -2552,10 +2528,10 @@ em, i { font-style: italic; }
     <div class="flex fxb fxa mb20" style="flex-wrap:wrap;gap:12px;">
       <div class="flex gap8" style="flex-wrap:wrap;" id="prod-importance-filters">
         <button class="filter-chip on" onclick="filterProdImportance('all',this)">All</button>
-        <button class="filter-chip" onclick="filterProdImportance('essential',this)">Essential</button>
+        <button class="filter-chip" onclick="filterProdImportance('essential',this)" style="border-color:var(--cat-nat);color:var(--cat-nat);">Essential</button>
         <button class="filter-chip" onclick="filterProdImportance('useful',this)">Useful</button>
-        <button class="filter-chip" onclick="filterProdImportance('backup',this)">Backup</button>
-        <button class="filter-chip" onclick="filterProdImportance('wishlist',this)">Wishlist</button>
+        <button class="filter-chip" onclick="filterProdImportance('backup',this)" style="border-color:var(--text3);color:var(--text3);">Backup</button>
+        <button class="filter-chip" onclick="filterProdImportance('wishlist',this)" style="border-color:var(--cat-diy);color:var(--cat-diy);">Wishlist</button>
       </div>
       <div class="flex gap8">
         <button class="filter-chip" onclick="toggleStepView(this)" id="step-view-btn">View by Step</button>
@@ -2631,6 +2607,13 @@ em, i { font-style: italic; }
     </div>
     <div class="fgrp"><label class="flbl">Claude API Key (optional &mdash; enables in-app analysis)</label><input class="finp" type="password" id="s-apikey" placeholder="sk-ant-...">
     <div class="sz11 text3 mt8">Stored locally, never shared. Leave blank to use the "Ask Claude" redirect instead.</div></div>
+    <div style="border-top:1px solid var(--border);margin:16px 0;padding-top:16px;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">GitHub Sync</div>
+      <div class="fgrp"><label class="flbl">GitHub Token</label><input class="finp" type="password" id="s-ghtoken" placeholder="ghp_...">
+      <div class="sz11 text3 mt8">Personal access token with repo scope. Stored locally only.</div></div>
+      <div class="fgrp"><label class="flbl">Repository (owner/repo)</label><input class="finp" type="text" id="s-ghrepo" placeholder="caraabrown/haircare">
+      <div class="sz11 text3 mt8">The GitHub repo where data will be saved as <code style="font-size:10px;color:var(--accent);">haircare-data.json</code></div></div>
+    </div>
     <button class="btn btn-accent w100" onclick="saveSettings()">Save</button>
   </div>
 </div>
@@ -2649,8 +2632,7 @@ em, i { font-style: italic; }
           <option value="washday_heat">Wash Day + Heat Style</option>
           <option value="cowash">Co-Wash Day</option>
           <option value="heatstyle">Heat Styling Only</option>
-          <option value="naturalsty">Natural Styling</option>
-          <option value="maintenance">Maintenance</option>
+          <option value="naturalsty">Natural Styling Only</option>
           <option value="treatment">Treatment (No Wash)</option>
           <option value="scalpcare">Scalp Care</option>
           <option value="other">Other</option>
@@ -2838,10 +2820,7 @@ em, i { font-style: italic; }
 // ── Storage helpers
 const S = {
   get: k => { try { return JSON.parse(localStorage.getItem(k)); } catch(e) { return localStorage.getItem(k); } },
-  set: (k,v) => {
-    localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v));
-    if(typeof GistSync !== 'undefined' && GistSync.connected) GistSync.schedulePush();
-  }
+  set: (k,v) => localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v))
 };
 
 // ── State
@@ -2892,9 +2871,8 @@ function toggleAcc(item) { item.classList.toggle('open'); }
 
 // ── Modals
 function openM(id) {
-  if(id==='m-edit-all') renderEditAllGrid();
   document.getElementById(id).classList.add('open');
-  if (id==='m-settings') { document.getElementById('s-date').value = ST.start||''; document.getElementById('s-wash').value = ST.washDay; document.getElementById('s-style').value = ST.style; document.getElementById('s-apikey').value = ST.apiKey; }
+  if (id==='m-settings') { document.getElementById('s-date').value = ST.start||''; document.getElementById('s-wash').value = ST.washDay; document.getElementById('s-style').value = ST.style; document.getElementById('s-apikey').value = ST.apiKey; document.getElementById('s-ghtoken').value = S.get('ghToken')||''; document.getElementById('s-ghrepo').value = S.get('ghRepo')||''; }
   if (id==='m-log') document.getElementById('l-date').value = new Date().toISOString().split('T')[0];
 }
 function closeM(id) { document.getElementById(id).classList.remove('open'); }
@@ -2908,6 +2886,10 @@ function saveSettings() {
   S.set('styleType', document.getElementById('s-style').value);
   const k = document.getElementById('s-apikey').value;
   if(k) S.set('apiKey',k);
+  const ght = document.getElementById('s-ghtoken').value.trim();
+  const ghr = document.getElementById('s-ghrepo').value.trim();
+  if(ght) S.set('ghToken', ght);
+  if(ghr) S.set('ghRepo', ghr);
   closeM('m-settings');
   updateHeader();
   renderSchedule();
@@ -3337,85 +3319,34 @@ function renderCatBars() {
   });
   const el=document.getElementById('cat-bars');if(el)el.innerHTML=html;
 }
-
-// ── Edit All Products
-function openEditAll() {
-  renderEditAllGrid();
-  openM('m-edit-all');
+function renderAchievements(pct,streak) {
+  const logs=S.get('logs')||[];
+  const photos=S.get('photos')||{};
+  const w=ST.week||0;
+  const achs=[
+    {icon:'⚡',name:'First Session',earned:logs.length>0},
+    {icon:'✦',name:'3-Day Streak',earned:streak>=3},
+    {icon:'◆',name:'Week 1 Photo',earned:!!photos[1]},
+    {icon:'▲',name:'Perfect Week',earned:pct===100},
+    {icon:'★',name:'7-Day Streak',earned:streak>=7},
+    {icon:'◉',name:'4 Weeks In',earned:w>=4},
+    {icon:'●',name:'5 Sessions',earned:logs.length>=5},
+    {icon:'■',name:'8-Week Champ',earned:w>=8},
+  ];
+  const el=document.getElementById('ach-grid');
+  if(el) el.innerHTML=achs.map(a=>`<div class="ach-card${a.earned?' earned':''}"><div class="ach-icon">${a.icon}</div><div class="ach-name">${a.name}</div></div>`).join('');
 }
-
-function renderEditAllGrid() {
-  var el = document.getElementById('edit-all-grid');
-  if(!el) { console.log('edit-all-grid not found'); return; }
-  el.innerHTML = '<div style="padding:20px;color:var(--text3);text-align:center;">Loading...</div>';
-  // Defer so modal is visible first
-  setTimeout(function() {
-    var prods = [];
-    try { prods = getAllProds(); } catch(e) { console.log('getAllProds error:', e); }
-    console.log('renderEditAllGrid: prods count =', prods.length);
-    if(!prods.length) {
-      el.innerHTML = '<div style="padding:20px;color:var(--text3);">No products loaded. Try refreshing.</div>';
-      return;
-    }
-    var cats = ['Natural','Professional','Commercial','Supplement','DIY'];
-    var html = '';
-    for(var i = 0; i < prods.length; i++) {
-      var p = prods[i];
-      var enc = encodeURIComponent(p.name || '');
-      var safeName = (p.name || '').replace(/"/g, '&quot;');
-      var safeUse = (p.use || '').replace(/"/g, '&quot;');
-      var opts = '';
-      for(var j = 0; j < cats.length; j++) {
-        opts += '<option value="' + cats[j] + '"' + (p.cat === cats[j] ? ' selected' : '') + '>' + cats[j] + '</option>';
-      }
-      html += '<div style="display:grid;grid-template-columns:2fr 1fr 2fr auto;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);" data-idx="' + i + '">' +
-        '<input class="finp" style="padding:6px 8px;font-size:13px;" value="' + safeName + '" data-field="name" data-orig="' + enc + '" placeholder="Product name">' +
-        '<select class="fsel" style="padding:6px 8px;font-size:12px;background:var(--surface2);" data-field="cat" data-orig="' + enc + '">' + opts + '</select>' +
-        '<input class="finp" style="padding:6px 8px;font-size:12px;color:var(--text3);" value="' + safeUse + '" data-field="use" data-orig="' + enc + '" placeholder="Use / step">' +
-        '<button style="background:none;border:none;color:var(--text3);cursor:pointer;font-size:16px;padding:0 6px;" onclick="removeFromEditList(this)" title="Hide">&#10005;</button>' +
-        '</div>';
-    }
-    el.innerHTML = html;
-  }, 50);
-}
-
-function removeFromEditList(btn) {
-  btn.closest('[data-idx]').remove();
-}
-
-function saveAllEdits() {
-  const rows = document.querySelectorAll('#edit-all-grid [data-idx]');
-  const userProds = S.get('user-products') || [];
-  const hidden = S.get('hidden-products') || [];
-  const overrides = S.get('prod-name-overrides') || {};
-
-  rows.forEach(row => {
-    const origEnc = row.querySelector('[data-field="name"]').dataset.orig;
-    const origName = decodeURIComponent(origEnc);
-    const newName = row.querySelector('[data-field="name"]').value.trim();
-    const newCat = row.querySelector('[data-field="cat"]').value;
-    const newUse = row.querySelector('[data-field="use"]').value.trim();
-
-    const isDefault = PRODUCT_DEFAULTS.some(p => p.name === origName);
-    if(isDefault) {
-      // Store override
-      overrides[origName] = {name:newName, cat:newCat, use:newUse};
-    } else {
-      const idx = userProds.findIndex(p => p.name === origName);
-      if(idx !== -1) { userProds[idx].name = newName; userProds[idx].cat = newCat; userProds[idx].use = newUse; }
-    }
+function renderDashPhotos() {
+  const photos=S.get('photos')||{};
+  const wks=Object.keys(photos).map(Number).sort((a,b)=>a-b);
+  const containers=['dash-photos','month-photos'];
+  containers.forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    if(!wks.length){el.innerHTML='<div class="text3 sz13" style="padding:20px;width:100%;">No photos yet — add them in the Progress tab.</div>';return;}
+    el.innerHTML=wks.map(w=>`<div class="photo-slot"><img src="${photos[w]}"><div class="photo-wk-lbl">Week ${w}</div></div>`).join('');
   });
-
-  S.set('prod-name-overrides', overrides);
-  S.set('user-products', userProds);
-  closeM('m-edit-all');
-  renderProdLibrary();
 }
-
-// Update getAllProds to apply name/cat/use overrides
-
-
-
 function renderOverallChart() {
   const ctx=document.getElementById('chart-overall');if(!ctx)return;
   if(charts.overall)charts.overall.destroy();
@@ -3632,12 +3563,12 @@ const PRODUCT_DEFAULTS = [
   {name:'Mizani Fiberfyl Strengthening Fix',cat:'Commercial',use:'Week 2 protein DC',desc:'Bond-building protein. 5-10 min max. Follow with moisture DC.',qty:'med'},
   {name:'Hollywood Beauty Biotin Oil',cat:'Commercial',use:'Pre-poo, scalp, daily LOC O-step',desc:'Biotin-infused lightweight oil blend.',qty:'full'},
   {name:'Leven Rose Jojoba Oil',cat:'Commercial',use:'Daily LOC + scalp massage',desc:'Pure organic jojoba. Sebum mimic.',qty:'full'},
-  {name:'NOW Almond Oil',cat:'Natural',use:'Lightweight daily oil, blending',desc:'Fine and light. Good for blending with JBCO.',qty:'full'},
+  {name:'NOW Almond Oil',cat:'Commercial',use:'Lightweight daily oil, blending',desc:'Fine and light. Good for blending with JBCO.',qty:'full'},
   {name:'Keracare Silken Seal Liquid Sheen',cat:'Commercial',use:'Final LOC sealant, shine',desc:'Silicone sealant. Last LOC layer.',qty:'full'},
   {name:'Oribe Gold Lust Transformative Mask',cat:'Commercial',use:'Week 1 moisture DC base',desc:'Luxury moisture DC. Layer with boosters.',qty:'med'},
   {name:'Oribe Gold Lust Repair Shampoo',cat:'Commercial',use:'Wash day shampoo',desc:'Sulfate-free. Safe with keratin treatment.',qty:'med'},
   {name:'Oribe Imperial Blowout Styling Cream',cat:'Commercial',use:'Blow dry, LOC C-step',desc:'Heat activated smoothing. Frizz control.',qty:'med'},
-  {name:'Oribe Impermeable Anti-Humidity Spray',cat:'Commercial',use:'Finishing — final step on dry hair',desc:'Film-forming humidity barrier. Prevents expansion.',qty:'med'},
+  {name:'Oribe Impermeable Anti-Humidity Spray',cat:'Commercial',use:'Final step on dry hair',desc:'Film-forming humidity barrier. Prevents expansion.',qty:'med'},
   {name:'Oribe Balm d\'Or Heat Styling Shield',cat:'Commercial',use:'Heat protector pre-blow dry',desc:'Gold-infused thermal shield.',qty:'med'},
   {name:'CER-100 Collagen Ceramide Treatment',cat:'Commercial',use:'Week 3 bond repair rotation',desc:'Replenishes ceramides depleted by heat.',qty:'med'},
   {name:'AllPlex No.7 Bonding Oil',cat:'Commercial',use:'Week 3 bond repair rotation',desc:'Disulfide bond repair technology.',qty:'med'},
@@ -3772,16 +3703,11 @@ function deleteProduct(e, nameEnc) {
 
 function getAllProds() {
   const saved = S.get('user-products') || [];
-  const qtyOv = S.get('prod-qty-overrides') || {};
-  const nameOv = S.get('prod-name-overrides') || {};
+  const overrides = S.get('prod-qty-overrides') || {};
   const hidden = S.get('hidden-products') || [];
   const defaults = PRODUCT_DEFAULTS
     .filter(p => !hidden.includes(p.name))
-    .map(p => {
-      const ov = nameOv[p.name] || {};
-      const q = qtyOv[p.name] || qtyOv[ov.name] || p.qty;
-      return {...p, ...(ov.name?{name:ov.name}:{}), ...(ov.cat?{cat:ov.cat}:{}), ...(ov.use?{use:ov.use}:{}), qty:q};
-    });
+    .map(p => overrides[p.name] ? {...p, qty:overrides[p.name]} : p);
   return [...defaults, ...saved.filter(s => !PRODUCT_DEFAULTS.some(d => d.name === s.name))];
 }
 
@@ -3944,23 +3870,6 @@ function renderStepView() {
 }
 
 
-
-function getProdStep(p) {
-  const use = (p.use || p.desc || '').toLowerCase();
-  if(use.includes('pre-poo') || use.includes('overnight') || use.includes('chebe')) return 'Pre-Poo';
-  if(use.includes('shampoo') || use.includes('clarif') || use.includes('co-wash') || use.includes('cleanse')) return 'Shampoo';
-  if(use.includes('deep condition') || use.includes('dc') || use.includes('protein dc') || use.includes('bond repair') || use.includes('protein treatment')) return 'Deep Condition';
-  if(use.includes('rinse') || use.includes('acv') || use.includes('cuticle seal')) return 'Rinse & Seal';
-  if(use.includes('leave-in') || use.includes('loc') || use.includes('lco') || use.includes('l-step')) return 'Leave-In / LOC';
-  if(use.includes('blow dry') || use.includes('blowdry') || use.includes('heat protect') || use.includes('flat iron') || use.includes('heat styl')) return 'Heat Styling';
-  if(use.includes('scalp') || use.includes('edge') || use.includes('growth') || use.includes('follicle') || use.includes('peptide')) return 'Scalp';
-  if(use.includes('styling') || use.includes('gel') || use.includes('curl') || use.includes('twist') || use.includes('wash & go') || use.includes('hold')) return 'Styling';
-  if(use.includes('finish') || use.includes('shine') || use.includes('anti-humid') || use.includes('sealant')) return 'Finishing';
-  if(use.includes('supplement') || use.includes('shake') || use.includes('capsule') || use.includes('daily') || use.includes('vitamin') || use.includes('collagen') || use.includes('msm') || use.includes('omega')) return 'Supplement';
-  if(use.includes('keratin')) return 'Keratin';
-  return '';
-}
-
 function renderProdLibrary() {
   const el = document.getElementById('prod-card-grid');
   if(!el) return;
@@ -3968,9 +3877,9 @@ function renderProdLibrary() {
   if(_prodFilter !== 'all') prods = prods.filter(p => p.cat === _prodFilter);
   
   const qtyCircle = {
-    full: `<svg width="18" height="18" viewBox="0 0 18 18" style="pointer-events:none"><circle cx="9" cy="9" r="8" fill="var(--cat-nat)" fill-opacity="0.9"/></svg>`,
-    med:  `<svg width="18" height="18" viewBox="0 0 18 18" style="pointer-events:none"><circle cx="9" cy="9" r="8" fill="none" stroke="var(--cat-nat)" stroke-width="1.5"/><path d="M9 1 A8 8 0 0 1 9 17 Z" fill="var(--cat-nat)" fill-opacity="0.9"/></svg>`,
-    low:  `<svg width="18" height="18" viewBox="0 0 18 18" style="pointer-events:none"><circle cx="9" cy="9" r="8" fill="none" stroke="var(--text3)" stroke-width="1.5"/></svg>`,
+    full: `<svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8" fill="var(--cat-nat)" fill-opacity="0.9"/></svg>`,
+    med:  `<svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8" fill="none" stroke="var(--cat-nat)" stroke-width="1.5"/><path d="M9 1 A8 8 0 0 1 9 17 Z" fill="var(--cat-nat)" fill-opacity="0.9"/></svg>`,
+    low:  `<svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8" fill="none" stroke="var(--text3)" stroke-width="1.5"/></svg>`,
   };
   
   el.innerHTML = prods.map(p => {
@@ -3991,12 +3900,12 @@ function renderProdLibrary() {
         <div class="prod-cat-dot" style="background:${color};"></div>
         <div>
           <div class="prod-name">${p.name}</div>
-          <div class="prod-cat-label" style="color:var(--text3);">${getProdStep(p) || '&nbsp;'}</div>
+          <div class="prod-cat-label" style="color:${color};">${p.cat}</div>
         </div>
       </div>
       <div class="prod-note">${p.use || p.desc || ''}</div>
       <div class="prod-meta">
-        <span class="qty-circle" title="Quantity: ${qty} — double-click to change" onclick="cycleQty(event,'${encodeURIComponent(p.name)}')">${qtyCircle[qty]||qtyCircle.full}</span>
+        <span class="qty-circle" title="Quantity: ${qty} — double-click to change" ondblclick="cycleQty(event,'${encodeURIComponent(p.name)}')">${qtyCircle[qty]||qtyCircle.full}</span>
         <span class="imp-badge imp-${imp}" ondblclick="cycleImportance(event,'${encodeURIComponent(p.name)}')" title="Double-click to change importance">${imp}</span>
         ${isExp ? '<span class="prod-badge badge-exp">Expired</span>' : ''}
         ${ratings.length > 0 ? `<span class="prod-badge" style="background:rgba(255,255,255,.05);color:var(--text3);">${ratings.length} uses</span>` : ''}
@@ -4056,10 +3965,9 @@ function openProdDetail(nameEnc) {
       <div class="sz14 text2 mb16">${p.desc || p.note || ''}</div>
       ${ratings.length ? `<div style="font-size:12px;font-weight:600;color:var(--text3);margin-bottom:8px;">SESSION HISTORY (${ratings.length} uses · avg ${avg}★)</div>
       <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:16px;">${ratings.map(r=>`<div style="padding:4px 8px;border-radius:4px;background:var(--surface2);font-size:11px;">${r.date} ${'★'.repeat(r.r)}</div>`).join('')}</div>` : ''}
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <div style="display:flex;gap:8px;">
         <button class="btn btn-ai btn-sm" onclick="askClaudeProd('${encodeURIComponent(name)}')">Ask Claude</button>
         <button class="btn btn-accent btn-sm" onclick="logProdRating('${encodeURIComponent(name)}')">Rate This Use</button>
-        <button class="btn btn-sm" style="background:var(--surface2);margin-left:auto;" onclick="editProduct(null,'${encodeURIComponent(name)}')">&#9998; Edit</button>
       </div>
     </div>`;
   openM('m-element');
@@ -4373,54 +4281,43 @@ async function getDashInsights() {
 // ══════════════════════════════════════════════════════════════
 const SESSION_STEPS = {
   washday: [
-    {id:'prepoo',label:'Pre-Poo',color:'var(--cat-diy)',prods:['prepoo'],tools:['Wide-Tooth Comb','Finger Comb','Scalp Massager']},
-    {id:'shampoo',label:'Shampoo / Cleanse',color:'var(--cat-com)',prods:['shampoo'],tools:['Shower Comb','Scalp Massager']},
-    {id:'dc',label:'Deep Condition',color:'var(--cat-pro)',prods:['condition'],tools:['Hood Dryer / Heat Cap','Hooded Dryer','Plastic Processing Cap']},
-    {id:'rinse',label:'Rinse & Cuticle Seal',color:'var(--cat-nat)',prods:['rinse'],tools:['Microfiber Towel','Spray Bottle']},
-    {id:'leavein',label:'Leave-In / LOC',color:'var(--accent)',prods:['leavein'],tools:['Wide-Tooth Comb','Finger Comb']},
-    {id:'scalp',label:'Scalp',color:'var(--cat-pro)',prods:['scalp'],tools:['Scalp Massager']},
-    {id:'styling',label:'Styling',color:'var(--cat-diy)',prods:['styling'],tools:['Diffuser Attachment','Wide-Tooth Comb','Finger Comb','Denman Brush']},
-    {id:'finish',label:'Finishing',color:'var(--cat-com)',prods:['finish'],tools:[]},
+    {id:'prepoo',label:'Pre-Poo',color:'var(--cat-diy)',prods:['Natural','Professional'],tools:['Wide-Tooth Comb','Finger Comb']},
+    {id:'shampoo',label:'Shampoo',color:'var(--cat-com)',prods:['shampoo'],tools:['Shower Comb','Scalp Massager']},
+    {id:'condition',label:'Condition / Deep Condition',color:'var(--cat-pro)',prods:['condition'],tools:['Hood Dryer / Heat Cap','Hooded Dryer']},
+    {id:'rinse',label:'Rinse & Cuticle Seal',color:'var(--cat-nat)',prods:['rinse'],tools:['Microfiber Towel']},
+    {id:'leavein',label:'Leave-In & LOC/LCO',color:'var(--cat-com)',prods:['leavein'],tools:['Wide-Tooth Comb','Finger Comb']},
+    {id:'style',label:'Style (Natural)',color:'var(--accent)',prods:['styling'],tools:['Diffuser','Wide-Tooth Comb','Finger Comb','Denman']},
   ],
   washday_heat: [
-    {id:'prepoo',label:'Pre-Poo',color:'var(--cat-diy)',prods:['prepoo'],tools:['Wide-Tooth Comb','Finger Comb']},
-    {id:'shampoo',label:'Shampoo / Cleanse',color:'var(--cat-com)',prods:['shampoo'],tools:['Shower Comb','Scalp Massager']},
-    {id:'dc',label:'Deep Condition',color:'var(--cat-pro)',prods:['condition'],tools:['Hood Dryer / Heat Cap','Hooded Dryer','Plastic Processing Cap']},
-    {id:'rinse',label:'Rinse & Cuticle Seal',color:'var(--cat-nat)',prods:['rinse'],tools:['Microfiber Towel']},
-    {id:'leavein',label:'Leave-In / LOC',color:'var(--accent)',prods:['leavein'],tools:['Wide-Tooth Comb']},
+    {id:'prepoo',label:'Pre-Poo',color:'var(--cat-diy)',prods:['Natural','Professional'],tools:['Wide-Tooth Comb','Finger Comb']},
+    {id:'shampoo',label:'Shampoo',color:'var(--cat-com)',prods:['shampoo'],tools:['Shower Comb','Scalp Massager']},
+    {id:'condition',label:'Condition / Deep Condition',color:'var(--cat-pro)',prods:['condition'],tools:['Hood Dryer / Heat Cap','Hooded Dryer']},
+    {id:'rinse',label:'Rinse & Cuticle Seal',color:'var(--cat-nat)',prods:['rinse'],tools:[]},
+    {id:'leavein',label:'Leave-In & LOC/LCO',color:'var(--cat-com)',prods:['leavein'],tools:['Wide-Tooth Comb']},
     {id:'blowdry',label:'Blow Dry',color:'var(--cat-ing)',prods:['blowdry'],tools:['Red Pro Titanium Turbo 3500','Wide-Tooth Comb','Rat Tail Comb','Bristle Brush']},
-    {id:'finish',label:'Flat Iron / Heat Style',color:'#FF6B9D',prods:['heatprotect'],tools:['Jilbre Flat Iron (Large)','Jilbre Flat Iron (Small)','Jilbre Travel Iron','Rat Tail Comb','Fine-Tooth Comb']},
+    {id:'flatstyle',label:'Flat Iron / High Heat',color:'#FF6B9D',prods:['heatprotect'],tools:['Jilbre Flat Iron (Large)','Jilbre Flat Iron (Small)','Jilbre Travel Iron','Rat Tail Comb','Fine-Tooth Comb']},
   ],
   cowash: [
-    {id:'shampoo',label:'Co-Wash',color:'var(--cat-nat)',prods:['condition'],tools:['Shower Comb','Finger Comb']},
-    {id:'dc',label:'Condition',color:'var(--cat-pro)',prods:['condition'],tools:[]},
-    {id:'rinse',label:'Rinse & Cuticle Seal',color:'var(--cat-nat)',prods:['rinse'],tools:['Microfiber Towel']},
-    {id:'leavein',label:'Leave-In / LOC',color:'var(--accent)',prods:['leavein'],tools:['Finger Comb']},
-    {id:'styling',label:'Styling',color:'var(--cat-diy)',prods:['styling'],tools:['Wide-Tooth Comb','Finger Comb','Denman Brush']},
+    {id:'cowash',label:'Co-Wash',color:'var(--cat-nat)',prods:['condition'],tools:['Shower Comb','Finger Comb']},
+    {id:'condition',label:'Condition',color:'var(--cat-pro)',prods:['condition'],tools:[]},
+    {id:'rinse',label:'Rinse & Seal',color:'var(--accent)',prods:['rinse'],tools:['Microfiber Towel']},
+    {id:'leavein',label:'Leave-In & LOC',color:'var(--cat-com)',prods:['leavein'],tools:['Finger Comb']},
+    {id:'style',label:'Style',color:'var(--cat-diy)',prods:['styling'],tools:['Wide-Tooth Comb','Finger Comb']},
   ],
   heatstyle: [
-    {id:'blowdry',label:'Blow Dry',color:'var(--cat-ing)',prods:['blowdry'],tools:['Red Pro Titanium Turbo 3500','Wide-Tooth Comb','Rat Tail Comb','Bristle Brush']},
-    {id:'finish',label:'Flat Iron / Heat Style',color:'#FF6B9D',prods:['heatprotect'],tools:['Jilbre Flat Iron (Large)','Jilbre Flat Iron (Small)','Jilbre Travel Iron','Rat Tail Comb','Fine-Tooth Comb']},
+    {id:'blowdry',label:'Blow Dry',color:'var(--cat-ing)',prods:['blowdry'],tools:['Red Pro Titanium Turbo 3500','Wide-Tooth Comb','Rat Tail Comb']},
+    {id:'flatstyle',label:'Flat Iron',color:'#FF6B9D',prods:['heatprotect'],tools:['Jilbre Flat Iron (Large)','Jilbre Flat Iron (Small)','Jilbre Travel Iron','Rat Tail Comb']},
   ],
   naturalsty: [
-    {id:'scalp',label:'Scalp',color:'var(--cat-pro)',prods:['scalp'],tools:['Scalp Massager']},
-    {id:'leavein',label:'Refresh / Leave-In',color:'var(--accent)',prods:['refresh'],tools:['Spray Bottle','Finger Comb']},
-    {id:'styling',label:'Natural Styling',color:'var(--cat-diy)',prods:['styling'],tools:['Wide-Tooth Comb','Finger Comb','Denman Brush','Diffuser Attachment']},
-    {id:'finish',label:'Finishing',color:'var(--cat-com)',prods:['finish'],tools:[]},
-  ],
-  maintenance: [
-    {id:'scalp',label:'Scalp Care',color:'var(--cat-pro)',prods:['scalp'],tools:['Scalp Massager','Spray Bottle']},
-    {id:'leavein',label:'Moisture / Refresh',color:'var(--accent)',prods:['refresh'],tools:['Spray Bottle','Finger Comb']},
-    {id:'styling',label:'Style Touch-Up',color:'var(--cat-diy)',prods:['styling'],tools:['Wide-Tooth Comb','Finger Comb','Rat Tail Comb','Scissors']},
-    {id:'finish',label:'Finishing',color:'var(--cat-com)',prods:['finish'],tools:['Satin Bonnet','Satin Pillowcase']},
-    {id:'keratin',label:'Keratin Treatment',color:'#FF6B9D',prods:['keratin'],tools:['Rat Tail Comb','Fine-Tooth Comb','Jilbre Flat Iron (Large)']},
+    {id:'refresh',label:'Refresh',color:'var(--cat-nat)',prods:['refresh'],tools:['Diffuser','Finger Comb']},
+    {id:'style',label:'Style',color:'var(--accent)',prods:['styling'],tools:['Wide-Tooth Comb','Finger Comb','Denman']},
   ],
   treatment: [
-    {id:'dc',label:'Deep Condition',color:'var(--cat-pro)',prods:['condition'],tools:['Hood Dryer / Heat Cap','Plastic Processing Cap']},
-    {id:'rinse',label:'Rinse & Seal',color:'var(--cat-nat)',prods:['rinse'],tools:['Microfiber Towel']},
+    {id:'condition',label:'Deep Condition',color:'var(--cat-pro)',prods:['condition'],tools:['Hood Dryer / Heat Cap']},
+    {id:'rinse',label:'Rinse & Seal',color:'var(--cat-nat)',prods:['rinse'],tools:[]},
   ],
   scalpcare: [
-    {id:'scalp',label:'Scalp Treatment',color:'var(--cat-pro)',prods:['scalp'],tools:['Scalp Massager','Spray Bottle']},
+    {id:'scalp',label:'Scalp Treatment',color:'var(--cat-nat)',prods:['scalp'],tools:['Scalp Massager']},
   ],
   other: [
     {id:'other',label:'Session',color:'var(--accent)',prods:['all'],tools:[]},
@@ -4428,9 +4325,6 @@ const SESSION_STEPS = {
 };
 
 const PROD_BY_STEP = {
-  prepoo: ['Chebe Penetrating Overnight Butter (DIY)','Bhringraj-Brahmi Scalp Growth Oil (DIY)','JBCO (Jamaican Black Castor Oil)','NOW Almond Oil','Hollywood Beauty Biotin Oil','Avocado Oil','Coconut Oil','Sesame Oil','Vitamin E Oil','Chebe Powder','Bhringraj Powder'],
-  keratin: ['GK Keratin Treatment'],
-  finish: ['Oribe Impermeable Anti-Humidity Spray','Bio Silk Silk Therapy','Amika Glass Action Elixir','Keracare Silken Seal Liquid Sheen','Olaplex No. 9 Bond Protector','Farm & Table Frizz Free Smoothing Oil','AllDay Edges','Satin Bonnet'],
   shampoo: ['Design Essentials Oat Protein & Henna Shampoo','Chi Infra Shampoo','Oribe Gold Lust Repair Shampoo','Nizoral Anti-Dandruff Shampoo','Natural Black Soap','Shikakai-Amla Clarifying Rinse (DIY)'],
   condition: ['Oribe Gold Lust Transformative Mask','ORS Olive Oil Replenishing Conditioner','ORS Banana Bamboo Conditioner','Matrix Food for Soft Conditioner','Mizani Fiberfyl Strengthening Fix','CER-100 Collagen Ceramide Treatment','Aphogee Protein Treatment','Aphogee Two-Minute Reconstructor','Collagen-Jojoba Protein Blend (DIY)','Hibiscus Moisture Bomb DC (DIY)','Triple Protein Intensive Mask (DIY)'],
   rinse: ['ACV (Apple Cider Vinegar)','Green Tea + ACV Final Rinse (DIY)','Aloe Vera'],
@@ -4453,7 +4347,7 @@ const TAG_GROUPS = [
   {group:'HEAT', tags:['Reversion','No Reversion','Smooth','Frizz Resistant','Overprocessed']},
 ];
 
-const ALL_TOOLS = ['Scissors',
+const ALL_TOOLS = [
   'Scalp Massager','Microfiber Towel','Wide-Tooth Comb','Shower Comb','Rat Tail Comb',
   'Fine-Tooth Comb','Finger Comb','Denman Brush','Bristle Brush',
   'Hood Dryer / Heat Cap','Hooded Dryer','Diffuser Attachment',
@@ -4666,7 +4560,7 @@ function renderDiary() {
   
   if(!logs.length) { el.innerHTML = '<div class="text3 sz13" style="text-align:center;padding:40px;">No sessions found. Log your first session using the + button.</div>'; return; }
   
-  const TYPE_LABELS = {washday:'Wash Day',washday_heat:'Wash Day + Heat',cowash:'Co-Wash',heatstyle:'Heat Style',naturalsty:'Natural Style',maintenance:'Maintenance',treatment:'Treatment',scalpcare:'Scalp Care',other:'Session'};
+  const TYPE_LABELS = {washday:'Wash Day',washday_heat:'Wash Day + Heat',cowash:'Co-Wash',heatstyle:'Heat Style',naturalsty:'Natural Style',treatment:'Treatment',scalpcare:'Scalp Care',other:'Session'};
   
   el.innerHTML = logs.map(l => {
     const allTags = l.tags || (l.steps||[]).flatMap(s=>s.tags||[]);
@@ -4714,7 +4608,7 @@ function renderShoppingList() {
           <div class="fw6 sz14">${p.name}</div>
           <div class="text3 sz12">${p.use||''}</div>
         </div>
-        <span class="qty-circle" onclick="cycleQty(event,'${encodeURIComponent(p.name)}')" title="Double-click to update">
+        <span class="qty-circle" ondblclick="cycleQty(event,'${encodeURIComponent(p.name)}')" title="Double-click to update">
           <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8" fill="none" stroke="var(--text3)" stroke-width="1.5"/></svg>
         </span>
       </div>`).join('')}
@@ -4879,253 +4773,7 @@ function renderSessionPhotosForStep(step) {
 const _origRenderPhotos = renderPhotos;
 // (renderPhotos already exists — we add filterPhotos after it)
 
-function editProduct(e, nameEnc) {
-  if(e && e.stopPropagation) e.stopPropagation();
-  closeM('m-element');
-  setTimeout(function() {
-    var name = decodeURIComponent(nameEnc);
-    var prods = getAllProds();
-    var p = null;
-    for(var i=0;i<prods.length;i++){ if(prods[i].name===name){p=prods[i];break;} }
-    if(!p){ p={name:name,cat:'Commercial',use:''}; }
-    document.getElementById('ep-name').value = p.name;
-    document.getElementById('ep-cat').value = p.cat || 'Commercial';
-    document.getElementById('ep-use').value = p.use || '';
-    document.getElementById('ep-orig').value = nameEnc;
-    openM('m-edit-prod');
-  }, 100);
-}
-
-function saveProductEdit() {
-  var origName = decodeURIComponent(document.getElementById('ep-orig').value);
-  var newName = document.getElementById('ep-name').value.trim();
-  var newCat = document.getElementById('ep-cat').value;
-  var newUse = document.getElementById('ep-use').value.trim();
-  if(!newName) return;
-  var isDefault = false;
-  for(var i=0;i<PRODUCT_DEFAULTS.length;i++){
-    if(PRODUCT_DEFAULTS[i].name===origName){isDefault=true;break;}
-  }
-  if(isDefault) {
-    var overrides = S.get('prod-name-overrides') || {};
-    overrides[origName] = {name:newName, cat:newCat, use:newUse};
-    S.set('prod-name-overrides', overrides);
-  } else {
-    var saved = S.get('user-products') || [];
-    for(var j=0;j<saved.length;j++){
-      if(saved[j].name===origName){
-        saved[j].name=newName; saved[j].cat=newCat; saved[j].use=newUse;
-        break;
-      }
-    }
-    S.set('user-products', saved);
-  }
-  closeM('m-edit-prod');
-  renderProdLibrary();
-}
-
-
-// ════════════════════════════════════════════════════════
-// GIST SYNC MODULE
-// ════════════════════════════════════════════════════════
-const GistSync = (function() {
-  var GIST_FILENAME = 'hairprotocol_data.json';
-  var TOKEN_KEY = 'gist_token';
-  var GIST_ID_KEY = 'gist_id';
-  var DATA_KEYS = [
-    'start','washDay','styleType','logs','user-products','diy-recipes',
-    'prod-qty-overrides','prod-name-overrides','prod-importance',
-    'hidden-products','photos','session-photos','tools-checked',
-    'supps-checked','tag-counts','gist_token','gist_id'
-  ];
-  var _pushTimer = null;
-  var _connected = false;
-
-  function setStatus(msg, cls) {
-    var el = document.getElementById('gist-status');
-    if(!el) return;
-    el.textContent = msg;
-    el.className = 'gist-status' + (cls ? ' ' + cls : '');
-  }
-
-  function showBanner() {
-    var b = document.getElementById('gist-banner');
-    if(b) b.classList.remove('hidden');
-  }
-
-  function showConnected() {
-    var wrap = document.getElementById('gist-token-wrap');
-    if(wrap) wrap.innerHTML = '<button class="gist-btn gist-btn-disconnect" onclick="GistSync.disconnect()">Disconnect</button>';
-    setStatus('Connected to GitHub &mdash; data synced', 'connected');
-    _connected = true;
-  }
-
-  function collectData() {
-    var data = {};
-    DATA_KEYS.forEach(function(k) {
-      var v = localStorage.getItem(k);
-      if(v !== null) data[k] = v;
-    });
-    return JSON.stringify(data);
-  }
-
-  function applyData(jsonString) {
-    try {
-      var data = JSON.parse(jsonString);
-      Object.keys(data).forEach(function(k) {
-        if(k !== TOKEN_KEY && k !== GIST_ID_KEY) {
-          localStorage.setItem(k, data[k]);
-        }
-      });
-    } catch(e) {
-      console.error('GistSync applyData error:', e);
-    }
-  }
-
-  async function getGist(token, gistId) {
-    var r = await fetch('https://api.github.com/gists/' + gistId, {
-      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
-    });
-    if(!r.ok) throw new Error('GET gist failed: ' + r.status);
-    var data = await r.json();
-    var file = data.files && data.files[GIST_FILENAME];
-    if(!file) throw new Error('File not found in gist');
-    // If content is truncated, fetch raw url
-    if(file.truncated && file.raw_url) {
-      var raw = await fetch(file.raw_url);
-      return await raw.text();
-    }
-    return file.content;
-  }
-
-  async function findGist(token) {
-    var page = 1;
-    while(page <= 5) {
-      var r = await fetch('https://api.github.com/gists?per_page=100&page=' + page, {
-        headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
-      });
-      if(!r.ok) throw new Error('List gists failed: ' + r.status);
-      var list = await r.json();
-      if(!list.length) break;
-      for(var i=0;i<list.length;i++) {
-        if(list[i].files && list[i].files[GIST_FILENAME]) return list[i].id;
-      }
-      page++;
-    }
-    return null;
-  }
-
-  async function createGist(token, content) {
-    var body = { description: 'Hair Protocol Data', public: false, files: {} };
-    body.files[GIST_FILENAME] = { content: content };
-    var r = await fetch('https://api.github.com/gists', {
-      method: 'POST',
-      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
-    if(!r.ok) throw new Error('Create gist failed: ' + r.status);
-    var data = await r.json();
-    return data.id;
-  }
-
-  async function patchGist(token, gistId, content) {
-    var body = { files: {} };
-    body.files[GIST_FILENAME] = { content: content };
-    var r = await fetch('https://api.github.com/gists/' + gistId, {
-      method: 'PATCH',
-      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
-    if(!r.ok) throw new Error('PATCH gist failed: ' + r.status);
-  }
-
-  async function push() {
-    var token = localStorage.getItem(TOKEN_KEY);
-    var gistId = localStorage.getItem(GIST_ID_KEY);
-    if(!token || !gistId) return;
-    setStatus('Saving...', 'saving');
-    try {
-      await patchGist(token, gistId, collectData());
-      setStatus('Connected to GitHub &mdash; data synced', 'connected');
-    } catch(e) {
-      setStatus('Sync error: ' + e.message, 'error');
-    }
-  }
-
-  return {
-    get connected() { return _connected; },
-
-    schedulePush: function() {
-      if(_pushTimer) clearTimeout(_pushTimer);
-      _pushTimer = setTimeout(push, 1500);
-    },
-
-    connect: async function() {
-      var input = document.getElementById('gist-token');
-      var token = input ? input.value.trim() : '';
-      if(!token) { setStatus('Enter a token first', 'error'); return; }
-      setStatus('Connecting...', 'saving');
-      try {
-        // Verify token works
-        var r = await fetch('https://api.github.com/user', {
-          headers: { 'Authorization': 'Bearer ' + token }
-        });
-        if(!r.ok) throw new Error('Invalid token (status ' + r.status + ')');
-        localStorage.setItem(TOKEN_KEY, token);
-        // Find or create gist
-        var gistId = await findGist(token);
-        if(gistId) {
-          localStorage.setItem(GIST_ID_KEY, gistId);
-          setStatus('Found existing data, loading...', 'saving');
-          var content = await getGist(token, gistId);
-          applyData(content);
-          showConnected();
-          // Re-render everything with loaded data
-          if(typeof init === 'function') init();
-        } else {
-          setStatus('Creating new data file...', 'saving');
-          gistId = await createGist(token, collectData());
-          localStorage.setItem(GIST_ID_KEY, gistId);
-          showConnected();
-        }
-      } catch(e) {
-        setStatus('Error: ' + e.message, 'error');
-        localStorage.removeItem(TOKEN_KEY);
-      }
-    },
-
-    disconnect: function() {
-      if(!window.confirm('Disconnect GitHub sync? Your local data stays intact.')) return;
-      localStorage.removeItem(TOKEN_KEY);
-      localStorage.removeItem(GIST_ID_KEY);
-      _connected = false;
-      var wrap = document.getElementById('gist-token-wrap');
-      if(wrap) wrap.innerHTML = '<input id="gist-token" type="password" placeholder="GitHub personal access token (gist scope)"><button class="gist-btn gist-btn-connect" onclick="GistSync.connect()">Connect</button>';
-      setStatus('Disconnected &mdash; data saves locally only', '');
-    },
-
-    init: async function() {
-      showBanner();
-      var token = localStorage.getItem(TOKEN_KEY);
-      var gistId = localStorage.getItem(GIST_ID_KEY);
-      if(!token || !gistId) return;
-      _connected = true;
-      showConnected();
-      setStatus('Pulling latest data...', 'saving');
-      try {
-        var content = await getGist(token, gistId);
-        applyData(content);
-        setStatus('Connected to GitHub &mdash; data synced', 'connected');
-      } catch(e) {
-        setStatus('Sync error on load: ' + e.message, 'error');
-        _connected = false;
-      }
-    }
-  };
-})();
-
 function init() {
-  GistSync.init();
   updateHeader();
   renderSchedule();
   renderWash();
@@ -5151,46 +4799,67 @@ function init() {
     }
   });
 }
+// ── GitHub Sync
+const GH_KEYS = ['start','washDay','styleType','apiKey','logs','photos','session-photos','saved-products','user-products','hidden-products','prod-importance','prod-qty-overrides','tools','supps','diy-recipes','tag-counts'];
+const GH_FILE = 'haircare-data.json';
+
+function ghSetStatus(msg, color) {
+  const btn = document.getElementById('sync-btn');
+  if(!btn) return;
+  btn.title = msg;
+  btn.style.color = color || '';
+  setTimeout(() => { btn.style.color = ''; btn.title = 'Sync to GitHub'; }, 3000);
+}
+
+async function ghSync() {
+  const token = S.get('ghToken');
+  const repo  = S.get('ghRepo');
+  if(!token || !repo) { openM('m-settings'); alert('Add your GitHub token and repo in Settings first.'); return; }
+  ghSetStatus('Syncing…', 'var(--accent)');
+  const data = {};
+  GH_KEYS.forEach(k => { const v = localStorage.getItem(k); if(v !== null) data[k] = v; });
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+  try {
+    // Get current SHA if file exists
+    let sha = null;
+    const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/${GH_FILE}`, {
+      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    if(getRes.ok) { const j = await getRes.json(); sha = j.sha; }
+    // Push
+    const body = { message: `Hair data sync ${new Date().toISOString().slice(0,10)}`, content };
+    if(sha) body.sha = sha;
+    const putRes = await fetch(`https://api.github.com/repos/${repo}/contents/${GH_FILE}`, {
+      method: 'PUT',
+      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if(putRes.ok) { ghSetStatus('Saved ✓', 'var(--green)'); }
+    else { const e = await putRes.json(); ghSetStatus('Error: ' + (e.message||putRes.status), 'var(--red)'); }
+  } catch(e) { ghSetStatus('Network error', 'var(--red)'); }
+}
+
+async function ghLoad() {
+  const token = S.get('ghToken');
+  const repo  = S.get('ghRepo');
+  if(!token || !repo) return;
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repo}/contents/${GH_FILE}`, {
+      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    if(!res.ok) return;
+    const j = await res.json();
+    const raw = decodeURIComponent(escape(atob(j.content.replace(/\n/g,''))));
+    const data = JSON.parse(raw);
+    Object.entries(data).forEach(([k,v]) => localStorage.setItem(k, v));
+    location.reload();
+  } catch(e) { console.warn('GitHub load failed', e); }
+}
+
+// Auto-load from GitHub on first visit if no local data
+if(!S.get('start') && S.get('ghToken') && S.get('ghRepo')) { ghLoad(); }
+
 init();
 </script>
-
-<!-- Edit All Products Modal -->
-<div class="modal" id="m-edit-all">
-  <div class="modal-box" style="max-width:800px;width:96vw;max-height:88vh;">
-    <button class="modal-x" onclick="closeM('m-edit-all')">&#10005;</button>
-    <div class="modal-title">Edit Products</div>
-    <div class="modal-sub">Edit names, categories, and uses. Changes save when you click Save All.</div>
-    <div id="edit-all-grid" style="overflow-y:auto;max-height:60vh;margin-bottom:16px;"></div>
-    <div class="flex gap8">
-      <button class="btn btn-accent" style="flex:1;" onclick="saveAllEdits()">Save All</button>
-      <button class="btn" style="background:var(--surface2);" onclick="closeM('m-edit-all')">Cancel</button>
-    </div>
-  </div>
-</div>
-
-
-<!-- Single product edit modal -->
-<div class="modal" id="m-edit-prod">
-  <div class="modal-box" style="max-width:420px;">
-    <button class="modal-x" onclick="closeM('m-edit-prod')">&#10005;</button>
-    <div class="modal-title">Edit Product</div>
-    <div class="fgrp"><label class="flbl">Name</label><input class="finp" id="ep-name" placeholder="Product name"></div>
-    <div class="fgrp"><label class="flbl">Category</label>
-      <select class="fsel" id="ep-cat">
-        <option value="Natural">Natural / Ayurvedic</option>
-        <option value="Professional">Professional / Lab</option>
-        <option value="Commercial">Commercial</option>
-        <option value="Supplement">Supplement</option>
-        <option value="DIY">DIY</option>
-      </select>
-    </div>
-    <div class="fgrp"><label class="flbl">Use / Step</label><input class="finp" id="ep-use" placeholder="e.g. Pre-poo, LOC O-step"></div>
-    <input type="hidden" id="ep-orig">
-    <div class="flex gap8">
-      <button class="btn btn-accent" style="flex:1;" onclick="saveProductEdit()">Save</button>
-      <button class="btn" style="background:var(--surface2);" onclick="closeM('m-edit-prod')">Cancel</button>
-    </div>
-  </div>
-</div>
 </body>
 </html>
