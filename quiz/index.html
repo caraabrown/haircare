@@ -194,7 +194,23 @@ textarea.finp{resize:vertical;min-height:80px;}
 
   <div class="q-card">
     <div class="q-header">
-      <div class="q-label">What's your primary goal right now?</div>
+      <div class="q-label">What's your age range?</div>
+      <div class="q-badge badge-required">Required</div>
+    </div>
+    <div class="q-why"><strong>Age is one of the most important variables in hair care.</strong> Hormonal shifts, DHT sensitivity, collagen production, and nutrient absorption all change significantly across decades — your protocol needs to account for where you are right now.</div>
+    <div class="q-options" id="opt-age">
+      <button class="opt-btn" onclick="pick('age','under18',this)">Under 18</button>
+      <button class="opt-btn" onclick="pick('age','18-24',this)">18 – 24</button>
+      <button class="opt-btn" onclick="pick('age','25-34',this)">25 – 34</button>
+      <button class="opt-btn" onclick="pick('age','35-44',this)">35 – 44</button>
+      <button class="opt-btn" onclick="pick('age','45-54',this)">45 – 54</button>
+      <button class="opt-btn" onclick="pick('age','55-64',this)">55 – 64</button>
+      <button class="opt-btn" onclick="pick('age','65plus',this)">65+</button>
+      <button class="opt-btn" onclick="pick('age','prefer-not',this)">Prefer not to say</button>
+    </div>
+  </div>
+
+  <div class="q-card">
       <div class="q-badge badge-required">Required</div>
     </div>
     <div class="q-why"><strong>This sets everything.</strong> Your goal determines which protocol track you'll follow, which products matter most, and what we measure.</div>
@@ -574,7 +590,9 @@ textarea.finp{resize:vertical;min-height:80px;}
       <div class="q-label">What's your current supplement routine?</div>
       <div class="q-badge badge-medium">Medium</div>
     </div>
+    <div class="q-why"><strong>We'll identify gaps and flag over-supplementation risks.</strong> Select everything you currently take — we'll build a stack recommendation from your baseline.</div>
     <div class="q-options" id="opt-supplements">
+      <button class="opt-btn multi" onclick="toggle('supplements','multivitamin',this)">Multi-Vitamin</button>
       <button class="opt-btn multi" onclick="toggle('supplements','biotin',this)">Biotin</button>
       <button class="opt-btn multi" onclick="toggle('supplements','collagen',this)">Collagen peptides</button>
       <button class="opt-btn multi" onclick="toggle('supplements','msm',this)">MSM</button>
@@ -584,8 +602,50 @@ textarea.finp{resize:vertical;min-height:80px;}
       <button class="opt-btn multi" onclick="toggle('supplements','zinc',this)">Zinc</button>
       <button class="opt-btn multi" onclick="toggle('supplements','sawpalm',this)">Saw Palmetto</button>
       <button class="opt-btn multi" onclick="toggle('supplements','silica',this)">Silica</button>
+      <button class="opt-btn multi" onclick="toggle('supplements','magnesium',this)">Magnesium</button>
+      <button class="opt-btn multi" onclick="toggle('supplements','vitc',this)">Vitamin C</button>
+      <button class="opt-btn multi" onclick="toggle('supplements','vitb12',this)">Vitamin B12</button>
+      <button class="opt-btn multi" onclick="toggle('supplements','inositol',this)">Inositol</button>
+      <button class="opt-btn multi" onclick="toggle('supplements','brahmi',this)">Brahmi</button>
+      <button class="opt-btn multi" onclick="toggle('supplements','ashwagandha',this)">Ashwagandha</button>
       <button class="opt-btn multi" onclick="toggle('supplements','none',this)">None currently</button>
     </div>
+
+    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);width:100%;margin-bottom:2px;">Add from list or type your own</div>
+      <select id="supp-dropdown" class="finp" style="flex:1;min-width:180px;margin-top:0;" onchange="addSuppFromDropdown(this)">
+        <option value="">-- Select a supplement --</option>
+        <option value="vitd-calcium">Vitamin D &amp; Calcium</option>
+        <option value="magnesium">Magnesium</option>
+        <option value="multivitamin">Multivitamin</option>
+        <option value="creatine">Creatine</option>
+        <option value="folate">Folic Acid (Vitamin B9)</option>
+        <option value="ashwagandha">Ashwagandha</option>
+        <option value="collagen">Collagen</option>
+        <option value="prebiotic">Prebiotics</option>
+        <option value="probiotic">Probiotics</option>
+        <option value="protein-powder">Protein Powder</option>
+        <option value="biotin">Biotin</option>
+        <option value="msm">MSM</option>
+        <option value="iron">Iron</option>
+        <option value="vitd">Vitamin D3</option>
+        <option value="omega3">Omega-3</option>
+        <option value="zinc">Zinc</option>
+        <option value="sawpalm">Saw Palmetto</option>
+        <option value="silica">Silica</option>
+        <option value="vitc">Vitamin C</option>
+        <option value="vitb12">Vitamin B12</option>
+        <option value="inositol">Inositol</option>
+        <option value="brahmi">Brahmi</option>
+        <option value="spearmint">Spearmint</option>
+        <option value="pumpkinseed">Pumpkin Seed Oil</option>
+        <option value="phytophanere">Phyto Phanere</option>
+      </select>
+      <input class="finp" id="supp-custom" type="text" placeholder="Type supplement name..." style="flex:1;min-width:160px;margin-top:0;" onkeydown="if(event.key==='Enter'){addSuppCustom();}">
+      <button class="opt-btn" onclick="addSuppCustom()" style="margin-top:0;padding:9px 16px;">Add</button>
+    </div>
+
+    <div id="supp-added-list" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;"></div>
     <button class="q-skip" onclick="skipQ(this)">Skip</button>
   </div>
 
@@ -903,12 +963,6 @@ function nextSection(from) {
       return;
     }
   }
-  if(from === 3) {
-    if(!answers.time) {
-      alert('Please select your available wash day time before continuing.');
-      return;
-    }
-  }
   goSection(from + 1);
 }
 
@@ -926,6 +980,14 @@ function updateHealthBanner() {
 }
 
 function buildProfile() {
+  if(!answers.time) {
+    alert('Please select your available wash day time before continuing.');
+    return;
+  }
+  if(!answers.age) {
+    alert('Please select your age range before continuing.');
+    return;
+  }
   goSection(5);
   renderSummaryGrid();
   generateProtocol();
@@ -935,6 +997,7 @@ function renderSummaryGrid() {
   var grid = document.getElementById('profile-summary-grid');
   if(!grid) return;
   var items = [
+    {label:'Age Range', value: formatVal(answers.age)},
     {label:'Primary Goal', value: formatVal(answers.goal)},
     {label:'Curl Pattern', value: formatVal(answers.pattern)},
     {label:'Porosity', value: formatVal(answers.porosity)},
@@ -965,7 +1028,8 @@ function formatVal(v) {
   if(!v) return '—';
   if(Array.isArray(v)) return v.join(', ');
   var map = {
-    length:'Length retention', thickness:'Thickness', edges:'Edge recovery', scalp:'Scalp health',
+    'under18':'Under 18', '18-24':'18 – 24', '25-34':'25 – 34', '35-44':'35 – 44',
+    '45-54':'45 – 54', '55-64':'55 – 64', '65plus':'65+', 'prefer-not':'Prefer not to say', edges:'Edge recovery', scalp:'Scalp health',
     pattern:'Curl pattern', damage:'Damage recovery', routine:'Consistent routine', maintain:'Maintain',
     low:'Low', medium:'Medium', high:'High', fine:'Fine', coarse:'Coarse', mixed:'Mixed',
     dry:'Dry', heat:'Heat damaged', breakage:'Breakage', severe:'Severe damage', transitioning:'Transitioning', relaxed:'Relaxed',
@@ -1038,6 +1102,7 @@ function buildPrompt() {
   var a = answers;
   var z = zoneAssignments;
   return 'Generate a personalized hair care protocol for this person:\n\n' +
+    'AGE RANGE: ' + (a.age || 'not specified') + '\n' +
     'PRIMARY GOAL: ' + (a.goal || 'not specified') + '\n' +
     'SECONDARY GOALS: ' + (a['goals-secondary'] ? a['goals-secondary'].join(', ') : 'none') + '\n' +
     'HAIR TYPE: ' + (a.pattern || '?') + ' curl pattern, ' + (a.porosity || '?') + ' porosity, ' + (a.thickness || '?') + ' strands, ' + (a.density || '?') + ' density\n' +
@@ -1091,6 +1156,45 @@ function buildSupplementRec(a) {
   if(a.meds && a.meds.includes('stimulants')) recs.push('Saw Palmetto — DHT blocker essential for stimulant use');
   if(!a.supplements || !a.supplements.includes('vitd')) recs.push('Vitamin D3 2000-5000IU — follicle activation');
   return recs.slice(0,3).join(', ') || 'Based on your current stack, consider adding MSM and Vitamin D3';
+}
+
+function addSuppFromDropdown(sel) {
+  var val = sel.value;
+  if(!val) return;
+  var label = sel.options[sel.selectedIndex].text;
+  addSuppToList(val, label);
+  sel.value = '';
+}
+
+function addSuppCustom() {
+  var inp = document.getElementById('supp-custom');
+  var val = inp.value.trim();
+  if(!val) return;
+  addSuppToList('custom_' + val.toLowerCase().replace(/\s+/g,'_'), val);
+  inp.value = '';
+}
+
+function addSuppToList(val, label) {
+  if(!answers.supplements) answers.supplements = [];
+  if(answers.supplements.indexOf(val) !== -1) return;
+  answers.supplements.push(val);
+  save();
+  var list = document.getElementById('supp-added-list');
+  if(!list) return;
+  var tag = document.createElement('span');
+  tag.style.cssText = 'display:inline-flex;align-items:center;gap:6px;background:var(--purple-dim);border:1px solid var(--purple);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;color:var(--text);';
+  tag.dataset.val = val;
+  tag.innerHTML = label + ' <button onclick="removeSuppTag(this)" style="background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;line-height:1;padding:0;">&times;</button>';
+  list.appendChild(tag);
+}
+
+function removeSuppTag(btn) {
+  var tag = btn.closest('[data-val]');
+  if(!tag) return;
+  var val = tag.dataset.val;
+  if(answers.supplements) answers.supplements = answers.supplements.filter(function(s){ return s !== val; });
+  tag.remove();
+  save();
 }
 
 function exportProfile() {
