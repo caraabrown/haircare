@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hair Protocol</title>
+<title>CaraLand Hair Care</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
@@ -82,7 +82,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-si
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
 
 /* -- HEADER -- */
-.header{background:rgba(14,20,37,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;padding:0 32px;}
+.header{background:#0D1323;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;padding:0 32px;}
 .header-inner{display:flex;align-items:center;gap:24px;height:52px;}
 .logo{font-family:var(--font-head);font-size:15px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text);white-space:nowrap;flex-shrink:0;}
 .logo span{color:var(--accent);}
@@ -94,7 +94,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-si
 .ico-btn:hover{color:var(--accent);}
 
 /* -- NAV -- */
-.nav{background:rgba(14,20,37,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:52px;z-index:199;padding:0 32px;overflow-x:auto;scrollbar-width:none;}
+.nav{background:#0D1323;border-bottom:1px solid var(--border);position:sticky;top:52px;z-index:199;padding:0 32px;overflow-x:auto;scrollbar-width:none;}
 .nav::-webkit-scrollbar{display:none;}
 .nav-inner{display:flex;gap:0;white-space:nowrap;}
 .n{background:none;border:none;color:var(--text3);font-family:var(--font-body);font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:0 20px;height:44px;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;}
@@ -331,9 +331,10 @@ h3 {
 .photo-prompt .ico{font-size:28px;display:block;margin-bottom:8px;opacity:0.4;}
 
 /* -- MODAL -- */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:500;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9998;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);}
 .modal.open{display:flex;}
 .modal-box{background:var(--surface);border:none;border-radius:var(--r);padding:36px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 32px 80px rgba(0,0,0,0.7);position:relative;}
+
 .modal-x{position:absolute;top:16px;right:16px;width:32px;height:32px;background:none;border:none;color:var(--text3);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;transition:color .15s;}
 .modal-x:hover{color:var(--accent);}
 .modal-title{font-family:var(--font-head);font-size:24px;font-weight:700;margin-bottom:6px;}
@@ -952,10 +953,10 @@ em, i { font-style: italic; }
   border-radius: 3px;
   flex-shrink: 0;
 }
-.imp-essential { background: rgba(46,204,143,.2); color: var(--cat-nat); }
-.imp-useful    { background: rgba(43,157,170,.15); color: var(--accent); }
-.imp-backup    { background: rgba(255,255,255,.06); color: var(--text3); }
-.imp-wishlist  { background: var(--cat-diy-dim); color: var(--cat-diy); }
+.imp-essential { background: rgba(255,255,255,.08); color: var(--text2); }
+.imp-useful    { background: rgba(255,255,255,.06); color: var(--text3); }
+.imp-backup    { background: rgba(255,255,255,.04); color: var(--text3); opacity:.7; }
+.imp-wishlist  { background: rgba(255,255,255,.05); color: var(--text3); opacity:.6; }
 
 /* Step column view */
 .step-cols-view { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
@@ -966,13 +967,100 @@ em, i { font-style: italic; }
 .step-prod-row:hover { background: var(--surface2); }
 .step-prod-name { font-size: 12px; font-weight: 500; flex: 1; }
 
+/* ══ WASH DAY ASSISTANT ══ */
+.assist-hero{background:var(--surface);border-radius:var(--r);padding:24px;margin-bottom:20px;border:1px solid var(--border);}
+.assist-step-row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s;}
+.assist-step-row:last-child{border-bottom:none;}
+.assist-step-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:15px;font-weight:800;flex-shrink:0;background:var(--surface2);color:var(--text3);transition:all .2s;}
+.assist-step-row.active .assist-step-num{background:var(--accent);color:var(--bg);}
+.assist-step-row.done .assist-step-num{background:var(--cat-nat);color:var(--bg);}
+.assist-step-title{font-family:var(--font-head);font-size:16px;font-weight:700;flex:1;}
+.assist-step-row.done .assist-step-title{color:var(--text3);}
+.assist-timer{font-family:var(--font-head);font-size:28px;font-weight:800;color:var(--accent);letter-spacing:-0.02em;}
+.assist-timer.warn{color:var(--amber);}
+.assist-timer.done{color:var(--cat-nat);}
+.assist-panel{background:var(--surface);border-radius:var(--r);border:1px solid var(--accent);padding:24px;margin-bottom:16px;}
+.assist-panel-head{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+.assist-panel-title{font-family:var(--font-head);font-size:22px;font-weight:800;flex:1;}
+.assist-prod-check{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;}
+.assist-prod-check:last-child{border-bottom:none;}
+.assist-check{width:20px;height:20px;border-radius:4px;border:1.5px solid var(--border2);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.assist-check.on{background:var(--accent);border-color:var(--accent);}
+.assist-check.on::after{content:'✓';color:var(--bg);font-size:12px;font-weight:700;}
+.assist-prod-name{font-size:13px;font-weight:500;}
+.assist-complete-btn{width:100%;background:var(--cat-nat);border:none;border-radius:10px;padding:16px;font-size:15px;font-weight:700;color:var(--bg);cursor:pointer;font-family:var(--font-head);margin-top:16px;transition:background .15s;}
+.assist-complete-btn:hover{background:#25b07a;}
+.assist-start-btn{width:100%;background:var(--accent);border:none;border-radius:10px;padding:18px;font-size:16px;font-weight:700;color:var(--bg);cursor:pointer;font-family:var(--font-head);letter-spacing:-0.01em;transition:background .15s;}
+.assist-start-btn:hover{background:var(--accent2);}
+
+/* ══ LENGTH CHECK ══ */
+.length-check-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:20px;}
+.length-zone-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;}
+.length-zone-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:8px;}
+.length-zone-input{display:flex;align-items:center;gap:6px;}
+.length-inp{width:70px;background:var(--surface2);border:1px solid var(--border2);border-radius:6px;padding:6px 8px;font-size:14px;font-weight:700;color:var(--text);font-family:var(--font-head);outline:none;text-align:center;}
+.length-inp:focus{border-color:var(--accent);}
+.length-unit{font-size:12px;color:var(--text3);}
+.length-prev{font-size:11px;color:var(--text3);margin-top:4px;}
+.length-delta{font-size:11px;font-weight:700;}
+.length-delta.pos{color:var(--cat-nat);}
+.length-delta.neg{color:var(--red);}
+.comparison-strip{display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:var(--r);overflow:hidden;margin-top:16px;}
+.comparison-col{background:var(--surface);padding:14px;text-align:center;}
+.comparison-col-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:8px;}
+
+/* ══ COST TRACKER ══ */
+.cost-table{width:100%;border-collapse:collapse;}
+.cost-table th{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);}
+.cost-table td{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--border);}
+.cost-table tr:last-child td{border-bottom:none;}
+.cost-inp{width:80px;background:var(--surface2);border:1px solid var(--border2);border-radius:6px;padding:5px 8px;font-size:13px;color:var(--text);font-family:var(--font-body);outline:none;text-align:right;}
+.cost-inp:focus{border-color:var(--accent);}
+.cost-stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:16px;text-align:center;}
+.cost-stat-val{font-family:var(--font-head);font-size:28px;font-weight:800;color:var(--accent);}
+.cost-stat-label{font-size:11px;color:var(--text3);margin-top:4px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;}
+.cost-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px;}
+
+/* ══ INGREDIENT EDUCATION ══ */
+.ing-tabs{display:flex;gap:4px;margin-bottom:16px;border-bottom:1px solid var(--border);padding-bottom:0;}
+.ing-tab-btn{background:none;border:none;color:var(--text3);font-size:12px;font-weight:700;cursor:pointer;padding:6px 14px 10px;font-family:var(--font-body);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;}
+.ing-tab-btn.on{color:var(--accent);border-bottom-color:var(--accent);}
+.ing-tab-panel{display:none;}
+.ing-tab-panel.on{display:block;}
+.ing-conflict{background:var(--red-dim);border-left:2px solid var(--red);border-radius:4px;padding:8px 12px;font-size:12px;color:var(--text2);margin-bottom:6px;}
+.ing-pair{background:var(--green-dim);border-left:2px solid var(--cat-nat);border-radius:4px;padding:8px 12px;font-size:12px;color:var(--text2);margin-bottom:6px;}
+.ing-owns-badge{display:inline-block;background:var(--accent-dim);color:var(--accent);font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;letter-spacing:.06em;margin-left:8px;}
+
+/* ══ REMINDERS / CALENDAR ══ */
+.reminder-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);}
+.reminder-row:last-child{border-bottom:none;}
+.reminder-label{flex:1;font-size:14px;font-weight:500;}
+.reminder-sub{font-size:11px;color:var(--text3);margin-top:2px;}
+.reminder-actions{display:flex;gap:6px;}
+.reminder-btn{font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;border:1px solid var(--border2);background:none;color:var(--text2);cursor:pointer;font-family:var(--font-body);transition:all .15s;}
+.reminder-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+#gist-banner{background:var(--surface);border-bottom:1px solid var(--border);padding:8px 40px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:12px;min-height:40px;}
+#gist-banner.hidden{display:none;}
+.gist-status{display:flex;align-items:center;gap:6px;color:var(--text3);}
+.gist-status.connected{color:var(--cat-nat);}
+.gist-status.error{color:var(--red);}
+.gist-status.saving{color:var(--accent);}
+#gist-token-wrap{display:flex;align-items:center;gap:8px;flex:1;max-width:420px;}
+#gist-token{background:var(--surface2);border:1px solid var(--border2);border-radius:6px;padding:5px 10px;font-size:12px;color:var(--text);font-family:var(--font-body);flex:1;outline:none;}
+#gist-token:focus{border-color:var(--accent);}
+.gist-btn{padding:4px 12px;border-radius:6px;border:none;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font-body);letter-spacing:.04em;}
+.gist-btn-connect{background:var(--accent);color:var(--bg);}
+.gist-btn-disconnect{background:transparent;border:1px solid var(--border2);color:var(--text3);}
+.gist-btn-disconnect:hover{border-color:var(--red);color:var(--red);}
+
 </style>
 </head>
 <body>
 
 <header class="header">
   <div class="header-inner">
-    <div class="logo">Hair<span>Protocol</span></div>
+    <div class="logo">CaraLand<span> Hair Care</span></div>
     <div class="week-chip">
       <span>Week</span>
       <strong id="hdrWk">&mdash;</strong>
@@ -980,7 +1068,6 @@ em, i { font-style: italic; }
     </div>
     <div class="header-right">
       <button class="ico-btn" onclick="openM('m-settings')" title="Settings">&#9881;</button>
-      <button class="ico-btn" onclick="ghSync()" title="Sync to GitHub" id="sync-btn" style="font-size:15px;">&#8645;</button>
       <button class="ico-btn" onclick="openM('m-log')" title="Log Session">+</button>
     </div>
 </div>
@@ -1004,6 +1091,7 @@ em, i { font-style: italic; }
   <div class="nav-inner">
     <button class="n on" onclick="go('schedule')" id="n-schedule">Schedule</button>
     <button class="n" onclick="go('wash')" id="n-wash">Wash &amp; DC</button>
+    <button class="n" onclick="go('assist')" id="n-assist">Assist</button>
     <button class="n" onclick="go('styling')" id="n-styling">Styling</button>
     <button class="n" onclick="go('maintenance')" id="n-maintenance">Maintenance</button>
     <button class="n" onclick="go('progress')" id="n-progress">Progress</button>
@@ -1014,6 +1102,14 @@ em, i { font-style: italic; }
     <button class="n" onclick="go('products')" id="n-products">Products</button>
   </div>
 </nav>
+
+<div id="gist-banner" class="hidden">
+  <div id="gist-token-wrap">
+    <input id="gist-token" type="password" placeholder="GitHub personal access token (gist scope)">
+    <button class="gist-btn gist-btn-connect" onclick="GistSync.connect()">Connect</button>
+  </div>
+  <div id="gist-status" class="gist-status">Not connected &mdash; data saves locally only</div>
+</div>
 
 <main>
 
@@ -1317,6 +1413,136 @@ em, i { font-style: italic; }
 <!-- 
   MAINTENANCE
  -->
+<!-- 
+  MAINTENANCE
+ -->
+<!-- 
+  SILK PRESS STYLING
+-->
+<div id="style-silkpress" class="stype-panel" style="display:none;">
+  <div class="info" style="background:rgba(255,107,157,0.1);border-left-color:#FF6B9D;margin-bottom:20px;">
+    <strong style="color:#FF6B9D;">Silk Press Protocol</strong> — flat iron on fully blow-dried, stretched hair. The quality of your blow-dry determines the quality of your silk press. Never flat iron wet or damp hair. Limit to once per month maximum during recovery.
+  </div>
+  <div class="step-block open">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-num" style="color:#FF6B9D;">01</div>
+      <div class="step-info"><h3>Blow Dry — Fully Straight</h3><p>Hair must be 100% dry before flat iron touches it</p></div>
+      <span class="acc-arrow-char">&#8250;</span>
+    </div>
+    <div class="step-body">
+      <div class="products-wrap"><span class="prod-pill">Oribe Imperial Blowout Styling Cream</span><span class="prod-pill">Oribe Balm d&apos;Or Heat Shield</span><span class="prod-pill">By Taraji Heat Protectant</span><span class="prod-pill">Bio Silk Silk Therapy</span></div>
+      <div class="science">Blow dry in sections with a round brush or tension method. Low heat first pass, high heat to finish. Hair must be completely dry — any remaining moisture will steam inside the cortex under flat iron heat, causing internal breakage.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-num" style="color:#FF6B9D;">02</div>
+      <div class="step-info"><h3>Flat Iron — One Slow Pass</h3><p>365–380&deg;F max for fine strands &middot; Never chase steam</p></div>
+      <span class="acc-arrow-char">&#8250;</span>
+    </div>
+    <div class="step-body">
+      <div class="products-wrap"><span class="prod-pill">Oribe Impermeable Anti-Humidity Spray</span><span class="prod-pill">Amika Glass Action Elixir</span><span class="prod-pill">Simi de Lino Cristalli Liquidi</span><span class="prod-pill">AllDay Edges</span></div>
+      <div class="science">Apply finishing serum to each section before flat iron. One slow pass — do not go over the same section more than twice. Apply anti-humidity spray to each section immediately after while still warm. Seal edges last.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-num" style="color:#FF6B9D;">03</div>
+      <div class="step-info"><h3>Daily Maintenance — Silk Press</h3><p>Preserve the press between wash days</p></div>
+      <span class="acc-arrow-char">&#8250;</span>
+    </div>
+    <div class="step-body">
+      <div class="products-wrap"><span class="prod-pill">Oribe Impermeable (AM — touch up)</span><span class="prod-pill">Satin bonnet (PM)</span><span class="prod-pill">Dry shampoo at roots only</span></div>
+      <div class="science">Morning: smooth with hands only — no brushing dry. Apply anti-humidity spray to any frizzy sections. No water near hair. Night: loose pin-curl or wrap method under satin bonnet. No tight banding.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+  STRETCHED STYLE STYLING
+-->
+<div id="style-stretched" class="stype-panel" style="display:none;">
+  <div class="info" style="background:rgba(123,158,255,0.1);border-left-color:#7B9EFF;margin-bottom:20px;">
+    <strong style="color:#7B9EFF;">Stretched Style Protocol</strong> — blow-out, braid-out, or twist-out from blow-out. Preserves elongation while maintaining curl memory. Unlike silk press, light moisture is your friend — the curl pattern is still intact.
+  </div>
+  <div class="step-block open">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-num" style="color:#7B9EFF;">01</div>
+      <div class="step-info"><h3>Stretch Method</h3><p>Blow-out, banding, or African threading</p></div>
+      <span class="acc-arrow-char">&#8250;</span>
+    </div>
+    <div class="step-body">
+      <div class="products-wrap"><span class="prod-pill">Oribe Imperial Blowout Cream</span><span class="prod-pill">Wired Flexible Styling Cream</span><span class="prod-pill">By Taraji Heat Protectant</span><span class="prod-pill">UBH Satin Cream Moisturizer</span></div>
+      <div class="science">Apply styling cream to damp hair in sections. Blow dry on medium heat with a concentrator nozzle or tension dry in stretched sections. The goal is elongation without complete straightening — leave some texture.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-num" style="color:#7B9EFF;">02</div>
+      <div class="step-info"><h3>Daily Refresh — Stretched Style</h3><p>Maintain elongation without reversion</p></div>
+      <span class="acc-arrow-char">&#8250;</span>
+    </div>
+    <div class="step-body">
+      <div class="products-wrap"><span class="prod-pill">Daily Moisture Refresh Spray (DIY)</span><span class="prod-pill">Phyto 7 Day Cream</span><span class="prod-pill">Keracare Silken Seal (ends only)</span></div>
+      <div class="science">Light misting is safe — curl memory is intact. Apply moisture to mid-shaft and ends only. Avoid the roots if reversion is the concern. Seal immediately after moisture. Re-stretch overnight with large braids or twists under a satin bonnet.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+  ASSIST
+-->
+<div class="tab" id="tab-assist">
+  <div class="page-hd">
+    <h1>Wash Day Assistant</h1>
+    <p class="text2">Step-by-step guidance with timers, product checklists, and automatic session logging.</p>
+  </div>
+  <div id="assist-setup">
+    <div class="assist-hero">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:12px;">Session Type</div>
+      <div class="q-options" style="margin-top:0;" id="assist-type-opts">
+        <button class="opt-btn on" onclick="pickAssistType('washday',this)">Wash Day</button>
+        <button class="opt-btn" onclick="pickAssistType('washday_heat',this)">Wash Day + Heat</button>
+        <button class="opt-btn" onclick="pickAssistType('cowash',this)">Co-Wash</button>
+        <button class="opt-btn" onclick="pickAssistType('heatstyle',this)">Heat Style</button>
+        <button class="opt-btn" onclick="pickAssistType('silkpress',this)">Silk Press</button>
+        <button class="opt-btn" onclick="pickAssistType('stretched',this)">Stretched Style</button>
+        <button class="opt-btn" onclick="pickAssistType('naturalsty',this)">Natural Style</button>
+        <button class="opt-btn" onclick="pickAssistType('maintenance',this)">Maintenance</button>
+        <button class="opt-btn" onclick="pickAssistType('treatment',this)">Treatment</button>
+        <button class="opt-btn" onclick="pickAssistType('scalpcare',this)">Scalp Care</button>
+      </div>
+    </div>
+    <div id="assist-step-list" style="margin-top:16px;"></div>
+    <button class="assist-start-btn" style="margin-top:16px;" onclick="startAssist()">Start Session</button>
+  </div>
+  <div id="assist-session" style="display:none;">
+    <div class="assist-panel" id="assist-active-panel">
+      <div class="assist-panel-head">
+        <div id="assist-active-num" class="assist-step-num" style="background:var(--accent);color:var(--bg);width:44px;height:44px;font-size:18px;"></div>
+        <div id="assist-active-title" class="assist-panel-title"></div>
+        <div class="assist-timer" id="assist-timer-display">0:00</div>
+      </div>
+      <div style="margin-bottom:16px;"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:8px;">Products</div><div id="assist-prod-list"></div></div>
+      <div style="margin-bottom:16px;"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:8px;">Tools</div><div id="assist-tool-list"></div></div>
+      <div style="margin-bottom:16px;"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:6px;">Tags</div><div class="tag-chips" id="assist-tag-chips"></div></div>
+      <div class="fgrp" style="margin-bottom:0;"><label class="flbl">Step Notes</label><textarea class="ftxt" id="assist-step-notes" rows="2" placeholder="How did this step go?"></textarea></div>
+      <button class="assist-complete-btn" onclick="assistNextStep()">Complete Step &rarr;</button>
+    </div>
+    <div id="assist-remaining-steps" style="margin-top:16px;"></div>
+  </div>
+  <div id="assist-done" style="display:none;text-align:center;padding:40px 0;">
+    <div style="font-size:40px;margin-bottom:12px;">&#10003;</div>
+    <div style="font-family:var(--font-head);font-size:28px;font-weight:800;margin-bottom:8px;">Session complete</div>
+    <div style="font-size:14px;color:var(--text2);margin-bottom:24px;">All steps logged to your diary.</div>
+    <button class="btn btn-accent" onclick="go('diary')">View in Diary</button>
+    <button class="btn" style="background:var(--surface2);margin-left:12px;" onclick="resetAssist()">New Session</button>
+  </div>
+</div>
+
+<!-- 
+  MAINTENANCE
+-->
 <div class="tab" id="tab-maintenance">
   <div class="page-hd">
     <h1>Daily Maintenance</h1>
@@ -1326,8 +1552,8 @@ em, i { font-style: italic; }
     <button class="stype-btn on" onclick="stab('maint','washgo',this)">Wash &amp; Go</button>
     <button class="stype-btn" onclick="stab('maint','twistout',this)">Twist Out</button>
     <button class="stype-btn" onclick="stab('maint','protective',this)">Protective</button>
-    <button class="stype-btn" onclick="stab('maint','silkpress',this)" style="border-left:2px solid #FF6B9D;color:#FF6B9D;">Silk Press Care</button>
-    <button class="stype-btn" onclick="stab('maint','stretchedcare',this)" style="border-left:2px solid #7B9EFF;color:#7B9EFF;">Stretched Style</button>
+    <button class="stype-btn" onclick="stab('maint','silkpress',this)">Silk Press</button>
+    <button class="stype-btn" onclick="stab('maint','stretchedcare',this)">Stretched Style</button>
   </div>
 
   <!-- Wash & Go Maintenance -->
@@ -1440,7 +1666,7 @@ em, i { font-style: italic; }
       </div>
     </div>
   </div>
-</div>
+
 
   <!-- Low Heat Daily Maintenance -->
   <div id="maint-lowheat" class="stype-panel" style="display:none;">
@@ -1642,6 +1868,7 @@ em, i { font-style: italic; }
     </div>
 
   </div><!-- end maint-stretchedcare -->
+</div>
 
 
 <div class="tab" id="tab-styling">
@@ -1656,6 +1883,8 @@ em, i { font-style: italic; }
     <button class="stype-btn" onclick="stab('style','highheat',this)">High Heat</button>
     <button class="stype-btn" onclick="stab('style','twistout',this)">Twist Out</button>
     <button class="stype-btn" onclick="stab('style','protective',this)">Protective</button>
+    <button class="stype-btn" onclick="stab('style','silkpress',this)">Silk Press</button>
+    <button class="stype-btn" onclick="stab('style','stretched',this)">Stretched Style</button>
   </div>
 
   <!-- 
@@ -2346,6 +2575,38 @@ em, i { font-style: italic; }
     </div>
   </div>
 
+  <!-- LENGTH CHECK TOOL -->
+  <div class="card mb24">
+    <div class="card-head" style="display:flex;justify-content:space-between;align-items:center;">
+      <span>Length Check</span>
+      <button class="btn btn-accent btn-sm" onclick="saveLength()">Save Check-in</button>
+    </div>
+    <p class="text2 sz13" style="margin-bottom:16px;">Measure stretched length per section in inches. Saved weekly — compare over time.</p>
+    <div class="length-check-grid" id="length-check-grid">
+      <div class="length-zone-card">
+        <div class="length-zone-label">Crown</div>
+        <div class="length-zone-input"><input class="length-inp" id="lc-crown" type="number" step="0.25" min="0" max="48" placeholder="0"><span class="length-unit">in</span></div>
+        <div class="length-prev" id="lc-crown-prev"></div>
+      </div>
+      <div class="length-zone-card">
+        <div class="length-zone-label">Sides</div>
+        <div class="length-zone-input"><input class="length-inp" id="lc-sides" type="number" step="0.25" min="0" max="48" placeholder="0"><span class="length-unit">in</span></div>
+        <div class="length-prev" id="lc-sides-prev"></div>
+      </div>
+      <div class="length-zone-card">
+        <div class="length-zone-label">Nape</div>
+        <div class="length-zone-input"><input class="length-inp" id="lc-nape" type="number" step="0.25" min="0" max="48" placeholder="0"><span class="length-unit">in</span></div>
+        <div class="length-prev" id="lc-nape-prev"></div>
+      </div>
+      <div class="length-zone-card">
+        <div class="length-zone-label">Edges</div>
+        <div class="length-zone-input"><input class="length-inp" id="lc-edges" type="number" step="0.25" min="0" max="48" placeholder="0"><span class="length-unit">in</span></div>
+        <div class="length-prev" id="lc-edges-prev"></div>
+      </div>
+    </div>
+    <div id="length-history" style="margin-top:8px;"></div>
+  </div>
+
   <!-- Step filter bar -->
   <div style="margin-bottom:20px;">
     <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:10px;">Filter by session step</div>
@@ -2496,7 +2757,7 @@ em, i { font-style: italic; }
     <p class="text2">Track performance, quantity and effectiveness of every product in your protocol.</p>
   </div>
 
-  <!-- Category filter pills — these ARE the filters -->
+  <!-- Category filter pills - these ARE the filters -->
   <div class="flex gap8 mb4" style="flex-wrap:wrap;align-items:center;" id="prod-cat-filters">
     <button class="cat-pill-btn on" onclick="filterProds('all',this)" style="--cc:var(--text2);--cd:var(--surface2);">All</button>
     <button class="cat-pill-btn" onclick="filterProds('Natural',this)" style="--cc:var(--cat-nat);--cd:var(--cat-nat-dim);">&#9679; Natural / Ayurvedic</button>
@@ -2512,6 +2773,36 @@ em, i { font-style: italic; }
     <button class="stype-btn" onclick="prodTab('ingredients',this)">Ingredient Guide</button>
     <button class="stype-btn" onclick="prodTab('analyzer',this)">Analyzer</button>
     <button class="stype-btn" onclick="prodTab('shopping',this)">Shopping List</button>
+    <button class="stype-btn" onclick="prodTab('costs',this)">Cost Tracker</button>
+  </div>
+
+  <!-- COST TRACKER -->
+  <div id="prod-costs" class="prod-panel">
+    <div class="cost-grid" id="cost-stat-grid">
+      <div class="cost-stat"><div class="cost-stat-val" id="cs-monthly">$0</div><div class="cost-stat-label">Monthly spend</div></div>
+      <div class="cost-stat"><div class="cost-stat-val" id="cs-annual">$0</div><div class="cost-stat-label">Annual spend</div></div>
+      <div class="cost-stat"><div class="cost-stat-val" id="cs-washday">$0</div><div class="cost-stat-label">Cost per wash day</div></div>
+      <div class="cost-stat"><div class="cost-stat-val" id="cs-diy">$0</div><div class="cost-stat-label">DIY monthly</div></div>
+    </div>
+    <div class="card">
+      <div class="card-head mb16" style="display:flex;justify-content:space-between;align-items:center;">
+        <span>Product Prices</span>
+        <button class="btn btn-sm" style="background:var(--surface2);font-size:11px;" onclick="exportCostReport()">Export Report</button>
+      </div>
+      <p class="text2 sz12" style="margin-bottom:16px;">Enter what you paid and how many uses you get per bottle. We calculate cost per use and total spend.</p>
+      <div style="overflow-x:auto;">
+        <table class="cost-table" id="cost-table">
+          <thead><tr>
+            <th style="min-width:180px;">Product</th>
+            <th>Category</th>
+            <th>Price ($)</th>
+            <th>Uses/bottle</th>
+            <th>Cost/use</th>
+          </tr></thead>
+          <tbody id="cost-table-body"></tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
   <!-- SHOPPING LIST -->
@@ -2528,10 +2819,10 @@ em, i { font-style: italic; }
     <div class="flex fxb fxa mb20" style="flex-wrap:wrap;gap:12px;">
       <div class="flex gap8" style="flex-wrap:wrap;" id="prod-importance-filters">
         <button class="filter-chip on" onclick="filterProdImportance('all',this)">All</button>
-        <button class="filter-chip" onclick="filterProdImportance('essential',this)" style="border-color:var(--cat-nat);color:var(--cat-nat);">Essential</button>
+        <button class="filter-chip" onclick="filterProdImportance('essential',this)">Essential</button>
         <button class="filter-chip" onclick="filterProdImportance('useful',this)">Useful</button>
-        <button class="filter-chip" onclick="filterProdImportance('backup',this)" style="border-color:var(--text3);color:var(--text3);">Backup</button>
-        <button class="filter-chip" onclick="filterProdImportance('wishlist',this)" style="border-color:var(--cat-diy);color:var(--cat-diy);">Wishlist</button>
+        <button class="filter-chip" onclick="filterProdImportance('backup',this)">Backup</button>
+        <button class="filter-chip" onclick="filterProdImportance('wishlist',this)">Wishlist</button>
       </div>
       <div class="flex gap8">
         <button class="filter-chip" onclick="toggleStepView(this)" id="step-view-btn">View by Step</button>
@@ -2602,19 +2893,51 @@ em, i { font-style: italic; }
     </div>
     <div class="fgrp"><label class="flbl">Current Style Type</label>
       <select class="fsel" id="s-style">
-        <option value="washgo">Wash &amp; Go</option><option value="twistout">Twist Out</option><option value="protective">Protective Style</option>
+        <option value="washgo">Wash &amp; Go</option><option value="twistout">Twist Out</option><option value="protective">Protective Style</option><option value="silkpress">Silk Press</option><option value="stretched">Stretched Style</option>
       </select>
     </div>
     <div class="fgrp"><label class="flbl">Claude API Key (optional &mdash; enables in-app analysis)</label><input class="finp" type="password" id="s-apikey" placeholder="sk-ant-...">
     <div class="sz11 text3 mt8">Stored locally, never shared. Leave blank to use the "Ask Claude" redirect instead.</div></div>
-    <div style="border-top:1px solid var(--border);margin:16px 0;padding-top:16px;">
-      <div style="font-size:12px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">GitHub Sync</div>
-      <div class="fgrp"><label class="flbl">GitHub Token</label><input class="finp" type="password" id="s-ghtoken" placeholder="ghp_...">
-      <div class="sz11 text3 mt8">Personal access token with repo scope. Stored locally only.</div></div>
-      <div class="fgrp"><label class="flbl">Repository (owner/repo)</label><input class="finp" type="text" id="s-ghrepo" placeholder="caraabrown/haircare">
-      <div class="sz11 text3 mt8">The GitHub repo where data will be saved as <code style="font-size:10px;color:var(--accent);">haircare-data.json</code></div></div>
-    </div>
     <button class="btn btn-accent w100" onclick="saveSettings()">Save</button>
+
+    <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);">
+      <div class="card-head mb12">Reminders &amp; Calendar</div>
+
+      <div class="reminder-row">
+        <div><div class="reminder-label">Pre-Poo Night</div><div class="reminder-sub">Night before wash day</div></div>
+        <div class="reminder-actions">
+          <button class="reminder-btn" onclick="sendEmailReminder('prepoo')">Email</button>
+          <button class="reminder-btn" onclick="sendSMSReminder('prepoo')">SMS</button>
+        </div>
+      </div>
+      <div class="reminder-row">
+        <div><div class="reminder-label">Wash Day</div><div class="reminder-sub">Morning of wash day</div></div>
+        <div class="reminder-actions">
+          <button class="reminder-btn" onclick="sendEmailReminder('washday')">Email</button>
+          <button class="reminder-btn" onclick="sendSMSReminder('washday')">SMS</button>
+        </div>
+      </div>
+      <div class="reminder-row">
+        <div><div class="reminder-label">Daily Supplements</div><div class="reminder-sub">Morning routine</div></div>
+        <div class="reminder-actions">
+          <button class="reminder-btn" onclick="sendEmailReminder('supplements')">Email</button>
+          <button class="reminder-btn" onclick="sendSMSReminder('supplements')">SMS</button>
+        </div>
+      </div>
+      <div class="reminder-row">
+        <div><div class="reminder-label">Scalp Massage Days</div><div class="reminder-sub">Mon / Wed / Fri</div></div>
+        <div class="reminder-actions">
+          <button class="reminder-btn" onclick="sendEmailReminder('scalp')">Email</button>
+          <button class="reminder-btn" onclick="sendSMSReminder('scalp')">SMS</button>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
+        <div class="card-head mb8">Sync to Calendar</div>
+        <p class="text2 sz12 mb12">Download an .ics file to import your wash day schedule into Apple Calendar, Google Calendar, or Outlook.</p>
+        <button class="btn btn-accent btn-sm" onclick="downloadCalendar()" style="width:100%;">Download Calendar File (.ics)</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -2632,7 +2955,10 @@ em, i { font-style: italic; }
           <option value="washday_heat">Wash Day + Heat Style</option>
           <option value="cowash">Co-Wash Day</option>
           <option value="heatstyle">Heat Styling Only</option>
-          <option value="naturalsty">Natural Styling Only</option>
+          <option value="silkpress">Silk Press</option>
+          <option value="stretched">Stretched Style</option>
+          <option value="naturalsty">Natural Styling</option>
+          <option value="maintenance">Maintenance</option>
           <option value="treatment">Treatment (No Wash)</option>
           <option value="scalpcare">Scalp Care</option>
           <option value="other">Other</option>
@@ -2820,7 +3146,10 @@ em, i { font-style: italic; }
 // ── Storage helpers
 const S = {
   get: k => { try { return JSON.parse(localStorage.getItem(k)); } catch(e) { return localStorage.getItem(k); } },
-  set: (k,v) => localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v))
+  set: (k,v) => {
+    localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v));
+    if(typeof GistSync !== 'undefined' && GistSync.connected) GistSync.schedulePush();
+  }
 };
 
 // ── State
@@ -2846,12 +3175,13 @@ function go(id) {
   document.getElementById('n-'+id).classList.add('on');
   if (id==='schedule') renderSchedule();
   if (id==='wash') renderWash();
-  if (id==='progress') renderPhotos();
+  if (id==='progress') { renderPhotos(); renderLengthHistory(); }
   if (id==='tools') renderTools();
   if (id==='supplements') renderSupps();
   if (id==='dashboard') renderDash();
   if (id==='products') renderProdLibrary();
   if (id==='diary') renderDiary();
+  if (id==='assist') initAssist();
 }
 
 // ── Style type tabs
@@ -2871,8 +3201,9 @@ function toggleAcc(item) { item.classList.toggle('open'); }
 
 // ── Modals
 function openM(id) {
+  if(id==='m-edit-all') renderEditAllGrid();
   document.getElementById(id).classList.add('open');
-  if (id==='m-settings') { document.getElementById('s-date').value = ST.start||''; document.getElementById('s-wash').value = ST.washDay; document.getElementById('s-style').value = ST.style; document.getElementById('s-apikey').value = ST.apiKey; document.getElementById('s-ghtoken').value = S.get('ghToken')||''; document.getElementById('s-ghrepo').value = S.get('ghRepo')||''; }
+  if (id==='m-settings') { document.getElementById('s-date').value = ST.start||''; document.getElementById('s-wash').value = ST.washDay; document.getElementById('s-style').value = ST.style; document.getElementById('s-apikey').value = ST.apiKey; }
   if (id==='m-log') document.getElementById('l-date').value = new Date().toISOString().split('T')[0];
 }
 function closeM(id) { document.getElementById(id).classList.remove('open'); }
@@ -2883,17 +3214,38 @@ function saveSettings() {
   const d = document.getElementById('s-date').value;
   if(d) S.set('start',d);
   S.set('washDay', document.getElementById('s-wash').value);
-  S.set('styleType', document.getElementById('s-style').value);
+  const style = document.getElementById('s-style').value;
+  S.set('styleType', style);
   const k = document.getElementById('s-apikey').value;
   if(k) S.set('apiKey',k);
-  const ght = document.getElementById('s-ghtoken').value.trim();
-  const ghr = document.getElementById('s-ghrepo').value.trim();
-  if(ght) S.set('ghToken', ght);
-  if(ghr) S.set('ghRepo', ghr);
   closeM('m-settings');
   updateHeader();
   renderSchedule();
   renderWash();
+  // Sync both Maintenance and Styling tabs to the selected style
+  syncStylePanels(style);
+}
+
+function syncStylePanels(style) {
+  // Map settings value → maint panel id and style panel id
+  const maintMap = {washgo:'washgo', twistout:'twistout', protective:'protective', silkpress:'silkpress', stretched:'stretchedcare'};
+  const styleMap = {washgo:'washgo', twistout:'twistout', protective:'protective', silkpress:'silkpress', stretched:'stretched', lowheat:'lowheat', highheat:'highheat'};
+  const maintId = maintMap[style] || 'washgo';
+  const styleId = styleMap[style] || 'washgo';
+  // Activate maintenance panel
+  document.querySelectorAll('[id^="maint-"]').forEach(function(p){ if(p.classList.contains('stype-panel')) p.style.display='none'; });
+  const mp = document.getElementById('maint-' + maintId);
+  if(mp) mp.style.display = 'block';
+  // Activate styling panel
+  document.querySelectorAll('[id^="style-"]').forEach(function(p){ if(p.classList.contains('stype-panel')) p.style.display='none'; });
+  const sp = document.getElementById('style-' + styleId);
+  if(sp) sp.style.display = 'block';
+  // Update nav buttons
+  document.querySelectorAll('.stype-btn').forEach(function(b){
+    const onclick = b.getAttribute('onclick') || '';
+    if(onclick.includes("'maint','"+maintId+"'") || onclick.includes("'style','"+styleId+"'")) b.classList.add('on');
+    else b.classList.remove('on');
+  });
 }
 
 // ── Header
@@ -3319,34 +3671,85 @@ function renderCatBars() {
   });
   const el=document.getElementById('cat-bars');if(el)el.innerHTML=html;
 }
-function renderAchievements(pct,streak) {
-  const logs=S.get('logs')||[];
-  const photos=S.get('photos')||{};
-  const w=ST.week||0;
-  const achs=[
-    {icon:'⚡',name:'First Session',earned:logs.length>0},
-    {icon:'✦',name:'3-Day Streak',earned:streak>=3},
-    {icon:'◆',name:'Week 1 Photo',earned:!!photos[1]},
-    {icon:'▲',name:'Perfect Week',earned:pct===100},
-    {icon:'★',name:'7-Day Streak',earned:streak>=7},
-    {icon:'◉',name:'4 Weeks In',earned:w>=4},
-    {icon:'●',name:'5 Sessions',earned:logs.length>=5},
-    {icon:'■',name:'8-Week Champ',earned:w>=8},
-  ];
-  const el=document.getElementById('ach-grid');
-  if(el) el.innerHTML=achs.map(a=>`<div class="ach-card${a.earned?' earned':''}"><div class="ach-icon">${a.icon}</div><div class="ach-name">${a.name}</div></div>`).join('');
+
+// ── Edit All Products
+function openEditAll() {
+  renderEditAllGrid();
+  openM('m-edit-all');
 }
-function renderDashPhotos() {
-  const photos=S.get('photos')||{};
-  const wks=Object.keys(photos).map(Number).sort((a,b)=>a-b);
-  const containers=['dash-photos','month-photos'];
-  containers.forEach(id=>{
-    const el=document.getElementById(id);
-    if(!el)return;
-    if(!wks.length){el.innerHTML='<div class="text3 sz13" style="padding:20px;width:100%;">No photos yet — add them in the Progress tab.</div>';return;}
-    el.innerHTML=wks.map(w=>`<div class="photo-slot"><img src="${photos[w]}"><div class="photo-wk-lbl">Week ${w}</div></div>`).join('');
+
+function renderEditAllGrid() {
+  var el = document.getElementById('edit-all-grid');
+  if(!el) { console.log('edit-all-grid not found'); return; }
+  el.innerHTML = '<div style="padding:20px;color:var(--text3);text-align:center;">Loading...</div>';
+  // Defer so modal is visible first
+  setTimeout(function() {
+    var prods = [];
+    try { prods = getAllProds(); } catch(e) { console.log('getAllProds error:', e); }
+    console.log('renderEditAllGrid: prods count =', prods.length);
+    if(!prods.length) {
+      el.innerHTML = '<div style="padding:20px;color:var(--text3);">No products loaded. Try refreshing.</div>';
+      return;
+    }
+    var cats = ['Natural','Professional','Commercial','Supplement','DIY'];
+    var html = '';
+    for(var i = 0; i < prods.length; i++) {
+      var p = prods[i];
+      var enc = encodeURIComponent(p.name || '');
+      var safeName = (p.name || '').replace(/"/g, '&quot;');
+      var safeUse = (p.use || '').replace(/"/g, '&quot;');
+      var opts = '';
+      for(var j = 0; j < cats.length; j++) {
+        opts += '<option value="' + cats[j] + '"' + (p.cat === cats[j] ? ' selected' : '') + '>' + cats[j] + '</option>';
+      }
+      html += '<div style="display:grid;grid-template-columns:2fr 1fr 2fr auto;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);" data-idx="' + i + '">' +
+        '<input class="finp" style="padding:6px 8px;font-size:13px;" value="' + safeName + '" data-field="name" data-orig="' + enc + '" placeholder="Product name">' +
+        '<select class="fsel" style="padding:6px 8px;font-size:12px;background:var(--surface2);" data-field="cat" data-orig="' + enc + '">' + opts + '</select>' +
+        '<input class="finp" style="padding:6px 8px;font-size:12px;color:var(--text3);" value="' + safeUse + '" data-field="use" data-orig="' + enc + '" placeholder="Use / step">' +
+        '<button style="background:none;border:none;color:var(--text3);cursor:pointer;font-size:16px;padding:0 6px;" onclick="removeFromEditList(this)" title="Hide">&#10005;</button>' +
+        '</div>';
+    }
+    el.innerHTML = html;
+  }, 50);
+}
+
+function removeFromEditList(btn) {
+  btn.closest('[data-idx]').remove();
+}
+
+function saveAllEdits() {
+  const rows = document.querySelectorAll('#edit-all-grid [data-idx]');
+  const userProds = S.get('user-products') || [];
+  const hidden = S.get('hidden-products') || [];
+  const overrides = S.get('prod-name-overrides') || {};
+
+  rows.forEach(row => {
+    const origEnc = row.querySelector('[data-field="name"]').dataset.orig;
+    const origName = decodeURIComponent(origEnc);
+    const newName = row.querySelector('[data-field="name"]').value.trim();
+    const newCat = row.querySelector('[data-field="cat"]').value;
+    const newUse = row.querySelector('[data-field="use"]').value.trim();
+
+    const isDefault = PRODUCT_DEFAULTS.some(p => p.name === origName);
+    if(isDefault) {
+      // Store override
+      overrides[origName] = {name:newName, cat:newCat, use:newUse};
+    } else {
+      const idx = userProds.findIndex(p => p.name === origName);
+      if(idx !== -1) { userProds[idx].name = newName; userProds[idx].cat = newCat; userProds[idx].use = newUse; }
+    }
   });
+
+  S.set('prod-name-overrides', overrides);
+  S.set('user-products', userProds);
+  closeM('m-edit-all');
+  renderProdLibrary();
 }
+
+// Update getAllProds to apply name/cat/use overrides
+
+
+
 function renderOverallChart() {
   const ctx=document.getElementById('chart-overall');if(!ctx)return;
   if(charts.overall)charts.overall.destroy();
@@ -3393,32 +3796,188 @@ function renderMonthDash() {
 
 // ── Products — Periodic Table
 const ELEMENTS=[
-  {sym:'EVOO',n:1,name:'Extra Virgin Olive Oil',cat:'nat',benefit:'Deep moisture, penetrates shaft',detail:'Oleic acid penetrates the hair cortex — one of the few plant oils that actually enters the hair shaft vs. coating. Best for pre-poo and sealing. High porosity: apply pre-wash and leave 24 hrs.'},
-  {sym:'AMLA',n:2,name:'Amla (Indian Gooseberry)',cat:'nat',benefit:'Growth stimulant, Vitamin C + tannins',detail:'Clinically demonstrated to stimulate hair growth. Contains high Vit C (20× higher than citrus) and tannins that seal the cuticle. Also a DHT inhibitor. Use as scalp paste or infused in oil monthly.'},
-  {sym:'CAST',n:3,name:'Castor Oil / JBCO',cat:'nat',benefit:'Edge growth, ricinoleic acid',detail:'Ricinoleic acid is one of the most studied hair growth compounds. JBCO increases scalp blood flow by up to 14× during massage. Use on edges and scalp only — too heavy for hair strands.'},
-  {sym:'SHEA',n:4,name:'Shea Butter',cat:'nat',benefit:'Seals moisture, anti-breakage',detail:'Rich in triterpene alcohols that reduce inflammation and protect the cortex. Raw unrefined shea contains the most active compounds. Use in cream (C) step of LOC method.'},
-  {sym:'COCO',n:5,name:'Coconut Oil',cat:'nat',benefit:'Reduces protein loss 39%',detail:'Published Journal of Cosmetic Science: coconut oil applied pre-wash reduces protein loss by 39% vs. mineral oil or no oil. Apply to DRY hair 24 hrs before washing — this is when penetration occurs.'},
-  {sym:'ALOE',n:6,name:'Aloe Vera',cat:'nat',benefit:'pH balance, hydration, soothes scalp',detail:'Aloe vera juice pH is ~4.5 — ideal for hair. Contains proteolytic enzymes that repair dead scalp skin. Highly effective in daily refresh spray. Also reduces dandruff via its antifungal compounds.'},
-  {sym:'JOJO',n:7,name:'Jojoba Oil',cat:'nat',benefit:'Mimics sebum, non-comedogenic',detail:'Technically a liquid wax — molecularly closer to human sebum than any other plant oil. The scalp cannot distinguish it from its own oils, so no overproduction response. Leven Rose is a good source.'},
-  {sym:'CHBE',n:8,name:'Chebe Powder',cat:'nat',benefit:'Prevents hygral fatigue',detail:'Traditional Chadian hair treatment. Resin compounds coat the shaft and reduce the rate of moisture absorption — critical for preventing hygral fatigue (breakage from repeated swelling/shrinking) in high-porosity hair.'},
-  {sym:'BHRJ',n:9,name:'Bhringraj (Eclipta alba)',cat:'nat',benefit:'Anagen stimulation, DHT inhibitor',detail:'Most clinically validated Ayurvedic hair ingredient. Wedelolactone and ecliptine compounds stimulate the anagen (growth) phase and inhibit DHT. Especially important for stimulant medication users where vasoconstriction is a factor.'},
-  {sym:'BRHM',n:10,name:'Brahmi (Bacopa monnieri)',cat:'nat',benefit:'Strengthens keratin structure',detail:'Alkaloids in Brahmi increase the protein content of individual hair strands. Also clinically shown to support cognitive function (relevant for ADHD). Use in scalp oil and as 300mg daily supplement.'},
-  {sym:'FENU',n:11,name:'Fenugreek',cat:'nat',benefit:'Lecithin + diosgenin (DHT blocker)',detail:'Lecithin content acts as an internal deep conditioner when applied topically. Diosgenin is a phytoestrogenic compound that counteracts androgenic hair loss (DHT-related). Use in scalp oil recipe weekly.'},
-  {sym:'MSTD',n:12,name:'Mustard Oil',cat:'nat',benefit:'Scalp stimulant, antifungal',detail:'Highest erucic acid concentration of any cooking oil. Strong scalp stimulant that penetrates scalp layers. Also antifungal — addresses dandruff causes at the root. Use as base for Ayurvedic oil infusions.'},
-  {sym:'HENA',n:13,name:'Henna',cat:'nat',benefit:'Protein binding, strengthening',detail:'Lawsone (active compound) binds to keratin protein and fills cortex gaps. Dramatically strengthens and thickens strands. Neutral/clear henna has no color effect. Use as protein treatment alternative.'},
-  {sym:'KERA',n:1,name:'Keratin Protein',cat:'pro',benefit:'Fills cortex damage, smooth cuticle',detail:'Primary structural protein of hair (90%). Hydrolyzed keratin in products means it\'s been broken into smaller molecules that can penetrate the shaft. GK Keratin treatment uses this at salon concentration. Your hydrolyzed keratin powder can be added to deep conditioners.'},
-  {sym:'CERA',n:2,name:'Ceramides',cat:'pro',benefit:'Cuticle seal, reduces porosity',detail:'Lipids that cement the hair cuticle cells together. Chemical processing, heat, and bleaching deplete ceramides — this is what causes high porosity. CER-100 directly replenishes them. Look for ceramide NP, AP, or EOP on ingredient labels.'},
-  {sym:'PANT',n:3,name:'Panthenol (Pro-Vit B5)',cat:'pro',benefit:'Moisture retention + thickness',detail:'Penetrates hair cortex, attracts and binds water molecules inside the shaft. Adds body and thickness with regular use. One of the most well-studied conditioning ingredients. Look for it in your ORS and Oribe products.'},
-  {sym:'HYDR',n:4,name:'Hydrolyzed Proteins',cat:'pro',benefit:'Fill damage, add strength',detail:'Hydrolyzed keratin, wheat, silk, soy, collagen — small enough to penetrate the cortex and fill gaps left by damage. You own: Keratin Protein Hydrolyzed, Jojoba Protein HP, Collagen Hydrolyzed. Add to DC weekly during intensive phase.'},
-  {sym:'GLYC',n:5,name:'Glycerin',cat:'pro',benefit:'Humectant — draws water to shaft',detail:'Draws water molecules from the air and binds them to the hair shaft. Essential in refresh sprays and styling products. Caveat: in very dry/cold environments it can pull moisture OUT of hair — always layer under a sealant oil.'},
-  {sym:'PQ-7',n:6,name:'Polyquaternium-7',cat:'pro',benefit:'Frizz control, curl definition',detail:'You own this raw material. Quaternary ammonium polymer — the anti-frizz and curl-defining active in most commercial gels. Add ½ tsp per cup of flaxseed gel for professional-grade hold and frizz control at a fraction of commercial product cost.'},
-  {sym:'ACV',n:7,name:'Apple Cider Vinegar',cat:'pro',benefit:'pH balance, closes cuticle',detail:'Healthy hair pH: 4.5–5.5. Most shampoos and treatments are pH 7–9. ACV rinse (1:8 ratio) restores the acid mantle, closes the cuticle physically, and adds shine. Monthly clarifying use. Never use undiluted.'},
-  {sym:'BIOT',n:1,name:'Biotin (B7)',cat:'ing',benefit:'Keratin synthesis',detail:'Most studied hair vitamin. Supports keratin infrastructure production. Deficiency causes shedding — common in caloric restriction or highly processed diets. MaryRuth Liposomal delivers 10,000mcg in superior bioavailable form (40× more soluble than standard biotin).'},
-  {sym:'COLL',n:2,name:'Collagen Peptides',cat:'ing',benefit:'Structural amino acids',detail:'Provides glycine, proline, and hydroxyproline — the three amino acids most unique to keratin and collagen. 10–20g in morning shake. Bovine collagen is most studied; marine collagen has highest bioavailability.'},
-  {sym:'MSM',n:3,name:'MSM (Sulfur)',cat:'ing',benefit:'Extends anagen phase',detail:'Organic sulfur compound. Hair is 35% sulfur by composition — adequate sulfur is required for all hair protein synthesis. Studies show MSM extends the anagen growth phase, meaning hair stays in the growth phase longer before shedding. 1000–2000mg daily.'},
-  {sym:'VITD',n:4,name:'Vitamin D3',cat:'ing',benefit:'Follicle activation',detail:'Vitamin D receptors are expressed in hair follicle cells. D3 deficiency is strongly correlated with alopecia areata and telogen effluvium. Test your levels via bloodwork — many people are deficient. 2000–5000 IU with a fat-containing meal.'},
-  {sym:'OMG3',n:5,name:'Omega-3 Fatty Acids',cat:'ing',benefit:'Scalp sebum + inflammation',detail:'EPA and DHA reduce scalp inflammation, support sebaceous gland function for natural shine, and improve hair density in clinical studies. 1000–2000mg EPA+DHA (not total fish oil) daily. Nordic Naturals Ultimate Omega 2X is a high-quality option.'},
-  {sym:'SILC',n:6,name:'Silica / Lustriva',cat:'ing',benefit:'Collagen co-factor, thickness',detail:'Silicon is a co-factor in collagen synthesis enzymes. Lustriva (in MaryRuth) is clinically studied: double-blind placebo-controlled trial showed significant increase in hair thickness and reduction in wrinkles. The bonded arginine silicate form is 40× more soluble than standard silica.'},
+  {sym:'EVOO',n:1,name:'Extra Virgin Olive Oil',cat:'nat',benefit:'Deep moisture, penetrates shaft',
+   detail:'Oleic acid penetrates the hair cortex — one of the few plant oils that actually enters the hair shaft vs. coating. Best for pre-poo and sealing. High porosity: apply pre-wash only.',
+   howto:'Apply to dry hair 24hrs before washing as a pre-poo. Can be added to DC mix at 1 tbsp. Not ideal as a daily sealant — too heavy for fine hair.',
+   tip:'High porosity hair benefits most from EVOO pre-poo. Low porosity: use sparingly — it will sit on top.',
+   science:'Oleic acid (C18:1) is a monounsaturated fatty acid with a small enough molecular structure to penetrate the cuticle layer. Reduces protein loss during washing by 49% in some studies.',
+   pairs:['Castor oil (CAST) — thins it for scalp use','Bhringraj (BHRJ) — Ayurvedic penetration synergy','Aloe vera (ALOE) — moisture sandwich'],
+   conflicts:['Do not layer over protein treatments — seals before protein can work','Avoid as LOC O-step if hair feels coated or waxy']},
+  {sym:'AMLA',n:2,name:'Amla (Indian Gooseberry)',cat:'nat',benefit:'Growth stimulant, Vitamin C + tannins',
+   detail:'Clinically shown to inhibit 5-alpha reductase (the DHT-producing enzyme). Contains 20x the Vitamin C of oranges. Tannins strengthen the hair shaft. Used in Ayurveda for 3000+ years.',
+   howto:'Add amla powder to your DC mix (1 tsp per 4 tbsp conditioner) or make an amla water rinse. Can also be used as a scalp oil infusion.',
+   tip:'Amla rinse after shampoo = scalp DHT reduction + cuticle smoothing. The Vitamin C also brightens scalp and removes buildup.',
+   science:'Gallic acid and ellagic acid in amla are strong antioxidants that protect follicle cells from oxidative stress. Emblicanin A and B are unique to amla and show the strongest DHT-blocking activity of any plant compound tested.',
+   pairs:['Bhringraj (BHRJ) — DHT-blocking synergy','ACV (ACV) — pH-balanced amla rinse','Hibiscus — AHA + antioxidant stack'],
+   conflicts:['Do not use with henna on the same day — competing tannins','Avoid high concentration on bleached hair — can cause dryness']},
+  {sym:'CAST',n:3,name:'Castor Oil / JBCO',cat:'nat',benefit:'Edge growth, ricinoleic acid',
+   detail:'Ricinoleic acid is one of the most potent natural vasodilators — it increases blood flow to the scalp and follicle. JBCO (Jamaican Black Castor Oil) has the same fatty acid profile but higher pH from the ash roasting process, which slightly opens the cuticle.',
+   howto:'Apply to edges and scalp nightly with fingertip pressure. Can be blended with lighter oils (jojoba, almond) at a 1:3 ratio to reduce viscosity for easier application. Use undiluted on edges.',
+   tip:'JBCO can clog follicles if applied too thickly. Apply a thin layer and massage in — the massage is doing as much work as the oil.',
+   science:'Ricinoleic acid (90% of castor oil) activates PGE2 receptors in the skin, triggering vasodilation and follicle stimulation. Studies show it promotes hair thickening even at low concentrations.',
+   pairs:['EVOO (EVOO) — dilution for scalp massage','Bhringraj powder (BHRJ) — infuse powders in warm castor oil','Peppermint EO — adds menthol vasodilation effect'],
+   conflicts:['Too thick to use as a sealant on fine hair — will cause buildup','Do not use as a pre-poo oil on low porosity hair — cannot penetrate']},
+  {sym:'SHEA',n:4,name:'Shea Butter',cat:'nat',benefit:'Sealing, protective layer, emollient',
+   detail:'Unrefined shea butter contains cinnamic acid, a natural UV protectant. Rich in triterpenes that have anti-inflammatory properties. Best used as the final sealing layer in LOC method.',
+   howto:'Use as the O-step in LOC/LCO method. Warm a pea-sized amount between palms before applying — cold shea butter drags on hair. Layer over leave-in and cream.',
+   tip:'Refined shea butter has had the beneficial compounds processed out. Always use raw/unrefined (yellow-beige color, earthy smell).',
+   science:'Contains 5-8% cinnamic acid esters which provide SPF 3-4 UV protection. Lupeol and butyrospermum parkii sterols have documented anti-inflammatory effects on scalp.',
+   pairs:['Aloe vera — moisture locked under shea','Coconut oil (COCO) — traditional shea + coconut combo','Glycerin (GLYC) — water phase under shea seal'],
+   conflicts:['Heavy for fine hair as a daily product','Can cause buildup on low porosity hair — use sparingly']},
+  {sym:'COCO',n:5,name:'Coconut Oil',cat:'nat',benefit:'Protein loss prevention, pre-wash treatment',
+   detail:'The most studied hair oil. Lauric acid has the highest affinity for hair protein of any oil tested — reduces protein loss by 39% when applied pre-wash. Penetrates the cortex.',
+   howto:'Apply to dry hair before washing — the key window is pre-wash, not post-wash. Leave on 30 minutes minimum, 24 hours maximum. Rinse before shampooing.',
+   tip:'Coconut oil does NOT work as a sealant for everyone. If your hair feels dry or crunchy after coconut oil, you may be protein-sensitive — the protein-binding effect is working against you.',
+   science:'Lauric acid (C12:0) is a saturated fatty acid with a straight chain structure that allows it to penetrate the cortex along the fiber axis. Mass spectrometry studies confirm it reaches the inner cortex.',
+   pairs:['Chebe powder (CHBE) — traditional Chadian pre-poo blend','Avocado oil — penetrating oil blend','Bhringraj oil — Ayurvedic scalp treatment base'],
+   conflicts:['Avoid on protein-sensitive hair — the protein-binding effect causes stiffness','Do not use as leave-in on low porosity hair — will sit on top and cause buildup']},
+  {sym:'ALOE',n:6,name:'Aloe Vera',cat:'nat',benefit:'pH balance, moisture, DHT reduction',
+   detail:'Pure aloe vera gel has a pH of 4.5 — nearly identical to healthy hair. Proteolytic enzymes in aloe repair dead scalp cells. Contains chrysophanic acid, a documented DHT inhibitor.',
+   howto:'Use as a refresh spray base (dilute with water 1:1). Add to DC mixes. Apply to scalp directly for itchy or inflamed conditions.',
+   tip:'Use pure aloe vera (food-grade or directly from the plant) — most commercial aloe gels are mostly water with thickeners and have minimal active content.',
+   science:'Aloin and barbaloin in aloe vera are anthraquinones with antimicrobial properties. Polysaccharides in aloe form a film on the cuticle that reduces frizz without silicones.',
+   pairs:['Glycerin (GLYC) — humectant stack for refresh sprays','ACV (ACV) — pH 4.5 matches perfectly','Rosemary oil — growth serum base'],
+   conflicts:['Do not mix with protein treatments — enzymes can degrade protein bonds','Avoid high concentration on color-treated hair — anthraquinones can strip']},
+  {sym:'JOJO',n:7,name:'Jojoba Oil',cat:'nat',benefit:'Sebum mimic, scalp regulation',
+   detail:'Technically a liquid wax, not an oil. Closest molecular match to human sebum. Regulates scalp oil production over time. Does not go rancid.',
+   howto:'Apply to scalp daily as a scalp conditioner. Use as LOC O-step on fine hair — lightweight enough not to weigh down. Excellent carrier oil for scalp serums.',
+   tip:'Jojoba tricks the scalp into thinking it has produced enough sebum, which gradually reduces both excess oiliness and excess dryness over 4-6 weeks of consistent use.',
+   science:'Jojoba is a straight-chain wax ester (C20-C22) that structurally mimics squalene — the primary component of human sebum. Studies show it reduces Malassezia proliferation on the scalp.',
+   pairs:['JBCO (CAST) — dilution blend for edges','The Ordinary Multi-Peptide Serum — carrier for scalp serums','Bhringraj oil — Ayurvedic oil blend'],
+   conflicts:['No significant conflicts — one of the most universally tolerated oils']},
+  {sym:'CHBE',n:8,name:'Chebe Powder',cat:'nat',benefit:'Hygral fatigue prevention, length retention',
+   detail:'Traditional Chadian hair retention ingredient. Prevents hygral fatigue (repeated swelling and shrinking of the hair shaft from water absorption) by forming a protective coating.',
+   howto:'Mix with a penetrating oil (coconut or avocado) to form a paste. Apply to dry hair before braiding or pre-poo overnight. The Chadians traditionally braid Chebe into their hair.',
+   tip:'Chebe does not grow hair. It retains length by preventing the mechanical damage of hygral fatigue. If your hair breaks easily when wet, Chebe addresses this specific problem.',
+   science:'The mechanism is likely the lignans and terpene compounds in Chebe forming a temporary film on the cuticle that reduces water absorption rate, limiting hygral fatigue cycles.',
+   pairs:['Coconut oil (COCO) — traditional Chebe butter base','Karkar oil — authentic Chadian formula','Avocado oil — penetrating oil carrier'],
+   conflicts:['Do not use as a daily product — builds up','Clarifying shampoo needed after consistent Chebe use']},
+  {sym:'BHRJ',n:9,name:'Bhringraj Powder/Oil',cat:'nat',benefit:'DHT inhibitor, anagen phase extension',
+   detail:'The most clinically validated Ayurvedic hair growth ingredient. Multiple studies show it extends the anagen (growth) phase of the hair cycle and inhibits DHT production in the scalp.',
+   howto:'Infuse powder in warm sesame or coconut oil for 20 minutes. Apply to scalp 30-60 minutes before washing. Use 3x per week for active growth protocol.',
+   tip:'Bhringraj is not a quick fix — it works through consistent scalp application over 8-12 weeks. Think of it like a topical DHT blocker, not a stimulant.',
+   science:'Ecliptine and wedelolactone in bhringraj are the active compounds shown to inhibit 5-alpha reductase type 2 (the enzyme that converts testosterone to DHT). Studies show comparable efficacy to minoxidil in some preparations.',
+   pairs:['Brahmi (BRHM) — most powerful Ayurvedic combination for scalp','Amla (AMLA) — DHT-blocking synergy','Sesame oil (MSTD) — best traditional carrier oil'],
+   conflicts:['Do not combine with synthetic DHT blockers without medical supervision — additive effect may be too strong']},
+  {sym:'BRHM',n:10,name:'Brahmi (Bacopa monnieri)',cat:'nat',benefit:'Strengthens keratin structure',
+   detail:'Brahmi strengthens the keratin protein matrix of the hair shaft and has documented nerve-calming properties that address stress-related shedding. Used both topically and as a supplement.',
+   howto:'Add to scalp oil infusion alongside bhringraj. As supplement: 300mg daily. As a DC additive: 1 tsp powder per DC treatment.',
+   tip:'The combination of bhringraj + brahmi is the most validated Ayurvedic hair duo. Use both together for maximum effect.',
+   science:'Bacosides A and B in brahmi enhance protein synthesis in the hair follicle and reduce cortisol-induced follicle miniaturization. Anti-inflammatory effect on the scalp is well-documented.',
+   pairs:['Bhringraj (BHRJ) — the core Ayurvedic duo','Amla (AMLA) — triple Ayurvedic stack','Sesame oil (MSTD) — traditional carrier'],
+   conflicts:['Do not take as supplement alongside sedative medications — additive CNS effect']},
+  {sym:'FENU',n:11,name:'Fenugreek',cat:'nat',benefit:'DHT blocker (diosgenin), lecithin conditioning',
+   detail:'Contains diosgenin — a phytosterol that competitively inhibits DHT binding at the follicle receptor. Lecithin content provides deep conditioning. Traditional Indian hair treatment.',
+   howto:'Soak seeds overnight, blend to paste, apply to scalp 30 min before washing. Or infuse in warm oil for scalp treatment. Strong smell — rinse thoroughly.',
+   tip:'Fenugreek is particularly effective for hormonally-driven shedding (postpartum, PCOS, perimenopause) due to its DHT-blocking pathway.',
+   science:'Diosgenin is a steroidal saponin that acts as a 5-alpha reductase inhibitor through competitive binding. Trigonelline has also shown follicle-protective effects in vitro.',
+   pairs:['Bhringraj (BHRJ) — DHT-blocking stack','Amla (AMLA) — scalp paste blend','Mustard oil (MSTD) — traditional oil infusion base'],
+   conflicts:['Avoid internal use without medical supervision if pregnant — has uterine-stimulating properties']},
+  {sym:'MSTD',n:12,name:'Mustard Oil',cat:'nat',benefit:'Scalp vasodilator, antifungal base',
+   detail:'Allyl isothiocyanate in mustard oil is a strong vasodilator and antimicrobial agent. Traditional Indian scalp treatment. Strong smell — use in oil blends rather than alone.',
+   howto:'Use as a base oil (20-30% of your scalp oil blend). Never apply undiluted to scalp — too stimulating. Best in the bhringraj-brahmi Ayurvedic oil infusion.',
+   tip:'If you are on medication for blood pressure or circulation, check with your doctor before using mustard oil on the scalp regularly.',
+   science:'Isothiocyanates in mustard oil activate TRPA1 channels in scalp nerve fibers, causing local vasodilation and increased blood flow to the follicle bed.',
+   pairs:['Bhringraj (BHRJ) — best base for Ayurvedic oil infusion','Sesame oil — dilution blend','Castor oil (CAST) — scalp blend'],
+   conflicts:['Do not use undiluted — causes scalp irritation','Avoid if allergic to cruciferous vegetables (same family)']},
+  {sym:'HENA',n:13,name:'Henna (Neutral / Cassia)',cat:'nat',benefit:'Protein-like strengthening, cuticle coating',
+   detail:'Neutral henna (Cassia obovata) provides protein-like strengthening without color deposit. Lawsone in henna binds to keratin through hydrogen bonding, creating a temporary strengthening effect.',
+   howto:'Mix with warm water or herbal tea to yogurt consistency. Apply to clean wet hair. Process 1-2 hours under a shower cap. Rinse thoroughly — may take 10-15 minutes.',
+   tip:'Neutral henna is not the same as colored henna. Always confirm "Cassia obovata" or "neutral/colorless henna" to avoid color deposit on non-target-colored hair.',
+   science:'Lawsone (2-hydroxy-1,4-naphthoquinone) forms covalent bonds with the keratin in the hair cuticle, increasing tensile strength and reducing porosity temporarily.',
+   pairs:['Amla (AMLA) — reduces color deposit risk, adds shine','Hibiscus powder — color-neutral addition with shine benefit','Coconut oil (COCO) — mix in for conditioning'],
+   conflicts:['Do not use on chemically relaxed hair without patch testing — can cause excessive hardening','Avoid if protein-sensitive — lawsone bonding mimics protein treatment effect']},
+  {sym:'KERA',n:14,name:'Keratin Protein (Hydrolyzed)',cat:'pro',benefit:'Cortex repair, fills heat damage gaps',
+   detail:'Hydrolyzed keratin has been broken into smaller peptide fragments that can penetrate the cuticle and reach the cortex. Fills spaces left by heat damage and chemical processing.',
+   howto:'Add 1 tbsp to your DC mix as a weekly treatment if hair is damaged. Use in DIY heat protectant sprays at 1 tsp per 200ml. Do not use every wash — rotate with moisture-only DCs.',
+   tip:'The word "keratin" on a shampoo label usually means minimal keratin at a concentration that has no penetrating effect. Effective keratin is in a DC or mask format, not rinse-off.',
+   science:'Keratin peptides (1000-5000 Da molecular weight range) can diffuse through the swollen cuticle during DC processing. They form temporary cross-links inside the cortex, reducing porosity and increasing tensile strength.',
+   pairs:['Glycerin (GLYC) — humectant under protein layer','Collagen (COLL) — complementary peptide mix','ACV rinse after — seals cuticle over protein treatment'],
+   conflicts:['Do not combine with hard protein (Aphogee 2-step) in same week — protein overload','Avoid if showing signs of protein sensitivity: stiffness, increased snapping']},
+  {sym:'CERA',n:15,name:'Ceramides',cat:'pro',benefit:'Cuticle integrity, moisture retention',
+   detail:'Ceramides are lipids that form the intercellular cement between cuticle cells. Heat styling, chemical processing, and aging all deplete ceramide levels. Replacing them dramatically improves shine and reduces porosity.',
+   howto:'Use CER-100 or ceramide-containing masks as your Week 3 bond repair rotation treatment. Apply to clean wet hair, hood dryer 30 minutes, cold water rinse.',
+   tip:'Ceramide depletion is the main reason flat-ironed hair looks dull instead of glossy. Replenishing before heat styling dramatically improves the result.',
+   science:'Type 18 ceramide (ceramide NP) is the most abundant in the hair fiber. Mass spectrometry shows ceramide levels in heat-damaged hair are 40% lower than in virgin hair. CER-100 is uniquely effective because it contains the exact ceramide profile found in hair.',
+   pairs:['Keratin (KERA) — complementary repair (ceramides seal what keratin fills)','Bond-repair treatments (AllPlex, Olaplex) — layered repair protocol','ACV rinse — pH optimization after treatment'],
+   conflicts:['No significant conflicts — ceramides are compatible with all protocol components']},
+  {sym:'PANT',n:16,name:'Panthenol (Pro-Vitamin B5)',cat:'pro',benefit:'Moisture binding, strand flexibility',
+   detail:'Panthenol penetrates the hair shaft and converts to pantothenic acid, which binds and holds water inside the cortex. Increases strand elasticity and reduces breakage.',
+   howto:'Look for panthenol in your conditioner, leave-in, and styling products — it works cumulatively. Found in ORS conditioners and many professional products.',
+   tip:'Panthenol is one of the few humectants that actually penetrates the cuticle — glycerin and hyaluronic acid do not. This makes it more effective for long-term moisture retention.',
+   science:'Panthenol converts to pantothenic acid (Vitamin B5) enzymatically within the hair fiber. Pantothenic acid forms hydrogen bonds with water molecules and cortical keratin, increasing fiber water content by 20-30%.',
+   pairs:['Glycerin (GLYC) — surface humectant to complement panthenol penetration','Ceramides (CERA) — moisture locked inside, ceramides seal cuticle'],
+   conflicts:['No significant conflicts']},
+  {sym:'HYDR',n:17,name:'Hydrolyzed Proteins (General)',cat:'pro',benefit:'Temporary structural reinforcement',
+   detail:'Hydrolyzed proteins include wheat, silk, soy, rice, and quinoa. Each has a different molecular weight profile and therefore different penetration and coating behaviors. Smaller = more penetration, larger = more coating.',
+   howto:'Wheat protein: best for damage repair. Silk protein: best for shine and slip. Rice protein: best for fine hair strengthening. Rotate based on what your hair needs that week.',
+   tip:'If a product causes stiffness or breakage and "protein" or "hydrolyzed" appears in the top 5 ingredients, you may have protein sensitivity.',
+   science:'Hydrolysis breaks proteins into peptide fragments of varying sizes. Typical molecular weights: 200-50,000 Da. Sub-500 Da fragments penetrate to the cortex. Larger fragments deposit on the cuticle as a protective film.',
+   pairs:['Moisturizing DC — always follow protein with moisture','ACV rinse — seals after protein treatment'],
+   conflicts:['Protein-sensitive hair — do not use hydrolyzed proteins in any form','Do not combine multiple protein treatments in same wash session']},
+  {sym:'GLYC',n:18,name:'Glycerin',cat:'pro',benefit:'Humectant, draws water to shaft',
+   detail:'Glycerin draws moisture from the environment (and from inside the hair shaft) to the surface. In humid climates, it is one of the most effective moisture boosters. In dry climates, it can backfire.',
+   howto:'Use in DC mixes (1 tbsp per 4 tbsp product) and refresh sprays. Always layer a sealant over glycerin — without a sealant, glycerin will pull moisture out of the shaft in dry air.',
+   tip:'Glycerin rule: if your dew point is below 35°F or above 75°F, glycerin may cause dryness or frizz. Reduce or eliminate in extreme weather conditions.',
+   science:'Glycerol is a trihydric alcohol that forms hydrogen bonds with water. Its hygroscopic nature allows it to hold 3x its weight in water. The dew point dependence is a real, measurable effect.',
+   pairs:['Aloe vera (ALOE) — humectant stack','Shea butter (SHEA) — always seal over glycerin','Polyquaternium-7 (PQ-7) — film-forming partner in DIY gels'],
+   conflicts:['Never use without a sealant on top — will cause dryness in dry climates','Avoid high concentrations (over 5%) in products used during cold/dry winter months']},
+  {sym:'PQ7',n:19,name:'Polyquaternium-7',cat:'pro',benefit:'Film former, frizz control, curl definition',
+   detail:'Quaternary ammonium polymer that forms a flexible, anti-static film on each hair strand. Used in professional curl-defining gels and serums. Provides hold without stiffness.',
+   howto:'Add 1/2 tsp to your flaxseed gel DIY recipe for professional-grade hold and frizz control. Use at 0.5-1% concentration in custom products.',
+   tip:'PQ-7 is the professional-grade ingredient that separates salon curl gels from drugstore gels. It is available from cosmetic ingredient suppliers for $15-20 and lasts months.',
+   science:'Cationic charge of polyquaternium-7 is attracted to the slightly anionic surface of wet hair. Forms a continuous film that reduces friction between strands and prevents frizz-causing atmospheric moisture from penetrating the cuticle.',
+   pairs:['Glycerin (GLYC) — humectant under PQ-7 film','Aloe vera — film base in DIY gels','Flaxseed gel — traditional pairing for curl definition'],
+   conflicts:['Can cause buildup with overuse — clarify monthly','Incompatible with anionic surfactants in high concentrations — do not mix into sulfate shampoos']},
+  {sym:'ACV',n:20,name:'Apple Cider Vinegar',cat:'pro',benefit:'pH optimization, cuticle sealing',
+   detail:'Hair has a natural pH of 4.5-5.5. Most shampoos have a pH of 6-9, which swells and lifts the cuticle. ACV (pH 2.4-3.3) restores the acidic pH, closing the cuticle and sealing in moisture from your DC.',
+   howto:'Mix 1-2 tbsp ACV in 2 cups cool water. Pour over hair after rinsing out conditioner. Leave 30 seconds. Cold water rinse. Apply leave-in immediately.',
+   tip:'ACV is the single highest ROI step in a wash day routine for high-porosity hair. The cuticle sealing effect is immediate and dramatically affects how long your moisture lasts.',
+   science:'Acetic acid (main active compound in ACV) protonates the carboxylate groups on the hair surface, causing cuticle scales to flatten and reducing the negative surface charge. This improves shine, reduces frizz, and slows moisture loss.',
+   pairs:['Hibiscus tea — add to ACV rinse for AHA + pH benefit','Aloe vera (ALOE) — add for soothing','Green tea — antioxidant addition to ACV rinse'],
+   conflicts:['Do not use on open scalp wounds or very sensitive scalp — acidic','Avoid on freshly-relaxed hair — acidity can cause irritation on processed scalp']},
+  {sym:'BIOT',n:21,name:'Biotin (B7)',cat:'ing',benefit:'Keratin synthesis, nail and hair structure',
+   detail:'Biotin is a B-vitamin required for the synthesis of keratin — the protein that makes up hair. Deficiency causes hair loss. Supplementing beyond deficiency level shows limited benefit unless you are actually deficient.',
+   howto:'300-5000mcg daily. Liposomal form (MaryRuth) is significantly more bioavailable than standard capsules. Take with breakfast.',
+   tip:'If you are already biotin-sufficient, high-dose biotin supplements may not show visible results. Biotin deficiency is relatively common in women who heavily restrict calories or have digestive issues.',
+   science:'Biotin is the cofactor for carboxylase enzymes involved in fatty acid synthesis and amino acid metabolism — both required for keratin production. Deficiency causes brittle, thinning hair within weeks.',
+   pairs:['Zinc (zinc supplement) — synergistic for keratin synthesis','Vitamin C — collagen co-factor pair','MSM (MSM) — anagen phase combination'],
+   conflicts:['High-dose biotin interferes with thyroid function lab tests — inform your doctor','Do not take more than 10,000mcg without medical supervision']},
+  {sym:'COLL',n:22,name:'Collagen Peptides',cat:'ing',benefit:'Amino acid scaffold for hair protein',
+   detail:'Hydrolyzed collagen provides glycine, proline, and hydroxyproline — the amino acids that form the scaffolding of keratin. Type I and Type III collagen are most relevant for hair.',
+   howto:'10-20g daily in morning shake. Mix with Vitamin C for maximum absorption (Vitamin C is a collagen synthesis cofactor). Bovine hide collagen (not marine) has the best amino acid profile for hair.',
+   tip:'Collagen is food — your body breaks it down and rebuilds it where needed. "Hair-specific" collagen marketing is not meaningful. Any quality hydrolyzed collagen peptide works.',
+   science:'Glycine (the most abundant amino acid in collagen) is the rate-limiting amino acid in keratin synthesis. Studies show 10g/day supplementation increases hair diameter and reduces shedding over 6 months.',
+   pairs:['Vitamin C — essential co-factor for collagen synthesis','MSM (MSM) — sulfur for keratin cross-linking','Protein powder — complete amino acid base'],
+   conflicts:['No significant conflicts — safe with all medications']},
+  {sym:'MSM',n:23,name:'MSM (Methylsulfonylmethane)',cat:'ing',benefit:'Extends anagen phase, keratin sulfur bonds',
+   detail:'Organic sulfur compound that extends the anagen (active growth) phase of the hair cycle. Hair is approximately 35% sulfur by composition — MSM provides the sulfur needed for disulfide bond formation.',
+   howto:'1000-2000mg daily in morning shake. Powder form is most economical and absorbs quickly. Combine with Vitamin C for enhanced uptake.',
+   tip:'MSM is one of the few supplements with documented evidence of extending the hair growth phase. Most users see results in 3-4 months — not weeks.',
+   science:'MSM provides bioavailable sulfur for cysteine synthesis, which is required for disulfide bond formation in the keratin alpha-helix. Anagen phase extension is thought to occur through inhibition of the IGF-1 pathway.',
+   pairs:['Collagen (COLL) — complete structural protein stack','Biotin (BIOT) — keratin synthesis combination','Vitamin C — sulfur absorption enhancement'],
+   conflicts:['Blood-thinning effect at high doses — do not exceed 4g/day without medical supervision']},
+  {sym:'VITD',n:24,name:'Vitamin D3',cat:'ing',benefit:'Follicle activation, alopecia prevention',
+   detail:'Vitamin D receptors are found on hair follicle cells. Deficiency is extremely common (especially in darker skin tones that synthesize less from sunlight) and is directly linked to alopecia and hair thinning.',
+   howto:'2000-5000 IU daily with a fat-containing meal (D3 is fat-soluble). Take with K2 (MK-7 form) to direct calcium appropriately. Test blood levels annually — optimal is 50-80 ng/mL.',
+   tip:'Black women are statistically among the most Vitamin D deficient groups due to higher melanin reducing cutaneous Vitamin D synthesis. Getting levels tested is one of the highest-ROI hair health steps.',
+   science:'VDR (Vitamin D receptor) knockout mice develop alopecia — demonstrating the direct follicle dependency on D3. VDR signaling controls the transition between catagen and anagen phases of the hair cycle.',
+   pairs:['Vitamin K2 (MK-7 form) — directs calcium, should always be paired with D3','Magnesium — enhances D3 activation in the kidney','Omega-3 (OMG3) — reduces inflammation that impairs D3 signaling'],
+   conflicts:['Toxicity is possible above 10,000 IU/day long-term — test blood levels before supplementing high doses']},
+  {sym:'OMG3',n:25,name:'Omega-3 Fatty Acids (EPA+DHA)',cat:'ing',benefit:'Scalp sebum production, anti-inflammatory',
+   detail:'EPA and DHA reduce scalp inflammation (a major cause of follicle miniaturization), support sebum production, and are structural components of every cell membrane including follicle cells.',
+   howto:'1000-2000mg EPA+DHA daily. Fish oil or algae oil (vegan). Take with food. Look for brands with IFOS certification for purity testing.',
+   tip:'The ratio matters: you want at least 500mg EPA per serving. EPA is the anti-inflammatory component. Many fish oil supplements are mostly DHA.',
+   science:'EPA competitively inhibits arachidonic acid conversion to pro-inflammatory prostaglandins (PGE2, PGD2). Scalp inflammation drives follicle miniaturization in androgenetic alopecia — reducing it directly affects hair density.',
+   pairs:['Vitamin D3 (VITD) — fat-soluble vitamins absorb better together','Zinc — anti-inflammatory stack'],
+   conflicts:['Blood-thinning at doses above 3g/day — relevant if on anticoagulants','Can cause fishy aftertaste — take with meals or use enteric-coated capsules']},
+  {sym:'SILC',n:26,name:'Silica / Bioavailable Silicon',cat:'ing',benefit:'Collagen co-factor, strand thickness',
+   detail:'Silicon is required for collagen cross-linking and contributes to the thickness and tensile strength of hair. The MaryRuth Lustriva formulation has the highest bioavailability of any commercial silica supplement tested.',
+   howto:'As directed on supplement label. Lustriva liquid form 2ml daily. Standard silica capsules: 10-25mg elemental silicon.',
+   tip:'Most silica supplements have poor bioavailability — silicon dioxide in standard capsules absorbs at under 5%. Orthosilicic acid forms (like Lustriva) absorb at 50%+.',
+   science:'Orthosilicic acid stimulates type I collagen synthesis and increases alkaline phosphatase activity in fibroblasts — the cells that produce the connective tissue surrounding each follicle.',
+   pairs:['Collagen (COLL) — silica is the co-factor for collagen cross-linking','Biotin (BIOT) — complete hair structure stack'],
+   conflicts:['No significant conflicts at recommended doses']}
 ];
 
 function renderPeriodicTable() {
@@ -3432,16 +3991,81 @@ function renderPeriodicTable() {
 }
 function showElem(sym) {
   const e=ELEMENTS.find(x=>x.sym===sym);if(!e)return;
-  const cat={nat:'Natural',pro:'Professional / Lab',ing:'Ingestible'}[e.cat];
+  const catLabel={nat:'Natural / Ayurvedic',pro:'Professional / Lab',ing:'Ingestible'}[e.cat];
+  const catColor={nat:'var(--cat-nat)',pro:'var(--cat-pro)',ing:'var(--cat-ing)'}[e.cat];
+
+  // Check if user owns a product containing this ingredient
+  const allProds = getAllProds ? getAllProds() : [];
+  const ownedProds = allProds.filter(p =>
+    (p.name+' '+(p.use||'')+' '+(p.desc||'')).toLowerCase().includes(e.name.toLowerCase().split(' ')[0].toLowerCase())
+  );
+  const ownsHTML = ownedProds.length
+    ? `<span class="ing-owns-badge">&#10003; In your protocol</span>`
+    : '';
+
+  // Pairs and conflicts
+  const pairsHTML = (e.pairs||[]).map(p=>
+    `<div class="ing-pair"><strong style="color:var(--cat-nat);">Pairs well:</strong> ${p}</div>`
+  ).join('');
+  const conflictsHTML = (e.conflicts||[]).map(c2=>
+    `<div class="ing-conflict"><strong style="color:var(--red);">Conflict:</strong> ${c2}</div>`
+  ).join('');
+
   document.getElementById('m-element-content').innerHTML=`
-    <div class="flex fxa gap12 mb16">
-      <div class="elem ${e.cat}" style="width:80px;flex-shrink:0;cursor:default;pointer-events:none;"><div class="elem-num">${e.n}</div><div class="elem-sym">${e.sym}</div><div class="elem-name">${e.name}</div></div>
-      <div><div class="modal-title">${e.name}</div><div class="tag tag-n">${cat}</div></div>
+    <div style="border-top:3px solid ${catColor};border-radius:8px 8px 0 0;padding:18px;background:var(--surface2);margin:-1px -1px 0;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
+        <div class="elem ${e.cat}" style="width:64px;flex-shrink:0;cursor:default;pointer-events:none;">
+          <div class="elem-num">${e.n}</div>
+          <div class="elem-sym">${e.sym}</div>
+          <div class="elem-name">${e.name.split(' ')[0]}</div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-head);font-size:18px;font-weight:700;">${e.name} ${ownsHTML}</div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:${catColor};margin-top:2px;">${catLabel}</div>
+        </div>
+      </div>
     </div>
-    <div class="info info-a mb12"><strong>Benefit:</strong> ${e.benefit}</div>
-    <div class="sz14 text2" style="line-height:1.75;">${e.detail}</div>
-    <button class="btn btn-ai btn-sm mt16" onclick="elemToClaude('${e.sym}')">Ask Claude about this ingredient</button>`;
+
+    <div class="ing-tabs" style="margin:16px 0 0;">
+      <button class="ing-tab-btn on" onclick="ingTab('basic',this)">Basic</button>
+      <button class="ing-tab-btn" onclick="ingTab('use',this)">How to Use</button>
+      <button class="ing-tab-btn" onclick="ingTab('science',this)">Science</button>
+      <button class="ing-tab-btn" onclick="ingTab('pairs',this)">Pairs &amp; Conflicts</button>
+    </div>
+
+    <div id="ing-panel-basic" class="ing-tab-panel on" style="padding:12px 0;">
+      <div class="info info-a mb12"><strong>Primary benefit:</strong> ${e.benefit}</div>
+      <div class="sz14 text2" style="line-height:1.75;">${e.detail.split('.').slice(0,2).join('.') + '.'}</div>
+    </div>
+
+    <div id="ing-panel-use" class="ing-tab-panel" style="padding:12px 0;">
+      <div class="sz14 text2" style="line-height:1.75;">${e.howto || e.detail}</div>
+      ${e.tip ? `<div class="info info-b mt12"><strong>Tip:</strong> ${e.tip}</div>` : ''}
+    </div>
+
+    <div id="ing-panel-science" class="ing-tab-panel" style="padding:12px 0;">
+      <div class="sz14 text2" style="line-height:1.75;">${e.detail}</div>
+      ${e.science ? `<div class="science mt12">${e.science}</div>` : ''}
+    </div>
+
+    <div id="ing-panel-pairs" class="ing-tab-panel" style="padding:12px 0;">
+      ${pairsHTML || '<div class="text3 sz13">No specific pairing data.</div>'}
+      ${conflictsHTML}
+    </div>
+
+    <div style="display:flex;gap:8px;margin-top:16px;">
+      <button class="btn btn-ai btn-sm" onclick="elemToClaude('${e.sym}')">Ask Claude</button>
+      ${ownedProds.length ? `<button class="btn btn-sm" style="background:var(--surface2);" onclick="closeM('m-element');go('products')">See in Products</button>` : ''}
+    </div>`;
   openM('m-element');
+}
+
+function ingTab(id, btn) {
+  document.querySelectorAll('.ing-tab-btn').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.ing-tab-panel').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  const panel = document.getElementById('ing-panel-'+id);
+  if(panel) panel.classList.add('on');
 }
 function elemToClaude(sym) {
   const e=ELEMENTS.find(x=>x.sym===sym);if(!e)return;
@@ -3563,12 +4187,12 @@ const PRODUCT_DEFAULTS = [
   {name:'Mizani Fiberfyl Strengthening Fix',cat:'Commercial',use:'Week 2 protein DC',desc:'Bond-building protein. 5-10 min max. Follow with moisture DC.',qty:'med'},
   {name:'Hollywood Beauty Biotin Oil',cat:'Commercial',use:'Pre-poo, scalp, daily LOC O-step',desc:'Biotin-infused lightweight oil blend.',qty:'full'},
   {name:'Leven Rose Jojoba Oil',cat:'Commercial',use:'Daily LOC + scalp massage',desc:'Pure organic jojoba. Sebum mimic.',qty:'full'},
-  {name:'NOW Almond Oil',cat:'Commercial',use:'Lightweight daily oil, blending',desc:'Fine and light. Good for blending with JBCO.',qty:'full'},
+  {name:'NOW Almond Oil',cat:'Natural',use:'Lightweight daily oil, blending',desc:'Fine and light. Good for blending with JBCO.',qty:'full'},
   {name:'Keracare Silken Seal Liquid Sheen',cat:'Commercial',use:'Final LOC sealant, shine',desc:'Silicone sealant. Last LOC layer.',qty:'full'},
   {name:'Oribe Gold Lust Transformative Mask',cat:'Commercial',use:'Week 1 moisture DC base',desc:'Luxury moisture DC. Layer with boosters.',qty:'med'},
   {name:'Oribe Gold Lust Repair Shampoo',cat:'Commercial',use:'Wash day shampoo',desc:'Sulfate-free. Safe with keratin treatment.',qty:'med'},
   {name:'Oribe Imperial Blowout Styling Cream',cat:'Commercial',use:'Blow dry, LOC C-step',desc:'Heat activated smoothing. Frizz control.',qty:'med'},
-  {name:'Oribe Impermeable Anti-Humidity Spray',cat:'Commercial',use:'Final step on dry hair',desc:'Film-forming humidity barrier. Prevents expansion.',qty:'med'},
+  {name:'Oribe Impermeable Anti-Humidity Spray',cat:'Commercial',use:'Finishing — final step on dry hair',desc:'Film-forming humidity barrier. Prevents expansion.',qty:'med'},
   {name:'Oribe Balm d\'Or Heat Styling Shield',cat:'Commercial',use:'Heat protector pre-blow dry',desc:'Gold-infused thermal shield.',qty:'med'},
   {name:'CER-100 Collagen Ceramide Treatment',cat:'Commercial',use:'Week 3 bond repair rotation',desc:'Replenishes ceramides depleted by heat.',qty:'med'},
   {name:'AllPlex No.7 Bonding Oil',cat:'Commercial',use:'Week 3 bond repair rotation',desc:'Disulfide bond repair technology.',qty:'med'},
@@ -3703,11 +4327,16 @@ function deleteProduct(e, nameEnc) {
 
 function getAllProds() {
   const saved = S.get('user-products') || [];
-  const overrides = S.get('prod-qty-overrides') || {};
+  const qtyOv = S.get('prod-qty-overrides') || {};
+  const nameOv = S.get('prod-name-overrides') || {};
   const hidden = S.get('hidden-products') || [];
   const defaults = PRODUCT_DEFAULTS
     .filter(p => !hidden.includes(p.name))
-    .map(p => overrides[p.name] ? {...p, qty:overrides[p.name]} : p);
+    .map(p => {
+      const ov = nameOv[p.name] || {};
+      const q = qtyOv[p.name] || qtyOv[ov.name] || p.qty;
+      return {...p, ...(ov.name?{name:ov.name}:{}), ...(ov.cat?{cat:ov.cat}:{}), ...(ov.use?{use:ov.use}:{}), qty:q};
+    });
   return [...defaults, ...saved.filter(s => !PRODUCT_DEFAULTS.some(d => d.name === s.name))];
 }
 
@@ -3870,6 +4499,23 @@ function renderStepView() {
 }
 
 
+
+function getProdStep(p) {
+  const use = (p.use || p.desc || '').toLowerCase();
+  if(use.includes('pre-poo') || use.includes('overnight') || use.includes('chebe')) return 'Pre-Poo';
+  if(use.includes('shampoo') || use.includes('clarif') || use.includes('co-wash') || use.includes('cleanse')) return 'Shampoo';
+  if(use.includes('deep condition') || use.includes('dc') || use.includes('protein dc') || use.includes('bond repair') || use.includes('protein treatment')) return 'Deep Condition';
+  if(use.includes('rinse') || use.includes('acv') || use.includes('cuticle seal')) return 'Rinse & Seal';
+  if(use.includes('leave-in') || use.includes('loc') || use.includes('lco') || use.includes('l-step')) return 'Leave-In / LOC';
+  if(use.includes('blow dry') || use.includes('blowdry') || use.includes('heat protect') || use.includes('flat iron') || use.includes('heat styl')) return 'Heat Styling';
+  if(use.includes('scalp') || use.includes('edge') || use.includes('growth') || use.includes('follicle') || use.includes('peptide')) return 'Scalp';
+  if(use.includes('styling') || use.includes('gel') || use.includes('curl') || use.includes('twist') || use.includes('wash & go') || use.includes('hold')) return 'Styling';
+  if(use.includes('finish') || use.includes('shine') || use.includes('anti-humid') || use.includes('sealant')) return 'Finishing';
+  if(use.includes('supplement') || use.includes('shake') || use.includes('capsule') || use.includes('daily') || use.includes('vitamin') || use.includes('collagen') || use.includes('msm') || use.includes('omega')) return 'Supplement';
+  if(use.includes('keratin')) return 'Keratin';
+  return '';
+}
+
 function renderProdLibrary() {
   const el = document.getElementById('prod-card-grid');
   if(!el) return;
@@ -3877,9 +4523,9 @@ function renderProdLibrary() {
   if(_prodFilter !== 'all') prods = prods.filter(p => p.cat === _prodFilter);
   
   const qtyCircle = {
-    full: `<svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8" fill="var(--cat-nat)" fill-opacity="0.9"/></svg>`,
-    med:  `<svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8" fill="none" stroke="var(--cat-nat)" stroke-width="1.5"/><path d="M9 1 A8 8 0 0 1 9 17 Z" fill="var(--cat-nat)" fill-opacity="0.9"/></svg>`,
-    low:  `<svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8" fill="none" stroke="var(--text3)" stroke-width="1.5"/></svg>`,
+    full: `<svg width="18" height="18" viewBox="0 0 18 18" style="pointer-events:none"><circle cx="9" cy="9" r="8" fill="var(--cat-nat)" fill-opacity="0.9"/></svg>`,
+    med:  `<svg width="18" height="18" viewBox="0 0 18 18" style="pointer-events:none"><circle cx="9" cy="9" r="8" fill="none" stroke="var(--cat-nat)" stroke-width="1.5"/><path d="M9 1 A8 8 0 0 1 9 17 Z" fill="var(--cat-nat)" fill-opacity="0.9"/></svg>`,
+    low:  `<svg width="18" height="18" viewBox="0 0 18 18" style="pointer-events:none"><circle cx="9" cy="9" r="8" fill="none" stroke="var(--text3)" stroke-width="1.5"/></svg>`,
   };
   
   el.innerHTML = prods.map(p => {
@@ -3900,12 +4546,12 @@ function renderProdLibrary() {
         <div class="prod-cat-dot" style="background:${color};"></div>
         <div>
           <div class="prod-name">${p.name}</div>
-          <div class="prod-cat-label" style="color:${color};">${p.cat}</div>
+          <div class="prod-cat-label" style="color:var(--text3);">${getProdStep(p) || '&nbsp;'}</div>
         </div>
       </div>
       <div class="prod-note">${p.use || p.desc || ''}</div>
       <div class="prod-meta">
-        <span class="qty-circle" title="Quantity: ${qty} — double-click to change" ondblclick="cycleQty(event,'${encodeURIComponent(p.name)}')">${qtyCircle[qty]||qtyCircle.full}</span>
+        <span class="qty-circle" title="Quantity: ${qty} — double-click to change" onclick="cycleQty(event,'${encodeURIComponent(p.name)}')">${qtyCircle[qty]||qtyCircle.full}</span>
         <span class="imp-badge imp-${imp}" ondblclick="cycleImportance(event,'${encodeURIComponent(p.name)}')" title="Double-click to change importance">${imp}</span>
         ${isExp ? '<span class="prod-badge badge-exp">Expired</span>' : ''}
         ${ratings.length > 0 ? `<span class="prod-badge" style="background:rgba(255,255,255,.05);color:var(--text3);">${ratings.length} uses</span>` : ''}
@@ -3965,9 +4611,10 @@ function openProdDetail(nameEnc) {
       <div class="sz14 text2 mb16">${p.desc || p.note || ''}</div>
       ${ratings.length ? `<div style="font-size:12px;font-weight:600;color:var(--text3);margin-bottom:8px;">SESSION HISTORY (${ratings.length} uses · avg ${avg}★)</div>
       <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:16px;">${ratings.map(r=>`<div style="padding:4px 8px;border-radius:4px;background:var(--surface2);font-size:11px;">${r.date} ${'★'.repeat(r.r)}</div>`).join('')}</div>` : ''}
-      <div style="display:flex;gap:8px;">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
         <button class="btn btn-ai btn-sm" onclick="askClaudeProd('${encodeURIComponent(name)}')">Ask Claude</button>
         <button class="btn btn-accent btn-sm" onclick="logProdRating('${encodeURIComponent(name)}')">Rate This Use</button>
+        <button class="btn btn-sm" style="background:var(--surface2);margin-left:auto;" onclick="editProduct(null,'${encodeURIComponent(name)}')">&#9998; Edit</button>
       </div>
     </div>`;
   openM('m-element');
@@ -4281,43 +4928,63 @@ async function getDashInsights() {
 // ══════════════════════════════════════════════════════════════
 const SESSION_STEPS = {
   washday: [
-    {id:'prepoo',label:'Pre-Poo',color:'var(--cat-diy)',prods:['Natural','Professional'],tools:['Wide-Tooth Comb','Finger Comb']},
-    {id:'shampoo',label:'Shampoo',color:'var(--cat-com)',prods:['shampoo'],tools:['Shower Comb','Scalp Massager']},
-    {id:'condition',label:'Condition / Deep Condition',color:'var(--cat-pro)',prods:['condition'],tools:['Hood Dryer / Heat Cap','Hooded Dryer']},
-    {id:'rinse',label:'Rinse & Cuticle Seal',color:'var(--cat-nat)',prods:['rinse'],tools:['Microfiber Towel']},
-    {id:'leavein',label:'Leave-In & LOC/LCO',color:'var(--cat-com)',prods:['leavein'],tools:['Wide-Tooth Comb','Finger Comb']},
-    {id:'style',label:'Style (Natural)',color:'var(--accent)',prods:['styling'],tools:['Diffuser','Wide-Tooth Comb','Finger Comb','Denman']},
+    {id:'prepoo',label:'Pre-Poo',color:'var(--cat-diy)',prods:['prepoo'],tools:['Wide-Tooth Comb','Finger Comb','Scalp Massager']},
+    {id:'shampoo',label:'Shampoo / Cleanse',color:'var(--cat-com)',prods:['shampoo'],tools:['Shower Comb','Scalp Massager']},
+    {id:'dc',label:'Deep Condition',color:'var(--cat-pro)',prods:['condition'],tools:['Hood Dryer / Heat Cap','Hooded Dryer','Plastic Processing Cap']},
+    {id:'rinse',label:'Rinse & Cuticle Seal',color:'var(--cat-nat)',prods:['rinse'],tools:['Microfiber Towel','Spray Bottle']},
+    {id:'leavein',label:'Leave-In / LOC',color:'var(--accent)',prods:['leavein'],tools:['Wide-Tooth Comb','Finger Comb']},
+    {id:'scalp',label:'Scalp',color:'var(--cat-pro)',prods:['scalp'],tools:['Scalp Massager']},
+    {id:'styling',label:'Styling',color:'var(--cat-diy)',prods:['styling'],tools:['Diffuser Attachment','Wide-Tooth Comb','Finger Comb','Denman Brush']},
+    {id:'finish',label:'Finishing',color:'var(--cat-com)',prods:['finish'],tools:[]},
   ],
   washday_heat: [
-    {id:'prepoo',label:'Pre-Poo',color:'var(--cat-diy)',prods:['Natural','Professional'],tools:['Wide-Tooth Comb','Finger Comb']},
-    {id:'shampoo',label:'Shampoo',color:'var(--cat-com)',prods:['shampoo'],tools:['Shower Comb','Scalp Massager']},
-    {id:'condition',label:'Condition / Deep Condition',color:'var(--cat-pro)',prods:['condition'],tools:['Hood Dryer / Heat Cap','Hooded Dryer']},
-    {id:'rinse',label:'Rinse & Cuticle Seal',color:'var(--cat-nat)',prods:['rinse'],tools:[]},
-    {id:'leavein',label:'Leave-In & LOC/LCO',color:'var(--cat-com)',prods:['leavein'],tools:['Wide-Tooth Comb']},
+    {id:'prepoo',label:'Pre-Poo',color:'var(--cat-diy)',prods:['prepoo'],tools:['Wide-Tooth Comb','Finger Comb']},
+    {id:'shampoo',label:'Shampoo / Cleanse',color:'var(--cat-com)',prods:['shampoo'],tools:['Shower Comb','Scalp Massager']},
+    {id:'dc',label:'Deep Condition',color:'var(--cat-pro)',prods:['condition'],tools:['Hood Dryer / Heat Cap','Hooded Dryer','Plastic Processing Cap']},
+    {id:'rinse',label:'Rinse & Cuticle Seal',color:'var(--cat-nat)',prods:['rinse'],tools:['Microfiber Towel']},
+    {id:'leavein',label:'Leave-In / LOC',color:'var(--accent)',prods:['leavein'],tools:['Wide-Tooth Comb']},
     {id:'blowdry',label:'Blow Dry',color:'var(--cat-ing)',prods:['blowdry'],tools:['Red Pro Titanium Turbo 3500','Wide-Tooth Comb','Rat Tail Comb','Bristle Brush']},
-    {id:'flatstyle',label:'Flat Iron / High Heat',color:'#FF6B9D',prods:['heatprotect'],tools:['Jilbre Flat Iron (Large)','Jilbre Flat Iron (Small)','Jilbre Travel Iron','Rat Tail Comb','Fine-Tooth Comb']},
+    {id:'finish',label:'Flat Iron / Heat Style',color:'#FF6B9D',prods:['heatprotect'],tools:['Jilbre Flat Iron (Large)','Jilbre Flat Iron (Small)','Jilbre Travel Iron','Rat Tail Comb','Fine-Tooth Comb']},
   ],
   cowash: [
-    {id:'cowash',label:'Co-Wash',color:'var(--cat-nat)',prods:['condition'],tools:['Shower Comb','Finger Comb']},
-    {id:'condition',label:'Condition',color:'var(--cat-pro)',prods:['condition'],tools:[]},
-    {id:'rinse',label:'Rinse & Seal',color:'var(--accent)',prods:['rinse'],tools:['Microfiber Towel']},
-    {id:'leavein',label:'Leave-In & LOC',color:'var(--cat-com)',prods:['leavein'],tools:['Finger Comb']},
-    {id:'style',label:'Style',color:'var(--cat-diy)',prods:['styling'],tools:['Wide-Tooth Comb','Finger Comb']},
+    {id:'shampoo',label:'Co-Wash',color:'var(--cat-nat)',prods:['condition'],tools:['Shower Comb','Finger Comb']},
+    {id:'dc',label:'Condition',color:'var(--cat-pro)',prods:['condition'],tools:[]},
+    {id:'rinse',label:'Rinse & Cuticle Seal',color:'var(--cat-nat)',prods:['rinse'],tools:['Microfiber Towel']},
+    {id:'leavein',label:'Leave-In / LOC',color:'var(--accent)',prods:['leavein'],tools:['Finger Comb']},
+    {id:'styling',label:'Styling',color:'var(--cat-diy)',prods:['styling'],tools:['Wide-Tooth Comb','Finger Comb','Denman Brush']},
   ],
   heatstyle: [
-    {id:'blowdry',label:'Blow Dry',color:'var(--cat-ing)',prods:['blowdry'],tools:['Red Pro Titanium Turbo 3500','Wide-Tooth Comb','Rat Tail Comb']},
-    {id:'flatstyle',label:'Flat Iron',color:'#FF6B9D',prods:['heatprotect'],tools:['Jilbre Flat Iron (Large)','Jilbre Flat Iron (Small)','Jilbre Travel Iron','Rat Tail Comb']},
+    {id:'blowdry',label:'Blow Dry',color:'var(--cat-ing)',prods:['blowdry'],tools:['Red Pro Titanium Turbo 3500','Wide-Tooth Comb','Rat Tail Comb','Bristle Brush']},
+    {id:'finish',label:'Flat Iron / Heat Style',color:'#FF6B9D',prods:['heatprotect'],tools:['Jilbre Flat Iron (Large)','Jilbre Flat Iron (Small)','Jilbre Travel Iron','Rat Tail Comb','Fine-Tooth Comb']},
   ],
   naturalsty: [
-    {id:'refresh',label:'Refresh',color:'var(--cat-nat)',prods:['refresh'],tools:['Diffuser','Finger Comb']},
-    {id:'style',label:'Style',color:'var(--accent)',prods:['styling'],tools:['Wide-Tooth Comb','Finger Comb','Denman']},
+    {id:'scalp',label:'Scalp',color:'var(--cat-pro)',prods:['scalp'],tools:['Scalp Massager']},
+    {id:'leavein',label:'Refresh / Leave-In',color:'var(--accent)',prods:['refresh'],tools:['Spray Bottle','Finger Comb']},
+    {id:'styling',label:'Natural Styling',color:'var(--cat-diy)',prods:['styling'],tools:['Wide-Tooth Comb','Finger Comb','Denman Brush','Diffuser Attachment']},
+    {id:'finish',label:'Finishing',color:'var(--cat-com)',prods:['finish'],tools:[]},
+  ],
+  maintenance: [
+    {id:'scalp',label:'Scalp Care',color:'var(--cat-pro)',prods:['scalp'],tools:['Scalp Massager','Spray Bottle']},
+    {id:'leavein',label:'Moisture / Refresh',color:'var(--accent)',prods:['refresh'],tools:['Spray Bottle','Finger Comb']},
+    {id:'styling',label:'Style Touch-Up',color:'var(--cat-diy)',prods:['styling'],tools:['Wide-Tooth Comb','Finger Comb','Rat Tail Comb','Scissors']},
+    {id:'finish',label:'Finishing',color:'var(--cat-com)',prods:['finish'],tools:['Satin Bonnet','Satin Pillowcase']},
+    {id:'keratin',label:'Keratin Treatment',color:'#FF6B9D',prods:['keratin'],tools:['Rat Tail Comb','Fine-Tooth Comb','Jilbre Flat Iron (Large)']},
   ],
   treatment: [
-    {id:'condition',label:'Deep Condition',color:'var(--cat-pro)',prods:['condition'],tools:['Hood Dryer / Heat Cap']},
-    {id:'rinse',label:'Rinse & Seal',color:'var(--cat-nat)',prods:['rinse'],tools:[]},
+    {id:'dc',label:'Deep Condition',color:'var(--cat-pro)',prods:['condition'],tools:['Hood Dryer / Heat Cap','Plastic Processing Cap']},
+    {id:'rinse',label:'Rinse & Seal',color:'var(--cat-nat)',prods:['rinse'],tools:['Microfiber Towel']},
+  ],
+  silkpress: [
+    {id:'blowdry',label:'Blow Dry',color:'#FF6B9D',prods:['blowdry'],tools:['Red Pro Titanium Turbo 3500','Wide-Tooth Comb','Rat Tail Comb','Bristle Brush']},
+    {id:'finish',label:'Flat Iron',color:'#FF6B9D',prods:['heatprotect'],tools:['Jilbre Flat Iron (Large)','Jilbre Flat Iron (Small)','Rat Tail Comb']},
+  ],
+  stretched: [
+    {id:'blowdry',label:'Blow Dry / Stretch',color:'var(--cat-pro)',prods:['blowdry'],tools:['Red Pro Titanium Turbo 3500','Wide-Tooth Comb']},
+    {id:'styling',label:'Set &amp; Style',color:'var(--cat-pro)',prods:['styling'],tools:['Wide-Tooth Comb','Finger Comb']},
+    {id:'finish',label:'Finishing',color:'var(--cat-com)',prods:['finish'],tools:[]},
   ],
   scalpcare: [
-    {id:'scalp',label:'Scalp Treatment',color:'var(--cat-nat)',prods:['scalp'],tools:['Scalp Massager']},
+    {id:'scalp',label:'Scalp Treatment',color:'var(--cat-pro)',prods:['scalp'],tools:['Scalp Massager','Spray Bottle']},
   ],
   other: [
     {id:'other',label:'Session',color:'var(--accent)',prods:['all'],tools:[]},
@@ -4325,6 +4992,9 @@ const SESSION_STEPS = {
 };
 
 const PROD_BY_STEP = {
+  prepoo: ['Chebe Penetrating Overnight Butter (DIY)','Bhringraj-Brahmi Scalp Growth Oil (DIY)','JBCO (Jamaican Black Castor Oil)','NOW Almond Oil','Hollywood Beauty Biotin Oil','Avocado Oil','Coconut Oil','Sesame Oil','Vitamin E Oil','Chebe Powder','Bhringraj Powder'],
+  keratin: ['GK Keratin Treatment'],
+  finish: ['Oribe Impermeable Anti-Humidity Spray','Bio Silk Silk Therapy','Amika Glass Action Elixir','Keracare Silken Seal Liquid Sheen','Olaplex No. 9 Bond Protector','Farm & Table Frizz Free Smoothing Oil','AllDay Edges','Satin Bonnet'],
   shampoo: ['Design Essentials Oat Protein & Henna Shampoo','Chi Infra Shampoo','Oribe Gold Lust Repair Shampoo','Nizoral Anti-Dandruff Shampoo','Natural Black Soap','Shikakai-Amla Clarifying Rinse (DIY)'],
   condition: ['Oribe Gold Lust Transformative Mask','ORS Olive Oil Replenishing Conditioner','ORS Banana Bamboo Conditioner','Matrix Food for Soft Conditioner','Mizani Fiberfyl Strengthening Fix','CER-100 Collagen Ceramide Treatment','Aphogee Protein Treatment','Aphogee Two-Minute Reconstructor','Collagen-Jojoba Protein Blend (DIY)','Hibiscus Moisture Bomb DC (DIY)','Triple Protein Intensive Mask (DIY)'],
   rinse: ['ACV (Apple Cider Vinegar)','Green Tea + ACV Final Rinse (DIY)','Aloe Vera'],
@@ -4347,7 +5017,7 @@ const TAG_GROUPS = [
   {group:'HEAT', tags:['Reversion','No Reversion','Smooth','Frizz Resistant','Overprocessed']},
 ];
 
-const ALL_TOOLS = [
+const ALL_TOOLS = ['Scissors',
   'Scalp Massager','Microfiber Towel','Wide-Tooth Comb','Shower Comb','Rat Tail Comb',
   'Fine-Tooth Comb','Finger Comb','Denman Brush','Bristle Brush',
   'Hood Dryer / Heat Cap','Hooded Dryer','Diffuser Attachment',
@@ -4560,7 +5230,7 @@ function renderDiary() {
   
   if(!logs.length) { el.innerHTML = '<div class="text3 sz13" style="text-align:center;padding:40px;">No sessions found. Log your first session using the + button.</div>'; return; }
   
-  const TYPE_LABELS = {washday:'Wash Day',washday_heat:'Wash Day + Heat',cowash:'Co-Wash',heatstyle:'Heat Style',naturalsty:'Natural Style',treatment:'Treatment',scalpcare:'Scalp Care',other:'Session'};
+  const TYPE_LABELS = {washday:'Wash Day',washday_heat:'Wash Day + Heat',cowash:'Co-Wash',heatstyle:'Heat Style',naturalsty:'Natural Style',maintenance:'Maintenance',treatment:'Treatment',scalpcare:'Scalp Care',silkpress:'Silk Press',stretched:'Stretched Style',other:'Session'};
   
   el.innerHTML = logs.map(l => {
     const allTags = l.tags || (l.steps||[]).flatMap(s=>s.tags||[]);
@@ -4608,7 +5278,7 @@ function renderShoppingList() {
           <div class="fw6 sz14">${p.name}</div>
           <div class="text3 sz12">${p.use||''}</div>
         </div>
-        <span class="qty-circle" ondblclick="cycleQty(event,'${encodeURIComponent(p.name)}')" title="Double-click to update">
+        <span class="qty-circle" onclick="cycleQty(event,'${encodeURIComponent(p.name)}')" title="Double-click to update">
           <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8" fill="none" stroke="var(--text3)" stroke-width="1.5"/></svg>
         </span>
       </div>`).join('')}
@@ -4773,7 +5443,695 @@ function renderSessionPhotosForStep(step) {
 const _origRenderPhotos = renderPhotos;
 // (renderPhotos already exists — we add filterPhotos after it)
 
+function editProduct(e, nameEnc) {
+  if(e && e.stopPropagation) e.stopPropagation();
+  closeM('m-element');
+  setTimeout(function() {
+    var name = decodeURIComponent(nameEnc);
+    var prods = getAllProds();
+    var p = null;
+    for(var i=0;i<prods.length;i++){ if(prods[i].name===name){p=prods[i];break;} }
+    if(!p){ p={name:name,cat:'Commercial',use:''}; }
+    document.getElementById('ep-name').value = p.name;
+    document.getElementById('ep-cat').value = p.cat || 'Commercial';
+    document.getElementById('ep-use').value = p.use || '';
+    document.getElementById('ep-orig').value = nameEnc;
+    openM('m-edit-prod');
+  }, 100);
+}
+
+function saveProductEdit() {
+  var origName = decodeURIComponent(document.getElementById('ep-orig').value);
+  var newName = document.getElementById('ep-name').value.trim();
+  var newCat = document.getElementById('ep-cat').value;
+  var newUse = document.getElementById('ep-use').value.trim();
+  if(!newName) return;
+  var isDefault = false;
+  for(var i=0;i<PRODUCT_DEFAULTS.length;i++){
+    if(PRODUCT_DEFAULTS[i].name===origName){isDefault=true;break;}
+  }
+  if(isDefault) {
+    var overrides = S.get('prod-name-overrides') || {};
+    overrides[origName] = {name:newName, cat:newCat, use:newUse};
+    S.set('prod-name-overrides', overrides);
+  } else {
+    var saved = S.get('user-products') || [];
+    for(var j=0;j<saved.length;j++){
+      if(saved[j].name===origName){
+        saved[j].name=newName; saved[j].cat=newCat; saved[j].use=newUse;
+        break;
+      }
+    }
+    S.set('user-products', saved);
+  }
+  closeM('m-edit-prod');
+  renderProdLibrary();
+}
+
+
+// ════════════════════════════════════════════════════════
+// GIST SYNC MODULE
+// ════════════════════════════════════════════════════════
+const GistSync = (function() {
+  var GIST_FILENAME = 'hairprotocol_data.json';
+  var TOKEN_KEY = 'gist_token';
+  var GIST_ID_KEY = 'gist_id';
+  var DATA_KEYS = [
+    'start','washDay','styleType','logs','user-products','diy-recipes',
+    'prod-qty-overrides','prod-name-overrides','prod-importance',
+    'hidden-products','photos','session-photos','tools-checked',
+    'supps-checked','tag-counts','gist_token','gist_id'
+  ];
+  var _pushTimer = null;
+  var _connected = false;
+
+  function setStatus(msg, cls) {
+    var el = document.getElementById('gist-status');
+    if(!el) return;
+    el.textContent = msg;
+    el.className = 'gist-status' + (cls ? ' ' + cls : '');
+  }
+
+  function showBanner() {
+    var b = document.getElementById('gist-banner');
+    if(b) b.classList.remove('hidden');
+  }
+
+  function showConnected() {
+    var wrap = document.getElementById('gist-token-wrap');
+    if(wrap) wrap.innerHTML = '<button class="gist-btn gist-btn-disconnect" onclick="GistSync.disconnect()">Disconnect</button>';
+    setStatus('Connected to GitHub &mdash; data synced', 'connected');
+    _connected = true;
+  }
+
+  function collectData() {
+    var data = {};
+    DATA_KEYS.forEach(function(k) {
+      var v = localStorage.getItem(k);
+      if(v !== null) data[k] = v;
+    });
+    return JSON.stringify(data);
+  }
+
+  function applyData(jsonString) {
+    try {
+      var data = JSON.parse(jsonString);
+      Object.keys(data).forEach(function(k) {
+        if(k !== TOKEN_KEY && k !== GIST_ID_KEY) {
+          localStorage.setItem(k, data[k]);
+        }
+      });
+    } catch(e) {
+      console.error('GistSync applyData error:', e);
+    }
+  }
+
+  async function getGist(token, gistId) {
+    var r = await fetch('https://api.github.com/gists/' + gistId, {
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
+    });
+    if(!r.ok) throw new Error('GET gist failed: ' + r.status);
+    var data = await r.json();
+    var file = data.files && data.files[GIST_FILENAME];
+    if(!file) throw new Error('File not found in gist');
+    // If content is truncated, fetch raw url
+    if(file.truncated && file.raw_url) {
+      var raw = await fetch(file.raw_url);
+      return await raw.text();
+    }
+    return file.content;
+  }
+
+  async function findGist(token) {
+    var page = 1;
+    while(page <= 5) {
+      var r = await fetch('https://api.github.com/gists?per_page=100&page=' + page, {
+        headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
+      });
+      if(!r.ok) throw new Error('List gists failed: ' + r.status);
+      var list = await r.json();
+      if(!list.length) break;
+      for(var i=0;i<list.length;i++) {
+        if(list[i].files && list[i].files[GIST_FILENAME]) return list[i].id;
+      }
+      page++;
+    }
+    return null;
+  }
+
+  async function createGist(token, content) {
+    var body = { description: 'CaraLand Hair Care Data', public: false, files: {} };
+    body.files[GIST_FILENAME] = { content: content };
+    var r = await fetch('https://api.github.com/gists', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if(!r.ok) throw new Error('Create gist failed: ' + r.status);
+    var data = await r.json();
+    return data.id;
+  }
+
+  async function patchGist(token, gistId, content) {
+    var body = { files: {} };
+    body.files[GIST_FILENAME] = { content: content };
+    var r = await fetch('https://api.github.com/gists/' + gistId, {
+      method: 'PATCH',
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if(!r.ok) throw new Error('PATCH gist failed: ' + r.status);
+  }
+
+  async function push() {
+    var token = localStorage.getItem(TOKEN_KEY);
+    var gistId = localStorage.getItem(GIST_ID_KEY);
+    if(!token || !gistId) return;
+    setStatus('Saving...', 'saving');
+    try {
+      await patchGist(token, gistId, collectData());
+      setStatus('Connected to GitHub &mdash; data synced', 'connected');
+    } catch(e) {
+      setStatus('Sync error: ' + e.message, 'error');
+    }
+  }
+
+  return {
+    get connected() { return _connected; },
+
+    schedulePush: function() {
+      if(_pushTimer) clearTimeout(_pushTimer);
+      _pushTimer = setTimeout(push, 1500);
+    },
+
+    connect: async function() {
+      var input = document.getElementById('gist-token');
+      var token = input ? input.value.trim() : '';
+      if(!token) { setStatus('Enter a token first', 'error'); return; }
+      setStatus('Connecting...', 'saving');
+      try {
+        // Verify token works
+        var r = await fetch('https://api.github.com/user', {
+          headers: { 'Authorization': 'Bearer ' + token }
+        });
+        if(!r.ok) throw new Error('Invalid token (status ' + r.status + ')');
+        localStorage.setItem(TOKEN_KEY, token);
+        // Find or create gist
+        var gistId = await findGist(token);
+        if(gistId) {
+          localStorage.setItem(GIST_ID_KEY, gistId);
+          setStatus('Found existing data, loading...', 'saving');
+          var content = await getGist(token, gistId);
+          applyData(content);
+          showConnected();
+          // Re-render everything with loaded data
+          if(typeof init === 'function') init();
+        } else {
+          setStatus('Creating new data file...', 'saving');
+          gistId = await createGist(token, collectData());
+          localStorage.setItem(GIST_ID_KEY, gistId);
+          showConnected();
+        }
+      } catch(e) {
+        setStatus('Error: ' + e.message, 'error');
+        localStorage.removeItem(TOKEN_KEY);
+      }
+    },
+
+    disconnect: function() {
+      if(!window.confirm('Disconnect GitHub sync? Your local data stays intact.')) return;
+      localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem(GIST_ID_KEY);
+      _connected = false;
+      var wrap = document.getElementById('gist-token-wrap');
+      if(wrap) wrap.innerHTML = '<input id="gist-token" type="password" placeholder="GitHub personal access token (gist scope)"><button class="gist-btn gist-btn-connect" onclick="GistSync.connect()">Connect</button>';
+      setStatus('Disconnected &mdash; data saves locally only', '');
+    },
+
+    init: async function() {
+      showBanner();
+      var token = localStorage.getItem(TOKEN_KEY);
+      var gistId = localStorage.getItem(GIST_ID_KEY);
+      if(!token || !gistId) return;
+      _connected = true;
+      showConnected();
+      setStatus('Pulling latest data...', 'saving');
+      try {
+        var content = await getGist(token, gistId);
+        applyData(content);
+        setStatus('Connected to GitHub &mdash; data synced', 'connected');
+      } catch(e) {
+        setStatus('Sync error on load: ' + e.message, 'error');
+        _connected = false;
+      }
+    }
+  };
+})();
+
+
+// ══════════════════════════════════════════════════════
+// WASH DAY ASSISTANT
+// ══════════════════════════════════════════════════════
+var _assistType = 'washday';
+var _assistSteps = [];
+var _assistIdx = 0;
+var _assistStepData = [];
+var _assistTimer = null;
+var _assistSeconds = 0;
+var _wakeLock = null;
+
+const STEP_TIMERS = {
+  prepoo: 0, shampoo: 300, dc: 1800, rinse: 120,
+  leavein: 0, blowdry: 0, finish: 0, flatstyle: 0,
+  scalp: 300, styling: 0, other: 0, keratin: 0, maintenance: 0
+};
+
+function pickAssistType(type, btn) {
+  _assistType = type;
+  document.querySelectorAll('#assist-type-opts .opt-btn').forEach(function(b){ b.classList.remove('on'); });
+  btn.classList.add('on');
+  renderAssistStepList();
+}
+
+function renderAssistStepList() {
+  var steps = SESSION_STEPS[_assistType] || SESSION_STEPS.other;
+  var el = document.getElementById('assist-step-list');
+  if(!el) return;
+  el.innerHTML = steps.map(function(step, i) {
+    var prods = PROD_BY_STEP[step.prods[0]] || [];
+    return '<div class="assist-step-row" style="border-bottom:1px solid var(--border);padding:12px 0;">' +
+      '<div class="assist-step-num" style="background:' + step.color + ';color:var(--bg);">' + (i+1) + '</div>' +
+      '<div><div class="assist-step-title">' + step.label + '</div>' +
+      '<div style="font-size:11px;color:var(--text3);">' + prods.slice(0,3).join(', ') + (prods.length > 3 ? '...' : '') + '</div></div>' +
+      '</div>';
+  }).join('');
+}
+
+function startAssist() {
+  _assistSteps = SESSION_STEPS[_assistType] || SESSION_STEPS.other;
+  _assistIdx = 0;
+  _assistStepData = _assistSteps.map(function(){ return {tags:[], prods:[], tools:[], notes:'', rating:0}; });
+  document.getElementById('assist-setup').style.display = 'none';
+  document.getElementById('assist-session').style.display = 'block';
+  document.getElementById('assist-done').style.display = 'none';
+  // Wake lock
+  if(navigator.wakeLock) {
+    navigator.wakeLock.request('screen').then(function(wl){ _wakeLock = wl; }).catch(function(){});
+  }
+  renderAssistStep();
+}
+
+function renderAssistStep() {
+  var step = _assistSteps[_assistIdx];
+  if(!step) return;
+  // Header
+  document.getElementById('assist-active-num').textContent = _assistIdx + 1;
+  document.getElementById('assist-active-title').textContent = step.label;
+  document.getElementById('assist-active-panel').style.borderColor = step.color;
+  // Reset timer
+  clearInterval(_assistTimer);
+  _assistSeconds = 0;
+  document.getElementById('assist-timer-display').textContent = '0:00';
+  document.getElementById('assist-timer-display').className = 'assist-timer';
+  var recommended = STEP_TIMERS[step.id] || 0;
+  if(recommended > 0) {
+    _assistTimer = setInterval(function() {
+      _assistSeconds++;
+      var m = Math.floor(_assistSeconds/60);
+      var s = _assistSeconds % 60;
+      var display = m + ':' + (s<10?'0':'') + s;
+      var timerEl = document.getElementById('assist-timer-display');
+      if(timerEl) {
+        timerEl.textContent = display;
+        if(_assistSeconds >= recommended) timerEl.className = 'assist-timer done';
+        else if(_assistSeconds >= recommended * 0.8) timerEl.className = 'assist-timer warn';
+      }
+    }, 1000);
+  }
+  // Products
+  var prods = PROD_BY_STEP[step.prods[0]] || PROD_BY_STEP.all || [];
+  var prodEl = document.getElementById('assist-prod-list');
+  if(prodEl) {
+    prodEl.innerHTML = prods.slice(0,8).map(function(p) {
+      return '<div class="assist-prod-check" onclick="toggleAssistProd(this,\'' + p.replace(/'/g,"\\'") + '\')">' +
+        '<div class="assist-check"></div>' +
+        '<div class="assist-prod-name">' + p + '</div>' +
+        '</div>';
+    }).join('');
+  }
+  // Tools
+  var tools = step.tools || [];
+  var toolEl = document.getElementById('assist-tool-list');
+  if(toolEl) {
+    toolEl.innerHTML = tools.length
+      ? tools.map(function(t) {
+          return '<div class="assist-prod-check" onclick="toggleAssistTool(this,\'' + t.replace(/'/g,"\\'") + '\')">' +
+            '<div class="assist-check"></div>' +
+            '<div class="assist-prod-name">' + t + '</div>' +
+            '</div>';
+        }).join('')
+      : '<div style="font-size:12px;color:var(--text3);">No specific tools required</div>';
+  }
+  // Tags
+  var tagEl = document.getElementById('assist-tag-chips');
+  if(tagEl) {
+    tagEl.innerHTML = TAG_GROUPS.slice(0,3).map(function(g) {
+      return g.tags.map(function(t) {
+        return '<button class="tag-chip" onclick="toggleAssistTag(this,\'' + t + '\')">' + t + '</button>';
+      }).join('');
+    }).join('');
+  }
+  // Notes
+  var notesEl = document.getElementById('assist-step-notes');
+  if(notesEl) notesEl.value = _assistStepData[_assistIdx].notes || '';
+  // Remaining steps
+  var remEl = document.getElementById('assist-remaining-steps');
+  if(remEl) {
+    remEl.innerHTML = _assistSteps.slice(_assistIdx+1).map(function(s, j) {
+      return '<div class="assist-step-row"><div class="assist-step-num" style="color:var(--text3);">' + (_assistIdx+2+j) + '</div>' +
+        '<div class="assist-step-title" style="color:var(--text3);font-size:14px;">' + s.label + '</div></div>';
+    }).join('');
+  }
+  // Complete button label
+  var nextBtn = document.getElementById('assist-next-btn') || document.querySelector('.assist-complete-btn');
+  if(nextBtn) nextBtn.textContent = _assistIdx < _assistSteps.length - 1 ? 'Complete Step \u2192' : 'Finish Session \u2714';
+}
+
+function toggleAssistProd(el, prod) {
+  var check = el.querySelector('.assist-check');
+  var isOn = check.classList.toggle('on');
+  var data = _assistStepData[_assistIdx];
+  if(isOn) data.prods.push(prod);
+  else data.prods = data.prods.filter(function(p){ return p !== prod; });
+}
+
+function toggleAssistTool(el, tool) {
+  var check = el.querySelector('.assist-check');
+  check.classList.toggle('on');
+}
+
+function toggleAssistTag(btn, tag) {
+  btn.classList.toggle('on');
+  var data = _assistStepData[_assistIdx];
+  var idx = data.tags.indexOf(tag);
+  if(idx === -1) data.tags.push(tag);
+  else data.tags.splice(idx, 1);
+}
+
+function assistNextStep() {
+  clearInterval(_assistTimer);
+  // Save notes for current step
+  var notesEl = document.getElementById('assist-step-notes');
+  if(notesEl) _assistStepData[_assistIdx].notes = notesEl.value;
+  _assistStepData[_assistIdx].time = _assistSeconds;
+  _assistIdx++;
+  if(_assistIdx >= _assistSteps.length) {
+    // Session complete — auto-log
+    autoLogAssistSession();
+    document.getElementById('assist-session').style.display = 'none';
+    document.getElementById('assist-done').style.display = 'block';
+    if(_wakeLock) { _wakeLock.release(); _wakeLock = null; }
+    return;
+  }
+  renderAssistStep();
+}
+
+function autoLogAssistSession() {
+  var logs = S.get('logs') || [];
+  var allTags = _assistStepData.flatMap(function(s){ return s.tags; });
+  var allProds = _assistStepData.flatMap(function(s){ return s.prods; });
+  logs.unshift({
+    id: Date.now(),
+    date: new Date().toISOString().split('T')[0],
+    type: _assistType,
+    notes: 'Logged via Wash Day Assistant',
+    rating: 0,
+    week: ST.week || 1,
+    steps: _assistSteps.map(function(step, i) {
+      return {id:step.id, label:step.label, prods:_assistStepData[i].prods, tags:_assistStepData[i].tags, notes:_assistStepData[i].notes, time:_assistStepData[i].time};
+    }),
+    tags: allTags,
+    prods: allProds.join(', ')
+  });
+  S.set('logs', logs);
+}
+
+function resetAssist() {
+  _assistIdx = 0;
+  _assistStepData = [];
+  clearInterval(_assistTimer);
+  document.getElementById('assist-setup').style.display = 'block';
+  document.getElementById('assist-session').style.display = 'none';
+  document.getElementById('assist-done').style.display = 'none';
+  renderAssistStepList();
+}
+
+// ══════════════════════════════════════════════════════
+// LENGTH CHECK TOOL
+// ══════════════════════════════════════════════════════
+function saveLength() {
+  var zones = ['crown','sides','nape','edges'];
+  var entry = {date: new Date().toISOString().split('T')[0], week: ST.week || 1, zones: {}};
+  zones.forEach(function(z) {
+    var inp = document.getElementById('lc-' + z);
+    if(inp && inp.value) entry.zones[z] = parseFloat(inp.value);
+  });
+  if(!Object.keys(entry.zones).length) return;
+  var history = S.get('length-checks') || [];
+  history.unshift(entry);
+  S.set('length-checks', history.slice(0,52));
+  renderLengthHistory();
+}
+
+function renderLengthHistory() {
+  var el = document.getElementById('length-history');
+  if(!el) return;
+  var history = S.get('length-checks') || [];
+  if(!history.length) return;
+  var last = history[0];
+  var prev = history[1];
+  var zones = ['crown','sides','nape','edges'];
+  // Update prev display
+  zones.forEach(function(z) {
+    var prevEl = document.getElementById('lc-' + z + '-prev');
+    if(!prevEl) return;
+    if(prev && prev.zones[z] !== undefined) {
+      var diff = last.zones[z] !== undefined ? (last.zones[z] - prev.zones[z]) : 0;
+      var deltaClass = diff > 0 ? 'pos' : diff < 0 ? 'neg' : '';
+      var deltaText = diff !== 0 ? '<span class="length-delta ' + deltaClass + '">' + (diff > 0 ? '+' : '') + diff.toFixed(2) + '"</span>' : '';
+      prevEl.innerHTML = 'Prev: ' + prev.zones[z] + '" ' + deltaText;
+    }
+  });
+  // Show last 4 entries
+  el.innerHTML = '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin:12px 0 8px;">Recent Check-ins</div>' +
+    history.slice(0,4).map(function(h) {
+      return '<div style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);flex-wrap:wrap;">' +
+        '<div style="font-size:12px;font-weight:700;color:var(--accent);min-width:90px;">' + h.date + '</div>' +
+        Object.entries(h.zones).map(function(e) {
+          return '<div style="font-size:12px;color:var(--text2);">' + e[0] + ': <strong style="color:var(--text);">' + e[1] + '"</strong></div>';
+        }).join('') +
+        '</div>';
+    }).join('');
+}
+
+// ══════════════════════════════════════════════════════
+// COST TRACKER
+// ══════════════════════════════════════════════════════
+function renderCostTracker() {
+  var prods = getAllProds ? getAllProds() : [];
+  var prices = S.get('prod-prices') || {};
+  var tbody = document.getElementById('cost-table-body');
+  if(!tbody) return;
+  tbody.innerHTML = prods.slice(0,40).map(function(p) {
+    var price = prices[p.name] ? prices[p.name].price : '';
+    var uses = prices[p.name] ? prices[p.name].uses : '';
+    var costPerUse = (price && uses) ? '$' + (parseFloat(price)/parseInt(uses)).toFixed(2) : '—';
+    return '<tr>' +
+      '<td style="font-size:13px;">' + p.name + '</td>' +
+      '<td><span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);">' + (p.cat||'') + '</span></td>' +
+      '<td><input class="cost-inp" type="number" value="' + (price||'') + '" placeholder="0.00" min="0" step="0.01" onchange="saveCostPrice(\'' + encodeURIComponent(p.name) + '\',\'price\',this.value)"></td>' +
+      '<td><input class="cost-inp" type="number" value="' + (uses||'') + '" placeholder="0" min="1" onchange="saveCostPrice(\'' + encodeURIComponent(p.name) + '\',\'uses\',this.value)"></td>' +
+      '<td style="font-size:13px;font-weight:700;color:var(--accent);">' + costPerUse + '</td>' +
+      '</tr>';
+  }).join('');
+  updateCostStats();
+}
+
+function saveCostPrice(nameEnc, field, val) {
+  var name = decodeURIComponent(nameEnc);
+  var prices = S.get('prod-prices') || {};
+  if(!prices[name]) prices[name] = {};
+  prices[name][field] = parseFloat(val) || 0;
+  S.set('prod-prices', prices);
+  updateCostStats();
+}
+
+function updateCostStats() {
+  var prices = S.get('prod-prices') || {};
+  var prods = getAllProds ? getAllProds() : [];
+  var totalMonthly = 0;
+  var washDayCost = 0;
+  var diyCost = 0;
+  Object.entries(prices).forEach(function(e) {
+    var name = e[0]; var data = e[1];
+    if(!data.price || !data.uses) return;
+    var costPerUse = data.price / data.uses;
+    var prod = prods.find(function(p){ return p.name === name; });
+    totalMonthly += costPerUse * 4;
+    if(prod && prod.cat === 'DIY') diyCost += costPerUse * 4;
+    washDayCost += costPerUse;
+  });
+  var setVal = function(id, val) { var el = document.getElementById(id); if(el) el.textContent = val; };
+  setVal('cs-monthly', '$' + totalMonthly.toFixed(0));
+  setVal('cs-annual', '$' + (totalMonthly * 12).toFixed(0));
+  setVal('cs-washday', '$' + washDayCost.toFixed(2));
+  setVal('cs-diy', '$' + diyCost.toFixed(0));
+}
+
+function exportCostReport() {
+  var prices = S.get('prod-prices') || {};
+  var prods = getAllProds ? getAllProds() : [];
+  var lines = ['Product,Category,Price,Uses,Cost Per Use'];
+  prods.forEach(function(p) {
+    var data = prices[p.name];
+    if(data && data.price) {
+      lines.push([p.name, p.cat, data.price, data.uses||0, data.uses ? (data.price/data.uses).toFixed(2) : 0].join(','));
+    }
+  });
+  var blob = new Blob([lines.join('\n')], {type:'text/csv'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'haircare-costs.csv'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ══════════════════════════════════════════════════════
+// CALENDAR SYNC + REMINDERS
+// ══════════════════════════════════════════════════════
+function downloadCalendar() {
+  var washDay = ST.washDay || 0;
+  var dayNames = ['SU','MO','TU','WE','TH','FR','SA'];
+  var prepooDay = (washDay + 6) % 7;
+  var scalpDays = ['MO','WE','FR'];
+  var now = new Date();
+  var dtStamp = now.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+
+  var events = [];
+
+  // Wash day recurring weekly
+  events.push([
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=America/New_York:' + getNextWeekday(washDay, now, '070000'),
+    'RRULE:FREQ=WEEKLY;BYDAY=' + dayNames[washDay],
+    'SUMMARY:Wash Day',
+    'DESCRIPTION:Wash day — follow your CaraLand Hair Care routine.',
+    'DURATION:PT3H',
+    'BEGIN:VALARM',
+    'TRIGGER:-PT60M',
+    'ACTION:DISPLAY',
+    'DESCRIPTION:Wash day in 1 hour',
+    'END:VALARM',
+    'END:VEVENT'
+  ].join('\r\n'));
+
+  // Pre-poo night
+  events.push([
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=America/New_York:' + getNextWeekday(prepooDay, now, '210000'),
+    'RRULE:FREQ=WEEKLY;BYDAY=' + dayNames[prepooDay],
+    'SUMMARY:Pre-Poo Night',
+    'DESCRIPTION:Apply pre-poo treatment tonight before wash day tomorrow.',
+    'DURATION:PT30M',
+    'BEGIN:VALARM',
+    'TRIGGER:PT0S',
+    'ACTION:DISPLAY',
+    'DESCRIPTION:Pre-poo tonight',
+    'END:VALARM',
+    'END:VEVENT'
+  ].join('\r\n'));
+
+  // Daily supplements
+  events.push([
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=America/New_York:' + getNextWeekday(0, now, '080000'),
+    'RRULE:FREQ=DAILY',
+    'SUMMARY:Hair Supplements',
+    'DESCRIPTION:Take your morning supplement shake.',
+    'DURATION:PT5M',
+    'END:VEVENT'
+  ].join('\r\n'));
+
+  // Scalp massage Mon/Wed/Fri
+  events.push([
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=America/New_York:' + getNextWeekday(1, now, '190000'),
+    'RRULE:FREQ=WEEKLY;BYDAY=MO,WE,FR',
+    'SUMMARY:Scalp Massage',
+    'DESCRIPTION:5-min scalp massage with Bhringraj oil.',
+    'DURATION:PT10M',
+    'END:VEVENT'
+  ].join('\r\n'));
+
+  var ics = ['BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//CaraLand Hair Care//EN',
+    'CALSCALE:GREGORIAN',
+    'X-WR-CALNAME:CaraLand Hair Care',
+    'X-WR-TIMEZONE:America/New_York'
+  ].join('\r\n') + '\r\n' + events.join('\r\n') + '\r\nEND:VCALENDAR';
+
+  var blob = new Blob([ics], {type:'text/calendar'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'hair-protocol.ics'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+function getNextWeekday(targetDay, fromDate, timeStr) {
+  var d = new Date(fromDate);
+  var diff = (targetDay - d.getDay() + 7) % 7 || 7;
+  d.setDate(d.getDate() + diff);
+  var y = d.getFullYear();
+  var m = String(d.getMonth()+1).padStart(2,'0');
+  var day = String(d.getDate()).padStart(2,'0');
+  return y + m + day + 'T' + timeStr;
+}
+
+var REMINDER_MESSAGES = {
+  prepoo: {subject:'Pre-Poo Night Reminder',body:'Tonight is pre-poo night! Apply your Chebe overnight butter or Bhringraj oil to dry hair before bed. Wash day is tomorrow.'},
+  washday: {subject:'Wash Day Reminder',body:'Today is wash day! Open CaraLand Hair Care and use the Wash Day Assistant to guide you through each step.'},
+  supplements: {subject:'Daily Supplement Reminder',body:'Time for your morning supplement shake: collagen peptides + MSM + biotin + any other supplements. Take D3 with breakfast.'},
+  scalp: {subject:'Scalp Massage Reminder',body:"Time for your scalp massage! Apply Bhringraj oil to scalp and massage for 5 minutes. This is one of the highest-ROI steps in your protocol."}
+};
+
+function sendEmailReminder(type) {
+  var msg = REMINDER_MESSAGES[type];
+  var link = 'mailto:?subject=' + encodeURIComponent(msg.subject) + '&body=' + encodeURIComponent(msg.body);
+  window.open(link, '_blank');
+}
+
+function sendSMSReminder(type) {
+  var msg = REMINDER_MESSAGES[type];
+  var link = 'sms:?&body=' + encodeURIComponent(msg.subject + ': ' + msg.body);
+  window.location.href = link;
+}
+
+
+function initLengthCheck() {
+  renderLengthHistory();
+}
+
+function initCostTracker() {
+  renderCostTracker();
+}
+
+
+
+function initAssist() { renderAssistStepList(); }
+
+
 function init() {
+  GistSync.init();
   updateHeader();
   renderSchedule();
   renderWash();
@@ -4799,67 +6157,46 @@ function init() {
     }
   });
 }
-// ── GitHub Sync
-const GH_KEYS = ['start','washDay','styleType','apiKey','logs','photos','session-photos','saved-products','user-products','hidden-products','prod-importance','prod-qty-overrides','tools','supps','diy-recipes','tag-counts'];
-const GH_FILE = 'haircare-data.json';
-
-function ghSetStatus(msg, color) {
-  const btn = document.getElementById('sync-btn');
-  if(!btn) return;
-  btn.title = msg;
-  btn.style.color = color || '';
-  setTimeout(() => { btn.style.color = ''; btn.title = 'Sync to GitHub'; }, 3000);
-}
-
-async function ghSync() {
-  const token = S.get('ghToken');
-  const repo  = S.get('ghRepo');
-  if(!token || !repo) { openM('m-settings'); alert('Add your GitHub token and repo in Settings first.'); return; }
-  ghSetStatus('Syncing…', 'var(--accent)');
-  const data = {};
-  GH_KEYS.forEach(k => { const v = localStorage.getItem(k); if(v !== null) data[k] = v; });
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-  try {
-    // Get current SHA if file exists
-    let sha = null;
-    const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/${GH_FILE}`, {
-      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
-    });
-    if(getRes.ok) { const j = await getRes.json(); sha = j.sha; }
-    // Push
-    const body = { message: `Hair data sync ${new Date().toISOString().slice(0,10)}`, content };
-    if(sha) body.sha = sha;
-    const putRes = await fetch(`https://api.github.com/repos/${repo}/contents/${GH_FILE}`, {
-      method: 'PUT',
-      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
-    if(putRes.ok) { ghSetStatus('Saved ✓', 'var(--green)'); }
-    else { const e = await putRes.json(); ghSetStatus('Error: ' + (e.message||putRes.status), 'var(--red)'); }
-  } catch(e) { ghSetStatus('Network error', 'var(--red)'); }
-}
-
-async function ghLoad() {
-  const token = S.get('ghToken');
-  const repo  = S.get('ghRepo');
-  if(!token || !repo) return;
-  try {
-    const res = await fetch(`https://api.github.com/repos/${repo}/contents/${GH_FILE}`, {
-      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
-    });
-    if(!res.ok) return;
-    const j = await res.json();
-    const raw = decodeURIComponent(escape(atob(j.content.replace(/\n/g,''))));
-    const data = JSON.parse(raw);
-    Object.entries(data).forEach(([k,v]) => localStorage.setItem(k, v));
-    location.reload();
-  } catch(e) { console.warn('GitHub load failed', e); }
-}
-
-// Auto-load from GitHub on first visit if no local data
-if(!S.get('start') && S.get('ghToken') && S.get('ghRepo')) { ghLoad(); }
-
 init();
 </script>
+
+<!-- Edit All Products Modal -->
+<div class="modal" id="m-edit-all">
+  <div class="modal-box" style="max-width:800px;width:96vw;max-height:88vh;">
+    <button class="modal-x" onclick="closeM('m-edit-all')">&#10005;</button>
+    <div class="modal-title">Edit Products</div>
+    <div class="modal-sub">Edit names, categories, and uses. Changes save when you click Save All.</div>
+    <div id="edit-all-grid" style="overflow-y:auto;max-height:60vh;margin-bottom:16px;"></div>
+    <div class="flex gap8">
+      <button class="btn btn-accent" style="flex:1;" onclick="saveAllEdits()">Save All</button>
+      <button class="btn" style="background:var(--surface2);" onclick="closeM('m-edit-all')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Single product edit modal -->
+<div class="modal" id="m-edit-prod">
+  <div class="modal-box" style="max-width:420px;">
+    <button class="modal-x" onclick="closeM('m-edit-prod')">&#10005;</button>
+    <div class="modal-title">Edit Product</div>
+    <div class="fgrp"><label class="flbl">Name</label><input class="finp" id="ep-name" placeholder="Product name"></div>
+    <div class="fgrp"><label class="flbl">Category</label>
+      <select class="fsel" id="ep-cat">
+        <option value="Natural">Natural / Ayurvedic</option>
+        <option value="Professional">Professional / Lab</option>
+        <option value="Commercial">Commercial</option>
+        <option value="Supplement">Supplement</option>
+        <option value="DIY">DIY</option>
+      </select>
+    </div>
+    <div class="fgrp"><label class="flbl">Use / Step</label><input class="finp" id="ep-use" placeholder="e.g. Pre-poo, LOC O-step"></div>
+    <input type="hidden" id="ep-orig">
+    <div class="flex gap8">
+      <button class="btn btn-accent" style="flex:1;" onclick="saveProductEdit()">Save</button>
+      <button class="btn" style="background:var(--surface2);" onclick="closeM('m-edit-prod')">Cancel</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
