@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hair Protocol Questionnaire</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#090E1A;
+  --surface:#0F1525;
+  --surface2:#141C2E;
+  --surface3:#1A2238;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --text:#EEE8F5;
+  --text2:#8B8FA8;
+  --text3:#474D65;
+  --accent:#2B9DAA;
+  --accent2:#1A7A88;
+  --accent-dim:rgba(43,157,170,0.14);
+  --green:#2ECC8F;
+  --green-dim:rgba(46,204,143,0.12);
+  --purple:#8B6BAA;
+  --purple-dim:rgba(139,107,170,0.14);
+  --amber:#FF9F5A;
+  --amber-dim:rgba(255,159,90,0.12);
+  --red:#C07070;
+  --red-dim:rgba(192,112,112,0.12);
+  --pink:#E040A8;
+  --pink-dim:rgba(224,64,168,0.12);
+  --font-head:'DM Sans',sans-serif;
+  --font-body:'Open Sans',sans-serif;
+  --r:14px;
+  --r-sm:8px;
+}
+html{font-size:16px;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;line-height:1.65;}
+
+/* LAYOUT */
+.shell{max-width:760px;margin:0 auto;padding:0 24px 80px;}
+header{padding:32px 24px 0;max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:var(--font-head);font-size:18px;font-weight:800;letter-spacing:-0.03em;}
+.logo span{color:var(--accent);}
+.save-status{font-size:11px;color:var(--text3);}
+
+/* PROGRESS */
+.progress-wrap{padding:20px 24px 0;max-width:760px;margin:0 auto;}
+.progress-labels{display:flex;justify-content:space-between;margin-bottom:8px;}
+.progress-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);transition:color .3s;}
+.progress-label.active{color:var(--accent);}
+.progress-label.done{color:var(--green);}
+.progress-track{height:3px;background:var(--surface3);border-radius:2px;overflow:visible;position:relative;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:2px;transition:width .5s ease;}
+
+/* SECTION */
+.section{display:none;animation:fadeUp .35s ease both;}
+.section.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+.section-header{margin:40px 0 8px;}
+.section-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:6px;}
+.section-title{font-family:var(--font-head);font-size:32px;font-weight:800;letter-spacing:-0.03em;line-height:1.1;margin-bottom:10px;}
+.section-sub{font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:28px;}
+
+/* QUESTION CARD */
+.q-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin-bottom:16px;transition:border-color .2s;}
+.q-card.focused{border-color:var(--accent);}
+.q-card.skipped{opacity:.55;}
+
+.q-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px;}
+.q-label{font-family:var(--font-head);font-size:17px;font-weight:700;flex:1;line-height:1.3;}
+.q-badge{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;padding:3px 9px;border-radius:20px;flex-shrink:0;margin-top:3px;}
+.badge-required{background:var(--accent-dim);color:var(--accent);}
+.badge-high{background:var(--green-dim);color:var(--green);}
+.badge-medium{background:var(--amber-dim);color:var(--amber);}
+.badge-low{background:var(--surface3);color:var(--text3);}
+
+.q-why{font-size:12px;color:var(--text3);margin-bottom:14px;line-height:1.6;padding:8px 12px;background:var(--surface2);border-radius:6px;border-left:2px solid var(--border2);}
+.q-why strong{color:var(--text2);}
+
+/* INPUTS */
+.q-options{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.opt-btn{background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:9px 16px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;transition:all .15s;font-family:var(--font-body);}
+.opt-btn:hover{border-color:var(--accent);color:var(--text);}
+.opt-btn.on{background:var(--accent-dim);border-color:var(--accent);color:var(--text);}
+.opt-btn.multi.on{background:var(--purple-dim);border-color:var(--purple);color:var(--text);}
+
+.q-scale{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;}
+.scale-btn{width:44px;height:44px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);font-size:14px;font-weight:700;color:var(--text2);cursor:pointer;transition:all .15s;font-family:var(--font-head);}
+.scale-btn:hover{border-color:var(--accent);}
+.scale-btn.on{background:var(--accent);border-color:var(--accent);color:var(--bg);}
+.scale-label{display:flex;justify-content:space-between;width:100%;margin-top:4px;}
+.scale-label span{font-size:10px;color:var(--text3);}
+
+.finp{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;font-size:14px;color:var(--text);font-family:var(--font-body);outline:none;transition:border-color .15s;margin-top:10px;}
+.finp:focus{border-color:var(--accent);}
+.finp::placeholder{color:var(--text3);}
+textarea.finp{resize:vertical;min-height:80px;}
+
+.q-skip{background:none;border:none;font-size:11px;color:var(--text3);cursor:pointer;margin-top:10px;padding:0;font-family:var(--font-body);text-decoration:underline;}
+.q-skip:hover{color:var(--text2);}
+
+/* TEXTURE MAP */
+.texture-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:16px;}
+.head-svg-wrap{position:relative;background:var(--surface2);border-radius:var(--r);border:1px solid var(--border);overflow:hidden;padding-bottom:110%;}
+.head-svg-wrap svg{position:absolute;inset:0;width:100%;height:100%;}
+.zone-cards{display:flex;flex-direction:column;gap:8px;}
+.zone-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px 14px;cursor:pointer;transition:border-color .15s;}
+.zone-card.selected{border-color:var(--accent);}
+.zone-name{font-size:12px;font-weight:700;color:var(--text);}
+.zone-pattern{font-size:12px;color:var(--accent);margin-top:2px;}
+.pattern-picker{margin-top:12px;display:none;}
+.pattern-picker.visible{display:block;}
+.pattern-picker-label{font-size:11px;color:var(--text3);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;}
+
+/* ADAPTIVE SECTION */
+.adaptive-intro{background:var(--accent-dim);border:1px solid var(--accent);border-radius:var(--r);padding:20px;margin:28px 0 20px;}
+.adaptive-intro-title{font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--accent);margin-bottom:6px;}
+.adaptive-intro-text{font-size:13px;color:var(--text2);line-height:1.7;}
+.adaptive-groups{display:flex;flex-direction:column;gap:6px;margin-top:12px;}
+.adaptive-group-tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:3px 10px;border-radius:20px;margin-right:6px;margin-bottom:4px;}
+
+/* NAVIGATION */
+.nav-row{display:flex;align-items:center;gap:12px;margin-top:32px;}
+.btn-next{flex:1;background:var(--accent);border:none;border-radius:10px;padding:16px;font-size:15px;font-weight:700;color:var(--bg);cursor:pointer;font-family:var(--font-head);letter-spacing:-0.01em;transition:background .15s;}
+.btn-next:hover{background:var(--accent2);}
+.btn-back{background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:16px 20px;font-size:14px;font-weight:600;color:var(--text2);cursor:pointer;font-family:var(--font-head);transition:all .15s;}
+.btn-back:hover{border-color:var(--border2);color:var(--text);}
+.q-count{font-size:12px;color:var(--text3);}
+
+/* SUMMARY */
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;}
+.summary-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px;}
+.summary-card-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:6px;}
+.summary-card-value{font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--text);line-height:1.3;}
+.protocol-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin-top:16px;}
+.protocol-box-title{font-family:var(--font-head);font-size:20px;font-weight:800;margin-bottom:12px;}
+.protocol-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;line-height:1.6;}
+.protocol-item:last-child{border-bottom:none;}
+.protocol-item-label{font-weight:700;color:var(--accent);flex-shrink:0;width:120px;}
+.loading-dots{display:flex;gap:6px;padding:20px 0;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 1.2s infinite ease-in-out;}
+.dot:nth-child(2){animation-delay:.2s;}
+.dot:nth-child(3){animation-delay:.4s;}
+@keyframes pulse{0%,80%,100%{transform:scale(0);opacity:.4;}40%{transform:scale(1);opacity:1;}}
+
+.completion-hero{text-align:center;padding:48px 0 24px;}
+.completion-icon{font-size:48px;margin-bottom:16px;}
+.completion-title{font-family:var(--font-head);font-size:36px;font-weight:800;letter-spacing:-0.03em;margin-bottom:10px;}
+.completion-sub{font-size:15px;color:var(--text2);max-width:500px;margin:0 auto 32px;}
+.btn-cta{display:inline-block;background:var(--accent);color:var(--bg);border:none;border-radius:10px;padding:16px 32px;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font-head);margin-right:12px;}
+.btn-secondary{display:inline-block;background:var(--surface2);color:var(--text);border:1px solid var(--border2);border-radius:10px;padding:16px 32px;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font-head);}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .section-title{font-size:24px;}
+  .texture-wrap{grid-template-columns:1fr;}
+  .summary-grid{grid-template-columns:1fr;}
+  .q-scale{gap:4px;}
+  .scale-btn{width:38px;height:38px;font-size:12px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">HAIR<span>PROTOCOL</span></div>
+  <div class="save-status" id="save-status">Saving as you go</div>
+</header>
+
+<div class="progress-wrap">
+  <div class="progress-labels">
+    <div class="progress-label active" id="pl-0">Core</div>
+    <div class="progress-label" id="pl-1">Texture</div>
+    <div class="progress-label" id="pl-2">Health</div>
+    <div class="progress-label" id="pl-3">Lifestyle</div>
+    <div class="progress-label" id="pl-4">Routine</div>
+    <div class="progress-label" id="pl-5">Your Plan</div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:4%;"></div></div>
+</div>
+
+<div class="shell">
+
+<!-- ═══════════ SECTION 0: WELCOME ═══════════ -->
+<div class="section active" id="sec-welcome">
+  <div class="section-header">
+    <div class="section-num">Welcome</div>
+    <div class="section-title">Let's build your protocol.</div>
+    <div class="section-sub">This questionnaire learns as you answer. Required questions take about 4 minutes. Every additional question unlocks a more precise protocol — the more you share, the more personalized your results.<br><br>Your answers are saved automatically and never leave your device.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">What's your primary goal right now?</div>
+      <div class="q-badge badge-required">Required</div>
+    </div>
+    <div class="q-why"><strong>This sets everything.</strong> Your goal determines which protocol track you'll follow, which products matter most, and what we measure.</div>
+    <div class="q-options" id="opt-goal">
+      <button class="opt-btn" onclick="pick('goal','length',this)">Grow to a length goal</button>
+      <button class="opt-btn" onclick="pick('goal','thickness',this)">Increase thickness & density</button>
+      <button class="opt-btn" onclick="pick('goal','edges',this)">Recover edges / hairline</button>
+      <button class="opt-btn" onclick="pick('goal','scalp',this)">Heal my scalp</button>
+      <button class="opt-btn" onclick="pick('goal','pattern',this)">Define my curl pattern</button>
+      <button class="opt-btn" onclick="pick('goal','damage',this)">Recover from damage</button>
+      <button class="opt-btn" onclick="pick('goal','routine',this)">Build a consistent routine</button>
+      <button class="opt-btn" onclick="pick('goal','maintain',this)">Maintain what I have</button>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">What secondary goals matter to you? (Select all that apply)</div>
+      <div class="q-badge badge-high">High</div>
+    </div>
+    <div class="q-options" id="opt-goals-secondary">
+      <button class="opt-btn multi" onclick="toggle('goals-secondary','length',this)">Length retention</button>
+      <button class="opt-btn multi" onclick="toggle('goals-secondary','thickness',this)">More fullness</button>
+      <button class="opt-btn multi" onclick="toggle('goals-secondary','edges',this)">Edge recovery</button>
+      <button class="opt-btn multi" onclick="toggle('goals-secondary','moisture',this)">Better moisture</button>
+      <button class="opt-btn multi" onclick="toggle('goals-secondary','breakage',this)">Less breakage</button>
+      <button class="opt-btn multi" onclick="toggle('goals-secondary','shedding',this)">Less shedding</button>
+      <button class="opt-btn multi" onclick="toggle('goals-secondary','definition',this)">More curl definition</button>
+      <button class="opt-btn multi" onclick="toggle('goals-secondary','scalp',this)">Scalp health</button>
+      <button class="opt-btn multi" onclick="toggle('goals-secondary','damage',this)">Heat damage recovery</button>
+    </div>
+    <button class="q-skip" onclick="skipQ(this)">Skip for now</button>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">Where are you starting from?</div>
+      <div class="q-badge badge-required">Required</div>
+    </div>
+    <div class="q-why"><strong>Your baseline changes everything.</strong> Someone starting from scratch needs a different approach than someone optimizing an existing routine.</div>
+    <div class="q-options" id="opt-start">
+      <button class="opt-btn" onclick="pick('start','scratch',this)">No routine — starting from zero</button>
+      <button class="opt-btn" onclick="pick('start','basic',this)">I have a basic routine but it's not working</button>
+      <button class="opt-btn" onclick="pick('start','established',this)">Established routine — want to optimize</button>
+      <button class="opt-btn" onclick="pick('start','restart',this)">I had a routine but fell off and need to restart</button>
+    </div>
+  </div>
+
+  <div class="nav-row">
+    <button class="btn-next" onclick="nextSection(0)">Continue to Hair Profile &rarr;</button>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION 1: CORE HAIR PROFILE ═══════════ -->
+<div class="section" id="sec-core">
+  <div class="section-header">
+    <div class="section-num">Section 1 of 5 &mdash; Required</div>
+    <div class="section-title">Your hair profile.</div>
+    <div class="section-sub">These 6 questions are the foundation of your protocol. Every recommendation we make depends on this data — take your time.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">What is your curl pattern? (Crown / dominant pattern)</div>
+      <div class="q-badge badge-required">Required</div>
+    </div>
+    <div class="q-why"><strong>Your curl type determines protein needs, moisture requirements, and how products should be applied.</strong> If you have multiple patterns, pick the most common.</div>
+    <div class="q-options" id="opt-pattern">
+      <button class="opt-btn" onclick="pick('pattern','2c',this)">2C — Wavy, defined S</button>
+      <button class="opt-btn" onclick="pick('pattern','3a',this)">3A — Loose curls</button>
+      <button class="opt-btn" onclick="pick('pattern','3b',this)">3B — Medium ringlets</button>
+      <button class="opt-btn" onclick="pick('pattern','3c',this)">3C — Tight ringlets</button>
+      <button class="opt-btn" onclick="pick('pattern','4a',this)">4A — Tightly coiled</button>
+      <button class="opt-btn" onclick="pick('pattern','4b',this)">4B — Z-pattern coils</button>
+      <button class="opt-btn" onclick="pick('pattern','4c',this)">4C — Very tight, minimal definition</button>
+      <button class="opt-btn" onclick="pick('pattern','mixed',this)">Mixed — I have multiple patterns</button>
+      <button class="opt-btn" onclick="pick('pattern','unsure',this)">I'm not sure</button>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">What's your hair's porosity?</div>
+      <div class="q-badge badge-required">Required</div>
+    </div>
+    <div class="q-why"><strong>Porosity is the single most important factor in your protocol.</strong> It determines which products penetrate, how long moisture lasts, and whether protein helps or hurts you.</div>
+    <details style="margin-bottom:12px;cursor:pointer;">
+      <summary style="font-size:12px;color:var(--accent);font-weight:600;">How to test your porosity &rarr;</summary>
+      <div style="font-size:12px;color:var(--text2);margin-top:8px;line-height:1.7;padding:10px;background:var(--surface2);border-radius:6px;">
+        <strong style="color:var(--text);">Float test:</strong> Drop a clean, product-free strand in room temperature water. Wait 2-4 minutes.<br>
+        &bull; Floats near top = low porosity (cuticle is closed)<br>
+        &bull; Sinks slowly to middle = medium porosity<br>
+        &bull; Sinks to bottom fast = high porosity (cuticle is raised)
+      </div>
+    </details>
+    <div class="q-options" id="opt-porosity">
+      <button class="opt-btn" onclick="pick('porosity','low',this)">Low — Products sit on top, takes forever to get wet</button>
+      <button class="opt-btn" onclick="pick('porosity','medium',this)">Medium — Absorbs well, holds moisture reasonably</button>
+      <button class="opt-btn" onclick="pick('porosity','high',this)">High — Absorbs fast, dries fast, hard to keep moisturized</button>
+      <button class="opt-btn" onclick="pick('porosity','unsure',this)">I haven't tested / not sure</button>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">How would you describe your strand thickness?</div>
+      <div class="q-badge badge-required">Required</div>
+    </div>
+    <div class="q-why"><strong>Fine strands are overwhelmed by heavy products and break under too much protein.</strong> This changes everything from DC timing to which oils you use.</div>
+    <details style="margin-bottom:12px;cursor:pointer;">
+      <summary style="font-size:12px;color:var(--accent);font-weight:600;">How to tell &rarr;</summary>
+      <div style="font-size:12px;color:var(--text2);margin-top:8px;line-height:1.7;padding:10px;background:var(--surface2);border-radius:6px;">
+        Hold a single strand against a white piece of paper. <strong style="color:var(--text);">Fine:</strong> barely visible. <strong style="color:var(--text);">Medium:</strong> clearly visible. <strong style="color:var(--text);">Coarse:</strong> looks thick, may feel wiry.
+      </div>
+    </details>
+    <div class="q-options" id="opt-thickness">
+      <button class="opt-btn" onclick="pick('thickness','fine',this)">Fine — Individual strands are thin</button>
+      <button class="opt-btn" onclick="pick('thickness','medium',this)">Medium — Average thickness</button>
+      <button class="opt-btn" onclick="pick('thickness','coarse',this)">Coarse — Thick, sometimes wiry strands</button>
+      <button class="opt-btn" onclick="pick('thickness','mixed',this)">Mixed — fine in some areas, coarser in others</button>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">What's your scalp's density? (How much hair do you have?)</div>
+      <div class="q-badge badge-required">Required</div>
+    </div>
+    <div class="q-why"><strong>Separate from strand thickness.</strong> High density + fine strands = tangles. Low density + coarse strands = can look sparse. Protocol differs significantly.</div>
+    <div class="q-options" id="opt-density">
+      <button class="opt-btn" onclick="pick('density','low',this)">Low — Scalp is clearly visible without parting</button>
+      <button class="opt-btn" onclick="pick('density','medium',this)">Medium — Scalp slightly visible on crown with parting</button>
+      <button class="opt-btn" onclick="pick('density','high',this)">High — Dense, scalp not visible</button>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">What's the current state of your hair?</div>
+      <div class="q-badge badge-required">Required</div>
+    </div>
+    <div class="q-why"><strong>Your starting damage level determines how aggressive your repair protocol needs to be</strong> and how long before you'll see retention.</div>
+    <div class="q-options" id="opt-state">
+      <button class="opt-btn" onclick="pick('state','healthy',this)">Healthy — no major damage</button>
+      <button class="opt-btn" onclick="pick('state','dry',this)">Dry — moisture is my main issue</button>
+      <button class="opt-btn" onclick="pick('state','heat',this)">Heat damaged — frizzy, won't curl, breaks</button>
+      <button class="opt-btn" onclick="pick('state','breakage',this)">Moderate breakage — snapping on manipulation</button>
+      <button class="opt-btn" onclick="pick('state','severe',this)">Severe damage — multiple issues at once</button>
+      <button class="opt-btn" onclick="pick('state','transitioning',this)">Transitioning — relaxer-to-natural or heat-to-natural</button>
+      <button class="opt-btn" onclick="pick('state','relaxed',this)">Relaxed / chemically processed</button>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">How does your hair respond to protein treatments?</div>
+      <div class="q-badge badge-high">High</div>
+    </div>
+    <div class="q-why"><strong>Protein sensitivity is critically undertested.</strong> Using protein on protein-sensitive hair causes brittleness that looks exactly like damage — many women keep "repairing" damage they're actually causing.</div>
+    <div class="q-options" id="opt-protein">
+      <button class="opt-btn" onclick="pick('protein','loves',this)">Loves it — feels stronger, less breakage</button>
+      <button class="opt-btn" onclick="pick('protein','neutral',this)">Neutral — no strong reaction either way</button>
+      <button class="opt-btn" onclick="pick('protein','sensitive',this)">Sensitive — feels stiff, brittle, or snaps more after protein</button>
+      <button class="opt-btn" onclick="pick('protein','unknown',this)">I've never done a protein treatment</button>
+    </div>
+    <button class="q-skip" onclick="skipQ(this)">Skip for now</button>
+  </div>
+
+  <div class="nav-row">
+    <button class="btn-back" onclick="goSection(0)">&larr;</button>
+    <button class="btn-next" onclick="nextSection(1)">Continue to Texture Map &rarr;</button>
+    <div class="q-count" id="core-count"></div>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION 2: TEXTURE MAP ═══════════ -->
+<div class="section" id="sec-texture">
+  <div class="section-header">
+    <div class="section-num">Section 2 of 5 &mdash; High Value</div>
+    <div class="section-title">Map your texture zones.</div>
+    <div class="section-sub">Most Black women have 2-3 different curl patterns. Identifying them by zone lets us build a protocol that works for your whole head — not just the dominant pattern.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">Assign a curl pattern to each zone of your head.</div>
+      <div class="q-badge badge-high">High</div>
+    </div>
+    <div class="q-why"><strong>Your nape and edges are almost always tighter and more fragile than your crown.</strong> Styling products and technique need to account for this — one product applied the same way everywhere is why so many women have uneven results.</div>
+
+    <div class="texture-wrap">
+      <div>
+        <div class="head-svg-wrap">
+          <svg viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="100" rx="65" ry="78" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <ellipse id="tz-crown" cx="100" cy="65" rx="36" ry="26" fill="rgba(43,157,170,0.18)" stroke="rgba(43,157,170,0.5)" stroke-width="1.5" style="cursor:pointer;" onclick="selectZone('crown')"/>
+            <ellipse id="tz-top" cx="100" cy="90" rx="42" ry="18" fill="rgba(139,107,170,0.18)" stroke="rgba(139,107,170,0.5)" stroke-width="1.5" style="cursor:pointer;" onclick="selectZone('top')"/>
+            <ellipse id="tz-sides" cx="100" cy="110" rx="52" ry="16" fill="rgba(255,159,90,0.18)" stroke="rgba(255,159,90,0.5)" stroke-width="1.5" style="cursor:pointer;" onclick="selectZone('sides')"/>
+            <ellipse id="tz-nape" cx="100" cy="150" rx="34" ry="20" fill="rgba(46,204,143,0.18)" stroke="rgba(46,204,143,0.5)" stroke-width="1.5" style="cursor:pointer;" onclick="selectZone('nape')"/>
+            <ellipse id="tz-edges-l" cx="46" cy="104" rx="14" ry="20" fill="rgba(224,64,168,0.18)" stroke="rgba(224,64,168,0.5)" stroke-width="1.5" style="cursor:pointer;" onclick="selectZone('edges')"/>
+            <ellipse id="tz-edges-r" cx="154" cy="104" rx="14" ry="20" fill="rgba(224,64,168,0.18)" stroke="rgba(224,64,168,0.5)" stroke-width="1.5" style="cursor:pointer;" onclick="selectZone('edges')"/>
+            <text x="100" y="68" text-anchor="middle" fill="rgba(43,157,170,0.9)" font-size="9" font-weight="700" font-family="DM Sans, sans-serif">CROWN</text>
+            <text x="100" y="93" text-anchor="middle" fill="rgba(139,107,170,0.9)" font-size="9" font-weight="700" font-family="DM Sans, sans-serif">TOP</text>
+            <text x="100" y="113" text-anchor="middle" fill="rgba(255,159,90,0.9)" font-size="9" font-weight="700" font-family="DM Sans, sans-serif">SIDES</text>
+            <text x="100" y="153" text-anchor="middle" fill="rgba(46,204,143,0.9)" font-size="9" font-weight="700" font-family="DM Sans, sans-serif">NAPE</text>
+            <text x="46" y="107" text-anchor="middle" fill="rgba(224,64,168,0.9)" font-size="8" font-weight="700" font-family="DM Sans, sans-serif">EDGE</text>
+            <text x="154" y="107" text-anchor="middle" fill="rgba(224,64,168,0.9)" font-size="8" font-weight="700" font-family="DM Sans, sans-serif">EDGE</text>
+            <text x="100" y="208" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="9" font-family="Open Sans, sans-serif">tap a zone</text>
+          </svg>
+        </div>
+        <div class="pattern-picker visible" id="zone-picker">
+          <div class="pattern-picker-label" id="zone-picker-label">Select a zone to assign pattern</div>
+          <div class="q-options" style="margin-top:6px;">
+            <button class="opt-btn" style="font-size:12px;padding:6px 12px;" onclick="assignZone('2c')">2C</button>
+            <button class="opt-btn" style="font-size:12px;padding:6px 12px;" onclick="assignZone('3a')">3A</button>
+            <button class="opt-btn" style="font-size:12px;padding:6px 12px;" onclick="assignZone('3b')">3B</button>
+            <button class="opt-btn" style="font-size:12px;padding:6px 12px;" onclick="assignZone('3c')">3C</button>
+            <button class="opt-btn" style="font-size:12px;padding:6px 12px;" onclick="assignZone('4a')">4A</button>
+            <button class="opt-btn" style="font-size:12px;padding:6px 12px;" onclick="assignZone('4b')">4B</button>
+            <button class="opt-btn" style="font-size:12px;padding:6px 12px;" onclick="assignZone('4c')">4C</button>
+            <button class="opt-btn" style="font-size:12px;padding:6px 12px;" onclick="assignZone('relaxed')">Relaxed</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="zone-cards">
+        <div class="zone-card" id="zc-crown" onclick="selectZone('crown')">
+          <div class="zone-name" style="color:rgba(43,157,170,0.9);">Crown</div>
+          <div class="zone-pattern" id="zp-crown" style="color:var(--text3);">Not assigned</div>
+        </div>
+        <div class="zone-card" id="zc-top" onclick="selectZone('top')">
+          <div class="zone-name" style="color:rgba(139,107,170,0.9);">Top / mid</div>
+          <div class="zone-pattern" id="zp-top" style="color:var(--text3);">Not assigned</div>
+        </div>
+        <div class="zone-card" id="zc-sides" onclick="selectZone('sides')">
+          <div class="zone-name" style="color:rgba(255,159,90,0.9);">Sides</div>
+          <div class="zone-pattern" id="zp-sides" style="color:var(--text3);">Not assigned</div>
+        </div>
+        <div class="zone-card" id="zc-nape" onclick="selectZone('nape')">
+          <div class="zone-name" style="color:rgba(46,204,143,0.9);">Nape</div>
+          <div class="zone-pattern" id="zp-nape" style="color:var(--text3);">Not assigned</div>
+        </div>
+        <div class="zone-card" id="zc-edges" onclick="selectZone('edges')">
+          <div class="zone-name" style="color:rgba(224,64,168,0.9);">Edges / hairline</div>
+          <div class="zone-pattern" id="zp-edges" style="color:var(--text3);">Not assigned</div>
+        </div>
+      </div>
+    </div>
+    <button class="q-skip" onclick="skipQ(this)">Skip — I'll do this later</button>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">How are your edges?</div>
+      <div class="q-badge badge-high">High</div>
+    </div>
+    <div class="q-why"><strong>Edge thinning is extremely common and almost always has a fixable cause.</strong> We'll build a specific edge recovery component if needed.</div>
+    <div class="q-options" id="opt-edges">
+      <button class="opt-btn" onclick="pick('edges','full',this)">Full and healthy — no concerns</button>
+      <button class="opt-btn" onclick="pick('edges','thinning',this)">Slightly thin but present</button>
+      <button class="opt-btn" onclick="pick('edges','sparse',this)">Noticeably sparse in areas</button>
+      <button class="opt-btn" onclick="pick('edges','recovering',this)">I've had loss and am in recovery</button>
+      <button class="opt-btn" onclick="pick('edges','bald',this)">Significant alopecia at the hairline</button>
+    </div>
+    <button class="q-skip" onclick="skipQ(this)">Skip</button>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">What is your current hair length?</div>
+      <div class="q-badge badge-high">High</div>
+    </div>
+    <div class="q-why"><strong>Length is used to calculate retention rate over time.</strong> We'll check back at each milestone.</div>
+    <div class="q-options" id="opt-length">
+      <button class="opt-btn" onclick="pick('length','twa',this)">TWA (under 2 inches)</button>
+      <button class="opt-btn" onclick="pick('length','neck',this)">Neck length</button>
+      <button class="opt-btn" onclick="pick('length','shoulder',this)">Shoulder length</button>
+      <button class="opt-btn" onclick="pick('length','armpit',this)">Armpit length</button>
+      <button class="opt-btn" onclick="pick('length','brastrap',this)">Bra-strap length</button>
+      <button class="opt-btn" onclick="pick('length','midback',this)">Mid-back length</button>
+      <button class="opt-btn" onclick="pick('length','waist',this)">Waist length or beyond</button>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">What's your length goal?</div>
+      <div class="q-badge badge-high">High</div>
+    </div>
+    <div class="q-options" id="opt-length-goal">
+      <button class="opt-btn" onclick="pick('length-goal','neck',this)">Neck length</button>
+      <button class="opt-btn" onclick="pick('length-goal','shoulder',this)">Shoulder length</button>
+      <button class="opt-btn" onclick="pick('length-goal','armpit',this)">Armpit length</button>
+      <button class="opt-btn" onclick="pick('length-goal','brastrap',this)">Bra-strap length</button>
+      <button class="opt-btn" onclick="pick('length-goal','midback',this)">Mid-back length</button>
+      <button class="opt-btn" onclick="pick('length-goal','waist',this)">Waist length</button>
+      <button class="opt-btn" onclick="pick('length-goal','hip',this)">Hip length or beyond</button>
+      <button class="opt-btn" onclick="pick('length-goal','maintain',this)">No length goal — maintain current</button>
+    </div>
+    <button class="q-skip" onclick="skipQ(this)">Skip</button>
+  </div>
+
+  <div class="nav-row">
+    <button class="btn-back" onclick="goSection(1)">&larr;</button>
+    <button class="btn-next" onclick="nextSection(2)">Continue to Health &rarr;</button>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION 3: HEALTH & BIOLOGY ═══════════ -->
+<div class="section" id="sec-health">
+  <div class="section-header">
+    <div class="section-num">Section 3 of 5</div>
+    <div class="section-title">Health & biology.</div>
+    <div class="section-sub" id="health-intro-text">These questions are unlocked based on your goals. They're optional but the more you share, the more targeted your protocol becomes.</div>
+  </div>
+
+  <div class="adaptive-intro" id="health-adaptive-banner">
+    <div class="adaptive-intro-title">Why we're asking these questions</div>
+    <div class="adaptive-intro-text" id="health-adaptive-text">Loading personalized questions...</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">Are you currently taking any medications? (Select all that apply)</div>
+      <div class="q-badge badge-high">High</div>
+    </div>
+    <div class="q-why"><strong>Certain medications are direct causes of hair loss that no topical protocol can fully overcome.</strong> Knowing this prevents us from building a protocol that will inevitably fail.</div>
+    <div class="q-options" id="opt-meds">
+      <button class="opt-btn multi" onclick="toggle('meds','stimulants',this)">Stimulants (Adderall, Vyvanse, Ritalin)</button>
+      <button class="opt-btn multi" onclick="toggle('meds','bc',this)">Hormonal birth control</button>
+      <button class="opt-btn multi" onclick="toggle('meds','thyroid',this)">Thyroid medication</button>
+      <button class="opt-btn multi" onclick="toggle('meds','antidepressants',this)">Antidepressants / mood stabilizers</button>
+      <button class="opt-btn multi" onclick="toggle('meds','bloodpressure',this)">Blood pressure medication</button>
+      <button class="opt-btn multi" onclick="toggle('meds','retinoids',this)">Retinoids (oral or topical)</button>
+      <button class="opt-btn multi" onclick="toggle('meds','none',this)">None / prefer not to say</button>
+    </div>
+    <button class="q-skip" onclick="skipQ(this)">Skip</button>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">Any of the following apply to you? (Select all)</div>
+      <div class="q-badge badge-high">High</div>
+    </div>
+    <div class="q-why"><strong>These are the most common overlooked causes of Black women's hair thinning and loss.</strong> Many women have been told their hair just "doesn't grow" when the real cause is one of these.</div>
+    <div class="q-options" id="opt-health">
+      <button class="opt-btn multi" onclick="toggle('health','postpartum',this)">Postpartum (within last 18 months)</button>
+      <button class="opt-btn multi" onclick="toggle('health','perimenopause',this)">Perimenopause or menopause</button>
+      <button class="opt-btn multi" onclick="toggle('health','pcos',this)">PCOS</button>
+      <button class="opt-btn multi" onclick="toggle('health','thyroid',this)">Thyroid condition</button>
+      <button class="opt-btn multi" onclick="toggle('health','irondef',this)">Iron deficiency or anemia (diagnosed)</button>
+      <button class="opt-btn multi" onclick="toggle('health','alopecia-fam',this)">Family history of alopecia</button>
+      <button class="opt-btn multi" onclick="toggle('health','illness',this)">Major illness or surgery in last year</button>
+      <button class="opt-btn multi" onclick="toggle('health','stress',this)">High or chronic stress</button>
+      <button class="opt-btn multi" onclick="toggle('health','none',this)">None of these apply</button>
+    </div>
+    <button class="q-skip" onclick="skipQ(this)">Skip</button>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">How would you rate your daily protein intake?</div>
+      <div class="q-badge badge-medium">Medium</div>
+    </div>
+    <div class="q-why"><strong>Hair is made of protein.</strong> Most women severely underestimate their intake. Less than 50g/day means no topical protocol will achieve maximum results.</div>
+    <div class="q-options" id="opt-diet-protein">
+      <button class="opt-btn" onclick="pick('diet-protein','low',this)">Low — I rarely eat meat, eggs, or protein shakes</button>
+      <button class="opt-btn" onclick="pick('diet-protein','medium',this)">Medium — I eat protein most days but not consistently</button>
+      <button class="opt-btn" onclick="pick('diet-protein','high',this)">High — I eat 80g+ protein daily and track it</button>
+      <button class="opt-btn" onclick="pick('diet-protein','unknown',this)">I don't really track this</button>
+    </div>
+    <button class="q-skip" onclick="skipQ(this)">Skip</button>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">What's your current supplement routine?</div>
+      <div class="q-badge badge-medium">Medium</div>
+    </div>
+    <div class="q-options" id="opt-supplements">
+      <button class="opt-btn multi" onclick="toggle('supplements','biotin',this)">Biotin</button>
+      <button class="opt-btn multi" onclick="toggle('supplements','collagen',this)">Collagen peptides</button>
+      <button class="opt-btn multi" onclick="toggle('supplements','msm',this)">MSM</button>
+      <button class="opt-btn multi" onclick="toggle('supplements','iron',this)">Iron</button>
+      <button class="opt-btn multi" onclick="toggle('supplements','vitd',this)">Vitamin D3</button>
+      <button class="opt-btn multi" onclick="toggle('supplements','omega3',this)">Omega-3</button>
+      <button class="opt-btn multi" onclick="toggle('supplements','zinc',this)">Zinc</button>
+      <button class="opt-btn multi" onclick="toggle('supplements','sawpalm',this)">Saw Palmetto</button>
+      <button class="opt-btn multi" onclick="toggle('supplements','silica',this)">Silica</button>
+      <button class="opt-btn multi" onclick="toggle('supplements','none',this)">None currently</button>
+    </div>
+    <button class="q-skip" onclick="skipQ(this)">Skip</button>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">What scalp issues do you experience?</div>
+      <div class="q-badge badge-high">High</div>
+    </div>
+    <div class="q-why"><strong>Scalp health directly determines hair health.</strong> A compromised scalp environment blocks growth regardless of what you do to the strands.</div>
+    <div class="q-options" id="opt-scalp-issues">
+      <button class="opt-btn multi" onclick="toggle('scalp-issues','none',this)">None — scalp is healthy</button>
+      <button class="opt-btn multi" onclick="toggle('scalp-issues','dandruff',this)">Dandruff / white flakes</button>
+      <button class="opt-btn multi" onclick="toggle('scalp-issues','sebderm',this)">Seborrheic dermatitis (yellow/oily flakes)</button>
+      <button class="opt-btn multi" onclick="toggle('scalp-issues','itchy',this)">Chronic itching</button>
+      <button class="opt-btn multi" onclick="toggle('scalp-issues','oily',this)">Very oily scalp</button>
+      <button class="opt-btn multi" onclick="toggle('scalp-issues','dryscalp',this)">Dry, tight scalp</button>
+      <button class="opt-btn multi" onclick="toggle('scalp-issues','eczema',this)">Scalp eczema or psoriasis</button>
+      <button class="opt-btn multi" onclick="toggle('scalp-issues','fungal',this)">Suspected fungal / bumps on scalp</button>
+    </div>
+    <button class="q-skip" onclick="skipQ(this)">Skip</button>
+  </div>
+
+  <div class="nav-row">
+    <button class="btn-back" onclick="goSection(2)">&larr;</button>
+    <button class="btn-next" onclick="nextSection(3)">Continue to Lifestyle &rarr;</button>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION 4: LIFESTYLE & ROUTINE ═══════════ -->
+<div class="section" id="sec-lifestyle">
+  <div class="section-header">
+    <div class="section-num">Section 4 of 5</div>
+    <div class="section-title">Your lifestyle & routine.</div>
+    <div class="section-sub">A protocol that doesn't fit your actual life won't stick. We're designing for the time and resources you realistically have.</div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">How much time can you realistically give to wash day?</div>
+      <div class="q-badge badge-required">Required</div>
+    </div>
+    <div class="q-why"><strong>The best protocol is the one you'll actually do.</strong> A 20-minute routine you do consistently beats a 4-hour routine you avoid.</div>
+    <div class="q-options" id="opt-time">
+      <button class="opt-btn" onclick="pick('time','15',this)">15-30 minutes — I need it fast</button>
+      <button class="opt-btn" onclick="pick('time','60',this)">About an hour — I have some time</button>
+      <button class="opt-btn" onclick="pick('time','2h',this)">2 hours — I can make time when needed</button>
+      <button class="opt-btn" onclick="pick('time','4h',this)">3-4 hours — I'm dedicated</button>
+      <button class="opt-btn" onclick="pick('time','allday',this)">All day — hair care is a ritual for me</button>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">How often do you currently wash your hair?</div>
+      <div class="q-badge badge-high">High</div>
+    </div>
+    <div class="q-options" id="opt-wash-freq">
+      <button class="opt-btn" onclick="pick('wash-freq','daily',this)">Daily or almost daily</button>
+      <button class="opt-btn" onclick="pick('wash-freq','weekly',this)">Once a week</button>
+      <button class="opt-btn" onclick="pick('wash-freq','biweekly',this)">Every 2 weeks</button>
+      <button class="opt-btn" onclick="pick('wash-freq','monthly',this)">Once a month or less</button>
+      <button class="opt-btn" onclick="pick('wash-freq','varies',this)">It varies widely — no routine</button>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">How often do you use direct heat? (flat iron, blow dryer)</div>
+      <div class="q-badge badge-high">High</div>
+    </div>
+    <div class="q-options" id="opt-heat-freq">
+      <button class="opt-btn" onclick="pick('heat-freq','never',this)">Never — fully heat-free</button>
+      <button class="opt-btn" onclick="pick('heat-freq','rare',this)">Rarely — a few times per year</button>
+      <button class="opt-btn" onclick="pick('heat-freq','monthly',this)">Monthly — after most wash days</button>
+      <button class="opt-btn" onclick="pick('heat-freq','biweekly',this)">Every 2 weeks</button>
+      <button class="opt-btn" onclick="pick('heat-freq','weekly',this)">Weekly or more</button>
+      <button class="opt-btn" onclick="pick('heat-freq','recovery',this)">Currently in heat-free recovery</button>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">What styles do you wear most often? (Select all)</div>
+      <div class="q-badge badge-high">High</div>
+    </div>
+    <div class="q-options" id="opt-styles">
+      <button class="opt-btn multi" onclick="toggle('styles','washgo',this)">Wash &amp; go</button>
+      <button class="opt-btn multi" onclick="toggle('styles','twistout',this)">Twist out</button>
+      <button class="opt-btn multi" onclick="toggle('styles','braidout',this)">Braid out</button>
+      <button class="opt-btn multi" onclick="toggle('styles','silkpress',this)">Silk press / flat iron</button>
+      <button class="opt-btn multi" onclick="toggle('styles','blowout',this)">Blowout (stretched)</button>
+      <button class="opt-btn multi" onclick="toggle('styles','protective',this)">Protective styles (braids, twists, wigs)</button>
+      <button class="opt-btn multi" onclick="toggle('styles','locs',this)">Locs</button>
+      <button class="opt-btn multi" onclick="toggle('styles','puffs',this)">Puffs &amp; buns</button>
+      <button class="opt-btn multi" onclick="toggle('styles','bantu',this)">Bantu knout out</button>
+      <button class="opt-btn multi" onclick="toggle('styles','varies',this)">It varies a lot</button>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">Are you open to DIY recipes (making your own products)?</div>
+      <div class="q-badge badge-medium">Medium</div>
+    </div>
+    <div class="q-options" id="opt-diy">
+      <button class="opt-btn" onclick="pick('diy','yes',this)">Yes — I already make some</button>
+      <button class="opt-btn" onclick="pick('diy','open',this)">Open to it if it's not complicated</button>
+      <button class="opt-btn" onclick="pick('diy','no',this)">No — commercial products only</button>
+    </div>
+    <button class="q-skip" onclick="skipQ(this)">Skip</button>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">What's your monthly budget for hair care?</div>
+      <div class="q-badge badge-medium">Medium</div>
+    </div>
+    <div class="q-why"><strong>Budget determines product tier recommendations.</strong> We won't recommend Oribe if you're on a drugstore budget — or vice versa.</div>
+    <div class="q-options" id="opt-budget">
+      <button class="opt-btn" onclick="pick('budget','low',this)">Under $30/month</button>
+      <button class="opt-btn" onclick="pick('budget','medium',this)">$30-$75/month</button>
+      <button class="opt-btn" onclick="pick('budget','high',this)">$75-$150/month</button>
+      <button class="opt-btn" onclick="pick('budget','luxury',this)">$150+/month</button>
+      <button class="opt-btn" onclick="pick('budget','varies',this)">It varies — no strict budget</button>
+    </div>
+    <button class="q-skip" onclick="skipQ(this)">Skip</button>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">What's your location? (City or region)</div>
+      <div class="q-badge badge-medium">Medium</div>
+    </div>
+    <div class="q-why"><strong>Humidity level is a major variable in styling.</strong> What works in Atlanta won't work the same in Denver or Seattle. We use your location to adjust product recommendations seasonally.</div>
+    <input class="finp" id="inp-location" type="text" placeholder="e.g. Atlanta, GA" oninput="saveField('location',this.value)">
+    <button class="q-skip" onclick="skipQ(this)">Skip — I'll add this later</button>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <div class="q-label">Any concerns or notes you want us to know?</div>
+      <div class="q-badge badge-low">Optional</div>
+    </div>
+    <div class="q-why"><strong>Context that doesn't fit anywhere else.</strong> What has and hasn't worked, specific sensitivities, your biggest frustration, anything.</div>
+    <textarea class="finp" id="inp-notes" rows="4" placeholder="e.g. My hair breaks terribly at the crown but nowhere else. I've tried protein treatments and they made it worse. I suspect I have a moisture-protein balance issue..." oninput="saveField('notes',this.value)"></textarea>
+    <button class="q-skip" onclick="skipQ(this)">Skip</button>
+  </div>
+
+  <div class="nav-row">
+    <button class="btn-back" onclick="goSection(3)">&larr;</button>
+    <button class="btn-next" onclick="buildProfile()">Generate My Protocol &rarr;</button>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION 5: YOUR PLAN ═══════════ -->
+<div class="section" id="sec-summary">
+  <div class="completion-hero">
+    <div class="completion-icon">&#10003;</div>
+    <div class="completion-title">Your protocol is ready.</div>
+    <div class="completion-sub">Based on your answers, here's what we know about your hair and the protocol we recommend.</div>
+  </div>
+
+  <div class="summary-grid" id="profile-summary-grid"></div>
+
+  <div class="protocol-box" id="protocol-box">
+    <div class="protocol-box-title">Your Personalized Protocol</div>
+    <div class="loading-dots" id="protocol-loading">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    <div id="protocol-content" style="display:none;"></div>
+  </div>
+
+  <div style="margin-top:24px;text-align:center;">
+    <button class="btn-cta" onclick="exportProfile()">Export My Profile</button>
+    <button class="btn-secondary" onclick="goSection(0)">Edit Answers</button>
+  </div>
+</div>
+
+</div><!-- /shell -->
+
+<script>
+var answers = {};
+var zoneAssignments = {};
+var currentSection = 0;
+var selectedZone = null;
+var sections = ['sec-welcome','sec-core','sec-texture','sec-health','sec-lifestyle','sec-summary'];
+var progressPcts = [4, 20, 40, 60, 80, 100];
+
+// Load saved answers
+(function(){
+  try {
+    var saved = localStorage.getItem('hq_answers');
+    if(saved) answers = JSON.parse(saved);
+    var savedZones = localStorage.getItem('hq_zones');
+    if(savedZones) zoneAssignments = JSON.parse(savedZones);
+  } catch(e){}
+  restoreAnswers();
+})();
+
+function save() {
+  try {
+    localStorage.setItem('hq_answers', JSON.stringify(answers));
+    localStorage.setItem('hq_zones', JSON.stringify(zoneAssignments));
+    document.getElementById('save-status').textContent = 'Saved';
+    setTimeout(function(){ document.getElementById('save-status').textContent = 'Saving as you go'; }, 1500);
+  } catch(e){}
+}
+
+function pick(key, val, btn) {
+  answers[key] = val;
+  var container = btn.closest('.q-options');
+  if(container) container.querySelectorAll('.opt-btn').forEach(function(b){ b.classList.remove('on'); });
+  btn.classList.add('on');
+  save();
+  if(key === 'goal') updateHealthBanner();
+}
+
+function toggle(key, val, btn) {
+  if(!answers[key]) answers[key] = [];
+  if(typeof answers[key] === 'string') answers[key] = [answers[key]];
+  var idx = answers[key].indexOf(val);
+  if(idx === -1) { answers[key].push(val); btn.classList.add('on'); }
+  else { answers[key].splice(idx,1); btn.classList.remove('on'); }
+  // If "none" is selected, deselect others
+  if(val === 'none' && idx === -1) {
+    answers[key] = ['none'];
+    btn.closest('.q-options').querySelectorAll('.opt-btn').forEach(function(b){
+      if(b !== btn) b.classList.remove('on');
+    });
+  }
+  save();
+}
+
+function skipQ(btn) {
+  var card = btn.closest('.q-card');
+  if(card) card.classList.add('skipped');
+  setTimeout(function(){ if(card) card.classList.remove('skipped'); }, 800);
+}
+
+function saveField(key, val) {
+  answers[key] = val;
+  save();
+}
+
+function selectZone(zone) {
+  selectedZone = zone;
+  document.querySelectorAll('.zone-card').forEach(function(c){ c.classList.remove('selected'); });
+  var zc = document.getElementById('zc-' + zone);
+  if(zc) zc.classList.add('selected');
+  var lbl = document.getElementById('zone-picker-label');
+  if(lbl) lbl.textContent = 'Assign pattern to: ' + zone;
+}
+
+function assignZone(pattern) {
+  if(!selectedZone) return;
+  zoneAssignments[selectedZone] = pattern;
+  var zp = document.getElementById('zp-' + selectedZone);
+  if(zp){ zp.textContent = pattern; zp.style.color = 'var(--accent)'; }
+  save();
+  var zc = document.getElementById('zc-' + selectedZone);
+  if(zc){ zc.style.borderColor = 'var(--accent)'; }
+  selectedZone = null;
+  document.querySelectorAll('.zone-card').forEach(function(c){ c.classList.remove('selected'); });
+  document.getElementById('zone-picker-label').textContent = 'Select a zone to assign pattern';
+}
+
+function restoreAnswers() {
+  // Restore single-picks
+  Object.keys(answers).forEach(function(key) {
+    var val = answers[key];
+    if(typeof val === 'string') {
+      var els = document.querySelectorAll('.opt-btn[onclick*="pick(\'' + key + '\',\'' + val + '\'"]');
+      els.forEach(function(el){ el.classList.add('on'); });
+    }
+    if(Array.isArray(val)) {
+      val.forEach(function(v) {
+        var els2 = document.querySelectorAll('.opt-btn[onclick*="toggle(\'' + key + '\',\'' + v + '\'"]');
+        els2.forEach(function(el){ el.classList.add('on'); });
+      });
+    }
+  });
+  // Restore zones
+  Object.keys(zoneAssignments).forEach(function(zone) {
+    var zp = document.getElementById('zp-' + zone);
+    if(zp){ zp.textContent = zoneAssignments[zone]; zp.style.color = 'var(--accent)'; }
+    var zc = document.getElementById('zc-' + zone);
+    if(zc) zc.style.borderColor = 'var(--accent)';
+  });
+  // Restore text fields
+  if(answers.location) { var li = document.getElementById('inp-location'); if(li) li.value = answers.location; }
+  if(answers.notes) { var ni = document.getElementById('inp-notes'); if(ni) ni.value = answers.notes; }
+}
+
+var progressLabels = ['Core','Texture','Health','Lifestyle','Routine','Your Plan'];
+
+function goSection(n) {
+  document.getElementById(sections[currentSection]).classList.remove('active');
+  currentSection = n;
+  document.getElementById(sections[n]).classList.add('active');
+  document.getElementById('progress-fill').style.width = progressPcts[n] + '%';
+  for(var i=0;i<6;i++){
+    var pl = document.getElementById('pl-' + i);
+    if(!pl) continue;
+    pl.classList.remove('active','done');
+    if(i < n) pl.classList.add('done');
+    else if(i === n) pl.classList.add('active');
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function nextSection(from) {
+  if(from === 1) {
+    if(!answers.pattern || !answers.porosity || !answers.thickness || !answers.density || !answers.state) {
+      alert('Please answer the 5 required questions in this section before continuing.');
+      return;
+    }
+  }
+  if(from === 3) {
+    if(!answers.time) {
+      alert('Please select your available wash day time before continuing.');
+      return;
+    }
+  }
+  goSection(from + 1);
+}
+
+function updateHealthBanner() {
+  var goal = answers.goal || '';
+  var texts = {
+    length: 'Based on your length goal, we\'re asking about iron levels, protein intake, and medications — all directly affect growth rate.',
+    edges: 'Edge recovery often has a medical component. We\'re asking about medications, hormonal factors, and traction history.',
+    thickness: 'Density and thickness are heavily influenced by hormones, iron, and DHT. These questions help us determine if a supplement protocol is needed.',
+    scalp: 'Scalp conditions have specific medical causes. These questions help determine whether you need antifungal, anti-inflammatory, or DHT-blocking components.',
+    damage: 'Damage recovery is accelerated by systemic support. We\'re asking about protein intake, supplements, and stress — all affect repair rate.'
+  };
+  var el = document.getElementById('health-adaptive-text');
+  if(el) el.textContent = texts[goal] || 'Based on your answers so far, these health questions will help us build the most targeted protocol possible. Each one you answer unlocks a more specific recommendation.';
+}
+
+function buildProfile() {
+  goSection(5);
+  renderSummaryGrid();
+  generateProtocol();
+}
+
+function renderSummaryGrid() {
+  var grid = document.getElementById('profile-summary-grid');
+  if(!grid) return;
+  var items = [
+    {label:'Primary Goal', value: formatVal(answers.goal)},
+    {label:'Curl Pattern', value: formatVal(answers.pattern)},
+    {label:'Porosity', value: formatVal(answers.porosity)},
+    {label:'Strand Thickness', value: formatVal(answers.thickness)},
+    {label:'Density', value: formatVal(answers.density)},
+    {label:'Hair State', value: formatVal(answers.state)},
+    {label:'Current Length', value: formatVal(answers.length)},
+    {label:'Length Goal', value: formatVal(answers['length-goal'])},
+    {label:'Heat Frequency', value: formatVal(answers['heat-freq'])},
+    {label:'Time Available', value: formatVal(answers.time)},
+    {label:'Budget', value: formatVal(answers.budget)},
+    {label:'Protein Response', value: formatVal(answers.protein)},
+  ];
+  var html = '';
+  items.forEach(function(item) {
+    if(item.value && item.value !== '—') {
+      html += '<div class="summary-card"><div class="summary-card-label">' + item.label + '</div><div class="summary-card-value">' + item.value + '</div></div>';
+    }
+  });
+  if(Object.keys(zoneAssignments).length > 0) {
+    var zones = Object.entries(zoneAssignments).map(function(e){ return e[0] + ': ' + e[1]; }).join(', ');
+    html += '<div class="summary-card" style="grid-column:1/-1;"><div class="summary-card-label">Texture Map</div><div class="summary-card-value" style="font-size:13px;font-weight:500;">' + zones + '</div></div>';
+  }
+  grid.innerHTML = html;
+}
+
+function formatVal(v) {
+  if(!v) return '—';
+  if(Array.isArray(v)) return v.join(', ');
+  var map = {
+    length:'Length retention', thickness:'Thickness', edges:'Edge recovery', scalp:'Scalp health',
+    pattern:'Curl pattern', damage:'Damage recovery', routine:'Consistent routine', maintain:'Maintain',
+    low:'Low', medium:'Medium', high:'High', fine:'Fine', coarse:'Coarse', mixed:'Mixed',
+    dry:'Dry', heat:'Heat damaged', breakage:'Breakage', severe:'Severe damage', transitioning:'Transitioning', relaxed:'Relaxed',
+    unsure:'Not sure yet', unknown:'Haven\'t tested',
+    loves:'Loves protein', neutral:'Neutral', sensitive:'Protein sensitive',
+    never:'Never / heat-free', rare:'Rarely', monthly:'Monthly', biweekly:'Bi-weekly', weekly:'Weekly', recovery:'In recovery',
+    '15':'15-30 min', '60':'About an hour', '2h':'2 hours', '4h':'3-4 hours', allday:'All day',
+    brastrap:'Bra-strap length', armpit:'Armpit length', shoulder:'Shoulder length', midback:'Mid-back', waist:'Waist length',
+    twa:'TWA', neck:'Neck length', hip:'Hip length',
+    'true': 'Yes', scratch:'Starting from scratch', basic:'Basic routine', established:'Established', restart:'Restarting',
+    varies:'Varies', yes:'Yes', open:'Open to it', no:'No', luxury:'Luxury budget',
+    '2c':'2C Wavy', '3a':'3A Loose curls', '3b':'3B Ringlets', '3c':'3C Tight ringlets',
+    '4a':'4A Coiled', '4b':'4B Z-pattern', '4c':'4C Very tight', porosity:'Porosity'
+  };
+  return map[v] || v.charAt(0).toUpperCase() + v.slice(1).replace(/-/g,' ');
+}
+
+async function generateProtocol() {
+  var loading = document.getElementById('protocol-loading');
+  var content = document.getElementById('protocol-content');
+  if(loading) loading.style.display = 'flex';
+  if(content) content.style.display = 'none';
+
+  var prompt = buildPrompt();
+
+  try {
+    var resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: 'You are a professional trichologist and hair care specialist focused on Black women\'s hair. Generate a precise, actionable protocol summary. Use specific product categories, not brand names. Format your response as a series of clearly labeled protocol points. Be direct and specific — no fluff, no generic advice. Every recommendation must connect directly to the data provided.',
+        messages: [{role:'user', content: prompt}]
+      })
+    });
+    var data = await resp.json();
+    var text = (data.content && data.content[0]) ? data.content[0].text : null;
+    if(text) {
+      if(loading) loading.style.display = 'none';
+      if(content) {
+        content.style.display = 'block';
+        var lines = text.split('\n').filter(function(l){ return l.trim(); });
+        var html = '';
+        lines.forEach(function(line) {
+          var bold = line.match(/^\*\*(.+?):\*\*\s*(.+)/);
+          var bullet = line.match(/^[-*]\s+(.+)/);
+          var heading = line.match(/^#{1,3}\s+(.+)/);
+          if(bold) {
+            html += '<div class="protocol-item"><div class="protocol-item-label">' + bold[1] + '</div><div>' + bold[2] + '</div></div>';
+          } else if(heading) {
+            html += '<div style="font-family:var(--font-head);font-size:15px;font-weight:700;color:var(--accent);margin:16px 0 6px;padding-top:12px;border-top:1px solid var(--border);">' + heading[1] + '</div>';
+          } else if(bullet) {
+            html += '<div style="font-size:13px;color:var(--text2);padding:4px 0 4px 16px;line-height:1.6;">&bull; ' + bullet[1] + '</div>';
+          } else if(line.trim()) {
+            html += '<div style="font-size:13px;color:var(--text2);padding:4px 0;line-height:1.6;">' + line + '</div>';
+          }
+        });
+        content.innerHTML = html;
+      }
+    } else {
+      fallbackProtocol(loading, content);
+    }
+  } catch(e) {
+    fallbackProtocol(loading, content);
+  }
+}
+
+function buildPrompt() {
+  var a = answers;
+  var z = zoneAssignments;
+  return 'Generate a personalized hair care protocol for this person:\n\n' +
+    'PRIMARY GOAL: ' + (a.goal || 'not specified') + '\n' +
+    'SECONDARY GOALS: ' + (a['goals-secondary'] ? a['goals-secondary'].join(', ') : 'none') + '\n' +
+    'HAIR TYPE: ' + (a.pattern || '?') + ' curl pattern, ' + (a.porosity || '?') + ' porosity, ' + (a.thickness || '?') + ' strands, ' + (a.density || '?') + ' density\n' +
+    'HAIR STATE: ' + (a.state || '?') + '\n' +
+    'PROTEIN RESPONSE: ' + (a.protein || 'unknown') + '\n' +
+    'TEXTURE ZONES: ' + (Object.keys(z).length ? JSON.stringify(z) : 'not mapped') + '\n' +
+    'EDGES: ' + (a.edges || 'not specified') + '\n' +
+    'CURRENT LENGTH: ' + (a.length || '?') + ' | LENGTH GOAL: ' + (a['length-goal'] || '?') + '\n' +
+    'HEALTH FACTORS: ' + (a.health ? a.health.join(', ') : 'none disclosed') + '\n' +
+    'MEDICATIONS: ' + (a.meds ? a.meds.join(', ') : 'none disclosed') + '\n' +
+    'SCALP ISSUES: ' + (a['scalp-issues'] ? a['scalp-issues'].join(', ') : 'none') + '\n' +
+    'SUPPLEMENTS CURRENT: ' + (a.supplements ? a.supplements.join(', ') : 'none') + '\n' +
+    'DIET PROTEIN: ' + (a['diet-protein'] || 'unknown') + '\n' +
+    'HEAT USE: ' + (a['heat-freq'] || '?') + '\n' +
+    'STYLES WORN: ' + (a.styles ? a.styles.join(', ') : 'varies') + '\n' +
+    'WASH DAY TIME: ' + (a.time || '?') + '\n' +
+    'BUDGET: ' + (a.budget || 'not specified') + '\n' +
+    'DIY WILLINGNESS: ' + (a.diy || 'unknown') + '\n' +
+    'LOCATION: ' + (a.location || 'not specified') + '\n' +
+    'ADDITIONAL NOTES: ' + (a.notes || 'none') + '\n\n' +
+    'Provide a structured protocol covering: wash day frequency, deep conditioning approach, protein schedule, scalp care, heat guidance, length retention strategy, and top 3 supplement priorities. Be specific to their data — no generic advice.';
+}
+
+function fallbackProtocol(loading, content) {
+  if(loading) loading.style.display = 'none';
+  if(!content) return;
+  content.style.display = 'block';
+  var a = answers;
+  var lines = [];
+  // Generate rule-based fallback
+  var porosityNote = a.porosity === 'high' ? 'Focus on humectants under sealants (LOC method). ACV rinse after every wash.' : a.porosity === 'low' ? 'Use heat to open cuticle during DC. Lighter products, no heavy butters.' : 'Balanced approach. Both moisture and sealing products work.';
+  lines.push({label:'Wash Frequency', val: a['wash-freq'] === 'biweekly' ? 'Maintain bi-weekly wash day. Pre-poo 24hrs before.' : 'Weekly wash day recommended for your hair state.'});
+  lines.push({label:'Porosity Strategy', val: porosityNote});
+  if(a.protein === 'loves') lines.push({label:'Protein Schedule', val:'Weekly light protein. Monthly heavy protein. Follow every protein with moisture DC.'});
+  else if(a.protein === 'sensitive') lines.push({label:'Protein Schedule', val:'Avoid concentrated protein treatments. Use protein-free products. Bond repair only (no amino acids or keratin).'});
+  else lines.push({label:'Protein Schedule', val:'Bi-weekly medium protein. Assess results after 4 sessions.'});
+  if(a.edges && a.edges !== 'full') lines.push({label:'Edge Protocol', val:'Nightly Jamaican Black Castor Oil on edges. Avoid tight styles. Rosemary oil scalp massage 3x/week.'});
+  if(a['heat-freq'] === 'recovery') lines.push({label:'Heat Recovery', val:'6-week heat-free minimum. Weekly bond repair DC (AllPlex No.7 or Olaplex). Avoid brushing dry. Trim damaged ends.'});
+  if(a.meds && a.meds.includes('stimulants')) lines.push({label:'Stimulant Support', val:'Scalp massage with vasodilating oils (mustard, bhringraj, rosemary) 3x/week. DHT-blocking supplements: saw palmetto, zinc, inositol.'});
+  lines.push({label:'Top 3 Supplements', val: buildSupplementRec(a)});
+  var html = lines.map(function(l){ return '<div class="protocol-item"><div class="protocol-item-label">' + l.label + '</div><div style="font-size:13px;color:var(--text2);line-height:1.6;">' + l.val + '</div></div>'; }).join('');
+  html += '<div style="font-size:12px;color:var(--text3);margin-top:16px;padding-top:12px;border-top:1px solid var(--border);">Add your Claude API key in settings for a fully personalized AI-generated analysis.</div>';
+  content.innerHTML = html;
+}
+
+function buildSupplementRec(a) {
+  var recs = [];
+  if(!a.supplements || !a.supplements.includes('collagen')) recs.push('Collagen peptides (10g daily)');
+  if(!a.supplements || !a.supplements.includes('msm')) recs.push('MSM 1000mg — extends anagen phase');
+  if(a.health && a.health.includes('irondef') && (!a.supplements || !a.supplements.includes('iron'))) recs.push('Iron — critical for your reported deficiency');
+  if(a.meds && a.meds.includes('stimulants')) recs.push('Saw Palmetto — DHT blocker essential for stimulant use');
+  if(!a.supplements || !a.supplements.includes('vitd')) recs.push('Vitamin D3 2000-5000IU — follicle activation');
+  return recs.slice(0,3).join(', ') || 'Based on your current stack, consider adding MSM and Vitamin D3';
+}
+
+function exportProfile() {
+  var data = {answers: answers, zones: zoneAssignments, exported: new Date().toISOString()};
+  var blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'hair-protocol-profile.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// Initialize health banner
+updateHealthBanner();
+</script>
+
+</body>
+</html>
