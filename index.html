@@ -5496,6 +5496,7 @@ const GistSync = (function() {
   var GIST_FILENAME = 'hairprotocol_data.json';
   var TOKEN_KEY = 'gist_token';
   var GIST_ID_KEY = 'gist_id';
+  var HARDCODED_GIST_ID = '39ac316868b9ed557bb5edd03db1a2b1'; // permanent — never lost
   var DATA_KEYS = [
     'start','washDay','styleType','logs','user-products','diy-recipes',
     'prod-qty-overrides','prod-name-overrides','prod-importance',
@@ -5504,6 +5505,81 @@ const GistSync = (function() {
   ];
   var _pushTimer = null;
   var _connected = false;
+
+  // ── MULTI-LAYER TOKEN STORAGE ──────────────────────────────────────────────
+  // Writes token to localStorage, sessionStorage, AND IndexedDB.
+  // Reads from whichever layer still has it.
+  // This survives Chrome on iOS clearing any single storage mechanism.
+
+  var _idbToken = null;
+  var _idbReady = false;
+
+  function idbOpen() {
+    return new Promise(function(resolve) {
+      try {
+        var req = indexedDB.open('caraland_store', 1);
+        req.onupgradeneeded = function(e) {
+          e.target.result.createObjectStore('kv');
+        };
+        req.onsuccess = function(e) { resolve(e.target.result); };
+        req.onerror   = function()  { resolve(null); };
+      } catch(e) { resolve(null); }
+    });
+  }
+
+  async function idbSet(key, val) {
+    var db = await idbOpen();
+    if (!db) return;
+    return new Promise(function(resolve) {
+      try {
+        var tx = db.transaction('kv', 'readwrite');
+        tx.objectStore('kv').put(val, key);
+        tx.oncomplete = resolve;
+        tx.onerror    = resolve;
+      } catch(e) { resolve(); }
+    });
+  }
+
+  async function idbGet(key) {
+    var db = await idbOpen();
+    if (!db) return null;
+    return new Promise(function(resolve) {
+      try {
+        var tx = db.transaction('kv', 'readonly');
+        var req = tx.objectStore('kv').get(key);
+        req.onsuccess = function() { resolve(req.result || null); };
+        req.onerror   = function() { resolve(null); };
+      } catch(e) { resolve(null); }
+    });
+  }
+
+  async function saveToken(token) {
+    try { localStorage.setItem(TOKEN_KEY, token); }  catch(e) {}
+    try { sessionStorage.setItem(TOKEN_KEY, token); } catch(e) {}
+    await idbSet(TOKEN_KEY, token);
+  }
+
+  async function loadToken() {
+    var t = null;
+    try { t = localStorage.getItem(TOKEN_KEY); }  catch(e) {}
+    if (!t) { try { t = sessionStorage.getItem(TOKEN_KEY); } catch(e) {} }
+    if (!t) { t = await idbGet(TOKEN_KEY); }
+    // If found in a layer that was cleared, restore to all layers
+    if (t) { await saveToken(t); }
+    return t || '';
+  }
+
+  async function clearToken() {
+    try { localStorage.removeItem(TOKEN_KEY); }  catch(e) {}
+    try { sessionStorage.removeItem(TOKEN_KEY); } catch(e) {}
+    await idbSet(TOKEN_KEY, null);
+  }
+
+  // Always write Gist ID to localStorage (it's also hardcoded so never truly lost)
+  function getGistId() {
+    localStorage.setItem(GIST_ID_KEY, HARDCODED_GIST_ID);
+    return HARDCODED_GIST_ID;
+  }
 
   function setStatus(msg, cls) {
     var el = document.getElementById('gist-status');
@@ -5604,8 +5680,8 @@ const GistSync = (function() {
   }
 
   async function push() {
-    var token = localStorage.getItem(TOKEN_KEY);
-    var gistId = localStorage.getItem(GIST_ID_KEY);
+    var token = await loadToken();
+    var gistId = getGistId();
     if(!token || !gistId) return;
     setStatus('Saving...', 'saving');
     try {
@@ -5630,38 +5706,26 @@ const GistSync = (function() {
       if(!token) { setStatus('Enter a token first', 'error'); return; }
       setStatus('Connecting...', 'saving');
       try {
-        // Verify token works
         var r = await fetch('https://api.github.com/user', {
           headers: { 'Authorization': 'Bearer ' + token }
         });
         if(!r.ok) throw new Error('Invalid token (status ' + r.status + ')');
-        localStorage.setItem(TOKEN_KEY, token);
-        // Find or create gist
-        var gistId = await findGist(token);
-        if(gistId) {
-          localStorage.setItem(GIST_ID_KEY, gistId);
-          setStatus('Found existing data, loading...', 'saving');
-          var content = await getGist(token, gistId);
-          applyData(content);
-          showConnected();
-          // Re-render everything with loaded data
-          if(typeof init === 'function') init();
-        } else {
-          setStatus('Creating new data file...', 'saving');
-          gistId = await createGist(token, collectData());
-          localStorage.setItem(GIST_ID_KEY, gistId);
-          showConnected();
-        }
+        await saveToken(token);
+        var gistId = getGistId();
+        setStatus('Found existing data, loading...', 'saving');
+        var content = await getGist(token, gistId);
+        applyData(content);
+        showConnected();
+        if(typeof init === 'function') init();
       } catch(e) {
         setStatus('Error: ' + e.message, 'error');
-        localStorage.removeItem(TOKEN_KEY);
+        await clearToken();
       }
     },
 
-    disconnect: function() {
+    disconnect: async function() {
       if(!window.confirm('Disconnect GitHub sync? Your local data stays intact.')) return;
-      localStorage.removeItem(TOKEN_KEY);
-      localStorage.removeItem(GIST_ID_KEY);
+      await clearToken();
       _connected = false;
       var wrap = document.getElementById('gist-token-wrap');
       if(wrap) wrap.innerHTML = '<input id="gist-token" type="password" placeholder="GitHub personal access token (gist scope)"><button class="gist-btn gist-btn-connect" onclick="GistSync.connect()">Connect</button>';
@@ -5670,9 +5734,9 @@ const GistSync = (function() {
 
     init: async function() {
       showBanner();
-      var token = localStorage.getItem(TOKEN_KEY);
-      var gistId = localStorage.getItem(GIST_ID_KEY);
-      if(!token || !gistId) return;
+      var token = await loadToken();
+      var gistId = getGistId();
+      if(!token) return;
       _connected = true;
       showConnected();
       setStatus('Pulling latest data...', 'saving');
