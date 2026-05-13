@@ -1089,15 +1089,14 @@ em, i { font-style: italic; }
 
 <nav class="nav">
   <div class="nav-inner">
-    <button class="n on" onclick="go('schedule')" id="n-schedule">Schedule</button>
-    <button class="n" onclick="go('wash')" id="n-wash">Wash &amp; DC</button>
+    <button class="n on" onclick="go('dashboard')" id="n-dashboard">Dashboard</button>
+    <button class="n" onclick="go('schedule')" id="n-schedule">Schedule</button>
     <button class="n" onclick="go('assist')" id="n-assist">Assist</button>
+    <button class="n" onclick="go('wash')" id="n-wash">Wash &amp; DC</button>
     <button class="n" onclick="go('styling')" id="n-styling">Styling</button>
     <button class="n" onclick="go('maintenance')" id="n-maintenance">Maintenance</button>
     <button class="n" onclick="go('progress')" id="n-progress">Progress</button>
-    <button class="n" onclick="go('tools')" id="n-tools">Tools</button>
     <button class="n" onclick="go('supplements')" id="n-supplements">Supplements</button>
-    <button class="n" onclick="go('dashboard')" id="n-dashboard">Dashboard</button>
     <button class="n" onclick="go('diary')" id="n-diary">Diary</button>
     <button class="n" onclick="go('products')" id="n-products">Products</button>
   </div>
@@ -1116,7 +1115,7 @@ em, i { font-style: italic; }
 <!-- 
   SCHEDULE
  -->
-<div class="tab on" id="tab-schedule">
+<div class="tab" id="tab-schedule">
   <div id="sch-empty" style="display:none;text-align:center;padding:80px 24px;">
     <div style="font-family:var(--font-head);font-size:28px;font-weight:700;margin-bottom:8px;">Set Your Start Date</div>
     <p class="text2 mb24">To track your week number and schedule, enter when you started your protocol.</p>
@@ -1314,34 +1313,12 @@ em, i { font-style: italic; }
   <div class="step-block">
     <div class="step-header" onclick="toggleStep(this)">
       <div class="step-num">04</div>
-      <div class="step-info"><h3>Deep Condition (with Heat)</h3><p>Rotation-based &middot; Must use heat for high-porosity hair</p></div>
+      <div class="step-info"><h3>Deep Condition (with Heat)</h3><p>Rotation-based &middot; Recipe and products update each wash day to match your current protocol week</p></div>
       <div class="step-timing">20&ndash;30 min heat<br>Rinse cool</div>
       <span class="acc-arrow-char">&#8250;</span>
     </div>
     <div class="step-body">
-      <div class="products-wrap">
-            <span class="prod-pill">Oribe Gold Lust Transformative Mask</span><span class="prod-pill">Mizani Fiberfyl (protein weeks)</span><span class="prod-pill">CER-100 Collagen Ceramide Treatment</span><span class="prod-pill">Aphogee Protein Treatment</span><span class="prod-pill">High Pro Pack</span><span class="prod-pill">ORS Banana Bamboo Conditioner</span><span class="prod-pill">Shea Moisture Mask (base)</span>
-          </div>
-<div class="step-cols">
-<div><div class="recipe">
-            <div class="recipe-title">Boosted DC Mixture (Week 1 &mdash; Moisture)</div>
-            <div class="ingredient-row"><span class="ing-amt">3 tbsp</span><span class="ing-name">Oribe Gold Lust Mask (or any moisture DC)</span></div>
-            <div class="ingredient-row"><span class="ing-amt">1 tbsp</span><span class="ing-name">Avocado oil</span></div>
-            <div class="ingredient-row"><span class="ing-amt">1 tbsp</span><span class="ing-name">Collagen Protein Hydrolyzed powder</span></div>
-            <div class="ingredient-row"><span class="ing-amt">1 tsp</span><span class="ing-name">Glycerin</span></div>
-            <div class="ingredient-row"><span class="ing-amt">1 tsp</span><span class="ing-name">Hibiscus powder</span></div>
-            <div class="method-text">Mix all until smooth. Apply to soaking-wet clean hair in sections, mid-shaft to ends. Cover with plastic cap. Sit under hooded dryer 20&ndash;30 min. Rinse with cool water only &mdash; cold water seals the cuticle. Do not use hot water for final rinse.</div>
-          </div>
-        </div>
-<div>
-          <div class="science">
-            <strong>GK Keratin Treatment:</strong> Applied treatment. Benefits last 3&ndash;5 months. No SLS shampoos. Do not wash for 72 hrs after application. Avoid excessive heat above 450&deg;F without Oribe Balm d'Or.<br><br>
-            <strong>Mizani Fiberfyl:</strong> Bond-building protein treatment &mdash; one of the most sophisticated protein technologies available. Leave 5&ndash;10 min MAX. Always follow with a moisture DC immediately. Signs of protein overload: stiff, brittle, snapping hair &mdash; reduce protein frequency.<br><br>
-            <strong>CER-100:</strong> Ceramide infusion. Ceramides are the lipid "mortar" between hair cells. Chemical processing depletes them. This is restorative infrastructure work, not just conditioning.<br><br>
-            <strong>Cool rinse:</strong> The hair cuticle closes at lower temperatures. Rinsing with cold water physically locks treatment into the cortex.
-          </div>
-        </div>
-</div>
+      <div id="step4-dc-body"><div class="text3 sz13" style="padding:12px 0;">Loading this week's deep conditioning protocol...</div></div>
     </div>
   </div>
 
@@ -2694,7 +2671,7 @@ em, i { font-style: italic; }
 <!-- 
   DASHBOARD
  -->
-<div class="tab" id="tab-dashboard">
+<div class="tab on" id="tab-dashboard">
   <div class="flex fxb fxa mb24" style="flex-wrap:wrap;gap:12px;">
     <div class="page-hd" style="margin-bottom:0;"><h1>Dashboard</h1><p class="text2">Your hair health at a glance.</p></div>
     <div style="display:flex;gap:16px;align-items:center;">
@@ -2774,6 +2751,7 @@ em, i { font-style: italic; }
     <button class="stype-btn" onclick="prodTab('analyzer',this)">Analyzer</button>
     <button class="stype-btn" onclick="prodTab('shopping',this)">Shopping List</button>
     <button class="stype-btn" onclick="prodTab('costs',this)">Cost Tracker</button>
+    <button class="stype-btn" onclick="prodTab('toolstab',this)">Tools &amp; Equipment</button>
   </div>
 
   <!-- COST TRACKER -->
@@ -2853,9 +2831,28 @@ em, i { font-style: italic; }
     <div class="ing-table" id="ing-table"></div>
   </div>
 
+  <!-- TOOLS PANEL (moved from main nav) -->
+  <div id="prod-toolstab" class="prod-panel">
+    <div class="g2">
+      <div>
+        <div class="card-head mb12">Mark What You Own</div>
+        <div class="tl-grid" id="ptl-list"></div>
+      </div>
+      <div>
+        <div class="card mb12">
+          <div class="card-head">Instructions for Your Kit</div>
+          <div id="ptl-instructions"><div class="text3 sz13">Check your tools to see personalized instructions.</div></div>
+        </div>
+        <div class="card">
+          <div class="card-head">Priority Upgrades</div>
+          <div id="ptl-upgrades"><div class="text3 sz13">Mark current tools to see what to add next.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ANALYZER -->
-  <div id="prod-analyzer" class="prod-panel">
-    <div class="g2" style="align-items:start;">
+  <div id="prod-analyzer" class="prod-panel">    <div class="g2" style="align-items:start;">
       <div class="card">
         <div class="card-head">Analyze a Product</div>
         <div class="fgrp"><label class="flbl">Product Name</label><input class="finp" id="an-name" placeholder="e.g. Mielle Rosemary Mint"></div>
@@ -2973,6 +2970,17 @@ em, i { font-style: italic; }
     <!-- Step loggers render here -->
     <div id="step-loggers" style="margin-bottom:16px;"></div>
 
+    <!-- Additional Products & Tools -->
+    <div class="fgrp" style="margin-bottom:16px;">
+      <label class="flbl">Additional Products &amp; Tools Used</label>
+      <div style="position:relative;">
+        <input class="finp" id="extra-prod-search" placeholder="Search to add products or tools..." oninput="filterExtraProds(this.value)" autocomplete="off">
+        <div id="extra-prod-dropdown" style="display:none;position:absolute;background:var(--surface);border:1px solid var(--border2);border-radius:8px;z-index:400;max-height:180px;overflow-y:auto;width:100%;box-shadow:var(--shadow);"></div>
+      </div>
+      <div id="extra-prod-chips" style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;min-height:8px;"></div>
+      <div class="sz11 text3" style="margin-top:4px;">Search and click to add. These will be logged alongside your step selections.</div>
+    </div>
+
     <!-- Overall rating -->
     <div class="fgrp">
       <label class="flbl">Overall Session Rating</label>
@@ -3041,7 +3049,23 @@ em, i { font-style: italic; }
         <option value="Supplement">Supplement</option>
       </select>
     </div>
-    <div class="fgrp"><label class="flbl">What it's used for</label><input class="finp" id="ap-use" placeholder="e.g. Pre-poo, LOC O-step"></div>
+    <div class="fgrp"><label class="flbl">Protocol Step</label>
+      <select class="fsel" id="ap-step">
+        <option value="">Select step...</option>
+        <option value="Pre-Poo">Pre-Poo</option>
+        <option value="Shampoo / Cleanse">Shampoo / Cleanse</option>
+        <option value="Deep Condition">Deep Condition</option>
+        <option value="Rinse &amp; Seal">Rinse &amp; Seal</option>
+        <option value="Leave-In / LOC">Leave-In / LOC</option>
+        <option value="Heat Styling">Heat Styling</option>
+        <option value="Scalp">Scalp</option>
+        <option value="Styling">Styling</option>
+        <option value="Finishing">Finishing</option>
+        <option value="Supplements">Supplements</option>
+        <option value="Daily Maintenance">Daily Maintenance</option>
+      </select>
+    </div>
+    <div class="fgrp"><label class="flbl">Additional Notes (optional)</label><input class="finp" id="ap-use" placeholder="e.g. Apply before wash, LOC O-step"></div>
     <div class="fgrp"><label class="flbl">Quantity</label>
       <div class="cond-time-sel">
         <button class="ctime-btn on" onclick="selectQty(this,'full')">Full</button>
@@ -3204,7 +3228,7 @@ function openM(id) {
   if(id==='m-edit-all') renderEditAllGrid();
   document.getElementById(id).classList.add('open');
   if (id==='m-settings') { document.getElementById('s-date').value = ST.start||''; document.getElementById('s-wash').value = ST.washDay; document.getElementById('s-style').value = ST.style; document.getElementById('s-apikey').value = ST.apiKey; }
-  if (id==='m-log') document.getElementById('l-date').value = new Date().toISOString().split('T')[0];
+  if (id==='m-log') { document.getElementById('l-date').value = new Date().toISOString().split('T')[0]; _extraProds = []; renderExtraProds(); buildStepLogger(); }
 }
 function closeM(id) { document.getElementById(id).classList.remove('open'); }
 document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if(e.target===m) m.classList.remove('open'); }));
@@ -3382,6 +3406,29 @@ function renderWeekGrid(curWeek) {
         <span>${t.name}</span>
       </div>`;
     });
+    // Custom tasks for this day
+    const ctMap = S.get('custom-tasks') || {};
+    const dayCustom = ctMap[ds] || [];
+    dayCustom.forEach(ct => {
+      const ctKey = 'ct_' + encodeURIComponent(ct);
+      const done = isDone(ctKey, ds);
+      html += `<div class="mt${done?' done':''}" onclick="toggleTask('${ctKey}','${ds}')">
+        <div class="mc${done?' on':''}">✓</div>
+        <span>${ct}</span>
+        <span style="margin-left:auto;cursor:pointer;color:var(--text3);font-size:10px;" onclick="removeCustomTask(event,'${ds}','${encodeURIComponent(ct)}')">×</span>
+      </div>`;
+    });
+    html += `<div style="margin-top:5px;">
+      <button class="btn btn-xs btn-ghost" style="width:100%;font-size:10px;justify-content:center;padding:4px 8px;" onclick="toggleAddTaskForm('${ds}',this)">+ Add Task</button>
+      <div id="atf-${ds}" style="display:none;margin-top:6px;">
+        <select id="atf-sel-${ds}" class="fsel" style="font-size:11px;padding:4px 6px;margin-bottom:4px;background:var(--surface2);">
+          <option value="">— pick existing task —</option>
+          ${TASKS.map(t=>`<option value="${t.name}">${t.name}</option>`).join('')}
+        </select>
+        <input id="atf-inp-${ds}" class="finp" style="font-size:11px;padding:4px 6px;margin-bottom:4px;" placeholder="or type custom task...">
+        <button class="btn btn-xs btn-accent" style="width:100%;justify-content:center;padding:5px 8px;" onclick="saveCustomTask('${ds}')">Add</button>
+      </div>
+    </div>`;
     html += '</div></div>';
   }
   document.getElementById('wk-grid').innerHTML = html;
@@ -3395,19 +3442,46 @@ function renderWash() {
   const banner = document.getElementById('wash-int');
   if(banner) banner.style.display = ST.intensive ? 'block' : 'none';
   const dcs = [
-    {type:'Moisture Deep Condition',prod:'Oribe Gold Lust Mask · ORS Banana Bamboo · Boosted with Collagen + Hibiscus',instr:'Apply to soaking-wet clean hair. Cover with plastic cap, sit under hooded dryer 20–30 min. Rinse cold.'},
-    {type:'Protein Treatment',prod:'Mizani Fiberfyl · Aphogee Protein · CER-100 · High Pro Pack',instr:'Apply to clean damp hair. Leave 5–10 min MAX. Follow immediately with moisture DC. Watch for brittleness.'},
-    {type:'Bond Repair',prod:'AllPlex No.7 Bonding Oil · Oribe Gold Lust Mask · CER-100',instr:'Follow product instructions — these repair disulfide bonds broken by heat/chemical processing. Longer processing time.'},
-    {type:'Scalp + Moisture Combo',prod:'ACV scalp rinse first → then moisture DC on lengths',instr:'Begin with ACV scalp clarifying rinse. Follow with moisture DC on lengths. Refreshes the full 4-week cycle.'},
+    {
+      type:'Moisture DC',
+      focus:'Pure hydration. Fill the cortex with water-binding humectants and penetrating oils. This is your moisture baseline week.',
+      why:'Oribe Gold Lust and ORS Banana Bamboo use high-molecular-weight conditioners that fill the cuticle gaps specific to high-porosity hair. Avocado oil is one of the few plant oils that physically penetrates the cortex — not just coats it.',
+      ingredients:'Avocado oil — cortex penetration · Glycerin — draws and holds water molecules · Hibiscus powder — AHAs exfoliate cuticle buildup · Collagen hydrolyzed — fills porosity gaps',
+      note:'Heat is non-negotiable this week. Hood dryer or heat cap = 30–40% better absorption. Cold water final rinse physically closes the cuticle and locks moisture in.'
+    },
+    {
+      type:'Protein Treatment',
+      focus:'Structural reinforcement. Protein builds the framework that holds the moisture from Week 1 inside the strand.',
+      why:'Mizani Fiberfyl and Aphogee use bond-building technology that temporarily repairs broken disulfide bonds — the molecular backbone of the hair strand, damaged by every heat session and chemical process.',
+      ingredients:'Hydrolyzed keratin — fills cortex voids · Bond-building peptides — cross-link broken bonds · CER-100 ceramides — seals the cuticle over repaired structure · High Pro Pack — intensive protein infusion',
+      note:'5–10 min MAX — no exceptions. Protein overload signs: hair feels stiff, snaps instead of stretching. Always follow protein with a moisture DC in the same session. The follow-up is mandatory.'
+    },
+    {
+      type:'Bond Repair',
+      focus:'Infrastructure repair at the molecular level. Disulfide bonds and ceramides — the scaffold everything else depends on.',
+      why:'AllPlex No.7 targets broken disulfide bonds directly. CER-100 replaces ceramides — the lipid mortar between cuticle cells that is depleted by every flat iron pass. Heat styling depletes ceramides by up to 40%.',
+      ingredients:'AllPlex tri-plex bond actives — disulfide bond repair · Ceramides NP/EOS/AP — cuticle integrity and seal · Oribe Gold Lust Mask — moisture buffer layered over repairs',
+      note:'Most restorative week of the 4-week cycle. Apply to warm, wet hair and use heat — bond actives penetrate deeper when the cuticle is open. This is structural work, not cosmetic conditioning.'
+    },
+    {
+      type:'Scalp + Moisture Reset',
+      focus:'Clear 4 weeks of product buildup. Reset the scalp pH, stimulate the follicle bed, and close the cycle ready to start again.',
+      why:'ACV (pH 3) corrects acid mantle drift — after 4 weeks of product, your scalp pH sits at 7–9 (alkaline), which raises the cuticle and slows growth. Ambunu saponins cleanse without stripping your GK Keratin. Green tea catechins add DHT inhibition at the follicle.',
+      ingredients:'ACV acetic acid — pH reset and cuticle sealing · Ambunu saponins — gentle cleanse, no stripping · Green tea catechins — DHT inhibition at the follicle · Moisture DC on lengths — ends get hydration while scalp is treated',
+      note:'ACV needs 2 full minutes of contact time before rinsing for the cuticle sealing effect. Moisture DC goes on lengths only — scalp was already treated by ACV and Ambunu. Do not skip the moisture step on lengths.'
+    },
   ];
   const el = document.getElementById('dc-grid');
   if(!el) return;
   el.innerHTML = dcs.map((d,i) => `<div class="dc-card${(i+1)===dc?' now':''}">
     <div class="dc-wk">W${i+1}</div>
     <div class="dc-type">${d.type}</div>
-    <div class="dc-prod">${d.prod}</div>
-    <div class="dc-instr">${d.instr}</div>
+    <div style="font-size:12px;font-weight:600;color:var(--text);margin-bottom:7px;line-height:1.45;">${d.focus}</div>
+    <div style="font-size:11px;color:var(--text3);margin-bottom:6px;line-height:1.5;"><strong style="color:var(--text2);">Why it works:</strong> ${d.why}</div>
+    <div style="font-size:11px;color:var(--accent);margin-bottom:6px;line-height:1.6;">${d.ingredients}</div>
+    <div style="font-size:11px;color:var(--text3);font-style:italic;line-height:1.5;border-top:1px solid var(--border);padding-top:6px;">${d.note}</div>
   </div>`).join('');
+  renderDCStep(dc);
 }
 
 // ── Log
@@ -4083,6 +4157,7 @@ function prodTab(id, btn) {
   if(id === 'ingredients') renderIngTable();
   if(id === 'library') renderProdLibrary();
   if(id === 'diy') renderDIYGrid();
+  if(id === 'toolstab') renderProdTools();
 }
 
 // ── Product Analyzer
@@ -4761,20 +4836,46 @@ function selectQty(btn, v) {
   document.querySelectorAll('.cond-time-sel .ctime-btn').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
 }
+
+function autoImportance(name) {
+  const n = name.toLowerCase();
+  const essentialKw = ['bhringraj','brahmi','jbco','keratin','mizani','fiberfyl','allplex','cer-100','aphogee','olaplex','multi-peptide','collagen peptide','msm','phyto phanere','saw palmetto','the ordinary'];
+  const backupKw = ['backup','optional','alternative','trial','sample'];
+  for(const k of essentialKw) if(n.includes(k)) return 'essential';
+  for(const k of backupKw) if(n.includes(k)) return 'backup';
+  return 'useful';
+}
+
+const STEP_LABEL_TO_LOGID = {
+  'Pre-Poo':'prepoo','Shampoo / Cleanse':'shampoo','Deep Condition':'dc',
+  'Rinse & Seal':'rinse','Leave-In / LOC':'leavein','Heat Styling':'blowdry',
+  'Scalp':'scalp','Styling':'styling','Finishing':'finish','Supplements':'supplement',
+  'Daily Maintenance':'maintenance'
+};
+
 function saveNewProduct() {
   const name = document.getElementById('ap-name').value.trim();
   if(!name) return;
+  const step = document.getElementById('ap-step').value;
+  const notes = document.getElementById('ap-use').value.trim();
+  const use = step ? (step + (notes ? ' — ' + notes : '')) : notes;
+  const importance = autoImportance(name);
   const saved = S.get('user-products') || [];
-  saved.push({
-    name,
-    cat: document.getElementById('ap-cat').value,
-    use: document.getElementById('ap-use').value.trim(),
-    qty: _addProdQty,
-    exp: document.getElementById('ap-exp').value,
-  });
+  saved.push({ name, cat: document.getElementById('ap-cat').value, use, qty: _addProdQty, exp: document.getElementById('ap-exp').value, step });
   S.set('user-products', saved);
+  // Auto-set importance if not already set
+  const impOv = S.get('prod-importance') || {};
+  if(!impOv[name]) { impOv[name] = importance; S.set('prod-importance', impOv); }
+  // Clear form
+  document.getElementById('ap-name').value = '';
+  document.getElementById('ap-step').value = '';
+  document.getElementById('ap-use').value = '';
+  document.getElementById('ap-exp').value = '';
+  _addProdQty = 'full';
+  document.querySelectorAll('#m-add-product .ctime-btn').forEach((b,i) => { b.classList.toggle('on', i===0); });
   closeM('m-add-product');
   renderProdLibrary();
+  buildStepLogger();
 }
 
 // ── Ingredient Table
@@ -5036,7 +5137,10 @@ function buildStepLogger() {
   const el = document.getElementById('step-loggers');
   el.innerHTML = steps.map((step, idx) => {
     _stepStates[step.id] = {tags:[], prods:[], tools:[], rating:0, notes:'', condTime:'', temp:'', photos:[]};
-    const stepProds = PROD_BY_STEP[step.prods[0]] || PROD_BY_STEP.all;
+    const baseProds = PROD_BY_STEP[step.prods[0]] || PROD_BY_STEP.all;
+    const stepLabel = {prepoo:'Pre-Poo',shampoo:'Shampoo / Cleanse',dc:'Deep Condition',rinse:'Rinse & Seal',leavein:'Leave-In / LOC',blowdry:'Heat Styling',finish:'Heat Styling',scalp:'Scalp',styling:'Styling',keratin:'Heat Styling',maintenance:'Daily Maintenance'}[step.id] || '';
+    const userForStep = stepLabel ? getAllProds().filter(p => p.step === stepLabel && !baseProds.includes(p.name)).map(p => p.name) : [];
+    const stepProds = [...baseProds, ...userForStep];
     const needsTemp = step.id === 'blowdry' || step.id === 'flatstyle';
     const needsCondTime = step.id === 'condition' || step.id === 'cowash';
     
@@ -5173,7 +5277,7 @@ function saveLog() {
   const notes = document.getElementById('l-notes').value.trim();
   const steps = Object.entries(_stepStates).map(([id, s]) => ({id, ...s}));
   const allTags = steps.flatMap(s => s.tags);
-  const allProds = steps.flatMap(s => s.prods);
+  const allProds = steps.flatMap(s => s.prods).concat(_extraProds || []);
   const photos = steps.flatMap(s => (s.photos||[]).map(p => ({...p, step:id})));
   
   // Update tag counts
@@ -6221,6 +6325,181 @@ function init() {
     }
   });
 }
+// ══════════════════════════════════════════════════════
+// WEEK-SPECIFIC DEEP CONDITION STEP
+// ══════════════════════════════════════════════════════
+function renderDCStep(dcWeek) {
+  const el = document.getElementById('step4-dc-body');
+  if(!el) return;
+
+  const weeks = {
+    1: {
+      pills: ['Oribe Gold Lust Transformative Mask','ORS Banana Bamboo Conditioner','Avocado Oil','Collagen Protein Hydrolyzed','Glycerin','Hibiscus Powder'],
+      title: 'Week 1 — Boosted Moisture DC',
+      ings: [
+        {a:'3 tbsp', n:'Oribe Gold Lust Transformative Mask (base)'},
+        {a:'1 tbsp', n:'Avocado oil'},
+        {a:'1 tbsp', n:'Collagen Protein Hydrolyzed powder'},
+        {a:'1 tsp',  n:'Glycerin'},
+        {a:'1 tsp',  n:'Hibiscus powder'},
+      ],
+      method: 'Mix all until smooth. Apply to soaking-wet clean hair in sections, mid-shaft to ends — avoid scalp. Cover with plastic cap. Sit under hooded dryer 20–30 min. Rinse with cool water only. Cold water seals the cuticle. Do not use warm or hot water for the final rinse.',
+      science: '<strong>Avocado oil</strong> penetrates the cortex (not just coats it) — oleic and linoleic acids displace moisture-absorbing water from the cortex, reducing hygral fatigue.<br><br><strong>Glycerin</strong> draws and holds water molecules to the shaft. In humid conditions it supercharges moisture retention.<br><br><strong>Hibiscus powder</strong> contains alpha-hydroxy acids that gently exfoliate buildup off the cuticle surface, making this DC absorb 20–30% better than without it.<br><br><strong>Collagen hydrolyzed</strong> fills the microscopic gaps in your high-porosity cuticle, reducing the speed at which moisture escapes between washes.<br><br><strong>Cold water rinse:</strong> The cuticle physically closes at lower temperatures, locking everything in. This one step extends moisture retention by days.'
+    },
+    2: {
+      pills: ['Mizani Fiberfyl Strengthening Fix','Aphogee Two-Minute Reconstructor','CER-100 Collagen Ceramide Treatment','High Pro Pack'],
+      title: 'Week 2 — Protein Treatment',
+      ings: [
+        {a:'Use one:',    n:'Mizani Fiberfyl OR Aphogee Two-Minute Reconstructor (not both)'},
+        {a:'Apply to:',   n:'Clean, slightly damp hair — not soaking wet'},
+        {a:'Process:',    n:'5–10 min under plastic cap — no heat required'},
+        {a:'Follow with:',n:'ORS Banana Bamboo or Oribe Gold Lust Mask immediately after (moisture DC, 15 min hood dryer)'},
+        {a:'Optional:',   n:'Mix 3–5 drops CER-100 into the follow-up moisture DC'},
+      ],
+      method: 'Apply protein treatment to clean, slightly damp hair in sections. Leave 5–10 min MAX under plastic cap — no heat needed, protein processes at room temperature. Rinse very thoroughly with cool water until water runs completely clear. Immediately follow with moisture-only DC. Do not skip the moisture follow-up — it is mandatory, not optional.',
+      science: '<strong>Mizani Fiberfyl</strong> contains bond-building technology that temporarily repairs broken disulfide bonds — the structural backbone of each hair strand, damaged by every heat session and chemical process you\'ve ever had.<br><br><strong>Aphogee Two-Minute</strong> works at a similar level but is faster-processing. Use one or the other per session — layering protein in one sitting causes overload.<br><br><strong>Protein overload signs:</strong> hair feels stiff, brittle, snaps when stretched instead of bouncing back. If this happens, stop all protein immediately and do two consecutive moisture-only DCs before the next protein week.<br><br><strong>Why the moisture follow-up is not optional:</strong> Protein tightens and stiffens the cuticle. Moisture re-elasticizes it. Skipping this step leaves your hair technically stronger but brittle and prone to snapping at the newly reinforced bonds.'
+    },
+    3: {
+      pills: ['AllPlex No.7 Bonding Oil','CER-100 Collagen Ceramide Treatment','Oribe Gold Lust Transformative Mask'],
+      title: 'Week 3 — Bond Repair Protocol',
+      ings: [
+        {a:'Step 1:',   n:'CER-100 Collagen Ceramide Treatment — apply to clean wet hair, mid-shaft to ends'},
+        {a:'Process:',  n:'20 min under hooded dryer'},
+        {a:'Rinse.',    n:'Cold water.'},
+        {a:'Step 2:',   n:'Oribe Gold Lust Mask — mix in 5–6 drops AllPlex No.7 Bonding Oil'},
+        {a:'Apply:',    n:'Mid-shaft to ends over rinsed hair'},
+        {a:'Process:',  n:'10 min, plastic cap, no heat needed for second application'},
+        {a:'Finish:',   n:'Cold water rinse → apply leave-in immediately on soaking-wet hair'},
+      ],
+      method: 'Apply CER-100 first to clean wet hair. Hood dryer 20 min. Cold rinse. Then mix AllPlex drops directly into Oribe mask and apply through lengths — the AllPlex penetrates best when the cuticle was just opened and rinsed warm. Plastic cap 10 min. Final cold rinse. Move directly to LOC/LCO while still soaking wet.',
+      science: '<strong>AllPlex No.7</strong> uses a tri-plex bonding system that targets all three types of bonds broken by heat and chemical processing — hydrogen, salt, and disulfide bonds. Applied post-CER-100 so the ceramide seal goes in after the bond actives.<br><br><strong>CER-100</strong> replaces ceramides: the lipid mortar between cuticle cells that is depleted by every single flat iron pass. Chemical processing and heat deplete ceramide levels by up to 40% compared to virgin hair. Without ceramides, the cuticle cannot seal and moisture escapes within hours.<br><br><strong>The two-step layering matters:</strong> ceramides go in first (structural), then bond actives in the mask layer (functional). This is the same protocol used by professional colorists for post-chemical repair.'
+    },
+    4: {
+      pills: ['ACV (Apple Cider Vinegar)','Ambunu','ORS Banana Bamboo Conditioner','ORS Olive Oil Replenishing Conditioner','Shikakai (alt.)'],
+      title: 'Week 4 — Scalp Reset + Moisture',
+      ings: [
+        {a:'Step 1 (Scalp):', n:'ACV rinse — 2 tbsp ACV + 2 cups cool water, applied to scalp, massaged in, 2 min contact, rinse'},
+        {a:'Step 2 (Cleanse):', n:'Ambunu co-wash — steep 2–3 tbsp dried Ambunu in warm water 15 min, strain, use liquid to cleanse scalp and coat hair. Replaces shampoo today.'},
+        {a:'Step 3 (Lengths):', n:'ORS Banana Bamboo or Oribe Mask on lengths only — 20 min hooded dryer, cold water rinse'},
+      ],
+      method: 'ACV goes first — it rebalances the scalp pH and seals the cuticle, making the Ambunu co-wash more effective. Ambunu replaces shampoo entirely this week — its saponins cleanse without stripping your GK Keratin. Moisture DC applies to lengths only: scalp was already treated by ACV + Ambunu. Final cold rinse. Move to LOC immediately while soaking wet.',
+      science: '<strong>Why a scalp reset week?</strong> Four weeks of product use drift your scalp pH from its healthy 4.5–5.5 up to 7–9 (alkaline). At alkaline pH, the cuticle stays raised, moisture escapes faster, and the environment becomes hospitable to the fungi that cause dandruff and follicle inflammation.<br><br><strong>ACV (acetic acid, pH 3)</strong> corrects this in 2 minutes of contact. This is the most time-critical step — 2 minutes is when the pH actually changes. One minute is not enough.<br><br><strong>Ambunu saponins</strong> provide soap-free cleansing that doesn\'t strip GK Keratin bonds. Ambunu\'s mucilage also acts as a co-conditioner simultaneously — you\'re cleansing and conditioning the scalp in one step.<br><br><strong>Green tea catechins</strong> (from your ACV rinse if you add brewed green tea) inhibit DHT production at the follicle — making this week a growth-active treatment, not just a housekeeping step.'
+    }
+  };
+
+  const w = weeks[dcWeek] || weeks[1];
+  el.innerHTML = `
+    <div class="info info-a mb16" style="font-size:13px;"><strong>Week ${dcWeek} of 4 in your rotation.</strong> This recipe is specific to this week. It will automatically update to match the next phase on your next wash day.</div>
+    <div class="products-wrap mb16">${w.pills.map(p=>`<span class="prod-pill">${p}</span>`).join('')}</div>
+    <div class="step-cols">
+      <div>
+        <div class="recipe">
+          <div class="recipe-title">${w.title}</div>
+          ${w.ings.map(i=>`<div class="ingredient-row"><span class="ing-amt">${i.a}</span><span class="ing-name">${i.n}</span></div>`).join('')}
+          <div class="method-text">${w.method}</div>
+        </div>
+      </div>
+      <div>
+        <div class="science">${w.science}</div>
+      </div>
+    </div>`;
+}
+
+// ══════════════════════════════════════════════════════
+// TOOLS PANEL (inside Products tab)
+// ══════════════════════════════════════════════════════
+function renderProdTools() {
+  const owned = S.get('tools') || {};
+  const listEl = document.getElementById('ptl-list');
+  if(!listEl) return;
+  listEl.innerHTML = TOOLS_DATA.map(t => `
+    <div class="tl-item${owned[t.id]?' have':''}" onclick="toggleProdTool('${t.id}')">
+      <div class="tl-chk">${owned[t.id]?'✓':''}</div>
+      <div><div class="tl-label">${t.name}</div><div class="tl-sub">${t.sub}</div></div>
+    </div>`).join('');
+  updateProdToolInstructions();
+}
+function toggleProdTool(id) { toggleTool(id); renderProdTools(); }
+function updateProdToolInstructions() {
+  const owned = S.get('tools') || {};
+  const has = id => !!owned[id];
+  let ins = '', upg = '';
+  if(has('heat-cap')||has('hooded-dryer')) ins+=`<div class="info info-g mb8"><strong>DC with Heat:</strong> Apply DC to wet hair, cover with heat cap/sit under hooded dryer 20–30 min. Heat opens the cuticle for 3–4× better penetration vs. no heat.</div>`;
+  else { ins+=`<div class="info info-a mb8"><strong>DC without Heat:</strong> Wrap in plastic cap, then warm towel for 30–45 min. Heat cap is your #1 upgrade.</div>`; upg+=`<div class="info info-b mb8"><strong>Priority 1:</strong> Thermal Heat Cap (~$20). Single most impactful tool for high-porosity hair.</div>`; }
+  if(has('diffuser')) ins+=`<div class="info info-g mb8"><strong>Diffuser:</strong> Low heat, low speed. Cup curls, hover — don't scrunch. Diffuse to 80% then air dry.</div>`;
+  else upg+=`<div class="info info-b mb8"><strong>Priority 2:</strong> Diffuser attachment (~$15–25). Works with your existing blow dryer.</div>`;
+  if(has('scalp-massager')) ins+=`<div class="info info-g mb8"><strong>Scalp Massager:</strong> Apply oil first, massage 5 min, 3× weekly. Clinical study: measurable thickness increase with consistent use.</div>`;
+  else upg+=`<div class="info info-b mb8"><strong>Priority 3:</strong> Scalp massager (~$10). Clinical proof of thickness increase.</div>`;
+  if(has('satin-bonnet')&&has('satin-pillow')) ins+=`<div class="info info-g mb8"><strong>Sleep Protection:</strong> Double-protected. Optimal setup.</div>`;
+  else if(!has('satin-bonnet')&&!has('satin-pillow')) upg+=`<div class="info info-r mb8"><strong>Critical Gap:</strong> Satin bonnet ($10). Cotton friction causes breakage every night.</div>`;
+  if(!ins) ins='<div class="text3 sz13">Check your tools above for personalized instructions.</div>';
+  if(!upg) upg='<div class="info info-g">Your kit is complete.</div>';
+  const insEl = document.getElementById('ptl-instructions');
+  const upgEl = document.getElementById('ptl-upgrades');
+  if(insEl) insEl.innerHTML = ins;
+  if(upgEl) upgEl.innerHTML = upg;
+}
+
+// ══════════════════════════════════════════════════════
+// CUSTOM TASKS (Schedule page)
+// ══════════════════════════════════════════════════════
+function toggleAddTaskForm(ds, btn) {
+  const el = document.getElementById('atf-' + ds);
+  if(!el) return;
+  const isHidden = el.style.display === 'none';
+  el.style.display = isHidden ? 'block' : 'none';
+}
+function saveCustomTask(ds) {
+  const selEl = document.getElementById('atf-sel-' + ds);
+  const inpEl = document.getElementById('atf-inp-' + ds);
+  const taskName = (inpEl && inpEl.value.trim()) || (selEl && selEl.value) || '';
+  if(!taskName) return;
+  const ct = S.get('custom-tasks') || {};
+  if(!ct[ds]) ct[ds] = [];
+  if(!ct[ds].includes(taskName)) ct[ds].push(taskName);
+  S.set('custom-tasks', ct);
+  renderSchedule();
+}
+function removeCustomTask(e, ds, encodedTask) {
+  e.stopPropagation();
+  const taskName = decodeURIComponent(encodedTask);
+  const ct = S.get('custom-tasks') || {};
+  if(ct[ds]) { ct[ds] = ct[ds].filter(t => t !== taskName); S.set('custom-tasks', ct); }
+  renderSchedule();
+}
+
+// ══════════════════════════════════════════════════════
+// EXTRA PRODUCTS in Session Log
+// ══════════════════════════════════════════════════════
+let _extraProds = [];
+function filterExtraProds(query) {
+  const dd = document.getElementById('extra-prod-dropdown');
+  if(!dd) return;
+  const q = query.trim().toLowerCase();
+  if(!q) { dd.style.display = 'none'; return; }
+  const all = [...new Set([...getAllProds().map(p=>p.name), ...ALL_TOOLS])];
+  const matches = all.filter(p => p.toLowerCase().includes(q) && !_extraProds.includes(p)).slice(0, 12);
+  if(!matches.length) { dd.style.display = 'none'; return; }
+  dd.style.display = 'block';
+  dd.innerHTML = matches.map(p => `<div style="padding:9px 14px;cursor:pointer;font-size:13px;border-bottom:1px solid var(--border);transition:background .12s;" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background=''" onclick="addExtraProd('${p.replace(/'/g,"\\'")}')">${p}</div>`).join('');
+}
+function addExtraProd(name) {
+  if(!_extraProds.includes(name)) { _extraProds.push(name); renderExtraProds(); }
+  const inp = document.getElementById('extra-prod-search');
+  if(inp) inp.value = '';
+  const dd = document.getElementById('extra-prod-dropdown');
+  if(dd) dd.style.display = 'none';
+}
+function removeExtraProd(name) {
+  _extraProds = _extraProds.filter(p => p !== name);
+  renderExtraProds();
+}
+function renderExtraProds() {
+  const el = document.getElementById('extra-prod-chips');
+  if(!el) return;
+  el.innerHTML = _extraProds.map(p => `<span style="background:var(--surface2);border:1px solid var(--border2);padding:4px 12px;border-radius:20px;font-size:11px;font-weight:500;display:inline-flex;align-items:center;gap:6px;">${p}<span style="cursor:pointer;color:var(--text3);font-size:13px;line-height:1;" onclick="removeExtraProd('${p.replace(/'/g,"\\'")}')">×</span></span>`).join('');
+}
+
 init();
 </script>
 
