@@ -5277,7 +5277,20 @@ function buildStepLogger() {
     const baseProds = PROD_BY_STEP[step.prods[0]] || PROD_BY_STEP.all;
     const stepLabel = {prepoo:'Pre-Poo',shampoo:'Shampoo / Cleanse',dc:'Deep Condition',rinse:'Rinse & Seal',leavein:'Leave-In / LOC',blowdry:'Heat Styling',finish:'Heat Styling',scalp:'Scalp',styling:'Styling',keratin:'Heat Styling',maintenance:'Daily Maintenance'}[step.id] || '';
     const userForStep = stepLabel ? getAllProds().filter(p => p.step === stepLabel && !baseProds.includes(p.name)).map(p => p.name) : [];
-    const stepProds = [...baseProds, ...userForStep];
+    const allForStep = [...baseProds, ...userForStep];
+    // Filter empty products from library
+    const allLib = getAllProds();
+    const stepProds = allForStep.filter(name => {
+      const p = allLib.find(x => x.name === name);
+      return !p || (p.qty || 'full') !== 'low';
+    });
+    // Apply week-specific overrides (same logic as getStepAvailable)
+    const dc = ST.dcWeek || 1;
+    const finalProds = step.id === 'shampoo' && dc === 4
+      ? ['Ambunu','Shikakai',...stepProds.filter(n => !['Oribe Gold Lust Repair Shampoo','Design Essentials Oat Protein & Henna Shampoo','Chi Infra Shampoo'].includes(n))]
+      : step.id === 'prepoo' && dc === 2
+        ? stepProds.filter(n => !n.toLowerCase().includes('chebe'))
+        : stepProds;
     const needsTemp = step.id === 'blowdry' || step.id === 'flatstyle';
     const needsCondTime = step.id === 'condition' || step.id === 'cowash';
     
@@ -5293,7 +5306,7 @@ function buildStepLogger() {
         <div style="margin-bottom:14px;">
           <div class="tag-group-label" style="margin-bottom:6px;">Products Used</div>
           <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px;" id="slog-prods-${step.id}">
-            ${stepProds.map(p => `<button class="tag-chip" onclick="toggleStepProd('${step.id}','${p.replace(/'/g,"\'")}',this)">${p}</button>`).join('')}
+            ${finalProds.map(p => `<button class="tag-chip" onclick="toggleStepProd('${step.id}','${p.replace(/'/g,"\'")}',this)">${p}</button>`).join('')}
           </div>
         </div>
         <!-- Tools -->
@@ -6023,7 +6036,9 @@ function renderAssistStepList() {
   var el = document.getElementById('assist-step-list');
   if(!el) return;
   el.innerHTML = steps.map(function(step, i) {
-    var prods = PROD_BY_STEP[step.prods[0]] || [];
+    var availForStep = getStepAvailable(step.prods[0], ST.dcWeek || 1);
+    var prods = availForStep.map(function(p){ return p.name; });
+    if(!prods.length) prods = PROD_BY_STEP[step.prods[0]] || [];
     return '<div class="assist-step-row" style="border-bottom:1px solid var(--border);padding:12px 0;">' +
       '<div class="assist-step-num" style="background:' + step.color + ';color:var(--bg);">' + (i+1) + '</div>' +
       '<div><div class="assist-step-title">' + step.label + '</div>' +
@@ -6073,8 +6088,11 @@ function renderAssistStep() {
       }
     }, 1000);
   }
-  // Products
-  var prods = PROD_BY_STEP[step.prods[0]] || PROD_BY_STEP.all || [];
+  // Products — pull from library, filter empty, apply week overrides
+  var dc = ST.dcWeek || 1;
+  var availProds = getStepAvailable(step.prods[0], dc);
+  var prods = availProds.map(function(p){ return p.name; });
+  if(!prods.length) prods = (PROD_BY_STEP[step.prods[0]] || []).slice(0,8);
   var prodEl = document.getElementById('assist-prod-list');
   if(prodEl) {
     prodEl.innerHTML = prods.slice(0,8).map(function(p) {
