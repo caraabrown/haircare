@@ -242,6 +242,7 @@ h3 {
 /* -- PRODUCT PILLS -- */
 .products-wrap{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;}
 .prod-pill{background:var(--surface2);border:1px solid var(--border2);padding:6px 14px;border-radius:6px;font-size:13px;color:var(--text);font-weight:500;}
+.prod-pill-empty{opacity:.35;text-decoration:line-through;border-style:dashed !important;cursor:default;}
 
 /* -- CHECKBOXES -- */
 .check-item{display:flex;align-items:flex-start;gap:12px;padding:11px 0;border-bottom:1px solid var(--border);cursor:pointer;}
@@ -1190,6 +1191,9 @@ em, i { font-style: italic; }
     <strong>Intensive Phase (Weeks 1&ndash;8):</strong> Deep condition every wash day without exception. Protein treatment every other week. Do not skip.
   </div>
 
+  <!-- Restock Alert -->
+  <div id="wash-restock-alert" class="info info-r mb16" style="display:none;font-size:13px;line-height:1.7;"></div>
+
   <!-- DC Rotation -->
   <div class="card mb24">
     <div class="flex fxb fxa mb16">
@@ -1212,9 +1216,8 @@ em, i { font-style: italic; }
       <span class="acc-arrow-char">&#8250;</span>
     </div>
     <div class="step-body">
-      <div class="products-wrap">
-            <span class="prod-pill">Avocado Oil</span><span class="prod-pill">Coconut Oil</span><span class="prod-pill">JBCO</span><span class="prod-pill">Chebe Powder</span><span class="prod-pill">Castor Oil</span><span class="prod-pill">Vitamin E Oil</span><span class="prod-pill">Rosemary (dried)</span>
-          </div>
+      <div id="wn-prepoo" class="info info-a mb12" style="display:none;font-size:12px;line-height:1.6;"></div>
+      <div class="products-wrap" id="wp-prepoo"></div>
 <div class="step-cols">
 <div><div class="recipe">
             <div class="recipe-title">Chebe Penetrating Overnight Butter</div>
@@ -1248,9 +1251,8 @@ em, i { font-style: italic; }
       <span class="acc-arrow-char">&#8250;</span>
     </div>
     <div class="step-body">
-      <div class="products-wrap">
-            <span class="prod-pill">Bhringraj</span><span class="prod-pill">Brahmi</span><span class="prod-pill">Fenugreek</span><span class="prod-pill">Mustard Oil</span><span class="prod-pill">Sesame Oil</span><span class="prod-pill">Neem</span><span class="prod-pill">Amla</span><span class="prod-pill">Hibiscus</span>
-          </div>
+      <div id="wn-scalp" class="info info-a mb12" style="display:none;font-size:12px;line-height:1.6;"></div>
+      <div class="products-wrap" id="wp-scalp"></div>
 <div class="step-cols">
 <div><div class="recipe">
             <div class="recipe-title">Bhringraj Growth Scalp Oil</div>
@@ -1286,9 +1288,8 @@ em, i { font-style: italic; }
       <span class="acc-arrow-char">&#8250;</span>
     </div>
     <div class="step-body">
-      <div class="products-wrap">
-            <span class="prod-pill">Oribe Gold Lust Repair Shampoo</span><span class="prod-pill">Design Essentials Oat Protein &amp; Henna Shampoo</span><span class="prod-pill">Chi Infra Shampoo</span><span class="prod-pill">Nizoral (monthly only)</span><span class="prod-pill">Natural Black Soap (clarify)</span>
-          </div>
+      <div id="wn-shampoo" class="info info-a mb12" style="display:none;font-size:12px;line-height:1.6;"></div>
+      <div class="products-wrap" id="wp-shampoo"></div>
 <div class="step-cols">
 <div><div class="div-label">Ambunu Co-Wash Method</div>
           <div class="recipe">
@@ -1360,11 +1361,8 @@ em, i { font-style: italic; }
       <span class="acc-arrow-char">&#8250;</span>
     </div>
     <div class="step-body">
-      <div class="products-wrap">
-            <span class="prod-pill">L: ORS Super Silken Leave-In</span><span class="prod-pill">L: It's a 10 Miracle Leave-In + Keratin</span><span class="prod-pill">L: Crome Hair Food Leave-In</span>
-            <span class="prod-pill">O: Leven Rose Jojoba</span><span class="prod-pill">O: NOW Almond Oil</span><span class="prod-pill">O: Avocado Oil</span>
-            <span class="prod-pill">C: Camille Rose Almond Jai Twisting Butter</span><span class="prod-pill">C: Oribe Imperial Blowout Cream</span>
-          </div>
+      <div id="wn-loc" class="info info-a mb12" style="display:none;font-size:12px;line-height:1.6;"></div>
+      <div class="products-wrap" id="wp-loc"></div>
 <div class="step-cols">
 <div><div class="div-label mt16">LCO &mdash; For High-Porosity Hair</div>
           <div class="products-wrap">
@@ -1531,6 +1529,8 @@ em, i { font-style: italic; }
     <button class="stype-btn" onclick="stab('maint','protective',this)">Protective</button>
     <button class="stype-btn" onclick="stab('maint','silkpress',this)">Silk Press</button>
     <button class="stype-btn" onclick="stab('maint','stretchedcare',this)">Stretched Style</button>
+    <button class="stype-btn" onclick="stab('maint','lowheat',this)">Low Heat</button>
+    <button class="stype-btn" onclick="stab('maint','highheat',this)">High Heat</button>
   </div>
 
   <!-- Wash & Go Maintenance -->
@@ -2166,28 +2166,161 @@ em, i { font-style: italic; }
   <!-- Protective Styling -->
   <div 
   id="style-protective" class="stype-panel" style="display:none;">
+
+    <div class="info" style="background:rgba(199,125,255,0.1);border-left-color:var(--cat-diy);margin-bottom:20px;">
+      <strong style="color:var(--cat-diy);">4 French Braids Straight Back — Natural Hair Protocol</strong><br>
+      This style protects your ends, reduces daily manipulation, and keeps your length-retention progress working while you're not actively styling. Because your hair is not processed or extended, everything below is self-installed and uses products you already own.
+    </div>
+
+    <!-- Step Pre: Wash Prep -->
     <div class="step-block open">
       <div class="step-header" onclick="toggleStep(this)">
-        <div class="step-num">Pre</div>
-        <div class="step-info"><h3>Pre-Install Prep</h3><p>Always wash &amp; DC before installing protective style</p></div>
+        <div class="step-num" style="color:var(--cat-diy);">Pre</div>
+        <div class="step-info"><h3>Wash Day Before Install</h3><p>Install only on clean, fully moisturized hair &middot; Never braid on dry or product-stripped hair</p></div>
         <span class="acc-arrow-char">&#8250;</span>
       </div>
       <div class="step-body">
-        <div class="products-wrap"><span class="prod-pill">Full wash day protocol</span><span class="prod-pill">Protein DC (if in rotation)</span><span class="prod-pill">Full LOC method</span><span class="prod-pill">By Taraji Hot Commodity Heat Protectant (if blowout)</span><span class="prod-pill">Oribe Balm d'Or (heat shield)</span></div>
-        <div class="science mt12"><strong>Why full wash before install:</strong> Once in a protective style, your hair is trapped for 6&ndash;8 weeks. Any dryness, damage, or protein imbalance is locked in and compounds over that time. Installed clean and well-moisturized, the style will protect; installed dry or damaged, it will break.</div>
+        <div class="products-wrap" id="wp-prot-pre"></div>
+        <div class="step-cols">
+          <div>
+            <div class="info info-a mb12"><strong>Complete your full wash day protocol first</strong> — pre-poo, shampoo, your rotation DC, ACV rinse, and full LOC/LCO stack. Then blow dry on low heat with tension. Stretched hair braids cleaner, creates straighter parts, and reduces fairy knots locked inside the braids.</div>
+            <div class="recipe">
+              <div class="recipe-title">Pre-Braid LOC Stack</div>
+              <div class="ingredient-row"><span class="ing-amt">L:</span><span class="ing-name">ORS Super Silken Leave-In or It's a 10 + Keratin — on soaking-wet hair</span></div>
+              <div class="ingredient-row"><span class="ing-amt">O:</span><span class="ing-name">Leven Rose Jojoba or Avocado Oil — seal over leave-in</span></div>
+              <div class="ingredient-row"><span class="ing-amt">C:</span><span class="ing-name">Camille Rose Almond Jai Butter or Wired Flexible Cream — light application</span></div>
+              <div class="method-text">Apply the full LOC stack before blow-drying. After low heat stretch: apply a second light layer of styling cream to each section just before braiding — this gives grip and smoothness without product buildup.</div>
+            </div>
+          </div>
+          <div>
+            <div class="science">
+              <strong>Why stretch before braiding:</strong> Natural hair in its shrunken state folds back on itself inside a braid, creating single-strand knots (SSKs) that are locked in for the style's duration. A low-heat blow-out stretch eliminates this. Your ends arrive at takedown in better condition than when you installed.<br><br>
+              <strong>DC rotation matters here:</strong> If you're installing on Week 2 (protein week), your hair is structurally reinforced — ideal braid installation. Week 3 (bond repair) is the best possible time to install since the bonds are freshest. Avoid installing right after a moisture-only DC on Week 1 without protein backup — the strand is pliable but not fortified.
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- Step 01: Braid Technique -->
     <div class="step-block">
       <div class="step-header" onclick="toggleStep(this)">
-        <div class="step-num">!</div>
-        <div class="step-info"><h3>Tension Rules &mdash; Non-Negotiable</h3><p>Traction alopecia prevention</p></div>
+        <div class="step-num" style="color:var(--cat-diy);">01</div>
+        <div class="step-info"><h3>4 French Braids Straight Back</h3><p>Section into 4 &middot; French braid each section from front hairline to nape &middot; Seal ends</p></div>
         <span class="acc-arrow-char">&#8250;</span>
       </div>
       <div class="step-body">
-        <div class="info info-r"><strong>If it hurts when installed &mdash; it's too tight.</strong> Tell your stylist immediately. Speak up &mdash; this is your hair line at stake. Traction alopecia from repeated tight installs is one of the most common causes of permanent edge loss and is not reversible once scarring begins.</div>
-        <div class="science mt12">The frontal hairline follicles are more susceptible to mechanical stress than other areas. The inflammation from tight braiding accumulates over months &mdash; the edge recession you see is months of subclinical follicle stress made visible. One tight install won't do it; repeated installs will.</div>
+        <div class="products-wrap" id="wp-prot-braid"></div>
+        <div class="step-cols">
+          <div>
+            <div class="recipe">
+              <div class="recipe-title">Braid Technique</div>
+              <div class="ingredient-row"><span class="ing-amt">Section:</span><span class="ing-name">Divide scalp into 4 equal sections with rat tail comb — 2 on each side of a center part</span></div>
+              <div class="ingredient-row"><span class="ing-amt">Start:</span><span class="ing-name">French braid from the hairline — pick up hair at every row as you go</span></div>
+              <div class="ingredient-row"><span class="ing-amt">Tension:</span><span class="ing-name">Firm enough to hold — never so tight that you feel pulling at the roots</span></div>
+              <div class="ingredient-row"><span class="ing-amt">Ends:</span><span class="ing-name">Seal each braid end with JBCO + edge control or styling cream</span></div>
+              <div class="ingredient-row"><span class="ing-amt">Edges:</span><span class="ing-name">AllDay Edges on perimeter after all 4 braids are complete</span></div>
+              <div class="method-text">Apply a fingertip of Camille Rose or Wired Flexible Cream to each section before starting the braid — this provides grip. Braid consistently straight back, not diagonal. Keep each braid the same thickness. The goal is an even tension across all 4 that sits flat to the scalp.</div>
+            </div>
+          </div>
+          <div>
+            <div class="science">
+              <strong>Tension and traction alopecia:</strong> If you feel pulling at the hairline or your edges look stressed while braiding — stop. Re-do that braid looser. Traction alopecia from repeated tension accumulates over months. The damage is not visible until follicle scarring begins, at which point it is permanent and irreversible. One braid session too tight won't cause it; a pattern of tight installs will.<br><br>
+              <strong>4 braids vs. fewer:</strong> 4 braids distributes tension across more points than 2 large braids, reducing the force on any one section. They also keep more of your natural pattern intact — each braid is a smaller section so the French braid picks up less weight per row.
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- Step 02: Daily Scalp Care -->
+    <div class="step-block">
+      <div class="step-header" onclick="toggleStep(this)">
+        <div class="step-num" style="color:var(--cat-diy);">02</div>
+        <div class="step-info"><h3>Daily Scalp Care</h3><p>Every single day &middot; Oil directly through parts &middot; Scalp health doesn't pause because hair is braided</p></div>
+        <span class="acc-arrow-char">&#8250;</span>
+      </div>
+      <div class="step-body">
+        <div class="products-wrap" id="wp-prot-scalp"></div>
+        <div class="step-cols">
+          <div>
+            <div class="recipe">
+              <div class="recipe-title">Protective Style Scalp Oil</div>
+              <div class="ingredient-row"><span class="ing-amt">3 tbsp</span><span class="ing-name">Jojoba oil (base)</span></div>
+              <div class="ingredient-row"><span class="ing-amt">1 tbsp</span><span class="ing-name">JBCO</span></div>
+              <div class="ingredient-row"><span class="ing-amt">1 tbsp</span><span class="ing-name">Bhringraj-Brahmi infused oil</span></div>
+              <div class="ingredient-row"><span class="ing-amt">10 drops</span><span class="ing-name">Peppermint essential oil</span></div>
+              <div class="method-text">Fill a dropper bottle. Apply daily along each of the 4 braid parts directly to the scalp. Massage with fingertip pressure in small circles — do not displace the braids. Morning, after showering. This is non-negotiable: sebum + product buildup occludes follicle openings within 2–3 weeks in a protective style. The oil keeps the scalp environment clean and stimulated.</div>
+            </div>
+          </div>
+          <div>
+            <div class="science">
+              <strong>Why scalp care doesn't stop in a protective style:</strong> Hair is sealed in, but the scalp is still producing sebum, accumulating dead skin cells, and responding to environmental factors. Neglected scalps in protective styles develop biofilm over follicle openings within 3 weeks — this physically blocks new growth. Scalp odor in a protective style is a sign this has already happened.<br><br>
+              <strong>Bhringraj + JBCO:</strong> Bhringraj extends the anagen (growth) phase. JBCO's ricinoleic acid increases scalp circulation up to 14x with massage. A protective style is the best time to run this protocol consistently — the style preserves the work done at the scalp level.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 03: Weekly Scalp Cleanse -->
+    <div class="step-block">
+      <div class="step-header" onclick="toggleStep(this)">
+        <div class="step-num" style="color:var(--cat-diy);">03</div>
+        <div class="step-info"><h3>Weekly Scalp Refresh</h3><p>Every 7–10 days &middot; Diluted shampoo or ACV directly to scalp &middot; Style stays in</p></div>
+        <span class="acc-arrow-char">&#8250;</span>
+      </div>
+      <div class="step-body">
+        <div class="step-cols">
+          <div>
+            <div class="recipe">
+              <div class="recipe-title">In-Style Scalp Cleanse</div>
+              <div class="ingredient-row"><span class="ing-amt">Option A:</span><span class="ing-name">Dilute shampoo 1:3 with water in applicator bottle — apply to scalp between braids, massage, rinse letting water run through</span></div>
+              <div class="ingredient-row"><span class="ing-amt">Option B:</span><span class="ing-name">ACV rinse — 2 tbsp ACV in 2 cups cool water, pour over scalp, massage, rinse</span></div>
+              <div class="ingredient-row"><span class="ing-amt">After:</span><span class="ing-name">Re-apply scalp oil while scalp is still damp</span></div>
+              <div class="method-text">Do not use full-strength shampoo on braided natural hair — it dries the hair inside the braids where you can't reach to re-moisturize. Diluted or ACV only. Let hair air dry completely before re-applying scalp oil. If the braids start to look frizzy or feel dry at the hair surface, spray a light mist of water + glycerin solution over the braids and let air dry.</div>
+            </div>
+          </div>
+          <div>
+            <div class="science">
+              <strong>Max wear: 1–2 weeks for natural french braids</strong> — unlike extensions, natural french braids have new growth pushing through within days. By week 2, the root area is loose and the scalp has significant buildup. Refreshing the style (re-braiding) at week 1–2 also allows you to check hair health underneath.<br><br>
+              <strong>Signs it's time to take down:</strong> Significant frizz at the roots, scalp discomfort, itching that doesn't resolve with oiling, or visible new growth matting at the root base.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 04: Takedown -->
+    <div class="step-block">
+      <div class="step-header" onclick="toggleStep(this)">
+        <div class="step-num" style="color:var(--cat-diy);">04</div>
+        <div class="step-info"><h3>Takedown &amp; Recovery</h3><p>Saturate before unraveling &middot; Finger detangle only &middot; Full wash day immediately after</p></div>
+        <span class="acc-arrow-char">&#8250;</span>
+      </div>
+      <div class="step-body">
+        <div class="products-wrap" id="wp-prot-takedown"></div>
+        <div class="step-cols">
+          <div>
+            <div class="recipe">
+              <div class="recipe-title">Takedown Protocol</div>
+              <div class="ingredient-row"><span class="ing-amt">Before:</span><span class="ing-name">Saturate each braid with avocado oil + conditioner mix — let sit 5–10 min</span></div>
+              <div class="ingredient-row"><span class="ing-amt">Unravel:</span><span class="ing-name">Undo each braid slowly from end to root — never pull</span></div>
+              <div class="ingredient-row"><span class="ing-amt">Detangle:</span><span class="ing-name">Finger detangle first — work through shed hair section by section</span></div>
+              <div class="ingredient-row"><span class="ing-amt">After:</span><span class="ing-name">Full wash day: pre-poo, shampoo, your rotation DC, LOC/LCO stack</span></div>
+              <div class="method-text">The oil saturation before takedown is critical — it allows shed hairs to slide out without pulling live hairs with them. Normal shedding while braided is 50–100 hairs per day; all of it will come out at takedown in one session. This is normal and not breakage. Finger detangle through all of it before using any tool.</div>
+            </div>
+          </div>
+          <div>
+            <div class="science">
+              <strong>Shed hair vs. breakage:</strong> Shed hairs have a white bulb at the root end. Broken hairs do not. At takedown, separate what you pull out — if most have bulbs, your retention is strong. If most are mid-shaft breaks without bulbs, the style had too much tension or the hair inside was too dry.<br><br>
+              <strong>Full wash day immediately:</strong> After any time in a protective style, the scalp needs a reset and the hair needs a full moisture + protein check. What you find during takedown tells you what the next DC rotation should prioritize — if hair feels dry and brittle: start with moisture DC. If hair feels limp and stretchy: protein DC first.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -3206,6 +3339,8 @@ function go(id) {
   if (id==='products') renderProdLibrary();
   if (id==='diary') renderDiary();
   if (id==='assist') initAssist();
+  if (id==='styling') setTimeout(()=>{ document.querySelectorAll('#tab-styling .stype-panel').forEach(p=>{ if(p.id) refreshPanelProducts(p.id); }); refreshProtectivePills(); }, 50);
+  if (id==='maintenance') setTimeout(()=>{ document.querySelectorAll('#tab-maintenance .stype-panel').forEach(p=>{ if(p.id) refreshPanelProducts(p.id); }); }, 50);
 }
 
 // ── Style type tabs
@@ -3215,6 +3350,7 @@ function stab(section, type, btn) {
   btn.closest('.stype-nav').querySelectorAll('.stype-btn').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
   document.getElementById(section+'-'+type).style.display='block';
+  setTimeout(()=>{ refreshPanelProducts(section+'-'+type); if(type==='protective') refreshProtectivePills(); }, 30);
 }
 
 // ── Accordion / Step toggle
@@ -3482,6 +3618,7 @@ function renderWash() {
     <div style="font-size:11px;color:var(--text3);font-style:italic;line-height:1.5;border-top:1px solid var(--border);padding-top:6px;">${d.note}</div>
   </div>`).join('');
   renderDCStep(dc);
+  refreshWashProducts();
 }
 
 // ── Log
@@ -6325,6 +6462,160 @@ function init() {
     }
   });
 }
+// ══════════════════════════════════════════════════════
+// DYNAMIC PRODUCT SYSTEM
+// ══════════════════════════════════════════════════════
+
+// Get non-empty available products for a step, merging hardcoded base + user library
+function getStepAvailable(prodsByStepKey, dcWeek) {
+  const all = getAllProds();
+  const base = PROD_BY_STEP[prodsByStepKey] || [];
+  const labelMap = {
+    prepoo:'Pre-Poo', shampoo:'Shampoo / Cleanse', dc:'Deep Condition',
+    rinse:'Rinse & Seal', leavein:'Leave-In / LOC', blowdry:'Heat Styling',
+    finish:'Finishing', scalp:'Scalp', styling:'Styling',
+    keratin:'Heat Styling', maintenance:'Daily Maintenance', refresh:'Scalp'
+  };
+  const label = labelMap[prodsByStepKey] || '';
+  const seen = new Set(base);
+  const userAdded = label ? all.filter(p => p.step === label && !seen.has(p.name)).map(p => p.name) : [];
+  let combined = [...base, ...userAdded];
+
+  // Week-specific overrides
+  if(dcWeek === 4 && prodsByStepKey === 'shampoo') {
+    combined = ['Ambunu','Shikakai','ACV (Apple Cider Vinegar)'];
+    all.filter(p => p.step === 'Shampoo / Cleanse' && !combined.includes(p.name)).forEach(p => combined.push(p.name));
+  }
+  if(dcWeek === 2 && prodsByStepKey === 'prepoo') {
+    combined = combined.filter(n => !n.toLowerCase().includes('chebe'));
+  }
+  if(dcWeek === 3 && prodsByStepKey === 'leavein') {
+    // Move Olaplex to front for bond repair continuation
+    if(!combined.includes('Olaplex No. 9 Bond Protector')) combined.unshift('Olaplex No. 9 Bond Protector');
+    else combined = ['Olaplex No. 9 Bond Protector', ...combined.filter(n => n !== 'Olaplex No. 9 Bond Protector')];
+  }
+
+  return combined.map(name => {
+    const p = all.find(x => x.name === name);
+    return p || { name, qty: 'full' };
+  }).filter(p => (p.qty || 'full') !== 'low');
+}
+
+// Inject pills into a container div
+function renderStepPills(elId, prods) {
+  const el = document.getElementById(elId);
+  if(!el) return;
+  if(!prods || !prods.length) {
+    el.innerHTML = '<span class="prod-pill" style="opacity:.4;border-style:dashed;font-size:11px;">No products available — check library</span>';
+    return;
+  }
+  el.innerHTML = prods.map(p => `<span class="prod-pill">${p.name}</span>`).join('');
+}
+
+// Inject week context note into a step's note div
+function renderStepNote(elId, html, type) {
+  const el = document.getElementById(elId);
+  if(!el) return;
+  if(!html) { el.style.display = 'none'; return; }
+  el.className = 'info info-' + (type||'a') + ' mb12';
+  el.style.cssText = 'display:block;font-size:12px;line-height:1.6;';
+  el.innerHTML = html;
+}
+
+// Check and render restock alert for essential empty products
+function refreshRestockAlerts() {
+  const el = document.getElementById('wash-restock-alert');
+  if(!el) return;
+  const alerts = getAllProds().filter(p => getProdImportance(p.name) === 'essential' && (p.qty||'full') === 'low');
+  if(!alerts.length) { el.style.display = 'none'; return; }
+  el.style.display = 'block';
+  el.innerHTML = `<strong>&#9888; Restock before wash day:</strong> ${alerts.map(p=>`<strong style="color:var(--red);">${p.name}</strong>`).join(' &middot; ')} &mdash; <span style="font-weight:400;">All are on your shopping list.</span>`;
+}
+
+// Refresh Wash & DC step pills and week notes
+function refreshWashProducts() {
+  const dc = ST.dcWeek || 1;
+  const intensive = ST.intensive;
+
+  renderStepPills('wp-prepoo', getStepAvailable('prepoo', dc));
+  renderStepPills('wp-scalp',  getStepAvailable('scalp', dc));
+  renderStepPills('wp-shampoo',getStepAvailable('shampoo', dc));
+  renderStepPills('wp-loc',    getStepAvailable('leavein', dc));
+
+  const t = intensive ? 'a' : 'b';
+  const NOTES = {
+    1: {
+      prepoo:  (intensive ? '<strong>Intensive phase — mandatory pre-poo:</strong> ' : '') + 'Moisture week — full Chebe butter protocol tonight. The 24hr penetration preps your hair to absorb maximum hydration from today\'s DC.',
+      scalp:   (intensive ? 'Intensive phase: ' : '') + 'Bhringraj-Brahmi scalp oil. Massage 5 min. Hood dryer or heat cap 30 min. Apply before shampooing.',
+      shampoo: 'Regular sulfate-free shampoo. Add Nizoral if this is your monthly rotation — ketoconazole blocks DHT at the scalp.',
+      loc:     'Moisture week — go heavier on the cream step. Your DC just filled the cortex; seal it in with generous application.'
+    },
+    2: {
+      prepoo:  '<strong>Protein week:</strong> skip Chebe butter tonight. Avocado oil + JBCO only — heavy butters block protein treatment penetration.',
+      scalp:   'Full Bhringraj-Brahmi protocol. The scalp oil supports DHT inhibition — especially important on protein weeks when you\'re working on structural integrity.',
+      shampoo: 'Shampoo thoroughly today. Protein binds to clean hair. Any oil or product residue significantly reduces treatment effectiveness.',
+      loc:     'Lighter application this week. Protein has reinforced the strand. Heavy cream on protein-treated hair causes buildup and can mask the strengthening effect.'
+    },
+    3: {
+      prepoo:  '<strong>Bond repair week:</strong> Coconut oil pre-poo is ideal — reduces protein loss during washing by up to 39%, protecting the bond infrastructure you\'re about to repair.',
+      scalp:   'Full protocol. Bhringraj stimulates the follicle bed. Bond repair works systemically — scalp circulation supports the process.',
+      shampoo: 'Regular shampoo. Bond repair treatments penetrate deeper on squeaky-clean hair with no product film.',
+      loc:     'Use Olaplex No.9 as your Leave-In (L) step today — it extends bond repair activity overnight. Apply to soaking-wet hair before your oil step.'
+    },
+    4: {
+      prepoo:  'Scalp reset week — lighter pre-poo. Focus on the scalp massage to loosen 4 weeks of buildup before the ACV + Ambunu reset.',
+      scalp:   'Full protocol — scalp health is the entire priority this week. Spend the full 5 min on the massage before rinsing.',
+      shampoo: '<strong>Week 4: Ambunu co-wash replaces shampoo today.</strong> Steep 2–3 tbsp dried Ambunu in warm water 15 min, strain, use the liquid to cleanse scalp and coat hair. Replaces shampoo entirely.',
+      loc:     'Apply JBCO directly to the scalp during your O step today — ACV rebalanced the pH, JBCO feeds the follicle and closes the scalp reset cycle.'
+    }
+  };
+
+  const n = NOTES[dc] || NOTES[1];
+  renderStepNote('wn-prepoo',  n.prepoo,  t);
+  renderStepNote('wn-scalp',   n.scalp,   t);
+  renderStepNote('wn-shampoo', n.shampoo, t);
+  renderStepNote('wn-loc',     n.loc,     t);
+
+  refreshRestockAlerts();
+}
+
+// Scan any styling/maintenance panel and mark empty products visually
+function refreshPanelProducts(panelId) {
+  const panel = document.getElementById(panelId);
+  if(!panel) return;
+  const all = getAllProds();
+  panel.querySelectorAll('.prod-pill').forEach(pill => {
+    const raw = pill.textContent.trim().replace(/^[LOC]:\s*/, '');
+    const p = all.find(x => x.name === raw || x.name === pill.textContent.trim());
+    if(p && (p.qty||'full') === 'low') {
+      pill.classList.add('prod-pill-empty');
+      pill.title = 'Empty — on your shopping list';
+    } else {
+      pill.classList.remove('prod-pill-empty');
+      pill.title = '';
+    }
+  });
+}
+
+// Populate protective style dynamic pill containers
+function refreshProtectivePills() {
+  const dc = ST.dcWeek || 1;
+  renderStepPills('wp-prot-pre', getStepAvailable('prepoo', dc).concat(getStepAvailable('blowdry', dc).slice(0,3)));
+  renderStepPills('wp-prot-braid', [
+    ...[{name:'Camille Rose Almond Jai Twisting Butter'},{name:'Wired Flexible Styling Cream'},{name:'JBCO (Jamaican Black Castor Oil)'},{name:'AllDay Edges'}].map(p => {
+      const found = getAllProds().find(x => x.name === p.name);
+      return found || p;
+    }).filter(p => (p.qty||'full') !== 'low')
+  ]);
+  renderStepPills('wp-prot-scalp', getStepAvailable('scalp', dc));
+  renderStepPills('wp-prot-takedown', [
+    ...[{name:'Avocado Oil'},{name:'NOW Almond Oil'},{name:'ORS Olive Oil Replenishing Conditioner'}].map(p => {
+      const found = getAllProds().find(x => x.name === p.name);
+      return found || p;
+    }).filter(p => (p.qty||'full') !== 'low')
+  ]);
+}
+
 // ══════════════════════════════════════════════════════
 // WEEK-SPECIFIC DEEP CONDITION STEP
 // ══════════════════════════════════════════════════════
